@@ -1,5 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const pages = Object.keys(import.meta.glob('./**/*.{astro,mdx}'))
+	.map((file) => file.replace(/^\.\//, '').replace(/\.(astro|mdx)$/, '').replace(/(^|\/)index$/, ''))
+	.filter((path) => path !== '' && !path.includes('['))
+	.sort();
 ---
 
-<Base />
+<Base>
+	<h1>페이지 목록</h1>
+	<ul>
+		{pages.map((path) => (
+			<li><a href={`${base}/${path}/`}>/{path}/</a></li>
+		))}
+	</ul>
+</Base>
