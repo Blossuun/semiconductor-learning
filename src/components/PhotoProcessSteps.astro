@@ -1,0 +1,159 @@
+---
+import StepAnimation from './StepAnimation.astro';
+
+interface Labels {
+	group: string;
+	titles: [string, string, string, string, string];
+	substrate: string;
+	film: string;
+	resist: string;
+	mask: string;
+	uv: string;
+	exposed: string;
+}
+
+interface Props {
+	labels?: Partial<Labels>;
+	prevLabel?: string;
+	nextLabel?: string;
+}
+
+const defaults: Labels = {
+	group: '포토 공정 단면도',
+	titles: ['1. 감광액 도포', '2. 노광', '3. 현상', '4. 식각', '5. 감광액 제거'],
+	substrate: '실리콘 기판',
+	film: '산화막',
+	resist: '감광액',
+	mask: '마스크',
+	uv: '자외선',
+	exposed: '빛을 받은 영역',
+};
+
+const { labels, prevLabel, nextLabel } = Astro.props;
+const t: Labels = { ...defaults, ...labels };
+
+// 단면 좌표
+const X0 = 60;
+const X1 = 360;
+const OPEN0 = 170;
+const OPEN1 = 250;
+const LABEL_X = 374;
+
+const full = [[X0, X1 - X0]];
+const patterned = [
+	[X0, OPEN0 - X0],
+	[OPEN1, X1 - OPEN1],
+];
+
+// 단계별 구성: resist/film = 'full' | 'patterned' | 'none'
+const steps = [
+	{ resist: 'full', film: 'full', expose: false },
+	{ resist: 'full', film: 'full', expose: true },
+	{ resist: 'patterned', film: 'full', expose: false },
+	{ resist: 'patterned', film: 'patterned', expose: false },
+	{ resist: 'none', film: 'patterned', expose: false },
+];
+
+const segments = (kind: string) => (kind === 'full' ? full : kind === 'patterned' ? patterned : []);
+const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
+---
+
+<StepAnimation label={t.group} prevLabel={prevLabel} nextLabel={nextLabel}>
+	{
+		steps.map((step, i) => (
+			<svg class="photo-step" viewBox="0 0 480 268" role="img" aria-label={t.titles[i]}>
+				{step.expose && (
+					<g>
+						{uvXs.map((x) => {
+							const through = x > OPEN0 && x < OPEN1;
+							const end = through ? 112 : 50;
+							return (
+								<g class="uv">
+									<line x1={x} y1="20" x2={x} y2={end - 6} />
+									<polygon points={`${x - 4},${end - 7} ${x + 4},${end - 7} ${x},${end}`} />
+								</g>
+							);
+						})}
+						<rect class="mask" x={X0} y="56" width={OPEN0 - X0} height="12" />
+						<rect class="mask" x={OPEN1} y="56" width={X1 - OPEN1} height="12" />
+						<text x={LABEL_X} y="36">{t.uv}</text>
+						<text x={LABEL_X} y="67">{t.mask}</text>
+					</g>
+				)}
+
+				{segments(step.resist).map(([x, w]) => (
+					<rect class="resist" x={x} y="116" width={w} height="44" />
+				))}
+				{step.expose && (
+					<rect class="exposed" x={OPEN0} y="116" width={OPEN1 - OPEN0} height="44" />
+				)}
+				{segments(step.film).map(([x, w]) => (
+					<rect class="film" x={x} y="160" width={w} height="30" />
+				))}
+				<rect class="substrate" x={X0} y="190" width={X1 - X0} height="44" />
+
+				{step.resist !== 'none' && <text x={LABEL_X} y="143">{t.resist}</text>}
+				<text x={LABEL_X} y="180">{t.film}</text>
+				<text x={LABEL_X} y="217">{t.substrate}</text>
+
+				<text class="title" x={X0} y="258">{t.titles[i]}</text>
+				{step.expose && (
+					<g>
+						<rect class="exposed" x="236" y="246" width="16" height="14" />
+						<text x="258" y="258">{t.exposed}</text>
+					</g>
+				)}
+			</svg>
+		))
+	}
+</StepAnimation>
+
+<style>
+	.photo-step {
+		max-width: 36rem;
+		margin-inline: auto;
+		font-family: var(--font-sans);
+		font-size: 14px;
+	}
+
+	.photo-step text {
+		fill: var(--color-text);
+	}
+
+	.photo-step .title {
+		font-size: 15px;
+		font-weight: 700;
+	}
+
+	.photo-step .substrate {
+		fill: var(--color-text-muted);
+	}
+
+	.photo-step .film {
+		fill: var(--color-accent);
+	}
+
+	.photo-step .resist {
+		fill: #e08a3c;
+	}
+
+	.photo-step .exposed {
+		fill: #f6d9b4;
+		stroke: #e08a3c;
+		stroke-width: 1.5;
+		stroke-dasharray: 4 3;
+	}
+
+	.photo-step .mask {
+		fill: var(--color-text);
+	}
+
+	.photo-step .uv line {
+		stroke: #8a5cf6;
+		stroke-width: 2;
+	}
+
+	.photo-step .uv polygon {
+		fill: #8a5cf6;
+	}
+</style>

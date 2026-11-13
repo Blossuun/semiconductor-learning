@@ -1,0 +1,133 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import TermCard from '../components/TermCard.astro';
+
+const modules = [
+	'칩 하나 만들어 보기',
+	'기초 원리',
+	'제품과 산업',
+	'팹과 클린룸',
+	'전공정',
+	'계측·검사·수율',
+	'후공정',
+	'최신 기술',
+	'현장 소통',
+];
+
+const terms = (await getCollection('glossary')).sort((a, b) => a.data.ko.localeCompare(b.data.ko, 'ko'));
+
+const searchText = (t: (typeof terms)[number]['data']) =>
+	[t.ko, t.en, t.ja, t.ja_reading, t.zh_cn, t.zh_cn_pinyin, t.zh_tw, t.zh_tw_pinyin, t.abbr, t.definition_ko]
+		.filter(Boolean)
+		.join(' ')
+		.toLowerCase();
+---
+
+<Base title="용어집">
+	<h1>용어집</h1>
+
+	<form class="filters" role="search" data-glossary-filters>
+		<label>
+			<span>검색</span>
+			<input type="search" placeholder="한국어, English, 日本語, 中文" autocomplete="off" data-search />
+		</label>
+		<label>
+			<span>단계</span>
+			<select data-module>
+				<option value="">전체</option>
+				{modules.map((name, i) => <option value={i}>{i}. {name}</option>)}
+			</select>
+		</label>
+	</form>
+
+	<p class="count" aria-live="polite"><span data-count>{terms.length}</span>개 용어</p>
+
+	<ul class="terms">
+		{
+			terms.map((term) => (
+				<li data-term data-term-module={term.data.module} data-term-search={searchText(term.data)}>
+					<TermCard id={term.id} />
+				</li>
+			))
+		}
+	</ul>
+	<p class="empty" hidden data-empty>조건에 맞는 용어가 없습니다.</p>
+</Base>
+
+<script>
+	const form = document.querySelector<HTMLFormElement>('[data-glossary-filters]')!;
+	const search = form.querySelector<HTMLInputElement>('[data-search]')!;
+	const module = form.querySelector<HTMLSelectElement>('[data-module]')!;
+	const items = document.querySelectorAll<HTMLElement>('[data-term]');
+	const count = document.querySelector<HTMLElement>('[data-count]')!;
+	const empty = document.querySelector<HTMLElement>('[data-empty]')!;
+
+	const apply = () => {
+		const words = search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+		let shown = 0;
+
+		items.forEach((item) => {
+			const text = item.dataset.termSearch!;
+			const match =
+				(module.value === '' || item.dataset.termModule === module.value) &&
+				words.every((word) => text.includes(word));
+			item.hidden = !match;
+			if (match) shown++;
+		});
+
+		count.textContent = String(shown);
+		empty.hidden = shown > 0;
+	};
+
+	form.addEventListener('submit', (event) => event.preventDefault());
+	search.addEventListener('input', apply);
+	module.addEventListener('change', apply);
+	apply();
+</script>
+
+<style>
+	.filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+	}
+
+	label {
+		display: grid;
+		gap: var(--space-1);
+		color: var(--color-text-muted);
+		font-size: var(--text-sm);
+	}
+
+	label:first-child {
+		flex: 1 1 14rem;
+	}
+
+	input,
+	select {
+		width: 100%;
+		padding: var(--space-2) var(--space-3);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		background: var(--color-bg);
+		color: var(--color-text);
+		font: inherit;
+	}
+
+	.count {
+		margin: var(--space-3) 0 0;
+		color: var(--color-text-muted);
+		font-size: var(--text-sm);
+	}
+
+	.terms {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.empty {
+		color: var(--color-text-muted);
+	}
+</style>

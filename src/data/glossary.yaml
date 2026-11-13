@@ -1,0 +1,672 @@
+- id: photolithography
+  ko: 포토 공정
+  en: photolithography
+  ja: フォトリソグラフィ
+  ja_reading: ふぉとりそぐらふぃ
+  zh_cn: 光刻
+  zh_cn_pinyin: guāngkè
+  zh_tw: 微影
+  zh_tw_pinyin: wéiyǐng
+  abbr: Photo, Litho
+  field_usage: "현장에서는 '포토'로 줄여 부름"
+  definition_ko: 빛으로 회로 무늬를 웨이퍼에 옮겨 그리는 공정
+  module: 4
+  verified: false
+- id: photoresist
+  ko: 감광액
+  en: photoresist
+  ja: フォトレジスト
+  ja_reading: ふぉとれじすと
+  zh_cn: 光刻胶
+  zh_cn_pinyin: guāngkèjiāo
+  zh_tw: 光阻
+  zh_tw_pinyin: guāngzǔ
+  abbr: PR
+  field_usage: "현장에서는 'PR'(피알) 또는 '레지스트'라고 부름"
+  definition_ko: 빛을 받으면 성질이 변해 현상액에 녹거나 녹지 않게 되는 액체 재료
+  module: 4
+  verified: false
+- id: photomask
+  ko: 포토마스크
+  en: photomask
+  ja: フォトマスク
+  ja_reading: ふぉとますく
+  zh_cn: 光掩模
+  zh_cn_pinyin: guāngyǎnmó
+  zh_tw: 光罩
+  zh_tw_pinyin: guāngzhào
+  field_usage: "현장에서는 '마스크' 또는 '레티클'이라고 부름"
+  definition_ko: 회로 무늬가 그려져 있어 빛이 지나갈 곳과 막힐 곳을 정해 주는 유리판
+  module: 4
+  verified: false
+- id: spin-coating
+  ko: 스핀 코팅
+  en: spin coating
+  ja: スピンコート
+  ja_reading: すぴんこーと
+  zh_cn: 旋涂
+  zh_cn_pinyin: xuántú
+  zh_tw: 旋轉塗佈
+  zh_tw_pinyin: xuánzhuǎn túbù
+  field_usage: "현장에서는 '도포' 또는 '코팅'이라고 부름"
+  definition_ko: 웨이퍼를 빠르게 돌려 감광액을 얇고 고르게 펴 바르는 방법
+  module: 4
+  verified: false
+- id: soft-bake
+  ko: 소프트 베이크
+  en: soft bake
+  ja: プリベーク
+  ja_reading: ぷりべーく
+  zh_cn: 软烘
+  zh_cn_pinyin: ruǎnhōng
+  zh_tw: 軟烤
+  zh_tw_pinyin: ruǎnkǎo
+  definition_ko: 감광액을 바른 뒤 살짝 구워 용제를 날리고 막을 굳히는 단계
+  module: 4
+  verified: false
+- id: exposure
+  ko: 노광
+  en: exposure
+  ja: 露光
+  ja_reading: ろこう
+  zh_cn: 曝光
+  zh_cn_pinyin: bàoguāng
+  zh_tw: 曝光
+  zh_tw_pinyin: pùguāng
+  definition_ko: 마스크를 통과한 빛을 감광액에 비춰 회로 무늬를 옮기는 단계
+  module: 4
+  verified: false
+- id: development
+  ko: 현상
+  en: development
+  ja: 現像
+  ja_reading: げんぞう
+  zh_cn: 显影
+  zh_cn_pinyin: xiǎnyǐng
+  zh_tw: 顯影
+  zh_tw_pinyin: xiǎnyǐng
+  definition_ko: 현상액으로 감광액의 필요 없는 부분을 녹여 무늬를 드러내는 단계
+  module: 4
+  verified: false
+- id: scanner
+  ko: 스캐너
+  en: scanner
+  ja: スキャナー
+  ja_reading: すきゃなー
+  zh_cn: 光刻机
+  zh_cn_pinyin: guāngkèjī
+  zh_tw: 曝光機
+  zh_tw_pinyin: pùguāngjī
+  field_usage: "현장에서는 노광 장비를 통틀어 '노광기'라고 부름"
+  definition_ko: 마스크와 웨이퍼를 함께 움직이며 빛을 비춰 무늬를 옮기는 노광 장비
+  module: 4
+  verified: false
+- id: resolution
+  ko: 해상도
+  en: resolution
+  ja: 解像度
+  ja_reading: かいぞうど
+  zh_cn: 分辨率
+  zh_cn_pinyin: fēnbiànlǜ
+  zh_tw: 解析度
+  zh_tw_pinyin: jiěxīdù
+  definition_ko: 노광 장비가 구분해서 그릴 수 있는 가장 작은 무늬의 크기
+  module: 4
+  verified: false
+- id: critical-dimension
+  ko: 임계 치수
+  en: critical dimension
+  ja: クリティカルディメンション
+  ja_reading: くりてぃかるでぃめんしょん
+  zh_cn: 关键尺寸
+  zh_cn_pinyin: guānjiàn chǐcùn
+  zh_tw: 關鍵尺寸
+  zh_tw_pinyin: guānjiàn chǐcùn
+  abbr: CD
+  field_usage: "현장에서는 'CD'(씨디) 또는 '선폭'이라고 부름"
+  definition_ko: 회로 무늬에서 반드시 맞춰야 하는 선의 폭이나 간격
+  module: 4
+  verified: false
+- id: overlay
+  ko: 오버레이
+  en: overlay
+  ja: オーバーレイ
+  ja_reading: おーばーれい
+  zh_cn: 套刻
+  zh_cn_pinyin: tàokè
+  zh_tw: 疊對
+  zh_tw_pinyin: diéduì
+  field_usage: "일본어 현장에서는 '重ね合わせ'(かさねあわせ)라고도 부름"
+  definition_ko: 아래층 무늬와 새로 그린 위층 무늬가 얼마나 정확히 겹쳤는지를 나타내는 값
+  module: 4
+  verified: false
+- id: wafer
+  ko: 웨이퍼
+  en: wafer
+  ja: ウェーハ
+  ja_reading: うぇーは
+  zh_cn: 晶圆
+  zh_cn_pinyin: jīngyuán
+  zh_tw: 晶圓
+  zh_tw_pinyin: jīngyuán
+  definition_ko: 반도체 칩을 만드는 바탕이 되는 얇고 둥근 실리콘 판
+  module: 4
+  verified: false
+- id: oxidation
+  ko: 산화
+  en: oxidation
+  ja: 酸化
+  ja_reading: さんか
+  zh_cn: 氧化
+  zh_cn_pinyin: yǎnghuà
+  zh_tw: 氧化
+  zh_tw_pinyin: yǎnghuà
+  definition_ko: 웨이퍼 표면을 산소와 반응시켜 얇은 보호막(산화막)을 만드는 공정
+  module: 4
+  verified: false
+- id: etching
+  ko: 식각
+  en: etching
+  ja: エッチング
+  ja_reading: えっちんぐ
+  zh_cn: 刻蚀
+  zh_cn_pinyin: kèshí
+  zh_tw: 蝕刻
+  zh_tw_pinyin: shíkè
+  abbr: Etch
+  field_usage: "현장에서는 '에치'로 줄여 부름"
+  definition_ko: 포토레지스트가 덮지 않은 부분의 막을 깎아 내어 무늬를 새기는 공정
+  module: 4
+  verified: false
+- id: deposition
+  ko: 증착
+  en: deposition
+  ja: 成膜
+  ja_reading: せいまく
+  zh_cn: 沉积
+  zh_cn_pinyin: chénjī
+  zh_tw: 沉積
+  zh_tw_pinyin: chénjī
+  abbr: Depo
+  field_usage: "일본어 현장에서는 'デポ'(でぽ)라고도 부름"
+  definition_ko: 웨이퍼 위에 원하는 물질을 얇은 막으로 입히는 공정
+  module: 4
+  verified: false
+- id: cvd
+  ko: 화학 기상 증착
+  en: chemical vapor deposition
+  ja: 化学気相成長
+  ja_reading: かがくきそうせいちょう
+  zh_cn: 化学气相沉积
+  zh_cn_pinyin: huàxué qìxiàng chénjī
+  zh_tw: 化學氣相沉積
+  zh_tw_pinyin: huàxué qìxiàng chénjī
+  abbr: CVD
+  field_usage: "현장에서는 '씨브이디'로 부름"
+  definition_ko: 기체를 화학 반응시켜 그 결과물을 웨이퍼 위에 막으로 쌓는 증착 방법
+  module: 4
+  verified: false
+- id: pvd
+  ko: 물리 기상 증착
+  en: physical vapor deposition
+  ja: 物理気相成長
+  ja_reading: ぶつりきそうせいちょう
+  zh_cn: 物理气相沉积
+  zh_cn_pinyin: wùlǐ qìxiàng chénjī
+  zh_tw: 物理氣相沉積
+  zh_tw_pinyin: wùlǐ qìxiàng chénjī
+  abbr: PVD
+  field_usage: "현장에서는 '피브이디'로 부름"
+  definition_ko: 재료를 물리적으로 떼어 내 웨이퍼 위에 막으로 붙이는 증착 방법
+  module: 4
+  verified: false
+- id: ion-implantation
+  ko: 이온 주입
+  en: ion implantation
+  ja: イオン注入
+  ja_reading: いおんちゅうにゅう
+  zh_cn: 离子注入
+  zh_cn_pinyin: lízǐ zhùrù
+  zh_tw: 離子佈植
+  zh_tw_pinyin: lízǐ bùzhí
+  abbr: IMP
+  field_usage: "현장에서는 '임플란트' 또는 'IMP'로 부름"
+  definition_ko: 전기가 통하는 성질을 바꾸려고 불순물 이온을 빠르게 쏘아 웨이퍼 속에 넣는 공정
+  module: 4
+  verified: false
+- id: metallization
+  ko: 금속 배선
+  en: metallization
+  ja: 金属配線
+  ja_reading: きんぞくはいせん
+  zh_cn: 金属化
+  zh_cn_pinyin: jīnshǔhuà
+  zh_tw: 金屬化
+  zh_tw_pinyin: jīnshǔhuà
+  field_usage: "현장에서는 '메탈'로 줄여 부름"
+  definition_ko: 소자들 사이에 전기가 흐르도록 금속으로 길을 만드는 공정
+  module: 4
+  verified: false
+- id: cmp
+  ko: 화학적 기계적 연마
+  en: chemical mechanical polishing
+  ja: 化学機械研磨
+  ja_reading: かがくきかいけんま
+  zh_cn: 化学机械抛光
+  zh_cn_pinyin: huàxué jīxiè pāoguāng
+  zh_tw: 化學機械研磨
+  zh_tw_pinyin: huàxué jīxiè yánmó
+  abbr: CMP
+  field_usage: "현장에서는 '씨엠피'로 부름"
+  definition_ko: 약품과 연마 패드로 웨이퍼 표면을 갈아 평평하게 만드는 공정
+  module: 4
+  verified: false
+- id: cleaning
+  ko: 세정
+  en: cleaning
+  ja: 洗浄
+  ja_reading: せんじょう
+  zh_cn: 清洗
+  zh_cn_pinyin: qīngxǐ
+  zh_tw: 清洗
+  zh_tw_pinyin: qīngxǐ
+  definition_ko: 공정 사이사이에 웨이퍼 표면의 먼지와 찌꺼기를 씻어 내는 공정
+  module: 4
+  verified: false
+- id: eds
+  ko: 전기적 특성 검사
+  en: electrical die sorting
+  ja: ウェーハテスト
+  ja_reading: うぇーはてすと
+  zh_cn: 晶圆测试
+  zh_cn_pinyin: jīngyuán cèshì
+  zh_tw: 晶圓測試
+  zh_tw_pinyin: jīngyuán cèshì
+  abbr: EDS
+  field_usage: "EDS는 주로 한국에서 쓰는 이름이고, 해외에서는 wafer test, wafer sort, CP라고 부름"
+  definition_ko: 웨이퍼를 자르기 전에 칩 하나하나에 전기를 흘려 양품과 불량을 가려내는 검사
+  module: 6
+  verified: false
+- id: packaging
+  ko: 패키징
+  en: packaging
+  ja: パッケージング
+  ja_reading: ぱっけーじんぐ
+  zh_cn: 封装
+  zh_cn_pinyin: fēngzhuāng
+  zh_tw: 封裝
+  zh_tw_pinyin: fēngzhuāng
+  abbr: PKG
+  definition_ko: 칩을 보호하고 바깥 기판과 전기로 이어 주도록 감싸는 공정
+  module: 6
+  verified: false
+- id: dicing
+  ko: 다이싱
+  en: dicing
+  ja: ダイシング
+  ja_reading: だいしんぐ
+  zh_cn: 划片
+  zh_cn_pinyin: huápiàn
+  zh_tw: 切割
+  zh_tw_pinyin: qiēgē
+  field_usage: "현장에서는 '쏘잉'(sawing)이라고도 부름"
+  definition_ko: 웨이퍼를 낱개 칩으로 잘라 나누는 공정
+  module: 6
+  verified: false
+- id: wire-bonding
+  ko: 와이어 본딩
+  en: wire bonding
+  ja: ワイヤボンディング
+  ja_reading: わいやぼんでぃんぐ
+  zh_cn: 引线键合
+  zh_cn_pinyin: yǐnxiàn jiànhé
+  zh_tw: 打線接合
+  zh_tw_pinyin: dǎxiàn jiēhé
+  abbr: WB
+  definition_ko: 칩과 기판을 가는 금속 선으로 이어 주는 연결 방법
+  module: 6
+  verified: false
+- id: flip-chip
+  ko: 플립 칩
+  en: flip chip
+  ja: フリップチップ
+  ja_reading: ふりっぷちっぷ
+  zh_cn: 倒装芯片
+  zh_cn_pinyin: dàozhuāng xīnpiàn
+  zh_tw: 覆晶
+  zh_tw_pinyin: fùjīng
+  abbr: FC
+  definition_ko: 칩을 뒤집어 범프로 기판에 바로 붙이는 연결 방법
+  module: 6
+  verified: false
+- id: bump
+  ko: 범프
+  en: bump
+  ja: バンプ
+  ja_reading: ばんぷ
+  zh_cn: 凸块
+  zh_cn_pinyin: tūkuài
+  zh_tw: 凸塊
+  zh_tw_pinyin: tūkuài
+  definition_ko: 칩과 기판 또는 칩과 칩을 잇는 작은 금속 돌기
+  module: 6
+  verified: false
+- id: tsv
+  ko: 실리콘 관통 전극
+  en: through-silicon via
+  ja: シリコン貫通電極
+  ja_reading: しりこんかんつうでんきょく
+  zh_cn: 硅通孔
+  zh_cn_pinyin: guī tōngkǒng
+  zh_tw: 矽穿孔
+  zh_tw_pinyin: xì chuānkǒng
+  abbr: TSV
+  field_usage: "현장에서는 '티에스브이'로 부름"
+  definition_ko: 칩에 구멍을 뚫고 금속을 채워 위아래 칩을 곧바로 잇는 통로
+  module: 6
+  verified: false
+- id: hbm
+  ko: 고대역폭 메모리
+  en: high bandwidth memory
+  ja: 広帯域メモリ
+  ja_reading: こうたいいきめもり
+  zh_cn: 高带宽内存
+  zh_cn_pinyin: gāo dàikuān nèicún
+  zh_tw: 高頻寬記憶體
+  zh_tw_pinyin: gāo pínkuān jìyìtǐ
+  abbr: HBM
+  field_usage: "네 언어 모두 현장에서는 'HBM'으로 부름"
+  definition_ko: D램 칩을 여러 장 쌓고 TSV로 이어 데이터를 한꺼번에 많이 주고받게 만든 메모리
+  module: 6
+  verified: false
+- id: hybrid-bonding
+  ko: 하이브리드 본딩
+  en: hybrid bonding
+  ja: ハイブリッドボンディング
+  ja_reading: はいぶりっどぼんでぃんぐ
+  zh_cn: 混合键合
+  zh_cn_pinyin: hùnhé jiànhé
+  zh_tw: 混合鍵合
+  zh_tw_pinyin: hùnhé jiànhé
+  field_usage: "일본어에서는 'ハイブリッド接合'(はいぶりっどせつごう)이라고도 씀"
+  definition_ko: 범프 없이 칩의 구리와 구리, 절연막과 절연막을 직접 맞붙이는 접합 방법
+  module: 6
+  verified: false
+- id: underfill
+  ko: 언더필
+  en: underfill
+  ja: アンダーフィル
+  ja_reading: あんだーふぃる
+  zh_cn: 底部填充
+  zh_cn_pinyin: dǐbù tiánchōng
+  zh_tw: 底部填充膠
+  zh_tw_pinyin: dǐbù tiánchōng jiāo
+  definition_ko: 칩과 기판 사이의 틈을 채워 범프를 보호하는 재료 또는 그 공정
+  module: 6
+  verified: false
+- id: conductor
+  ko: 도체
+  en: conductor
+  ja: 導体
+  ja_reading: どうたい
+  zh_cn: 导体
+  zh_cn_pinyin: dǎotǐ
+  zh_tw: 導體
+  zh_tw_pinyin: dǎotǐ
+  definition_ko: 구리처럼 전기가 잘 통하는 물질
+  module: 1
+  verified: false
+- id: insulator
+  ko: 부도체
+  en: insulator
+  ja: 絶縁体
+  ja_reading: ぜつえんたい
+  zh_cn: 绝缘体
+  zh_cn_pinyin: juéyuántǐ
+  zh_tw: 絕緣體
+  zh_tw_pinyin: juéyuántǐ
+  field_usage: "현장에서는 '절연체'라고 더 자주 부름"
+  definition_ko: 유리나 고무처럼 전기가 거의 통하지 않는 물질
+  module: 1
+  verified: false
+- id: semiconductor
+  ko: 반도체
+  en: semiconductor
+  ja: 半導体
+  ja_reading: はんどうたい
+  zh_cn: 半导体
+  zh_cn_pinyin: bàndǎotǐ
+  zh_tw: 半導體
+  zh_tw_pinyin: bàndǎotǐ
+  definition_ko: 조건에 따라 전기가 통하기도 하고 안 통하기도 하는 물질
+  module: 1
+  verified: false
+- id: silicon
+  ko: 실리콘
+  en: silicon
+  ja: シリコン
+  ja_reading: しりこん
+  zh_cn: 硅
+  zh_cn_pinyin: guī
+  zh_tw: 矽
+  zh_tw_pinyin: xì
+  abbr: Si
+  field_usage: "화학 용어로는 '규소'라고 함"
+  definition_ko: 모래에서 얻는 원소로, 반도체 칩을 만드는 데 가장 널리 쓰이는 재료
+  module: 1
+  verified: false
+- id: doping
+  ko: 도핑
+  en: doping
+  ja: ドーピング
+  ja_reading: どーぴんぐ
+  zh_cn: 掺杂
+  zh_cn_pinyin: chānzá
+  zh_tw: 摻雜
+  zh_tw_pinyin: chānzá
+  definition_ko: 순수한 반도체에 불순물을 조금 넣어 전기가 통하는 정도를 조절하는 일
+  module: 1
+  verified: false
+- id: hole
+  ko: 정공
+  en: hole
+  ja: 正孔
+  ja_reading: せいこう
+  zh_cn: 空穴
+  zh_cn_pinyin: kōngxué
+  zh_tw: 電洞
+  zh_tw_pinyin: diàndòng
+  field_usage: "일본어에서는 'ホール'(ほーる)이라고도 부름"
+  definition_ko: 전자가 빠져나간 빈자리로, 양전하를 띤 알갱이처럼 움직이며 전기를 나름
+  module: 1
+  verified: false
+- id: n-type-semiconductor
+  ko: N형 반도체
+  en: n-type semiconductor
+  ja: n型半導体
+  ja_reading: えぬがたはんどうたい
+  zh_cn: N型半导体
+  zh_cn_pinyin: N xíng bàndǎotǐ
+  zh_tw: N型半導體
+  zh_tw_pinyin: N xíng bàndǎotǐ
+  definition_ko: 도핑으로 전자가 남게 만들어 전자가 주로 전기를 나르는 반도체
+  module: 1
+  verified: false
+- id: p-type-semiconductor
+  ko: P형 반도체
+  en: p-type semiconductor
+  ja: p型半導体
+  ja_reading: ぴーがたはんどうたい
+  zh_cn: P型半导体
+  zh_cn_pinyin: P xíng bàndǎotǐ
+  zh_tw: P型半導體
+  zh_tw_pinyin: P xíng bàndǎotǐ
+  definition_ko: 도핑으로 정공이 많아지게 만들어 정공이 주로 전기를 나르는 반도체
+  module: 1
+  verified: false
+- id: pn-junction
+  ko: PN 접합
+  en: p-n junction
+  ja: pn接合
+  ja_reading: ぴーえぬせつごう
+  zh_cn: PN结
+  zh_cn_pinyin: PN jié
+  zh_tw: PN接面
+  zh_tw_pinyin: PN jiēmiàn
+  definition_ko: P형과 N형 반도체가 맞닿은 경계로, 전류를 한쪽 방향으로만 잘 흐르게 함
+  module: 1
+  verified: false
+- id: mosfet
+  ko: 모스펫
+  en: metal-oxide-semiconductor field-effect transistor
+  ja: MOS電界効果トランジスタ
+  ja_reading: もすでんかいこうかとらんじすた
+  zh_cn: 金属氧化物半导体场效应晶体管
+  zh_cn_pinyin: jīnshǔ yǎnghuàwù bàndǎotǐ chǎngxiàoyìng jīngtǐguǎn
+  zh_tw: 金氧半場效電晶體
+  zh_tw_pinyin: jīnyǎngbàn chǎngxiào diànjīngtǐ
+  abbr: MOSFET
+  field_usage: "네 언어 모두 현장에서는 'MOSFET' 또는 'MOS'로 부름"
+  definition_ko: 게이트에 거는 전압으로 전류의 길을 열고 닫는 스위치 역할의 트랜지스터
+  module: 1
+  verified: false
+- id: preventive-maintenance
+  ko: 예방 정비
+  en: preventive maintenance
+  ja: 予防保全
+  ja_reading: よぼうほぜん
+  zh_cn: 预防性维护
+  zh_cn_pinyin: yùfángxìng wéihù
+  zh_tw: 預防保養
+  zh_tw_pinyin: yùfáng bǎoyǎng
+  abbr: PM
+  field_usage: "현장에서는 '피엠'이라 부르고 '설비 PM 들어간다'처럼 씀"
+  definition_ko: 설비가 고장 나기 전에 정해진 주기로 미리 점검하고 부품을 바꾸는 일
+  module: 8
+  verified: false
+- id: breakdown-maintenance
+  ko: 고장 정비
+  en: breakdown maintenance
+  ja: 事後保全
+  ja_reading: じごほぜん
+  zh_cn: 故障维修
+  zh_cn_pinyin: gùzhàng wéixiū
+  zh_tw: 故障維修
+  zh_tw_pinyin: gùzhàng wéixiū
+  abbr: BM
+  field_usage: "한국 현장에서는 설비 고장 자체를 '비엠 났다'라고 말함"
+  definition_ko: 설비가 갑자기 고장 난 뒤에 하는 수리
+  module: 8
+  verified: false
+- id: foup
+  ko: 풉
+  en: front opening unified pod
+  ja: フープ
+  ja_reading: ふーぷ
+  zh_cn: 前开式晶圆传送盒
+  zh_cn_pinyin: qiánkāishì jīngyuán chuánsònghé
+  zh_tw: 前開式晶圓傳送盒
+  zh_tw_pinyin: qiánkāishì jīngyuán chuánsònghé
+  abbr: FOUP
+  field_usage: "네 언어 모두 현장에서는 'FOUP'으로 부름"
+  definition_ko: 웨이퍼 여러 장을 담아 먼지 없이 옮기는 앞문 달린 밀폐 상자
+  module: 8
+  verified: false
+- id: oht
+  ko: 천장 이송 장치
+  en: overhead hoist transport
+  ja: 天井搬送車
+  ja_reading: てんじょうはんそうしゃ
+  zh_cn: 天车
+  zh_cn_pinyin: tiānchē
+  zh_tw: 天車
+  zh_tw_pinyin: tiānchē
+  abbr: OHT
+  field_usage: "현장에서는 '오에이치티'로 부름"
+  definition_ko: 천장 레일을 따라 다니며 FOUP을 설비에서 설비로 나르는 무인 이송 장치
+  module: 8
+  verified: false
+- id: wip
+  ko: 재공
+  en: work in process
+  ja: 仕掛品
+  ja_reading: しかかりひん
+  zh_cn: 在制品
+  zh_cn_pinyin: zàizhìpǐn
+  zh_tw: 在製品
+  zh_tw_pinyin: zàizhìpǐn
+  abbr: WIP
+  field_usage: "현장에서는 '윕'이라 부르고 '윕이 쌓였다'처럼 씀"
+  definition_ko: 공정에 들어갔지만 아직 완성되지 않아 라인 안에 있는 웨이퍼 물량
+  module: 8
+  verified: false
+- id: tat
+  ko: 턴어라운드 타임
+  en: turnaround time
+  ja: ターンアラウンドタイム
+  ja_reading: たーんあらうんどたいむ
+  zh_cn: 周转时间
+  zh_cn_pinyin: zhōuzhuǎn shíjiān
+  zh_tw: 週轉時間
+  zh_tw_pinyin: zhōuzhuǎn shíjiān
+  abbr: TAT
+  field_usage: "현장에서는 '탯' 또는 '티에이티'로 부르고, 비슷한 뜻으로 cycle time도 씀"
+  definition_ko: 웨이퍼가 공정에 들어가서 나올 때까지 걸리는 전체 시간
+  module: 8
+  verified: false
+- id: spc
+  ko: 통계적 공정 관리
+  en: statistical process control
+  ja: 統計的工程管理
+  ja_reading: とうけいてきこうていかんり
+  zh_cn: 统计过程控制
+  zh_cn_pinyin: tǒngjì guòchéng kòngzhì
+  zh_tw: 統計製程管制
+  zh_tw_pinyin: tǒngjì zhìchéng guǎnzhì
+  abbr: SPC
+  field_usage: "현장에서는 '에스피씨'로 부르고 관리선을 벗어나면 'SPC 아웃'이라고 함"
+  definition_ko: 측정값을 통계 그래프로 지켜보며 공정이 평소 범위를 벗어나는지 관리하는 방법
+  module: 8
+  verified: false
+- id: fdc
+  ko: 설비 이상 감지 및 분류
+  en: fault detection and classification
+  ja: 異常検知・分類
+  ja_reading: いじょうけんち・ぶんるい
+  zh_cn: 故障检测与分类
+  zh_cn_pinyin: gùzhàng jiǎncè yǔ fēnlèi
+  zh_tw: 故障偵測與分類
+  zh_tw_pinyin: gùzhàng zhēncè yǔ fēnlèi
+  abbr: FDC
+  field_usage: "네 언어 모두 현장에서는 'FDC'로 부름"
+  definition_ko: 설비 센서 값을 실시간으로 살펴 이상을 찾아내고 종류별로 나누는 시스템
+  module: 8
+  verified: false
+- id: mes
+  ko: 생산 관리 시스템
+  en: manufacturing execution system
+  ja: 製造実行システム
+  ja_reading: せいぞうじっこうしすてむ
+  zh_cn: 制造执行系统
+  zh_cn_pinyin: zhìzào zhíxíng xìtǒng
+  zh_tw: 製造執行系統
+  zh_tw_pinyin: zhìzào zhíxíng xìtǒng
+  abbr: MES
+  field_usage: "네 언어 모두 현장에서는 'MES'로 부름"
+  definition_ko: 웨이퍼가 어느 공정에 있고 다음에 어디로 갈지를 기록하고 지시하는 공장 전산 시스템
+  module: 8
+  verified: false
+- id: queue-time
+  ko: 대기 제한 시간
+  en: queue time
+  ja: キュータイム
+  ja_reading: きゅーたいむ
+  zh_cn: 等待时间
+  zh_cn_pinyin: děngdài shíjiān
+  zh_tw: 等候時間
+  zh_tw_pinyin: děnghòu shíjiān
+  abbr: Q-time
+  field_usage: "현장에서는 '큐타임'이라 부르고 제한을 넘기면 '큐타임 오버'라고 함"
+  definition_ko: 한 공정이 끝난 뒤 다음 공정을 시작하기 전까지 허용되는 대기 시간
+  module: 8
+  verified: false

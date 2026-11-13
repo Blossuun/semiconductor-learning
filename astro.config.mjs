@@ -5,5 +5,7 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://blossuun.github.io',
+  base: '/semiconductor-learning',
   integrations: [mdx()]
 });

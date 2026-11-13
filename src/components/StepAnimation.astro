@@ -1,0 +1,137 @@
+---
+interface Props {
+	label?: string;
+	prevLabel?: string;
+	nextLabel?: string;
+}
+
+const { label = '단계별 도해', prevLabel = '이전', nextLabel = '다음' } = Astro.props;
+---
+
+<div class="step-animation" role="group" aria-label={label} data-step-animation>
+	<div class="steps" data-steps>
+		<slot />
+	</div>
+	<div class="controls">
+		<button type="button" data-prev>{prevLabel}</button>
+		<span class="counter" aria-live="polite" data-counter></span>
+		<button type="button" data-next>{nextLabel}</button>
+	</div>
+</div>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-step-animation]').forEach((root) => {
+		const steps = Array.from(root.querySelector('[data-steps]')!.children) as HTMLElement[];
+		const prev = root.querySelector<HTMLButtonElement>('[data-prev]')!;
+		const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
+		const counter = root.querySelector<HTMLElement>('[data-counter]')!;
+		if (steps.length === 0) return;
+
+		let index = 0;
+
+		const show = (target: number) => {
+			index = Math.max(0, Math.min(steps.length - 1, target));
+			steps.forEach((step, i) => {
+				step.toggleAttribute('data-active', i === index);
+				step.setAttribute('aria-hidden', String(i !== index));
+			});
+			prev.disabled = index === 0;
+			next.disabled = index === steps.length - 1;
+			counter.textContent = `${index + 1} / ${steps.length}`;
+		};
+
+		prev.addEventListener('click', () => show(index - 1));
+		next.addEventListener('click', () => show(index + 1));
+		root.addEventListener('keydown', (event) => {
+			if (event.key === 'ArrowLeft') show(index - 1);
+			if (event.key === 'ArrowRight') show(index + 1);
+		});
+
+		show(0);
+		root.setAttribute('data-ready', '');
+	});
+</script>
+
+<style>
+	.step-animation {
+		margin: var(--space-4) 0;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		background: var(--color-surface);
+	}
+
+	.steps {
+		display: grid;
+		gap: var(--space-3);
+		padding: var(--space-3);
+	}
+
+	.steps > :global(*) {
+		display: block;
+		width: 100%;
+		height: auto;
+		margin: 0;
+	}
+
+	.step-animation[data-ready] .steps > :global(*) {
+		grid-area: 1 / 1;
+		opacity: 0;
+		visibility: hidden;
+		transition:
+			opacity 0.35s ease,
+			visibility 0.35s;
+	}
+
+	.step-animation[data-ready] .steps > :global([data-active]) {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.controls {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-3);
+		padding: var(--space-2) var(--space-3);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.step-animation[data-ready] .controls {
+		display: flex;
+	}
+
+	.counter {
+		min-width: 4rem;
+		color: var(--color-text-muted);
+		font-size: var(--text-sm);
+		font-variant-numeric: tabular-nums;
+		text-align: center;
+	}
+
+	button {
+		padding: var(--space-1) var(--space-3);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		background: var(--color-bg);
+		color: var(--color-text);
+		font: inherit;
+		font-size: var(--text-sm);
+		cursor: pointer;
+	}
+
+	button:hover:not(:disabled) {
+		border-color: var(--color-accent);
+		color: var(--color-accent);
+	}
+
+	button:disabled {
+		opacity: 0.4;
+		cursor: default;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.step-animation[data-ready] .steps > :global(*) {
+			transition: none;
+		}
+	}
+</style>

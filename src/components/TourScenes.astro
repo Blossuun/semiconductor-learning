@@ -1,0 +1,487 @@
+---
+import StepAnimation from './StepAnimation.astro';
+
+// 장면 문구: docs/tour-scenes.md
+const scenes = [
+	{
+		title: '모래에서 실리콘으로',
+		text: '칩의 재료는 모래에 많이 들어 있는 실리콘입니다. 모래를 녹이고 불순물을 걸러 내 아주 순수한 실리콘을 얻습니다.',
+	},
+	{
+		title: '기둥을 만들고 얇게 자르기',
+		text: '녹인 실리콘을 천천히 끌어올려 둥근 기둥(잉곳)으로 굳힙니다. 이 기둥을 얇게 잘라 거울처럼 닦은 원판이 웨이퍼입니다.',
+	},
+	{
+		title: '막 입히기',
+		text: '웨이퍼 위에 얇은 막을 고르게 입힙니다. 이 막이 나중에 회로의 재료가 됩니다.',
+	},
+	{
+		title: '빛으로 무늬 그리기',
+		text: '막 위에 빛에 반응하는 감광액을 바르고, 회로 무늬가 그려진 마스크를 통해 빛을 비춥니다. 빛을 받은 자리만 씻겨 나가 무늬가 남습니다.',
+	},
+	{
+		title: '깎아 내기',
+		text: '감광액이 가리지 않은 부분의 막을 깎아 냅니다. 감광액을 벗기면 막에 회로 무늬가 그대로 새겨져 있습니다.',
+	},
+	{
+		title: '성질 바꾸고 전기 길 놓기',
+		text: '실리콘에 다른 원자를 넣어 전기가 흐르는 성질을 바꾸고, 금속으로 전기가 다닐 길을 잇습니다. 3~5 장면을 수십 번 되풀이하며 층을 쌓아 올립니다.',
+	},
+	{
+		title: '검사하고 낱개로 자르기',
+		text: '웨이퍼 한 장에는 같은 칩이 수백 개 들어 있습니다. 하나씩 전기를 흘려 검사한 뒤 낱개로 잘라 냅니다.',
+	},
+	{
+		title: '포장해서 완성',
+		text: '잘라 낸 칩을 기판에 붙여 바깥과 전기로 잇고 단단한 재료로 감쌉니다. 이제 휴대폰과 컴퓨터에 들어갈 반도체가 완성됐습니다.',
+	},
+];
+
+// 장면 7: 원 안에 들어가는 칩 격자
+const dies: { x: number; y: number }[] = [];
+const WAFER = { cx: 150, cy: 122, r: 95 };
+const DIE = 22;
+const PITCH = 26;
+for (let row = -4; row <= 3; row++) {
+	for (let col = -4; col <= 3; col++) {
+		const x = WAFER.cx + col * PITCH + 2;
+		const y = WAFER.cy + row * PITCH + 2;
+		const corners = [
+			[x, y],
+			[x + DIE, y],
+			[x, y + DIE],
+			[x + DIE, y + DIE],
+		];
+		if (corners.every(([px, py]) => Math.hypot(px - WAFER.cx, py - WAFER.cy) <= WAFER.r - 5)) {
+			dies.push({ x, y });
+		}
+	}
+}
+const failed = new Set([3, 17, 26]);
+
+const particles = [110, 160, 210, 260, 310, 360];
+const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
+---
+
+<StepAnimation label="칩 하나 만들어 보기 투어">
+	<!-- 1. 모래에서 실리콘으로 -->
+	<figure class="scene">
+		<svg viewBox="0 0 480 268" role="img" aria-label={scenes[0].title}>
+			<path class="sand" d="M30 205 Q95 105 160 205 Z" />
+			<circle class="sand-dot" cx="80" cy="185" r="2" />
+			<circle class="sand-dot" cx="100" cy="165" r="2" />
+			<circle class="sand-dot" cx="115" cy="190" r="2" />
+			<circle class="sand-dot" cx="95" cy="195" r="2" />
+			<text x="95" y="232" text-anchor="middle">모래</text>
+
+			<g class="arrow">
+				<line x1="172" y1="165" x2="200" y2="165" />
+				<polygon points="208,165 200,160 200,170" />
+			</g>
+
+			<rect class="box" x="220" y="105" width="80" height="100" rx="6" />
+			<rect class="heat" x="234" y="150" width="52" height="44" rx="4" />
+			<path class="outline" d="M245 138 q5 -8 0 -16 M260 138 q5 -8 0 -16 M275 138 q5 -8 0 -16" />
+
+			<g class="arrow">
+				<line x1="312" y1="165" x2="340" y2="165" />
+				<polygon points="348,165 340,160 340,170" />
+			</g>
+
+			<polygon class="si" points="365,205 378,150 418,132 452,162 446,205" />
+			<polygon class="shine" points="378,150 418,132 410,170" />
+			<text x="408" y="232" text-anchor="middle">실리콘</text>
+		</svg>
+		<figcaption>
+			<strong>1. {scenes[0].title}</strong>
+			<p>{scenes[0].text}</p>
+		</figcaption>
+	</figure>
+
+	<!-- 2. 기둥을 만들고 얇게 자르기 -->
+	<figure class="scene">
+		<svg viewBox="0 0 480 268" role="img" aria-label={scenes[1].title}>
+			<polygon class="si" points="90,38 60,80 120,80" />
+			<rect class="si" x="60" y="80" width="60" height="112" />
+			<ellipse class="si" cx="90" cy="192" rx="30" ry="8" />
+			<ellipse class="shine" cx="90" cy="80" rx="30" ry="8" />
+			<text x="90" y="232" text-anchor="middle">잉곳</text>
+
+			<g class="arrow">
+				<line x1="135" y1="140" x2="163" y2="140" />
+				<polygon points="171,140 163,135 163,145" />
+			</g>
+
+			<rect class="si" x="190" y="112" width="100" height="56" />
+			<ellipse class="si" cx="290" cy="140" rx="9" ry="28" />
+			<ellipse class="shine" cx="190" cy="140" rx="9" ry="28" />
+			<path class="cut" d="M210 106 V174 M230 106 V174 M250 106 V174 M270 106 V174" />
+
+			<g class="arrow">
+				<line x1="312" y1="140" x2="332" y2="140" />
+				<polygon points="340,140 332,135 332,145" />
+			</g>
+
+			<ellipse class="si" cx="408" cy="146" rx="60" ry="22" />
+			<ellipse class="shine" cx="408" cy="141" rx="60" ry="22" />
+			<text x="408" y="232" text-anchor="middle">웨이퍼</text>
+		</svg>
+		<figcaption>
+			<strong>2. {scenes[1].title}</strong>
+			<p>{scenes[1].text}</p>
+		</figcaption>
+	</figure>
+
+	<!-- 3. 막 입히기 -->
+	<figure class="scene">
+		<svg viewBox="0 0 480 268" role="img" aria-label={scenes[2].title}>
+			{
+				particles.map((x, i) => (
+					<g>
+						<circle class="film" cx={x} cy={i % 2 === 0 ? 60 : 82} r="5" />
+						<line class="fall" x1={x} y1={i % 2 === 0 ? 70 : 92} x2={x} y2="138" />
+						<polygon class="film" points={`${x},146 ${x - 4},138 ${x + 4},138`} />
+					</g>
+				))
+			}
+			<rect class="film" x="80" y="154" width="310" height="16" />
+			<rect class="si" x="80" y="170" width="310" height="50" />
+			<text x="402" y="167">막</text>
+			<text x="402" y="200">기판</text>
+		</svg>
+		<figcaption>
+			<strong>3. {scenes[2].title}</strong>
+			<p>{scenes[2].text}</p>
+		</figcaption>
+	</figure>
+
+	<!-- 4. 빛으로 무늬 그리기 -->
+	<figure class="scene">
+		<svg viewBox="0 0 480 268" role="img" aria-label={scenes[3].title}>
+			{
+				uvXs.map((x) => {
+					const end = x > 170 && x < 250 ? 128 : 56;
+					return (
+						<g>
+							<line class="light-line" x1={x} y1="20" x2={x} y2={end - 6} />
+							<polygon class="light" points={`${x - 4},${end - 7} ${x + 4},${end - 7} ${x},${end}`} />
+						</g>
+					);
+				})
+			}
+			<rect class="mask" x="60" y="62" width="110" height="12" />
+			<rect class="mask" x="250" y="62" width="110" height="12" />
+			<rect class="pr" x="60" y="132" width="300" height="34" />
+			<rect class="exposed" x="170" y="132" width="80" height="34" />
+			<rect class="film" x="60" y="166" width="300" height="24" />
+			<rect class="si" x="60" y="190" width="300" height="40" />
+			<text x="374" y="38">빛</text>
+			<text x="374" y="73">마스크</text>
+			<text x="374" y="154">감광액</text>
+			<text x="374" y="183">막</text>
+			<text x="374" y="215">기판</text>
+		</svg>
+		<figcaption>
+			<strong>4. {scenes[3].title}</strong>
+			<p>{scenes[3].text}</p>
+		</figcaption>
+	</figure>
+
+	<!-- 5. 깎아 내기 -->
+	<figure class="scene">
+		<svg viewBox="0 0 480 268" role="img" aria-label={scenes[4].title}>
+			<g class="arrow">
+				<line x1="125" y1="50" x2="125" y2="132" />
+				<polygon points="125,142 120,132 130,132" />
+			</g>
+			<rect class="pr" x="30" y="100" width="70" height="34" />
+			<rect class="pr" x="150" y="100" width="70" height="34" />
+			<rect class="film" x="30" y="134" width="70" height="30" />
+			<rect class="film" x="150" y="134" width="70" height="30" />
+			<rect class="si" x="30" y="164" width="190" height="40" />
+			<text x="125" y="232" text-anchor="middle">깎아 낸 뒤</text>
+
+			<g class="arrow">
+				<line x1="228" y1="150" x2="244" y2="150" />
+				<polygon points="252,150 244,145 244,155" />
+			</g>
+
+			<rect class="film" x="260" y="134" width="70" height="30" />
+			<rect class="film" x="380" y="134" width="70" height="30" />
+			<rect class="si" x="260" y="164" width="190" height="40" />
+			<text x="355" y="232" text-anchor="middle">감광액을 벗긴 뒤</text>
+		</svg>
+		<figcaption>
+			<strong>5. {scenes[4].title}</strong>
+			<p>{scenes[4].text}</p>
+		</figcaption>
+	</figure>
+
+	<!-- 6. 성질 바꾸고 전기 길 놓기 -->
+	<figure class="scene">
+		<svg viewBox="0 0 480 268" role="img" aria-label={scenes[5].title}>
+			<rect class="insulator" x="60" y="80" width="280" height="110" />
+			<rect class="si" x="60" y="190" width="280" height="46" />
+
+			<rect class="doped" x="100" y="190" width="60" height="18" rx="3" />
+			<rect class="doped" x="230" y="190" width="60" height="18" rx="3" />
+			<circle class="film" cx="115" cy="199" r="3" />
+			<circle class="film" cx="130" cy="199" r="3" />
+			<circle class="film" cx="145" cy="199" r="3" />
+			<circle class="film" cx="245" cy="199" r="3" />
+			<circle class="film" cx="260" cy="199" r="3" />
+			<circle class="film" cx="275" cy="199" r="3" />
+
+			<rect class="metal" x="125" y="152" width="10" height="38" />
+			<rect class="metal" x="255" y="152" width="10" height="38" />
+			<rect class="metal" x="110" y="142" width="80" height="10" />
+			<rect class="metal" x="240" y="142" width="80" height="10" />
+			<rect class="metal" x="175" y="112" width="10" height="30" />
+			<rect class="metal" x="300" y="112" width="10" height="30" />
+			<rect class="metal" x="160" y="102" width="165" height="10" />
+
+			<text x="352" y="132">금속 배선</text>
+			<text x="352" y="204">이온 주입</text>
+
+			<path class="outline" d="M392 52 a18 18 0 1 1 8 15" />
+			<polygon class="solid" points="392,60 386,48 398,48" />
+			<text x="410" y="92" text-anchor="middle">되풀이</text>
+		</svg>
+		<figcaption>
+			<strong>6. {scenes[5].title}</strong>
+			<p>{scenes[5].text}</p>
+		</figcaption>
+	</figure>
+
+	<!-- 7. 검사하고 낱개로 자르기 -->
+	<figure class="scene">
+		<svg viewBox="0 0 480 268" role="img" aria-label={scenes[6].title}>
+			<circle class="si" cx={WAFER.cx} cy={WAFER.cy} r={WAFER.r} />
+			{
+				dies.map((die, i) => (
+					<g>
+						<rect class={failed.has(i) ? 'die die-fail' : 'die'} x={die.x} y={die.y} width={DIE} height={DIE} />
+						{failed.has(i) && (
+							<text class="fail-mark" x={die.x + DIE / 2} y={die.y + 16} text-anchor="middle">
+								✗
+							</text>
+						)}
+					</g>
+				))
+			}
+			<text x={WAFER.cx} y="244" text-anchor="middle">검사</text>
+
+			<g class="arrow">
+				<line x1="262" y1="122" x2="296" y2="122" />
+				<polygon points="304,122 296,117 296,127" />
+			</g>
+
+			<rect class="die" x="325" y="87" width="70" height="70" rx="3" />
+			<path class="chip-line" d="M337 105 H383 M337 122 H383 M337 139 H383 M352 99 V145 M368 99 V145" />
+			<text x="360" y="184" text-anchor="middle">칩</text>
+		</svg>
+		<figcaption>
+			<strong>7. {scenes[6].title}</strong>
+			<p>{scenes[6].text}</p>
+		</figcaption>
+	</figure>
+
+	<!-- 8. 포장해서 완성 -->
+	<figure class="scene">
+		<svg viewBox="0 0 480 268" role="img" aria-label={scenes[7].title}>
+			<rect class="mold" x="50" y="112" width="180" height="68" rx="6" />
+			<rect class="film" x="80" y="138" width="120" height="26" />
+			<circle class="metal" cx="95" cy="172" r="6" />
+			<circle class="metal" cx="118" cy="172" r="6" />
+			<circle class="metal" cx="140" cy="172" r="6" />
+			<circle class="metal" cx="162" cy="172" r="6" />
+			<circle class="metal" cx="185" cy="172" r="6" />
+			<rect class="si" x="40" y="180" width="200" height="14" />
+			<circle class="metal" cx="62" cy="202" r="8" />
+			<circle class="metal" cx="101" cy="202" r="8" />
+			<circle class="metal" cx="140" cy="202" r="8" />
+			<circle class="metal" cx="179" cy="202" r="8" />
+			<circle class="metal" cx="218" cy="202" r="8" />
+			<text x="140" y="240" text-anchor="middle">패키지</text>
+
+			<g class="arrow">
+				<line x1="254" y1="155" x2="278" y2="155" />
+				<polygon points="286,155 278,150 278,160" />
+			</g>
+
+			<rect class="package" x="300" y="122" width="66" height="66" rx="5" />
+			<circle class="pin" cx="311" cy="133" r="3" />
+			<text x="333" y="240" text-anchor="middle">완성</text>
+
+			<rect class="outline" x="398" y="88" width="56" height="112" rx="9" />
+			<path class="outline" d="M418 98 H434" />
+			<rect class="package" x="415" y="134" width="22" height="22" rx="2" />
+		</svg>
+		<figcaption>
+			<strong>8. {scenes[7].title}</strong>
+			<p>{scenes[7].text}</p>
+		</figcaption>
+	</figure>
+</StepAnimation>
+
+<style>
+	.scene svg {
+		display: block;
+		width: 100%;
+		max-width: 36rem;
+		height: auto;
+		margin-inline: auto;
+		font-family: var(--font-sans);
+		font-size: 14px;
+	}
+
+	figcaption {
+		max-width: 36rem;
+		margin: var(--space-2) auto 0;
+	}
+
+	figcaption p {
+		margin: var(--space-1) 0 0;
+	}
+
+	text {
+		fill: var(--color-text);
+	}
+
+	.si {
+		fill: var(--color-text-muted);
+	}
+
+	.shine {
+		fill: var(--color-border);
+	}
+
+	.film {
+		fill: var(--color-accent);
+	}
+
+	.pr {
+		fill: #e08a3c;
+	}
+
+	.exposed {
+		fill: #f6d9b4;
+		stroke: #e08a3c;
+		stroke-width: 1.5;
+		stroke-dasharray: 4 3;
+	}
+
+	.mask,
+	.solid {
+		fill: var(--color-text);
+	}
+
+	.light {
+		fill: #8a5cf6;
+	}
+
+	.light-line {
+		stroke: #8a5cf6;
+		stroke-width: 2;
+	}
+
+	.metal {
+		fill: #c9a227;
+	}
+
+	.sand {
+		fill: #d9b97a;
+	}
+
+	.sand-dot {
+		fill: #a8874a;
+	}
+
+	.heat {
+		fill: #e08a3c;
+	}
+
+	.box {
+		fill: var(--color-bg);
+		stroke: var(--color-text);
+		stroke-width: 2;
+	}
+
+	.outline {
+		fill: none;
+		stroke: var(--color-text);
+		stroke-width: 2;
+		stroke-linecap: round;
+	}
+
+	.cut {
+		fill: none;
+		stroke: var(--color-bg);
+		stroke-width: 2;
+		stroke-dasharray: 5 4;
+	}
+
+	.fall {
+		stroke: var(--color-accent);
+		stroke-width: 1.5;
+		stroke-dasharray: 3 4;
+	}
+
+	.arrow line {
+		stroke: var(--color-text);
+		stroke-width: 2;
+	}
+
+	.arrow polygon {
+		fill: var(--color-text);
+	}
+
+	.insulator {
+		fill: var(--color-accent-soft);
+	}
+
+	.doped {
+		fill: var(--color-accent-soft);
+		stroke: var(--color-accent);
+		stroke-width: 1.5;
+	}
+
+	.die {
+		fill: var(--color-accent-soft);
+		stroke: var(--color-accent);
+		stroke-width: 1;
+	}
+
+	.die-fail {
+		fill: #f3c4c4;
+		stroke: #d04545;
+	}
+
+	.fail-mark {
+		fill: #a32020;
+		font-size: 13px;
+		font-weight: 700;
+	}
+
+	.chip-line {
+		fill: none;
+		stroke: var(--color-accent);
+		stroke-width: 1.5;
+	}
+
+	.mold {
+		fill: var(--color-border);
+		stroke: var(--color-text-muted);
+		stroke-width: 1.5;
+	}
+
+	.package {
+		fill: #2b2f36;
+		stroke: var(--color-text-muted);
+		stroke-width: 1.5;
+	}
+
+	.pin {
+		fill: #c9cdd4;
+	}
+</style>

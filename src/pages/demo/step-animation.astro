@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import StepAnimation from '../../components/StepAnimation.astro';
+import PhotoProcessSteps from '../../components/PhotoProcessSteps.astro';
+import TermCard from '../../components/TermCard.astro';
+import Quiz from '../../components/Quiz.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
+---
+
+<Base title="StepAnimation 확인">
+	<h1>StepAnimation 확인</h1>
+	<StepAnimation label="웨이퍼 위에 층이 쌓이는 과정">
+		<svg viewBox="0 0 400 200" role="img" aria-label="1단계: 실리콘 웨이퍼">
+			<rect x="60" y="130" width="280" height="40" rx="4" fill="var(--color-text-muted)"></rect>
+			<text x="200" y="40" text-anchor="middle" fill="var(--color-text)" font-size="18">1. 실리콘 웨이퍼</text>
+		</svg>
+		<svg viewBox="0 0 400 200" role="img" aria-label="2단계: 산화막 형성">
+			<rect x="60" y="130" width="280" height="40" rx="4" fill="var(--color-text-muted)"></rect>
+			<rect x="60" y="112" width="280" height="18" fill="var(--color-accent)"></rect>
+			<text x="200" y="40" text-anchor="middle" fill="var(--color-text)" font-size="18">2. 산화막 형성</text>
+		</svg>
+		<svg viewBox="0 0 400 200" role="img" aria-label="3단계: 감광액 도포">
+			<rect x="60" y="130" width="280" height="40" rx="4" fill="var(--color-text-muted)"></rect>
+			<rect x="60" y="112" width="280" height="18" fill="var(--color-accent)"></rect>
+			<rect x="60" y="90" width="280" height="22" fill="var(--color-accent-soft)" stroke="var(--color-accent)"></rect>
+			<text x="200" y="40" text-anchor="middle" fill="var(--color-text)" font-size="18">3. 감광액 도포</text>
+		</svg>
+	</StepAnimation>
+	<PhotoProcessSteps />
+	<TermCard id="photolithography" />
+	<VideoEmbed id="aqz-KE-bpKQ" title="견본 영상 (Big Buck Bunny)" />
+	<Quiz
+		questions={[
+			{
+				question: '포토 공정에서 빛을 받은 감광액을 녹여 없애는 단계는?',
+				choices: ['도포', '노광', '현상', '식각'],
+				answer: 2,
+				explanation: '현상 단계에서 빛을 받은 부분의 감광액이 현상액에 녹아 없어진다.',
+			},
+			{
+				question: '감광액이 덮지 않은 산화막을 깎아 내는 단계는?',
+				choices: ['식각', '노광', '감광액 제거'],
+				answer: 0,
+				explanation: '식각은 감광액이 가리지 않은 부분의 막만 깎아 낸다.',
+			},
+		]}
+	/>
+</Base>

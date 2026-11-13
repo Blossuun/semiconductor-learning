@@ -1,0 +1,175 @@
+---
+interface Question {
+	question: string;
+	choices: string[];
+	answer: number; // 정답 보기의 순번 (0부터)
+	explanation?: string;
+}
+
+interface Props {
+	questions: Question[];
+	correctLabel?: string;
+	wrongLabel?: string;
+}
+
+const { questions, correctLabel = '정답입니다.', wrongLabel = '오답입니다.' } = Astro.props;
+---
+
+<div class="quiz" data-quiz data-correct-label={correctLabel} data-wrong-label={wrongLabel}>
+	{
+		questions.map((q, qi) => (
+			<fieldset class="question" data-question data-answer={q.answer}>
+				<legend>
+					<span class="number">{qi + 1}.</span> {q.question}
+				</legend>
+				<div class="choices">
+					{q.choices.map((choice, ci) => (
+						<button class="choice" type="button" data-choice={ci}>
+							<span class="mark" aria-hidden="true" />
+							<span>{choice}</span>
+						</button>
+					))}
+				</div>
+				<div class="feedback" aria-live="polite" hidden data-feedback>
+					<p class="result" data-result />
+					{q.explanation && <p class="explanation">{q.explanation}</p>}
+				</div>
+			</fieldset>
+		))
+	}
+</div>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-quiz]').forEach((quiz) => {
+		quiz.querySelectorAll<HTMLElement>('[data-question]').forEach((question) => {
+			const answer = Number(question.dataset.answer);
+			const choices = question.querySelectorAll<HTMLButtonElement>('[data-choice]');
+			const feedback = question.querySelector<HTMLElement>('[data-feedback]')!;
+			const result = question.querySelector<HTMLElement>('[data-result]')!;
+
+			choices.forEach((choice) => {
+				choice.addEventListener('click', () => {
+					const picked = Number(choice.dataset.choice);
+					const correct = picked === answer;
+
+					choices.forEach((button) => {
+						const index = Number(button.dataset.choice);
+						button.disabled = true;
+						if (index === answer) button.classList.add('is-correct');
+						else if (index === picked) button.classList.add('is-wrong');
+					});
+
+					result.textContent = correct ? quiz.dataset.correctLabel! : quiz.dataset.wrongLabel!;
+					result.classList.add(correct ? 'is-correct' : 'is-wrong');
+					feedback.hidden = false;
+				});
+			});
+		});
+	});
+</script>
+
+<style>
+	.quiz {
+		--quiz-correct: #1a8f4c;
+		--quiz-wrong: #d04545;
+		display: grid;
+		gap: var(--space-4);
+		margin: var(--space-4) 0;
+	}
+
+	.question {
+		min-width: 0;
+		margin: 0;
+		padding: var(--space-3) var(--space-4);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		background: var(--color-surface);
+	}
+
+	legend {
+		padding: 0 var(--space-2);
+		font-weight: 700;
+	}
+
+	.number {
+		color: var(--color-accent);
+	}
+
+	.choices {
+		display: grid;
+		gap: var(--space-2);
+	}
+
+	.choice {
+		display: flex;
+		align-items: baseline;
+		gap: var(--space-2);
+		width: 100%;
+		padding: var(--space-2) var(--space-3);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		background: var(--color-bg);
+		color: var(--color-text);
+		font: inherit;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.choice:hover:not(:disabled) {
+		border-color: var(--color-accent);
+	}
+
+	.choice:disabled {
+		cursor: default;
+	}
+
+	.mark {
+		flex: none;
+		width: 1em;
+		font-weight: 700;
+	}
+
+	.choice.is-correct {
+		border-color: var(--quiz-correct);
+		background: color-mix(in srgb, var(--quiz-correct) 14%, var(--color-bg));
+	}
+
+	.choice.is-correct .mark::before {
+		content: '✓';
+		color: var(--quiz-correct);
+	}
+
+	.choice.is-wrong {
+		border-color: var(--quiz-wrong);
+		background: color-mix(in srgb, var(--quiz-wrong) 14%, var(--color-bg));
+	}
+
+	.choice.is-wrong .mark::before {
+		content: '✗';
+		color: var(--quiz-wrong);
+	}
+
+	.feedback {
+		margin-top: var(--space-3);
+	}
+
+	.feedback p {
+		margin: 0;
+	}
+
+	.result {
+		font-weight: 700;
+	}
+
+	.result.is-correct {
+		color: var(--quiz-correct);
+	}
+
+	.result.is-wrong {
+		color: var(--quiz-wrong);
+	}
+
+	.explanation {
+		color: var(--color-text-muted);
+	}
+</style>

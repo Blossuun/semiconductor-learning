@@ -1,0 +1,356 @@
+---
+interface Props {
+	title?: string;
+	lang?: string;
+}
+
+const siteName = '반도체 4개 국어 학습';
+const { title, lang = 'ko' } = Astro.props;
+const pageTitle = title ? `${title} | ${siteName}` : siteName;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+		<link rel="icon" href={`${base}/favicon.ico`} />
+		<title>{pageTitle}</title>
+		<script is:inline>
+			(function () {
+				var saved = null;
+				try {
+					saved = localStorage.getItem('theme');
+				} catch (e) {}
+				if (saved === 'light' || saved === 'dark') {
+					document.documentElement.dataset.theme = saved;
+				}
+			})();
+		</script>
+	</head>
+	<body>
+		<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+		<header class="site-header">
+			<button
+				class="icon-button menu-button"
+				type="button"
+				aria-label="목차 열기"
+				aria-controls="sidebar"
+				aria-expanded="false"
+				data-menu-toggle
+			>
+				<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+					<path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+				</svg>
+			</button>
+			<a class="site-title" href={`${base}/`}>{siteName}</a>
+			<div class="header-actions">
+				<slot name="header" />
+				<button class="icon-button" type="button" aria-label="다크 모드 전환" data-theme-toggle>
+					<svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+						<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"></path>
+					</svg>
+					<svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+						<circle cx="12" cy="12" r="4" fill="currentColor"></circle>
+						<path
+							d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"></path>
+					</svg>
+				</button>
+			</div>
+		</header>
+
+		<div class="layout">
+			<aside class="sidebar" id="sidebar" aria-label="목차">
+				<slot name="sidebar" />
+			</aside>
+			<main class="content" id="main">
+				<slot />
+			</main>
+		</div>
+
+		<script is:inline>
+			(function () {
+				var root = document.documentElement;
+				var themeButton = document.querySelector('[data-theme-toggle]');
+				var menuButton = document.querySelector('[data-menu-toggle]');
+
+				themeButton.addEventListener('click', function () {
+					var current =
+						root.dataset.theme ||
+						(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+					var next = current === 'dark' ? 'light' : 'dark';
+					root.dataset.theme = next;
+					try {
+						localStorage.setItem('theme', next);
+					} catch (e) {}
+				});
+
+				menuButton.addEventListener('click', function () {
+					var open = document.body.classList.toggle('sidebar-open');
+					menuButton.setAttribute('aria-expanded', String(open));
+				});
+			})();
+		</script>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		color-scheme: light;
+
+		--color-bg: #ffffff;
+		--color-surface: #f5f7fa;
+		--color-text: #1b2330;
+		--color-text-muted: #5b6676;
+		--color-border: #dde2ea;
+		--color-accent: #1f5fd1;
+		--color-accent-soft: #e6eefc;
+
+		--font-sans:
+			system-ui, -apple-system, 'Segoe UI', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR',
+			'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC',
+			'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
+		--font-mono: ui-monospace, 'Cascadia Code', Consolas, 'SF Mono', Menlo, monospace;
+
+		--text-sm: 0.875rem;
+		--text-base: 1rem;
+		--text-lg: 1.25rem;
+		--text-xl: 1.75rem;
+		--line-height: 1.75;
+
+		--space-1: 0.25rem;
+		--space-2: 0.5rem;
+		--space-3: 1rem;
+		--space-4: 1.5rem;
+		--space-5: 2.5rem;
+
+		--radius: 8px;
+		--header-height: 3.5rem;
+		--sidebar-width: 16rem;
+		--content-width: 46rem;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root:not([data-theme='light']) {
+			color-scheme: dark;
+			--color-bg: #12161c;
+			--color-surface: #1a2029;
+			--color-text: #e4e8ee;
+			--color-text-muted: #9aa5b5;
+			--color-border: #2c3542;
+			--color-accent: #7fb0ff;
+			--color-accent-soft: #1d2c47;
+		}
+	}
+
+	:root[data-theme='dark'] {
+		color-scheme: dark;
+		--color-bg: #12161c;
+		--color-surface: #1a2029;
+		--color-text: #e4e8ee;
+		--color-text-muted: #9aa5b5;
+		--color-border: #2c3542;
+		--color-accent: #7fb0ff;
+		--color-accent-soft: #1d2c47;
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	html {
+		scroll-padding-top: calc(var(--header-height) + var(--space-3));
+	}
+
+	body {
+		margin: 0;
+		background: var(--color-bg);
+		color: var(--color-text);
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		line-height: var(--line-height);
+		word-break: keep-all;
+		overflow-wrap: anywhere;
+	}
+
+	a {
+		color: var(--color-accent);
+	}
+
+	h1,
+	h2,
+	h3 {
+		line-height: 1.3;
+	}
+
+	h1 {
+		margin: 0 0 var(--space-3);
+		font-size: var(--text-xl);
+	}
+
+	code,
+	pre {
+		font-family: var(--font-mono);
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
+	}
+
+	.skip-link {
+		position: absolute;
+		left: var(--space-2);
+		top: -10rem;
+		z-index: 30;
+		padding: var(--space-2) var(--space-3);
+		border-radius: var(--radius);
+		background: var(--color-accent);
+		color: var(--color-bg);
+	}
+
+	.skip-link:focus {
+		top: var(--space-2);
+	}
+
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 20;
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		height: var(--header-height);
+		padding: 0 var(--space-3);
+		border-bottom: 1px solid var(--color-border);
+		background: var(--color-bg);
+	}
+
+	.site-title {
+		color: var(--color-text);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		margin-left: auto;
+	}
+
+	.icon-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		padding: 0;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		background: transparent;
+		color: var(--color-text);
+		cursor: pointer;
+	}
+
+	.icon-button:hover {
+		background: var(--color-surface);
+	}
+
+	.menu-button {
+		display: none;
+	}
+
+	.icon-sun {
+		display: none;
+	}
+
+	:root[data-theme='dark'] .icon-sun {
+		display: block;
+	}
+
+	:root[data-theme='dark'] .icon-moon {
+		display: none;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root:not([data-theme='light']) .icon-sun {
+			display: block;
+		}
+
+		:root:not([data-theme='light']) .icon-moon {
+			display: none;
+		}
+	}
+
+	.layout {
+		display: grid;
+		grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+		min-height: calc(100vh - var(--header-height));
+	}
+
+	.sidebar {
+		position: sticky;
+		top: var(--header-height);
+		align-self: start;
+		height: calc(100vh - var(--header-height));
+		overflow-y: auto;
+		padding: var(--space-4) var(--space-3);
+		border-right: 1px solid var(--color-border);
+		background: var(--color-surface);
+		font-size: var(--text-sm);
+	}
+
+	.content {
+		width: 100%;
+		max-width: calc(var(--content-width) + var(--space-5) * 2);
+		padding: var(--space-5);
+	}
+
+	@media (max-width: 800px) {
+		.menu-button {
+			display: inline-flex;
+		}
+
+		.layout {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.sidebar {
+			position: fixed;
+			left: 0;
+			z-index: 10;
+			width: min(var(--sidebar-width), 85vw);
+			transform: translateX(-100%);
+			visibility: hidden;
+			transition:
+				transform 0.2s ease,
+				visibility 0.2s;
+		}
+
+		.sidebar-open .sidebar {
+			transform: translateX(0);
+			visibility: visible;
+		}
+
+		.content {
+			padding: var(--space-4) var(--space-3);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.sidebar {
+			transition: none;
+		}
+	}
+</style>
