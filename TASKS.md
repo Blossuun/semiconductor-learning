@@ -113,24 +113,24 @@ T-18 전에 `frontend-design` 플러그인을 켜 둔다.
 | [x] T-49 | D | S | 4단계 레슨: 산화 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
 | [x] T-50 | D | S | 4단계 레슨: 식각 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
 | [x] T-51 | D | S | 4단계 레슨: 증착 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-52 | D | S | 4단계 레슨: 이온 주입 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-53 | D | S | 4단계 레슨: 금속 배선 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-54 | D | S | 4단계 레슨: CMP·세정 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-55 | D | S | 5단계 레슨: 계측·검사 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-56 | D | S | 5단계 레슨: 수율 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-57 | D | S | 6단계 레슨: EDS | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-58 | D | S | 6단계 레슨: 패키징 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-59 | D | S | 6단계 레슨: TSV·HBM 적층 (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-60 | D | S | 6단계 레슨: 하이브리드 본딩 (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-61 | D | S | 7단계 레슨: EUV (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-62 | D | S | 7단계 레슨: GAA (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-63 | D | S | 7단계 레슨: HBM4 (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-64 | D | S | 8단계 레슨: 현장 약어 (`PhraseCard` 사용) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-65 | D | S | 8단계 레슨: 현장 은어 (검색 필요, `PhraseCard` 사용) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-66 | D | S | 8단계 레슨: 회의·보고 문장 4개 국어 (`PhraseCard` 사용, 문장 20개) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-52 | D | S | 4단계 레슨: 이온 주입 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-53 | D | S | 4단계 레슨: 금속 배선 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-54 | D | S | 4단계 레슨: CMP·세정 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-55 | D | S | 5단계 레슨: 계측·검사 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-56 | D | S | 5단계 레슨: 수율 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-57 | D | S | 6단계 레슨: EDS | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-58 | D | S | 6단계 레슨: 패키징 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-59 | D | S | 6단계 레슨: TSV·HBM 적층 (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-60 | D | S | 6단계 레슨: 하이브리드 본딩 (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-61 | D | S | 7단계 레슨: EUV (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-62 | D | S | 7단계 레슨: GAA (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-63 | D | S | 7단계 레슨: HBM4 (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-64 | D | S | 8단계 레슨: 현장 약어 (`PhraseCard` 사용) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-65 | D | S | 8단계 레슨: 현장 은어 (검색 필요, `PhraseCard` 사용) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-66 | D | S | 8단계 레슨: 회의·보고 문장 4개 국어 (`PhraseCard` 사용, 문장 20개) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
 
 ## 4. 공개
 | 번호 | 유형 | 모델 | 작업 | 읽을 파일 | 완료 기준 | 진행 |
 |---|---|---|---|---|---|---|
-| [ ] T-90 | E | S | README (한·영), 라이선스 파일 (코드 MIT, 콘텐츠 CC BY-SA 4.0) | 없음 | 파일 생성 | 동시 |
-| [ ] T-91 | C | S | `verified: false` 용어 검수 (검색 필요, 10개씩 나눠 진행) | 없음 | 미확인 0개 | 단독 |
+| [x] T-90 | E | S | README (한·영), 라이선스 파일 (코드 MIT, 콘텐츠 CC BY-SA 4.0) | 없음 | 파일 생성 | 동시 |
+| [x] T-91 | C | S | `verified: false` 용어 검수 (검색 필요, 10개씩 나눠 진행) | 없음 | 미확인 0개 | 단독 |

@@ -1,0 +1,144 @@
+---
+title: CMP·세정
+module: 4
+order: 4
+summary: CMP로 웨이퍼 표면을 평평하게 깎고, 세정으로 남은 입자와 약품을 씻어 낸다.
+---
+
+import StepAnimation from '../../components/StepAnimation.astro';
+import TermCard from '../../components/TermCard.astro';
+import Quiz from '../../components/Quiz.astro';
+
+## 한 줄 요약
+
+CMP(화학적 기계적 연마)는 웨이퍼 표면을 평평하게 갈아 내고, 세정은 그 뒤에 남은 먼지와 약품을 씻어 내는 공정이다.
+
+일상 비유: 울퉁불퉁한 나무판을 사포로 평평하게 간 다음, 톱밥을 물걸레로 닦아 내는 일과 비슷하다.
+
+## 단계별로 보기
+
+<StepAnimation label="CMP·세정 도해">
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="회전하는 패드 위에서 슬러리를 흘리며 웨이퍼 표면의 튀어나온 부분을 깎는 모습">
+			<rect x="60" y="200" width="360" height="22" rx="4" fill="var(--color-text-muted)" opacity="0.35" />
+			<text x="240" y="240" text-anchor="middle" fill="var(--color-text-muted)">연마 패드(회전)</text>
+			<path d="M120 150 H170 V132 H230 V150 H290 V132 H350 V150 H360 V188 H120 Z" fill="none" stroke="currentColor" stroke-width="2" />
+			<rect x="110" y="120" width="260" height="10" fill="none" stroke="currentColor" stroke-dasharray="5 4" />
+			<text x="240" y="100" text-anchor="middle" fill="currentColor">웨이퍼(아래로 향함)</text>
+			<circle cx="150" cy="195" r="3" fill="currentColor" />
+			<circle cx="250" cy="196" r="3" fill="currentColor" />
+			<circle cx="330" cy="195" r="3" fill="currentColor" />
+			<text x="240" y="60" text-anchor="middle" fill="var(--color-text-muted)">슬러리(점)를 흘리며 누르고 돌린다</text>
+		</svg>
+		<figcaption>
+			<strong>1. 연마</strong>
+			<p>웨이퍼를 회전하는 패드에 눌러 대고 슬러리를 흘리며 튀어나온 부분을 깎는다.</p>
+			<p>표면이 평평해야 다음 층의 무늬가 흐려지지 않기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="스펀지 브러시가 웨이퍼 표면을 문질러 입자를 떼어 내는 모습">
+			<rect x="80" y="170" width="320" height="16" fill="none" stroke="currentColor" stroke-width="2" />
+			<text x="240" y="210" text-anchor="middle" fill="var(--color-text-muted)">웨이퍼</text>
+			<rect x="150" y="120" width="60" height="44" rx="10" fill="var(--color-text-muted)" opacity="0.35" />
+			<rect x="270" y="120" width="60" height="44" rx="10" fill="var(--color-text-muted)" opacity="0.35" />
+			<text x="240" y="100" text-anchor="middle" fill="currentColor">브러시가 회전하며 문지른다</text>
+			<circle cx="110" cy="164" r="3" fill="currentColor" />
+			<circle cx="370" cy="164" r="3" fill="currentColor" />
+			<text x="240" y="60" text-anchor="middle" fill="var(--color-text-muted)">떨어진 입자는 물에 쓸려 간다</text>
+		</svg>
+		<figcaption>
+			<strong>2. 브러시 세정</strong>
+			<p>스펀지 브러시로 웨이퍼 표면을 문질러 슬러리 입자를 떼어 낸다.</p>
+			<p>남은 입자가 회로를 끊거나 합선시키기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="순수로 헹군 웨이퍼를 회전시켜 말리는 모습">
+			<ellipse cx="240" cy="150" rx="110" ry="18" fill="none" stroke="currentColor" stroke-width="2" />
+			<path d="M120 150 q-30 -10 -40 -40 M360 150 q30 -10 40 -40" fill="none" stroke="currentColor" />
+			<path d="M240 70 v50" stroke="currentColor" stroke-width="2" />
+			<text x="240" y="60" text-anchor="middle" fill="currentColor">순수로 헹군다</text>
+			<text x="240" y="220" text-anchor="middle" fill="var(--color-text-muted)">회전시켜 물기를 털어 말린다</text>
+		</svg>
+		<figcaption>
+			<strong>3. 헹굼·건조</strong>
+			<p>순수로 헹군 뒤 웨이퍼를 회전시키거나 가스를 불어 말린다.</p>
+			<p>물기가 남으면 얼룩이 생겨 다시 오염되기 때문이다.</p>
+		</figcaption>
+	</figure>
+</StepAnimation>
+
+## 자세히 알아보기
+
+### 왜 필요한가
+
+증착을 거듭하면 웨이퍼 표면이 울퉁불퉁해진다. 건물을 지을 때 바닥이 기울면 위층이 어긋나는 것과 같다. 표면이 고르지 않으면 포토 공정에서 초점이 맞지 않아 미세한 무늬가 흐려진다. 그래서 CMP로 표면을 평평하게 만든다. 연마가 끝나면 입자와 약품이 남는다. 이것이 회로를 끊거나 합선시키므로 세정(표면의 오염물 제거)이 꼭 필요하다.
+
+### 어떻게 하는가
+
+1. 연마: 웨이퍼를 뒤집어 회전하는 연마 패드(폴리머 방석)에 눌러 댄다. 슬러리(미세한 연마 입자가 섞인 약액)를 흘리면 화학 반응과 기계적 마찰로 튀어나온 부분이 깎인다. 너무 오래 깎으면 배선 가운데가 움푹 패므로 시간을 조절한다.
+2. 브러시 세정: 스펀지 브러시가 웨이퍼 표면을 문질러 슬러리 입자를 떼어 낸다.
+3. 헹굼·건조: 순수(불순물을 제거한 물)로 헹구고, 회전시키거나 가스를 불어 말린다.
+
+### 앞뒤 공정과 어떻게 이어지는가
+
+앞 공정인 증착이나 식각에서 요철이 생긴 웨이퍼를 받는다. 구리 배선에서는 홈을 구리로 채운 뒤 넘친 구리를 CMP로 깎아 배선만 남긴다. 평평하고 깨끗해진 웨이퍼는 다음 층의 포토 공정이나 증착으로 넘어간다. 세정은 CMP 뒤뿐 아니라 여러 공정 사이마다 되풀이된다.
+
+## 더 깊이 알아보기
+
+<details>
+<summary>원리 더 보기 (화학과 기계의 합작)</summary>
+
+CMP가 연마와 화학 반응을 함께 쓰는 이유는 한쪽만으로는 부족하기 때문이다. 기계적으로만 갈면 표면에 긁힌 자국이 남고, 화학적으로만 녹이면 부분마다 속도가 달라 평평해지지 않는다. 슬러리의 약품이 표면을 살짝 무르게 만들고, 연마 입자가 그 층만 벗겨 내면 매끈하게 깎인다.
+
+세정에서는 입자가 표면에 달라붙는 힘이 문제다. 입자가 작을수록 부착력이 상대적으로 커서 떼어 내기 어렵다. 그래서 브러시의 물리적 힘과 약액의 화학적 작용을 함께 쓴다.
+
+</details>
+
+## 용어
+
+<TermCard id="cmp" />
+<TermCard id="cleaning" />
+<TermCard id="wafer" />
+<TermCard id="deposition" />
+<TermCard id="etching" />
+<TermCard id="metallization" />
+<TermCard id="photolithography" />
+
+## 확인 문제
+
+<Quiz
+	questions={[
+		{
+			question: 'CMP를 하는 가장 큰 이유는 무엇인가?',
+			choices: ['웨이퍼 표면을 평평하게 만들기 위해', '웨이퍼에 불순물을 넣기 위해', '웨이퍼를 자르기 위해', '웨이퍼를 가열하기 위해'],
+			answer: 0,
+			explanation: '표면이 평평해야 다음 층의 미세한 무늬가 흐려지지 않는다.',
+		},
+		{
+			question: '슬러리란 무엇인가?',
+			choices: ['순수한 물', '연마 입자가 섞인 약액', '감광액', '절연막 가스'],
+			answer: 1,
+			explanation: '슬러리는 미세한 연마 입자와 약품이 섞인 액체다.',
+		},
+		{
+			question: 'CMP 뒤에 세정을 하는 이유는 무엇인가?',
+			choices: ['웨이퍼를 더 얇게 하려고', '패드를 교체하려고', '남은 입자와 약품이 회로를 망치지 않도록', '웨이퍼 색을 바꾸려고'],
+			answer: 2,
+			explanation: '남은 입자와 약품은 회로의 끊김이나 합선을 일으킨다.',
+		},
+		{
+			question: '구리 배선 공정에서 CMP의 역할로 맞는 것은?',
+			choices: ['구리를 증착한다', '홈을 새로 판다', '구리 위에 감광액을 바른다', '홈 밖으로 넘친 구리를 깎아 배선만 남긴다'],
+			answer: 3,
+			explanation: '홈을 채우고 넘친 구리를 깎아 내면 배선만 남는다.',
+		},
+		{
+			question: '이 레슨의 세정 순서로 맞는 것은?',
+			choices: ['브러시 세정, 헹굼·건조', '건조, 브러시 세정', '헹굼, 연마', '연마, 건조'],
+			answer: 0,
+			explanation: '연마 뒤 브러시로 입자를 떼고, 헹군 뒤 말린다.',
+		},
+	]}
+/>

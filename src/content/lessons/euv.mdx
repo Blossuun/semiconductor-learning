@@ -1,0 +1,180 @@
+---
+title: EUV 노광
+module: 7
+order: 1
+summary: EUV는 파장 13.5 nm의 극자외선을 거울로 모아 마스크의 무늬를 웨이퍼에 줄여 찍는, 가장 가는 선을 그리는 노광 방식이다.
+---
+
+import StepAnimation from '../../components/StepAnimation.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
+import TermCard from '../../components/TermCard.astro';
+import Quiz from '../../components/Quiz.astro';
+
+## 한 줄 요약
+
+EUV는 아주 짧은 파장의 빛으로 기존보다 훨씬 가는 회로 무늬를 웨이퍼에 찍는 노광 기술이다.
+
+일상 비유 1개: 굵은 붓으로는 작은 글씨를 쓸 수 없다. 가는 펜으로 바꿔야 한다. 파장이 짧은 EUV는 이 가는 펜과 같다.
+
+## 단계별로 보기
+
+<StepAnimation label="EUV 노광 3단계">
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="주석 방울에 레이저를 쏘아 EUV 빛을 만드는 그림">
+			<rect x="16" y="16" width="448" height="236" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" stroke-dasharray="8 6" />
+			<text x="34" y="40" fill="var(--color-text-muted)" font-size="13">진공 용기</text>
+			<rect x="220" y="24" width="40" height="22" rx="4" fill="#9aa3ad" />
+			<circle cx="240" cy="66" r="5" fill="#9aa3ad" />
+			<circle cx="240" cy="96" r="5" fill="#9aa3ad" />
+			<text x="256" y="86" fill="var(--color-text-muted)" font-size="13">주석 방울</text>
+			<rect x="34" y="122" width="72" height="36" rx="6" fill="#e0a030" />
+			<text x="70" y="145" text-anchor="middle" fill="#1a1a1a" font-size="13">레이저</text>
+			<line x1="106" y1="140" x2="210" y2="140" stroke="#e0a030" stroke-width="4" />
+			<polygon points="222,140 206,132 206,148" fill="#e0a030" />
+			<circle cx="240" cy="140" r="18" fill="#a070e0" opacity="0.45" />
+			<circle cx="240" cy="140" r="9" fill="#a070e0" />
+			<text x="240" y="182" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">플라즈마</text>
+			<g stroke="#a070e0" stroke-width="3">
+				<line x1="258" y1="132" x2="404" y2="84" />
+				<line x1="260" y1="140" x2="414" y2="140" />
+				<line x1="258" y1="148" x2="404" y2="196" />
+			</g>
+			<text x="330" y="128" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">EUV 빛</text>
+			<path d="M 406 62 Q 440 140 406 218" fill="none" stroke="#5b8def" stroke-width="7" stroke-linecap="round" />
+			<text x="404" y="242" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">모으는 거울</text>
+		</svg>
+		<figcaption>
+			<strong>빛 만들기</strong>
+			<p>진공 용기 안에서 떨어지는 주석 방울에 레이저를 쏘아 EUV를 내는 플라즈마를 만든다.</p>
+			<p>13.5 nm 같은 짧은 파장의 빛은 보통 광원으로는 얻기 어렵기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="거울로 빛을 모아 반사형 마스크에 비추는 그림">
+			<rect x="16" y="16" width="448" height="236" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" stroke-dasharray="8 6" />
+			<text x="34" y="40" fill="var(--color-text-muted)" font-size="13">진공</text>
+			<rect x="240" y="44" width="120" height="14" fill="#9aa3ad" />
+			<rect x="254" y="58" width="16" height="6" fill="#e0a030" />
+			<rect x="292" y="58" width="16" height="6" fill="#e0a030" />
+			<rect x="330" y="58" width="16" height="6" fill="#e0a030" />
+			<text x="300" y="36" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">반사형 마스크</text>
+			<line x1="126" y1="232" x2="174" y2="188" stroke="#5b8def" stroke-width="8" stroke-linecap="round" />
+			<text x="150" y="246" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">거울</text>
+			<polyline points="34,210 150,210 300,64 410,204" fill="none" stroke="#a070e0" stroke-width="4" stroke-linejoin="round" />
+			<polygon points="418,214 398,202 412,192" fill="#a070e0" />
+			<text x="80" y="198" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">EUV 빛</text>
+			<text x="410" y="238" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">웨이퍼 쪽으로</text>
+		</svg>
+		<figcaption>
+			<strong>거울로 모아 마스크에 쏘기</strong>
+			<p>렌즈 대신 거울로 빛을 모아 반사형 마스크에 비춘다.</p>
+			<p>EUV는 공기와 유리에 흡수되어 렌즈를 통과하지 못하기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="반사된 무늬를 줄여 웨이퍼 감광막에 찍는 그림">
+			<text x="110" y="30" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">마스크 (큰 무늬)</text>
+			<rect x="40" y="40" width="140" height="14" fill="#9aa3ad" />
+			<rect x="56" y="54" width="24" height="8" fill="#e0a030" />
+			<rect x="98" y="54" width="24" height="8" fill="#e0a030" />
+			<rect x="140" y="54" width="24" height="8" fill="#e0a030" />
+			<g fill="none" stroke="#a070e0" stroke-width="3" stroke-linejoin="round">
+				<polyline points="62,64 344,100 294,204" />
+				<polyline points="158,64 356,142 330,204" />
+			</g>
+			<line x1="335" y1="84" x2="365" y2="158" stroke="#5b8def" stroke-width="8" stroke-linecap="round" />
+			<text x="416" y="126" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">줄이는 거울</text>
+			<rect x="220" y="206" width="180" height="8" fill="#5b8def" />
+			<rect x="220" y="214" width="180" height="14" fill="#9aa3ad" />
+			<rect x="296" y="206" width="8" height="8" fill="#e0a030" />
+			<rect x="308" y="206" width="8" height="8" fill="#e0a030" />
+			<rect x="320" y="206" width="8" height="8" fill="#e0a030" />
+			<text x="212" y="214" text-anchor="end" fill="var(--color-text-muted)" font-size="13">감광막</text>
+			<text x="310" y="250" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">웨이퍼 (작은 무늬)</text>
+		</svg>
+		<figcaption>
+			<strong>줄여서 웨이퍼에 찍기</strong>
+			<p>마스크에서 반사된 무늬를 거울로 줄여 감광막이 발라진 웨이퍼에 한 칸씩 찍는다.</p>
+			<p>마스크의 큰 무늬를 작게 줄여야 웨이퍼 위에 아주 가는 선이 생기기 때문이다.</p>
+		</figcaption>
+	</figure>
+</StepAnimation>
+
+## 영상으로 보기
+
+<VideoEmbed id="v9Pg92cdJa4" title="Why is the wafer stage important in High NA EUV lithography? | ASML" />
+
+## 자세히 알아보기
+
+### 왜 필요한가
+
+칩 무늬를 더 작게 그리려면 더 짧은 파장의 빛이 필요하다. 해상도(가장 가는 선을 구분해 그릴 수 있는 능력)는 파장이 짧을수록 좋아진다. 기존 DUV(심자외선, 파장 193 nm)는 한계에 이르러, 가는 무늬를 여러 번 나눠 찍어야 했다. 파장 13.5 nm의 EUV(극자외선)는 같은 무늬를 한 번에 찍을 수 있다. 공정이 줄고 정렬 오차 걱정도 줄어든다. 다만 장비가 매우 비싸서 가장 미세한 층에 골라 쓴다.
+
+### 어떻게 하는가
+
+1. 빛 만들기: 진공 용기에서 주석 방울을 떨어뜨리고 이산화탄소 레이저로 쏜다. 방울이 뜨거운 플라즈마(전자와 이온으로 쪼개진 기체)가 되어 EUV를 낸다.
+2. 거울로 모아 마스크에 쏘기: EUV는 공기와 유리에 흡수된다. 그래서 렌즈 대신 얇은 막을 여러 겹 쌓은 거울을 쓰고, 경로 전체를 진공으로 둔다. 마스크도 빛을 반사하는 반사형이다.
+3. 줄여서 웨이퍼에 찍기: 반사된 무늬를 거울로 줄여 웨이퍼의 감광막에 비춘다. 웨이퍼를 한 칸씩 옮기며 반복한다.
+
+### 앞뒤 공정과 어떻게 이어지는가
+
+앞 공정에서 감광막을 바른 웨이퍼를 받는다. 노광이 끝나면 현상(빛 받은 부분을 씻어 무늬를 드러내는 일)과 식각으로 넘긴다. 빛이 약해 감광막 반응이 들쭉날쭉하면 선이 거칠어질 수 있어, 광원 출력과 감광막 개선이 계속 중요하다.
+
+## 더 깊이 알아보기
+
+<details>
+<summary>원리 더 보기 (해상도와 하이 NA)</summary>
+
+해상도의 한계는 대략 파장을 개구수(NA, 광학계가 빛을 모으는 각도 크기)로 나눈 값에 비례한다. 파장을 줄이거나 NA를 키우면 더 가는 선을 그린다. 기존 EUV 장비의 NA는 0.33이고, 차세대 하이 NA 장비는 0.55다. 대신 하이 NA는 거울이 더 커지고 한 번에 찍는 영역이 작아져 설계와 운용이 어려워진다.
+
+EUV 광자 하나는 에너지가 커서 감광막에 닿는 빛 알갱이 수가 적다. 알갱이 수가 적으면 반응이 우연히 쏠려 선 가장자리가 거칠어진다. 이런 확률적 결함은 EUV가 풀어야 할 핵심 과제다.
+
+</details>
+
+## 용어
+
+<TermCard id="euv" />
+<TermCard id="duv" />
+<TermCard id="numerical-aperture" />
+<TermCard id="laser-produced-plasma" />
+<TermCard id="pellicle" />
+<TermCard id="photomask" />
+<TermCard id="resolution" />
+<TermCard id="scanner" />
+
+## 확인 문제
+
+<Quiz
+	questions={[
+		{
+			question: 'EUV의 파장은 얼마인가?',
+			choices: ['13.5 nm', '193 nm', '365 nm', '1 mm'],
+			answer: 0,
+			explanation: 'EUV는 13.5 nm이고, 193 nm는 기존 DUV의 파장이다.',
+		},
+		{
+			question: 'EUV 장비가 렌즈 대신 거울을 쓰는 이유는?',
+			choices: ['거울이 더 싸서', 'EUV가 유리에 흡수되어서', '빛을 더 밝게 하려고', '마스크를 없애려고'],
+			answer: 1,
+			explanation: 'EUV는 공기와 유리에 흡수되므로 반사 거울과 진공을 쓴다.',
+		},
+		{
+			question: 'EUV 빛을 만드는 방법으로 알맞은 것은?',
+			choices: ['형광등을 켠다', '수은 램프를 쓴다', '주석 방울에 레이저를 쏘아 플라즈마를 만든다', '웨이퍼를 가열한다'],
+			answer: 2,
+			explanation: '주석 방울에 레이저를 쏘아 만든 플라즈마가 EUV를 낸다.',
+		},
+		{
+			question: '파장이 짧아지면 해상도는 어떻게 되는가?',
+			choices: ['나빠진다', '변하지 않는다', '마스크 크기에만 영향을 준다', '더 가는 선을 그릴 수 있다'],
+			answer: 3,
+			explanation: '파장이 짧을수록 더 가는 선을 구분해 그릴 수 있다.',
+		},
+		{
+			question: '하이 NA EUV가 기존 EUV와 다른 점은?',
+			choices: ['개구수가 더 크다', '파장이 더 길다', '진공이 필요 없다', '렌즈를 쓴다'],
+			answer: 0,
+			explanation: '하이 NA는 개구수를 0.33에서 0.55로 키워 해상도를 높인다.',
+		},
+	]}
+/>

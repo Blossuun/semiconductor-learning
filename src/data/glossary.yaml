@@ -16,7 +16,8 @@
   example_zh_tw: 這批次在微影製程出現曝光不良，需要重工。
   definition_ko: 빛으로 회로 무늬를 웨이퍼에 옮겨 그리는 공정
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Photolithography]
 - id: photoresist
   ko: 감광액
   en: photoresist
@@ -35,7 +36,8 @@
   example_zh_tw: 光阻塗得不夠薄的話，顯影後線寬會不均勻。
   definition_ko: 빛을 받으면 성질이 변해 현상액에 녹거나 녹지 않게 되는 액체 재료
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Photoresist]
 - id: photomask
   ko: 포토마스크
   en: photomask
@@ -53,7 +55,8 @@
   example_zh_tw: 光罩上有刮傷，導致同一圖形持續出現不良。
   definition_ko: 회로 무늬가 그려져 있어 빛이 지나갈 곳과 막힐 곳을 정해 주는 유리판
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Photomask]
 - id: spin-coating
   ko: 스핀 코팅
   en: spin coating
@@ -71,7 +74,8 @@
   example_zh_tw: 旋轉塗佈後晶圓邊緣的膜厚偏厚，因此申請了重新量測。
   definition_ko: 웨이퍼를 빠르게 돌려 감광액을 얇고 고르게 펴 바르는 방법
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Spin_coating]
 - id: soft-bake
   ko: 소프트 베이크
   en: soft bake
@@ -88,7 +92,8 @@
   example_zh_tw: 軟烤溫度過低時溶劑殘留，曝光後圖形會變模糊。
   definition_ko: 감광액을 바른 뒤 살짝 구워 용제를 날리고 막을 굳히는 단계
   module: 4
-  verified: false
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/光刻]
 - id: exposure
   ko: 노광
   en: exposure
@@ -105,7 +110,8 @@
   example_zh_tw: 曝光能量不足，這批次的圖形轉印不充分。
   definition_ko: 마스크를 통과한 빛을 감광액에 비춰 회로 무늬를 옮기는 단계
   module: 4
-  verified: false
+  verified: true
+  sources: [https://technews.tw/2024/11/04/tsmc-obtains-first-set-of-high-na-euv-before-the-end-of-the-year/]
 - id: development
   ko: 현상
   en: development
@@ -122,7 +128,8 @@
   example_zh_tw: 回報指出顯影時間過長，圖形邊緣被過度去除。
   definition_ko: 현상액으로 감광액의 필요 없는 부분을 녹여 무늬를 드러내는 단계
   module: 4
-  verified: false
+  verified: true
+  sources: [https://news.samsungsemiconductor.com/kr/%EB%B0%98%EB%8F%84%EC%B2%B4-8%EB%8C%80-%EA%B3%B5%EC%A0%95-7%ED%83%84-%EC%A0%84%EA%B8%B0%EA%B0%80-%ED%86%B5%ED%95%98%EB%8A%94-%EA%B8%B8%EC%9D%84-%EB%A7%8C%EB%93%9C%EB%8A%94-%EA%B8%88]
 - id: scanner
   ko: 스캐너
   en: scanner
@@ -140,7 +147,8 @@
   example_zh_tw: 曝光機保養後，要確認首批次的對準誤差是否減小。
   definition_ko: 마스크와 웨이퍼를 함께 움직이며 빛을 비춰 무늬를 옮기는 노광 장비
   module: 4
-  verified: false
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/光刻]
 - id: resolution
   ko: 해상도
   en: resolution
@@ -157,7 +165,8 @@
   example_zh_tw: 新層接近解析度極限，製程餘裕所剩無幾。
   definition_ko: 노광 장비가 구분해서 그릴 수 있는 가장 작은 무늬의 크기
   module: 4
-  verified: false
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/光刻]
 - id: critical-dimension
   ko: 임계 치수
   en: critical dimension
@@ -176,7 +185,8 @@
   example_zh_tw: 這批次的關鍵尺寸量測值超出規格上限，需要複查。
   definition_ko: 회로 무늬에서 반드시 맞춰야 하는 선의 폭이나 간격
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Critical_dimension]
 - id: overlay
   ko: 오버레이
   en: overlay
@@ -194,7 +204,8 @@
   example_zh_tw: 疊對值超出允許範圍，這批次被歸類為需要重新曝光。
   definition_ko: 아래층 무늬와 새로 그린 위층 무늬가 얼마나 정확히 겹쳤는지를 나타내는 값
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Overlay]
 - id: wafer
   ko: 웨이퍼
   en: wafer
@@ -211,7 +222,8 @@
   example_zh_tw: 這批晶圓表面缺陷較多，因此進行全檢。
   definition_ko: 반도체 칩을 만드는 바탕이 되는 얇고 둥근 실리콘 판
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Wafer_(electronics)]
 - id: oxidation
   ko: 산화
   en: oxidation
@@ -228,7 +240,8 @@
   example_zh_tw: 氧化製程後氧化層厚度低於目標值，因此正在考慮再次氧化。
   definition_ko: 웨이퍼 표면을 산소와 반응시켜 얇은 보호막(산화막)을 만드는 공정
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Thermal_oxidation]
 - id: etching
   ko: 식각
   en: etching
@@ -247,7 +260,8 @@
   example_zh_tw: 蝕刻時間過長，連下層膜也被蝕掉，因此這批次被判定報廢。
   definition_ko: 포토레지스트가 덮지 않은 부분의 막을 깎아 내어 무늬를 새기는 공정
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Etching_(microfabrication)]
 - id: deposition
   ko: 증착
   en: deposition
@@ -266,7 +280,8 @@
   example_zh_tw: 沉積厚度偏薄，這批次將在檢查沉積設備後重工。
   definition_ko: 웨이퍼 위에 원하는 물질을 얇은 막으로 입히는 공정
   module: 4
-  verified: false
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/薄膜電晶體]
 - id: cvd
   ko: 화학 기상 증착
   en: chemical vapor deposition
@@ -285,7 +300,8 @@
   example_zh_tw: 檢查結果顯示此CVD腔體的氣體流量不穩定，導致膜層均勻性下降。
   definition_ko: 기체를 화학 반응시켜 그 결과물을 웨이퍼 위에 막으로 쌓는 증착 방법
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Chemical_vapor_deposition]
 - id: pvd
   ko: 물리 기상 증착
   en: physical vapor deposition
@@ -304,7 +320,8 @@
   example_zh_tw: 濺鍍靶材已接近壽命極限，PVD金屬膜厚度出現波動。
   definition_ko: 재료를 물리적으로 떼어 내 웨이퍼 위에 막으로 붙이는 증착 방법
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Physical_vapor_deposition]
 - id: ion-implantation
   ko: 이온 주입
   en: ion implantation
@@ -323,7 +340,8 @@
   example_zh_tw: 離子佈植劑量高於規格，因此這批次的臨界電壓超出標準。
   definition_ko: 전기가 통하는 성질을 바꾸려고 불순물 이온을 빠르게 쏘아 웨이퍼 속에 넣는 공정
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Ion_implantation]
 - id: metallization
   ko: 금속 배선
   en: metallization
@@ -341,7 +359,8 @@
   example_zh_tw: 金屬化製程中介層窗電阻偏高，目前正在分析原因。
   definition_ko: 소자들 사이에 전기가 흐르도록 금속으로 길을 만드는 공정
   module: 4
-  verified: false
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/超大规模集成电路]
 - id: cmp
   ko: 화학적 기계적 연마
   en: chemical mechanical polishing
@@ -360,7 +379,8 @@
   example_zh_tw: CMP後晶圓表面段差超出標準，因此重新設定研磨條件。
   definition_ko: 약품과 연마 패드로 웨이퍼 표면을 갈아 평평하게 만드는 공정
   module: 4
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Chemical-mechanical_polishing]
 - id: cleaning
   ko: 세정
   en: cleaning
@@ -377,7 +397,8 @@
   example_zh_tw: 清洗後仍有顆粒殘留，因此檢查清洗設備的噴嘴。
   definition_ko: 공정 사이사이에 웨이퍼 표면의 먼지와 찌꺼기를 씻어 내는 공정
   module: 4
-  verified: false
+  verified: true
+  sources: [https://technews.tw/2025/09/08/lcy-advanced-formulations/]
 - id: eds
   ko: 전기적 특성 검사
   en: electrical die sorting
@@ -396,7 +417,8 @@
   example_zh_tw: 這片晶圓在晶圓測試中不良率偏高，因此正在追溯責任製程。
   definition_ko: 웨이퍼를 자르기 전에 칩 하나하나에 전기를 흘려 양품과 불량을 가려내는 검사
   module: 6
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Wafer_testing]
 - id: packaging
   ko: 패키징
   en: packaging
@@ -414,7 +436,8 @@
   example_zh_tw: 封裝製程中塑封厚度低於設計值，因此需要重新進行可靠度測試。
   definition_ko: 칩을 보호하고 바깥 기판과 전기로 이어 주도록 감싸는 공정
   module: 6
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Integrated_circuit_packaging]
 - id: dicing
   ko: 다이싱
   en: dicing
@@ -432,7 +455,8 @@
   example_zh_tw: 切割過程中晶片邊緣出現裂紋，因此提前了刀片更換週期。
   definition_ko: 웨이퍼를 낱개 칩으로 잘라 나누는 공정
   module: 6
-  verified: false
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/晶圓切割]
 - id: wire-bonding
   ko: 와이어 본딩
   en: wire bonding
@@ -450,7 +474,8 @@
   example_zh_tw: 打線接合後的拉力測試中有部分導線脫落，因此調整了製程條件。
   definition_ko: 칩과 기판을 가는 금속 선으로 이어 주는 연결 방법
   module: 6
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Wire_bonding]
 - id: flip-chip
   ko: 플립 칩
   en: flip chip
@@ -468,7 +493,8 @@
   example_zh_tw: 覆晶製程中凸塊高度不一致，導致部分接合不良。
   definition_ko: 칩을 뒤집어 범프로 기판에 바로 붙이는 연결 방법
   module: 6
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Flip_chip]
 - id: bump
   ko: 범프
   en: bump
@@ -485,7 +511,8 @@
   example_zh_tw: 凸塊鍍層偏薄，因此接合電阻量測結果高於標準值。
   definition_ko: 칩과 기판 또는 칩과 칩을 잇는 작은 금속 돌기
   module: 6
-  verified: false
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/覆晶技術]
 - id: tsv
   ko: 실리콘 관통 전극
   en: through-silicon via
@@ -504,7 +531,8 @@
   example_zh_tw: TSV蝕刻深度低於目標值，導致上下晶片之間的連接斷開。
   definition_ko: 칩에 구멍을 뚫고 금속을 채워 위아래 칩을 곧바로 잇는 통로
   module: 6
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Through-silicon_via]
 - id: hbm
   ko: 고대역폭 메모리
   en: high bandwidth memory
@@ -523,7 +551,8 @@
   example_zh_tw: 用於AI加速器的HBM資料頻寬很大，因此需求持續成長。
   definition_ko: D램 칩을 여러 장 쌓고 TSV로 이어 데이터를 한꺼번에 많이 주고받게 만든 메모리
   module: 6
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/High_Bandwidth_Memory]
 - id: hybrid-bonding
   ko: 하이브리드 본딩
   en: hybrid bonding
@@ -541,7 +570,8 @@
   example_zh_tw: 混合鍵合後銅墊對位偏移，因此該晶片被計為良率損失。
   definition_ko: 범프 없이 칩의 구리와 구리, 절연막과 절연막을 직접 맞붙이는 접합 방법
   module: 6
-  verified: false
+  verified: true
+  sources: [https://uanalyze.com.tw/articles/918626067]
 - id: underfill
   ko: 언더필
   en: underfill
@@ -558,7 +588,8 @@
   example_zh_tw: 底部填充膠未完全填充到晶片邊緣，因此在熱循環測試中出現裂紋。
   definition_ko: 칩과 기판 사이의 틈을 채워 범프를 보호하는 재료 또는 그 공정
   module: 6
-  verified: false
+  verified: true
+  sources: [https://ja.wikipedia.org/wiki/アンダーフィル]
 - id: conductor
   ko: 도체
   en: conductor
@@ -575,7 +606,8 @@
   example_zh_tw: 為降低佈線電阻，正在考慮將導體材料改為銅。
   definition_ko: 구리처럼 전기가 잘 통하는 물질
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Electrical_conductor]
 - id: insulator
   ko: 부도체
   en: insulator
@@ -593,7 +625,8 @@
   example_zh_tw: 元件之間的絕緣層變薄，因此漏電流高於標準值。
   definition_ko: 유리나 고무처럼 전기가 거의 통하지 않는 물질
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Insulator_(electricity)]
 - id: semiconductor
   ko: 반도체
   en: semiconductor
@@ -610,7 +643,8 @@
   example_zh_tw: 半導體製程設備對晶圓溫度變化很敏感，因此條件管理很重要。
   definition_ko: 조건에 따라 전기가 통하기도 하고 안 통하기도 하는 물질
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Semiconductor]
 - id: silicon
   ko: 실리콘
   en: silicon
@@ -629,7 +663,8 @@
   example_zh_tw: 這片晶圓的矽缺陷密度較高，因此在進料檢驗中被暫停。
   definition_ko: 모래에서 얻는 원소로, 반도체 칩을 만드는 데 가장 널리 쓰이는 재료
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Silicon]
 - id: doping
   ko: 도핑
   en: doping
@@ -646,7 +681,8 @@
   example_zh_tw: 摻雜濃度測得低於目標值，因此電阻值超出標準。
   definition_ko: 순수한 반도체에 불순물을 조금 넣어 전기가 통하는 정도를 조절하는 일
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Doping_(semiconductor)]
 - id: hole
   ko: 정공
   en: hole
@@ -664,7 +700,8 @@
   example_zh_tw: P型區域中電洞主要承載電流，因此還要一併檢查載子濃度。
   definition_ko: 전자가 빠져나간 빈자리로, 양전하를 띤 알갱이처럼 움직이며 전기를 나름
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Electron_hole]
 - id: n-type-semiconductor
   ko: N형 반도체
   en: n-type semiconductor
@@ -681,7 +718,8 @@
   example_zh_tw: 這片晶圓的N型半導體區域磷濃度較高，因此電阻偏低。
   definition_ko: 도핑으로 전자가 남게 만들어 전자가 주로 전기를 나르는 반도체
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/N-type_semiconductor]
 - id: p-type-semiconductor
   ko: P형 반도체
   en: p-type semiconductor
@@ -698,7 +736,8 @@
   example_zh_tw: P型半導體區域的硼摻雜量不足，因此重新調整電洞濃度。
   definition_ko: 도핑으로 정공이 많아지게 만들어 정공이 주로 전기를 나르는 반도체
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/P-type_semiconductor]
 - id: pn-junction
   ko: PN 접합
   en: p-n junction
@@ -715,7 +754,8 @@
   example_zh_tw: PN接面的反向漏電較大，因此二極體特性測試判定不合格。
   definition_ko: P형과 N형 반도체가 맞닿은 경계로, 전류를 한쪽 방향으로만 잘 흐르게 함
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/P%E2%80%93n_junction]
 - id: mosfet
   ko: 모스펫
   en: metal-oxide-semiconductor field-effect transistor
@@ -734,7 +774,8 @@
   example_zh_tw: 此MOSFET的臨界電壓偏低，因此待機電流高於標準。
   definition_ko: 게이트에 거는 전압으로 전류의 길을 열고 닫는 스위치 역할의 트랜지스터
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/MOSFET]
 - id: preventive-maintenance
   ko: 예방 정비
   en: preventive maintenance
@@ -753,7 +794,8 @@
   example_zh_tw: 本週蝕刻設備安排了預防保養，因此上午的產量要減少。
   definition_ko: 설비가 고장 나기 전에 정해진 주기로 미리 점검하고 부품을 바꾸는 일
   module: 8
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Preventive_maintenance]
 - id: breakdown-maintenance
   ko: 고장 정비
   en: breakdown maintenance
@@ -772,7 +814,8 @@
   example_zh_tw: 泵浦突然停止，因此轉為故障維修，產線停機了兩個小時。
   definition_ko: 설비가 갑자기 고장 난 뒤에 하는 수리
   module: 8
-  verified: false
+  verified: true
+  sources: [https://www.iyunbiao.com/info/18080.html]
 - id: foup
   ko: 풉
   en: front opening unified pod
@@ -791,7 +834,8 @@
   example_zh_tw: 此FOUP的門密封條鬆動，因此更換後要重新檢查顆粒數。
   definition_ko: 웨이퍼 여러 장을 담아 먼지 없이 옮기는 앞문 달린 밀폐 상자
   module: 8
-  verified: false
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/前開式晶圓傳送盒]
 - id: oht
   ko: 천장 이송 장치
   en: overhead hoist transport
@@ -810,7 +854,8 @@
   example_zh_tw: 4號區域的天車停了，FOUP在設備前堆積，請確認。
   definition_ko: 천장 레일을 따라 다니며 FOUP을 설비에서 설비로 나르는 무인 이송 장치
   module: 8
-  verified: false
+  verified: true
+  sources: [https://semirai.com/tw/glossary/oht]
 - id: wip
   ko: 재공
   en: work in process
@@ -829,7 +874,8 @@
   example_zh_tw: 蝕刻製程前在製品堆積超過800片，因此調整了投料順序。
   definition_ko: 공정에 들어갔지만 아직 완성되지 않아 라인 안에 있는 웨이퍼 물량
   module: 8
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Work_in_process]
 - id: tat
   ko: 턴어라운드 타임
   en: turnaround time
@@ -848,7 +894,8 @@
   example_zh_tw: 本月批次的週轉時間變長，因此先檢查瓶頸設備的稼動率。
   definition_ko: 웨이퍼가 공정에 들어가서 나올 때까지 걸리는 전체 시간
   module: 8
-  verified: false
+  verified: true
+  sources: [https://semirai.com/glossary/tat]
 - id: spc
   ko: 통계적 공정 관리
   en: statistical process control
@@ -867,7 +914,8 @@
   example_zh_tw: 沉積厚度管制圖上連續7點偏向一側，因此觸發了SPC警報。
   definition_ko: 측정값을 통계 그래프로 지켜보며 공정이 평소 범위를 벗어나는지 관리하는 방법
   module: 8
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Statistical_process_control]
 - id: fdc
   ko: 설비 이상 감지 및 분류
   en: fault detection and classification
@@ -886,7 +934,8 @@
   example_zh_tw: FDC偵測到腔體壓力異常，並立即讓該設備停機。
   definition_ko: 설비 센서 값을 실시간으로 살펴 이상을 찾아내고 종류별로 나누는 시스템
   module: 8
-  verified: false
+  verified: true
+  sources: [https://semistructure.com/fdc-fault-detection-classification/]
 - id: mes
   ko: 생산 관리 시스템
   en: manufacturing execution system
@@ -905,7 +954,8 @@
   example_zh_tw: 未在MES登錄的批次無法投入設備，請先完成登錄。
   definition_ko: 웨이퍼가 어느 공정에 있고 다음에 어디로 갈지를 기록하고 지시하는 공장 전산 시스템
   module: 8
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Manufacturing_execution_system]
 - id: queue-time
   ko: 대기 제한 시간
   en: queue time
@@ -924,7 +974,8 @@
   example_zh_tw: 氧化後的等候時間超限，因此該批次需要重新清洗後才能繼續。
   definition_ko: 한 공정이 끝난 뒤 다음 공정을 시작하기 전까지 허용되는 대기 시간
   module: 8
-  verified: false
+  verified: true
+  sources: [https://semirai.com/glossary/q-time]
 - id: electron
   ko: 전자
   en: electron
@@ -941,7 +992,8 @@
   example_zh_tw: 這種材料中自由移動的電子很多，所以電流容易通過。
   definition_ko: 원자 안에서 음(-)의 전기를 띠고 움직이는 아주 작은 입자
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Electron]
 - id: band-gap
   ko: 띠틈
   en: band gap
@@ -960,7 +1012,8 @@
   example_zh_tw: 矽的能隙大小適中，適合用作半導體。
   definition_ko: 전자가 움직이려면 넘어야 하는 에너지 간격. 클수록 전기가 잘 안 통한다
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Band_gap]
 - id: resistivity
   ko: 비저항
   en: resistivity
@@ -977,7 +1030,8 @@
   example_zh_tw: 測量晶圓的電阻率來確認摻雜濃度。
   definition_ko: 물질이 전류를 얼마나 막는지 나타내는 값. 클수록 전기가 잘 안 통한다
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity]
 - id: dopant
   ko: 도펀트
   en: dopant
@@ -995,7 +1049,8 @@
   example_zh_tw: 這片晶圓的摻雜劑濃度低於規格。
   definition_ko: 반도체의 전기적 성질을 바꾸려고 아주 조금 섞어 넣는 원소
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Dopant]
 - id: carrier
   ko: 캐리어
   en: carrier
@@ -1013,7 +1068,8 @@
   example_zh_tw: 提高摻雜濃度會增加載子數量。
   definition_ko: 전류를 실어 나르는 입자. 전자와 정공이 있다
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Charge_carrier]
 - id: donor
   ko: 도너
   en: donor
@@ -1030,7 +1086,8 @@
   example_zh_tw: 磷在矽中擔任施體，提供電子。
   definition_ko: 전자를 내주어 n형을 만드는 불순물
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Donor_(semiconductors)]
 - id: acceptor
   ko: 억셉터
   en: acceptor
@@ -1047,7 +1104,8 @@
   example_zh_tw: 硼是在矽中產生電洞的受體。
   definition_ko: 전자를 받아들여 정공을 만들고 p형을 만드는 불순물
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Acceptor_(semiconductors)]
 - id: annealing
   ko: 열처리
   en: annealing
@@ -1066,7 +1124,8 @@
   example_zh_tw: 離子植入後透過退火活化摻雜劑。
   definition_ko: 웨이퍼를 가열해 깨진 결정을 복구하고 불순물을 제자리에 앉히는 공정
   module: 1
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Annealing_(metallurgy)]
 - id: memory-semiconductor
   ko: 메모리 반도체
   en: memory semiconductor
@@ -1084,7 +1143,8 @@
   example_zh_tw: 今年記憶體晶片的需求由伺服器帶動。
   definition_ko: 데이터를 저장하는 반도체 칩
   module: 2
-  verified: false
+  verified: true
+  sources: [https://ja.wikipedia.org/wiki/Dynamic_Random_Access_Memory]
 - id: logic-semiconductor
   ko: 로직 반도체
   en: logic semiconductor
@@ -1103,7 +1163,8 @@
   example_zh_tw: 這條產線專用於邏輯晶片。
   definition_ko: 입력을 계산해 결과를 만드는 반도체 칩
   module: 2
-  verified: false
+  verified: true
+  sources: [https://ja.wikipedia.org/wiki/SKハイニックス]
 - id: dram
   ko: 디램
   en: DRAM (dynamic random access memory)
@@ -1121,7 +1182,8 @@
   example_zh_tw: DRAM記憶單元的電容大小會影響良率。
   definition_ko: 전하를 담는 저장통으로 빠르게 기억하지만 전원이 꺼지면 사라지는 메모리
   module: 2
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Dynamic_random-access_memory]
 - id: nand-flash
   ko: 낸드 플래시
   en: NAND flash
@@ -1139,7 +1201,8 @@
   example_zh_tw: 這顆SSD裡的NAND快閃記憶體堆疊了很多層。
   definition_ko: 전원이 꺼져도 데이터가 남는, 저장용 메모리
   module: 2
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Flash_memory]
 - id: volatile-memory
   ko: 휘발성 메모리
   en: volatile memory
@@ -1156,7 +1219,8 @@
   example_zh_tw: DRAM是揮發性記憶體，斷電後資料會消失。
   definition_ko: 전원이 꺼지면 저장한 데이터가 사라지는 메모리
   module: 2
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Volatile_memory]
 - id: nonvolatile-memory
   ko: 비휘발성 메모리
   en: non-volatile memory
@@ -1173,4 +1237,254 @@
   example_zh_tw: NAND快閃記憶體是非揮發性記憶體，因此用於儲存裝置。
   definition_ko: 전원이 꺼져도 저장한 데이터가 남는 메모리
   module: 2
-  verified: false
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Non-volatile_memory]
+- id: yield
+  ko: 수율
+  en: yield
+  ja: 歩留まり
+  ja_reading: ぶどまり
+  zh_cn: 良率
+  zh_cn_pinyin: liánglǜ
+  zh_tw: 良率
+  zh_tw_pinyin: liánglǜ
+  field_usage: "'수율이 몇 퍼센트 나온다'처럼 씀. 라인 전체 수율은 '종합 수율'이라 함"
+  example_ko: 이번 로트는 식각 조건을 바꾼 뒤 수율이 3퍼센트포인트 올랐다.
+  example_en: After changing the etch recipe, the yield of this lot rose by three percentage points.
+  example_ja: 今回のロットはエッチング条件を変更した後、歩留まりが3ポイント上がった。
+  example_zh_cn: 这批次调整刻蚀条件后，良率提高了3个百分点。
+  example_zh_tw: 這批次調整蝕刻條件後，良率提高了3個百分點。
+  definition_ko: 만든 칩 가운데 정상으로 동작하는 칩이 차지하는 비율
+  module: 5
+  verified: true
+  sources: [https://news.mynavi.jp/techplus/article/inspection-3/]
+- id: defect-density
+  ko: 결함 밀도
+  en: defect density
+  ja: 欠陥密度
+  ja_reading: けっかんみつど
+  zh_cn: 缺陷密度
+  zh_cn_pinyin: quēxiàn mìdù
+  zh_tw: 缺陷密度
+  zh_tw_pinyin: quēxiàn mìdù
+  abbr: D0
+  example_ko: 신규 장비를 들여온 뒤 웨이퍼의 결함 밀도가 눈에 띄게 줄었다.
+  example_en: After the new tool was installed, the defect density on the wafers dropped noticeably.
+  example_ja: 新しい装置を導入してから、ウエハーの欠陥密度が目に見えて減った。
+  example_zh_cn: 引入新设备后，晶圆的缺陷密度明显下降。
+  example_zh_tw: 引進新設備後，晶圓的缺陷密度明顯下降。
+  definition_ko: 웨이퍼의 단위 면적당 들어 있는 결함의 개수
+  module: 5
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/柴可拉斯基法]
+- id: euv
+  ko: 극자외선 노광
+  en: EUV (extreme ultraviolet) lithography
+  ja: EUVリソグラフィ
+  ja_reading: いーゆーぶいりそぐらふぃ
+  zh_cn: 极紫外光刻
+  zh_cn_pinyin: jí zǐwài guāngkè
+  zh_tw: 極紫外光微影
+  zh_tw_pinyin: jí zǐwàiguāng wéiyǐng
+  abbr: EUV
+  field_usage: "현장에서는 '이유브이'라고 읽음"
+  example_ko: 이 층은 EUV로 노광하고 나머지 층은 DUV로 처리한다.
+  example_en: This layer is exposed with EUV, and the remaining layers are handled with DUV.
+  example_ja: この層はEUVで露光し、残りの層はDUVで処理する。
+  example_zh_cn: 这一层用极紫外光刻曝光，其余层用深紫外处理。
+  example_zh_tw: 這一層用極紫外光曝光，其餘層用深紫外處理。
+  definition_ko: 파장 13.5 nm의 극자외선으로 아주 가는 회로 무늬를 한 번에 찍는 노광 방식
+  module: 7
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/極紫外光刻]
+- id: duv
+  ko: 심자외선 노광
+  en: DUV (deep ultraviolet) lithography
+  ja: DUVリソグラフィ
+  ja_reading: でぃーゆーぶいりそぐらふぃ
+  zh_cn: 深紫外光刻
+  zh_cn_pinyin: shēn zǐwài guāngkè
+  zh_tw: 深紫外光微影
+  zh_tw_pinyin: shēn zǐwàiguāng wéiyǐng
+  abbr: DUV
+  field_usage: "현장에서는 '디유브이'라고 읽음"
+  example_ko: 두꺼운 층은 DUV로도 충분히 찍을 수 있다.
+  example_en: Thicker layers can be printed well enough with DUV.
+  example_ja: 粗い層はDUVでも十分に露光できる。
+  example_zh_cn: 线条较粗的层用深紫外光刻就足够了。
+  example_zh_tw: 線條較粗的層用深紫外光微影就足夠了。
+  definition_ko: 파장 193 nm 등 EUV보다 긴 자외선을 쓰는 기존 노광 방식
+  module: 7
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/艾司摩爾]
+- id: numerical-aperture
+  ko: 개구수
+  en: numerical aperture
+  ja: 開口数
+  ja_reading: かいこうすう
+  zh_cn: 数值孔径
+  zh_cn_pinyin: shùzhí kǒngjìng
+  zh_tw: 數值孔徑
+  zh_tw_pinyin: shùzhí kǒngjìng
+  abbr: NA
+  field_usage: "현장에서는 '엔에이'라고 읽음. 높은 NA 장비를 '하이 NA'라고 부름"
+  example_ko: 하이 NA 장비는 기존보다 개구수가 커서 더 가는 선을 그릴 수 있다.
+  example_en: A High-NA tool has a larger numerical aperture, so it can print finer lines.
+  example_ja: High-NA装置は開口数が大きく、より細い線を描ける。
+  example_zh_cn: 高数值孔径设备的数值孔径更大，可以刻出更细的线条。
+  example_zh_tw: 高數值孔徑設備的數值孔徑更大，可以刻出更細的線條。
+  definition_ko: 광학계가 빛을 얼마나 넓은 각도로 모을 수 있는지 나타내는 값
+  module: 7
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Numerical_aperture]
+- id: laser-produced-plasma
+  ko: 레이저 생성 플라즈마
+  en: laser-produced plasma
+  ja: レーザー生成プラズマ
+  ja_reading: れーざーせいせいぷらずま
+  zh_cn: 激光等离子体
+  zh_cn_pinyin: jīguāng děnglízǐtǐ
+  zh_tw: 雷射電漿
+  zh_tw_pinyin: léishè diànjiāng
+  abbr: LPP
+  example_ko: EUV 광원은 주석 방울에 레이저를 쏘아 만든 레이저 생성 플라즈마를 쓴다.
+  example_en: The EUV source uses laser-produced plasma made by firing a laser at tin droplets.
+  example_ja: EUV光源は、スズの液滴にレーザーを当てて作るレーザー生成プラズマを使う。
+  example_zh_cn: 极紫外光源利用激光轰击锡滴产生的等离子体。
+  example_zh_tw: 極紫外光源利用雷射轟擊錫滴產生的電漿。
+  definition_ko: 물질에 강한 레이저를 쏘아 뜨겁게 이온화시켜 만든 플라즈마
+  module: 7
+  verified: true
+  sources: [https://www.chineseoptics.net.cn/article/doi/10.3788/CO.20201301.0028]
+- id: pellicle
+  ko: 펠리클
+  en: pellicle
+  ja: ペリクル
+  ja_reading: ぺりくる
+  zh_cn: 防尘薄膜
+  zh_cn_pinyin: fángchén bómó
+  zh_tw: 光罩護膜
+  zh_tw_pinyin: guāngzhào hùmó
+  field_usage: "현장에서도 '펠리클'이라고 부름"
+  example_ko: 마스크 표면에 먼지가 앉지 않도록 펠리클을 씌운다.
+  example_en: A pellicle is mounted so dust does not land on the mask surface.
+  example_ja: マスク表面に埃が付かないようペリクルを取り付ける。
+  example_zh_cn: 给掩模加装防尘薄膜，避免灰尘落在表面。
+  example_zh_tw: 在光罩上加裝護膜，避免灰塵落在表面。
+  definition_ko: 마스크 위에 먼지가 앉지 않도록 씌우는 얇은 투명 보호막
+  module: 7
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/光罩護膜]
+- id: gaa
+  ko: 게이트 올 어라운드
+  en: gate-all-around
+  ja: ゲートオールアラウンド
+  ja_reading: げーとおーるあらうんど
+  zh_cn: 环栅晶体管
+  zh_cn_pinyin: huánshān jīngtǐguǎn
+  zh_tw: 環繞閘極電晶體
+  zh_tw_pinyin: huánrào zhájí diànjīngtǐ
+  abbr: GAA
+  field_usage: "현장에서는 '가'로 영문 약자 GAA를 그대로 읽음"
+  example_ko: 3나노부터는 핀펫 대신 GAA 구조로 넘어간다.
+  example_en: From 3 nm on, the structure moves from FinFET to GAA.
+  example_ja: 3ナノからはFinFETに代わってGAA構造へ移行する。
+  example_zh_cn: 从3纳米开始，结构由FinFET转向GAA。
+  example_zh_tw: 從3奈米開始，結構由FinFET轉向GAA。
+  definition_ko: 게이트가 채널의 네 면을 모두 감싸는 트랜지스터 구조
+  module: 7
+  verified: true
+  sources: [https://zhuanlan.zhihu.com/p/1956014841820083587]
+- id: finfet
+  ko: 핀펫
+  en: FinFET
+  ja: フィンフェット
+  ja_reading: ふぃんふぇっと
+  zh_cn: 鳍式场效应晶体管
+  zh_cn_pinyin: qíshì chǎngxiàoyìng jīngtǐguǎn
+  zh_tw: 鰭式場效電晶體
+  zh_tw_pinyin: qíshì chǎngxiào diànjīngtǐ
+  abbr: FinFET
+  example_ko: 핀펫은 채널이 지느러미처럼 솟아 있고 게이트가 세 면을 덮는다.
+  example_en: In a FinFET the channel rises like a fin and the gate covers three sides.
+  example_ja: FinFETはチャネルがフィン状に立ち上がり、ゲートが三面を覆う。
+  example_zh_cn: FinFET的沟道像鳍一样凸起，栅极覆盖三个面。
+  example_zh_tw: FinFET的通道像鰭一樣凸起，閘極覆蓋三個面。
+  definition_ko: 채널을 지느러미 모양으로 세워 게이트가 세 면을 덮는 트랜지스터
+  module: 7
+  verified: true
+  sources: [https://edn.itmedia.co.jp/edn/articles/1502/09/news007.html]
+- id: nanosheet
+  ko: 나노시트
+  en: nanosheet
+  ja: ナノシート
+  ja_reading: なのしーと
+  zh_cn: 纳米片
+  zh_cn_pinyin: nàmǐ piàn
+  zh_tw: 奈米片
+  zh_tw_pinyin: nàimǐ piàn
+  field_usage: "삼성전자는 나노시트형 GAA를 MBCFET이라고도 부름"
+  example_ko: 나노시트 사이의 실리콘게르마늄을 선택적으로 식각해 비운다.
+  example_en: The silicon germanium between the nanosheets is selectively etched away.
+  example_ja: ナノシート間のシリコンゲルマニウムを選択的にエッチングして空ける。
+  example_zh_cn: 选择性刻蚀掉纳米片之间的硅锗。
+  example_zh_tw: 選擇性蝕刻掉奈米片之間的矽鍺。
+  definition_ko: 얇고 넓은 판 모양의 실리콘 채널
+  module: 7
+  verified: true
+  sources: [https://money.udn.com/money/story/5607/9209372]
+- id: gate
+  ko: 게이트
+  en: gate
+  ja: ゲート
+  ja_reading: げーと
+  zh_cn: 栅极
+  zh_cn_pinyin: shānjí
+  zh_tw: 閘極
+  zh_tw_pinyin: zhájí
+  example_ko: 게이트에 전압을 걸면 채널에 전류가 흐른다.
+  example_en: Applying voltage to the gate lets current flow in the channel.
+  example_ja: ゲートに電圧をかけるとチャネルに電流が流れる。
+  example_zh_cn: 给栅极加电压，沟道中就有电流流过。
+  example_zh_tw: 對閘極施加電壓，通道中就有電流流過。
+  definition_ko: 전압으로 채널의 전류를 켜고 끄는 트랜지스터의 문
+  module: 7
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/鰭式場效電晶體]
+- id: channel
+  ko: 채널
+  en: channel
+  ja: チャネル
+  ja_reading: ちゃねる
+  zh_cn: 沟道
+  zh_cn_pinyin: gōudào
+  zh_tw: 通道
+  zh_tw_pinyin: tōngdào
+  example_ko: 채널이 짧아지면 게이트가 전류를 막기 어려워진다.
+  example_en: As the channel gets shorter, the gate has a harder time blocking current.
+  example_ja: チャネルが短くなると、ゲートで電流を止めにくくなる。
+  example_zh_cn: 沟道变短后，栅极更难截断电流。
+  example_zh_tw: 通道變短後，閘極更難截斷電流。
+  definition_ko: 소스에서 드레인으로 전류가 지나가는 길
+  module: 7
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/金屬氧化物半導體場效電晶體]
+- id: leakage-current
+  ko: 누설 전류
+  en: leakage current
+  ja: リーク電流
+  ja_reading: りーくでんりゅう
+  zh_cn: 漏电流
+  zh_cn_pinyin: lòudiànliú
+  zh_tw: 漏電流
+  zh_tw_pinyin: lòudiànliú
+  field_usage: "현장에서는 '리키지'라고도 부름"
+  example_ko: 구조를 바꾸면 꺼진 상태의 누설 전류가 줄어든다.
+  example_en: Changing the structure reduces leakage current in the off state.
+  example_ja: 構造を変えるとオフ状態のリーク電流が減る。
+  example_zh_cn: 改变结构后，关断状态下的漏电流会减小。
+  example_zh_tw: 改變結構後，關斷狀態下的漏電流會減少。
+  definition_ko: 꺼져 있어야 할 트랜지스터에서 새어 나가는 전류
+  module: 7
+  verified: true
+  sources: [https://en.wikipedia.org/wiki/Leakage_(electronics)]

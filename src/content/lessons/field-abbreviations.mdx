@@ -1,0 +1,155 @@
+---
+title: 현장 약어
+module: 8
+order: 1
+summary: 팹 현장은 FOUP, WIP, TAT, MES 같은 영문 약어로 말한다. 약어를 풀어 읽고, 어느 영역의 말인지 붙이고, 문장 속에서 써 보면 4개 국어로도 쉽게 통한다.
+---
+
+import StepAnimation from '../../components/StepAnimation.astro';
+import TermCard from '../../components/TermCard.astro';
+import PhraseCard from '../../components/PhraseCard.astro';
+import Quiz from '../../components/Quiz.astro';
+
+## 한 줄 요약
+
+현장 약어는 긴 영어 이름의 머리글자를 따서 만든 짧은 말이며, 한·영·일·중 현장에서 거의 같은 글자로 쓰인다.
+
+일상 비유 1개: 택배 기사는 "송장", "집하", "배송 완료"처럼 줄인 말로 일한다. 팹의 약어도 바쁜 현장에서 빨리 말하려고 만든 줄임말이다.
+
+## 단계별로 보기
+
+<StepAnimation label="현장 약어 읽기 3단계">
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="약어 TAT를 영어 이름 turnaround time으로 풀어 읽는 그림">
+			<rect x="40" y="40" width="160" height="70" rx="10" fill="#e0a030" />
+			<text x="120" y="85" text-anchor="middle" font-size="28" fill="#1f2328">TAT</text>
+			<path d="M210 75 H270" stroke="#9aa3ad" stroke-width="3" fill="none" />
+			<path d="M262 67 L272 75 L262 83" stroke="#9aa3ad" stroke-width="3" fill="none" />
+			<rect x="280" y="40" width="170" height="70" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" />
+			<text x="365" y="82" text-anchor="middle" font-size="15" fill="var(--color-text-muted)">turnaround time</text>
+			<text x="240" y="170" text-anchor="middle" font-size="15" fill="var(--color-text-muted)">Turn(T) + Around(A) + Time(T)</text>
+			<text x="240" y="210" text-anchor="middle" font-size="15" fill="var(--color-text-muted)">한 글자씩 영어 이름으로 되돌린다</text>
+		</svg>
+		<figcaption>
+			<strong>풀어 읽기</strong>
+			<p>약어를 글자별로 영어 이름으로 되돌려 읽는다.</p>
+			<p>뜻을 모르는 약어도 원래 이름에서 의미를 짐작할 수 있기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="약어를 설비, 물류, 관리 세 영역으로 나누는 그림">
+			<rect x="20" y="40" width="130" height="180" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" />
+			<text x="85" y="68" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">설비</text>
+			<text x="85" y="120" text-anchor="middle" font-size="20" fill="#e0a030">PM</text>
+			<text x="85" y="160" text-anchor="middle" font-size="20" fill="#e0a030">BM</text>
+			<rect x="175" y="40" width="130" height="180" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" />
+			<text x="240" y="68" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">물류</text>
+			<text x="240" y="110" text-anchor="middle" font-size="20" fill="#e0a030">FOUP</text>
+			<text x="240" y="150" text-anchor="middle" font-size="20" fill="#e0a030">WIP</text>
+			<text x="240" y="190" text-anchor="middle" font-size="20" fill="#e0a030">TAT</text>
+			<rect x="330" y="40" width="130" height="180" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" />
+			<text x="395" y="68" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">관리</text>
+			<text x="395" y="110" text-anchor="middle" font-size="20" fill="#e0a030">MES</text>
+			<text x="395" y="150" text-anchor="middle" font-size="20" fill="#e0a030">SPC</text>
+			<text x="395" y="190" text-anchor="middle" font-size="20" fill="#e0a030">FDC</text>
+		</svg>
+		<figcaption>
+			<strong>영역 붙이기</strong>
+			<p>약어가 설비, 물류, 관리 중 어느 영역의 말인지 분류한다.</p>
+			<p>같은 글자도 영역을 알면 뜻을 헷갈리지 않고, 외울 때 묶어서 기억할 수 있기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="약어 FOUP이 들어간 문장을 말하는 말풍선 그림">
+			<circle cx="70" cy="110" r="28" fill="#9aa3ad" />
+			<rect x="60" y="150" width="20" height="60" rx="6" fill="#9aa3ad" />
+			<rect x="120" y="50" width="330" height="100" rx="14" fill="none" stroke="#9aa3ad" stroke-width="2" />
+			<path d="M120 100 L100 110 L120 120" fill="none" stroke="#9aa3ad" stroke-width="2" />
+			<text x="285" y="92" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">3번 FOUP을 다음 공정으로</text>
+			<text x="285" y="122" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">옮겨 주세요.</text>
+			<text x="285" y="200" text-anchor="middle" font-size="15" fill="#e0a030">약어는 그대로, 나머지는 각 언어로</text>
+		</svg>
+		<figcaption>
+			<strong>문장에서 쓰기</strong>
+			<p>약어를 넣어 완성된 문장으로 말하고 들어 본다.</p>
+			<p>약어는 문장 속에서 써야 실제 현장 대화에서 바로 나오기 때문이다.</p>
+		</figcaption>
+	</figure>
+</StepAnimation>
+
+## 자세히 알아보기
+
+### 왜 필요한가
+
+팹에서는 수천 개의 로트(lot, 같이 움직이는 웨이퍼 묶음)와 수백 대의 설비가 동시에 움직인다. 긴 이름을 매번 말하면 지시가 늦어진다. 그래서 현장은 줄임말을 쓴다. 외국 동료와 일할 때도 약어는 영어 글자 그대로 통하는 경우가 많아 큰 도움이 된다.
+
+### 어떻게 하는가
+
+세 단계로 익힌다. 첫째, 풀어 읽는다. TAT는 turnaround time, 즉 한 로트가 공정을 시작해 끝낼 때까지 걸린 시간이다. 둘째, 영역을 붙인다. PM(정기 점검)과 BM(고장 수리)은 설비, FOUP(웨이퍼 운반 용기)·WIP(공정 중인 재공품)·TAT는 물류, MES(생산 관리 시스템)·SPC(통계적 공정 관리)·FDC(설비 이상 감지)는 관리 영역이다. 셋째, 문장에서 쓴다. 아래 문장 카드로 한·영·일·중 문장을 듣고 따라 말한다.
+
+### 앞뒤 공정과 어떻게 이어지는가
+
+약어는 특정 공정이 아니라 모든 공정을 잇는 공통 언어다. 앞 레슨에서 배운 이송, 계측, 수율 용어가 여기서 약어로 다시 나온다. 다음 레슨에서는 약어보다 더 구어체인 현장 은어를 배운다.
+
+## 더 깊이 알아보기
+
+<details>
+<summary>원리 더 보기 (약어가 4개 국어에서 그대로 쓰이는 이유)</summary>
+
+반도체 장비와 관리 시스템은 영어권 기업과 표준 문서에서 먼저 정해졌다. 그래서 약어도 영어 머리글자가 기준이 되고, 각 나라 현장은 이를 그대로 받아 쓴다. 일본어와 중국어 문장에서도 FOUP처럼 알파벳을 그대로 쓰는 경우가 많다. 다만 일부 용어는 나라마다 풀이 말이 다르다. 예를 들어 같은 설비 정지도 나라와 회사에 따라 다른 약어를 쓸 수 있으므로, 처음 일하는 팹의 약어 목록을 확인하는 것이 안전하다.
+
+</details>
+
+## 문장으로 연습하기
+
+<PhraseCard id="wafer-move" />
+<PhraseCard id="equipment-down" />
+<PhraseCard id="lot-rework" />
+
+## 용어
+
+<TermCard id="foup" />
+<TermCard id="wip" />
+<TermCard id="tat" />
+<TermCard id="mes" />
+<TermCard id="spc" />
+<TermCard id="fdc" />
+<TermCard id="preventive-maintenance" />
+<TermCard id="breakdown-maintenance" />
+
+## 확인 문제
+
+<Quiz
+	questions={[
+		{
+			question: 'TAT가 뜻하는 것으로 알맞은 것은?',
+			choices: ['설비 정기 점검', '공정 시작부터 끝까지 걸린 시간', '웨이퍼 운반 용기', '통계적 공정 관리'],
+			answer: 1,
+			explanation: 'TAT는 turnaround time으로, 한 로트가 공정을 마치는 데 걸린 시간이다.',
+		},
+		{
+			question: '웨이퍼를 담아 옮기는 용기를 가리키는 약어는?',
+			choices: ['WIP', 'SPC', 'FOUP', 'FDC'],
+			answer: 2,
+			explanation: 'FOUP은 front opening unified pod의 약어로, 웨이퍼 운반 용기다.',
+		},
+		{
+			question: '설비의 이상 징후를 감지하고 분류하는 시스템의 약어는?',
+			choices: ['MES', 'FDC', 'BM', 'PM'],
+			answer: 1,
+			explanation: 'FDC는 fault detection and classification, 설비 이상 감지 및 분류다.',
+		},
+		{
+			question: '고장 난 설비를 고치는 일을 가리키는 약어는?',
+			choices: ['BM', 'PM', 'WIP', 'TAT'],
+			answer: 0,
+			explanation: 'BM은 breakdown maintenance로 고장 후 수리, PM은 미리 하는 정기 점검이다.',
+		},
+		{
+			question: '약어를 익히는 순서로 알맞은 것은?',
+			choices: ['문장에서 쓰기, 풀어 읽기, 영역 붙이기', '영역 붙이기, 문장에서 쓰기, 풀어 읽기', '풀어 읽기, 영역 붙이기, 문장에서 쓰기', '풀어 읽기, 문장에서 쓰기, 영역 붙이기'],
+			answer: 2,
+			explanation: '먼저 풀어 읽고, 영역을 붙인 뒤, 문장에서 써 본다.',
+		},
+	]}
+/>

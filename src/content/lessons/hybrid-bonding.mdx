@@ -1,0 +1,150 @@
+---
+title: 하이브리드 본딩
+module: 6
+order: 4
+summary: 땜납 범프 없이 칩 두 장의 구리 패드와 절연막을 직접 붙여, 훨씬 촘촘하게 위아래를 잇는 접합 기술이다.
+---
+
+import StepAnimation from '../../components/StepAnimation.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
+import TermCard from '../../components/TermCard.astro';
+import Quiz from '../../components/Quiz.astro';
+
+## 한 줄 요약
+
+하이브리드 본딩은 땜납 돌기 없이, 두 칩의 구리 패드와 절연막을 한꺼번에 직접 붙이는 접합 기술이다.
+
+일상 비유: 두 장의 유리판을 아주 매끈하게 닦아 겹치면 저절로 달라붙는다. 이어서 살짝 가열해 전기가 통하는 부분까지 한 몸으로 만드는 것과 비슷하다.
+
+## 단계별로 보기
+
+<StepAnimation label="하이브리드 본딩 3단계">
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="구리 패드가 절연막보다 살짝 낮게 파인 매끈한 표면">
+			<rect x="60" y="150" width="360" height="90" fill="var(--color-text-muted)" opacity="0.25" />
+			<rect x="120" y="150" width="70" height="90" fill="currentColor" opacity="0.5" />
+			<rect x="290" y="150" width="70" height="90" fill="currentColor" opacity="0.5" />
+			<rect x="120" y="146" width="70" height="4" fill="var(--color-text-muted)" opacity="0.25" />
+			<rect x="290" y="146" width="70" height="4" fill="var(--color-text-muted)" opacity="0.25" />
+			<text x="155" y="130" text-anchor="middle" fill="var(--color-text-muted)">구리 패드</text>
+			<text x="240" y="262" text-anchor="middle" fill="var(--color-text-muted)">절연막 (평탄하게 연마)</text>
+		</svg>
+		<figcaption>
+			<strong>표면 평탄화</strong>
+			<p>접합면을 CMP(화학 기계 연마)로 매끈하게 갈고, 구리 패드가 절연막보다 아주 조금 낮게 만든다.</p>
+			<p>표면이 거칠면 두 면이 고르게 붙지 않기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="위 칩을 뒤집어 아래 칩에 정렬해 겹친 모습">
+			<rect x="60" y="150" width="360" height="70" fill="var(--color-text-muted)" opacity="0.25" />
+			<rect x="120" y="150" width="70" height="70" fill="currentColor" opacity="0.5" />
+			<rect x="290" y="150" width="70" height="70" fill="currentColor" opacity="0.5" />
+			<rect x="60" y="60" width="360" height="70" fill="var(--color-text-muted)" opacity="0.25" />
+			<rect x="120" y="60" width="70" height="70" fill="currentColor" opacity="0.5" />
+			<rect x="290" y="60" width="70" height="70" fill="currentColor" opacity="0.5" />
+			<text x="240" y="30" text-anchor="middle" fill="var(--color-text-muted)">위 칩을 정렬해 내려놓는다</text>
+			<text x="240" y="250" text-anchor="middle" fill="var(--color-text-muted)">상온에서 절연막끼리 먼저 붙는다</text>
+		</svg>
+		<figcaption>
+			<strong>정렬하고 붙이기</strong>
+			<p>표면을 플라즈마로 활성화한 뒤 두 칩의 패드 위치를 맞춰 겹치면, 상온에서 절연막끼리 먼저 붙는다.</p>
+			<p>패드가 어긋나면 전기가 이어지지 않으므로 정렬이 정확해야 한다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="가열로 구리가 팽창해 위아래 패드가 하나로 이어진 모습">
+			<rect x="60" y="60" width="360" height="160" fill="var(--color-text-muted)" opacity="0.25" />
+			<rect x="120" y="60" width="70" height="160" fill="currentColor" opacity="0.6" />
+			<rect x="290" y="60" width="70" height="160" fill="currentColor" opacity="0.6" />
+			<text x="240" y="30" text-anchor="middle" fill="var(--color-text-muted)">가열: 구리가 팽창해 맞닿는다</text>
+			<text x="240" y="250" text-anchor="middle" fill="var(--color-text-muted)">구리 원자가 섞여 하나로 이어진다</text>
+		</svg>
+		<figcaption>
+			<strong>열처리로 구리 잇기</strong>
+			<p>접합한 칩을 가열(어닐링)해 구리를 팽창시키고, 맞닿은 구리끼리 원자가 섞여 이어지게 한다.</p>
+			<p>절연막만 붙어 있던 상태에서 전기가 통하는 길까지 완성하기 위해서다.</p>
+		</figcaption>
+	</figure>
+</StepAnimation>
+
+## 영상으로 보기
+
+{/* 공식 채널 영상은 별도 작업에서 확정한다. 정해지면 아래에 <VideoEmbed id="..." title="..." />를 넣는다. */}
+
+## 자세히 알아보기
+
+### 왜 필요한가
+
+칩을 쌓으면 위아래를 전기로 이어야 한다. 지금까지는 작은 땜납 돌기(범프, bump)를 썼다. 범프는 크기와 간격을 줄이는 데 한계가 있다. 연결 수를 늘리기 어렵다는 뜻이다. 하이브리드 본딩은 범프 없이 구리 패드와 절연막을 직접 붙인다. 그래서 연결 간격을 훨씬 좁힐 수 있다.
+
+### 어떻게 하는가
+
+세 단계로 진행한다.
+
+1. 표면 평탄화: 접합면을 CMP(화학 기계 연마)로 아주 매끈하게 간다. 구리 패드는 절연막보다 극히 조금 낮게 만든다.
+2. 정렬하고 붙이기: 표면을 플라즈마(이온화된 기체)로 활성화하고, 두 면을 정확히 맞춰 겹친다. 상온에서 절연막끼리 먼저 붙는다.
+3. 열처리로 구리 잇기: 가열하면 구리가 절연막보다 더 팽창해 맞은편 패드와 닿는다. 접촉면에서 구리 원자가 서로 섞여 하나로 이어진다.
+
+### 앞뒤 공정과 어떻게 이어지는가
+
+앞 공정에서 배선과 구리 패드가 있는 웨이퍼를 만들고, CMP로 면을 다듬어 받는다. 접합이 끝나면 위 칩을 얇게 갈고 다이싱(칩 자르기)과 패키징으로 넘긴다. 웨이퍼째 붙이는 방식과 칩을 하나씩 붙이는 방식이 있다. 적층 메모리 HBM에도 쓰이는 후보 기술이다.
+
+## 더 깊이 알아보기
+
+<details>
+<summary>원리 더 보기 (왜 구리를 낮게 만드는가)</summary>
+
+구리는 가열하면 주변 절연막보다 더 많이 늘어난다. 처음에 패드가 살짝 낮으면, 상온에서는 절연막끼리만 닿고 구리 사이에는 미세한 틈이 남는다. 가열하면 구리가 늘어나 그 틈을 메우고 맞은편 구리와 닿는다.
+
+너무 많이 낮으면 틈이 남아 접촉하지 못한다. 반대로 거의 낮지 않으면 구리가 먼저 닿아 절연막 접합을 밀어낸다. 그래서 연마 후 높이 차를 수 나노미터 수준으로 다룬다. 접합 전 입자 오염도 틈을 만들기 때문에 청정도가 중요하다.
+
+</details>
+
+## 용어
+
+<TermCard id="hybrid-bonding" />
+<TermCard id="bump" />
+<TermCard id="cmp" />
+<TermCard id="annealing" />
+<TermCard id="hbm" />
+<TermCard id="tsv" />
+<TermCard id="wafer" />
+<TermCard id="packaging" />
+
+## 확인 문제
+
+<Quiz
+	questions={[
+		{
+			question: '하이브리드 본딩이 기존 범프 방식과 다른 점은 무엇인가?',
+			choices: ['땜납 돌기 없이 구리 패드와 절연막을 직접 붙인다', '칩을 접착제로만 붙인다', '와이어로 칩을 잇는다', '칩을 쌓지 않고 옆으로 놓는다'],
+			answer: 0,
+			explanation: '범프 없이 구리와 절연막을 직접 접합한다.',
+		},
+		{
+			question: '접합 전 CMP를 하는 가장 큰 이유는?',
+			choices: ['색을 입히려고', '두께를 두 배로 하려고', '표면을 매끈하게 만들어 고르게 붙게 하려고', '구리를 녹이려고'],
+			answer: 2,
+			explanation: '표면이 거칠면 두 면이 고르게 붙지 않는다.',
+		},
+		{
+			question: '상온에서 두 면을 겹치면 먼저 붙는 것은?',
+			choices: ['구리끼리', '절연막끼리', '땜납끼리', '포토레지스트끼리'],
+			answer: 1,
+			explanation: '상온에서는 절연막끼리 먼저 붙고, 구리는 가열 후에 이어진다.',
+		},
+		{
+			question: '구리 패드를 절연막보다 조금 낮게 만드는 까닭은?',
+			choices: ['가열하면 구리가 팽창해 맞닿게 하려고', '구리를 아끼려고', '전기가 안 통하게 하려고', '정렬을 생략하려고'],
+			answer: 0,
+			explanation: '열처리 때 구리가 늘어나 틈을 메우고 맞은편 구리와 닿는다.',
+		},
+		{
+			question: '열처리(어닐링) 단계에서 일어나는 일은?',
+			choices: ['절연막이 녹아 사라진다', '맞닿은 구리끼리 원자가 섞여 이어진다', '웨이퍼가 잘린다', '회로 무늬가 새겨진다'],
+			answer: 1,
+			explanation: '가열로 구리가 팽창하고 접촉면에서 원자가 섞여 하나로 이어진다.',
+		},
+	]}
+/>

@@ -50,3 +50,263 @@
   zh_cn_pinyin: qǐng bǎ sān hào FOUP zhuǎn dào xià yí dào gōngxù.
   zh_tw: 請把3號FOUP轉到下一道製程。
   zh_tw_pinyin: qǐng bǎ sān hào FOUP zhuǎn dào xià yí dào zhìchéng.
+- id: mtg-open
+  situation: 회의 시작
+  ko: 회의를 시작하겠습니다. 오늘 안건은 세 가지입니다.
+  en: Let's begin the meeting. There are three items on today's agenda.
+  ja: 会議を始めます。本日の議題は3つです。
+  ja_reading: かいぎをはじめます。ほんじつのぎだいはみっつです。
+  zh_cn: 现在开始开会，今天有三项议题。
+  zh_cn_pinyin: xiànzài kāishǐ kāihuì, jīntiān yǒu sān xiàng yìtí.
+  zh_tw: 現在開始開會，今天有三項議題。
+  zh_tw_pinyin: xiànzài kāishǐ kāihuì, jīntiān yǒu sān xiàng yìtí.
+- id: mtg-first-report
+  situation: 보고 순서 안내
+  ko: 먼저 어제 생산 현황부터 보고드리겠습니다.
+  en: First, I will report yesterday's production status.
+  ja: まず、昨日の生産状況から報告します。
+  ja_reading: まず、きのうのせいさんじょうきょうからほうこくします。
+  zh_cn: 先汇报一下昨天的生产情况。
+  zh_cn_pinyin: xiān huìbào yíxià zuótiān de shēngchǎn qíngkuàng.
+  zh_tw: 先報告一下昨天的生產情況。
+  zh_tw_pinyin: xiān bàogào yíxià zuótiān de shēngchǎn qíngkuàng.
+- id: mtg-lot-count
+  situation: 생산 현황 보고
+  ko: 어제 투입한 로트는 열두 개이고, 열 개가 완료됐습니다.
+  en: Twelve lots were started yesterday, and ten are complete.
+  ja: 昨日投入したロットは12個で、10個が完了しました。
+  ja_reading: きのうとうにゅうしたろっとはじゅうにこで、じゅっこがかんりょうしました。
+  zh_cn: 昨天投入了十二个批次，已完成十个。
+  zh_cn_pinyin: zuótiān tóurù le shí'èr gè pīcì, yǐ wánchéng shí gè.
+  zh_tw: 昨天投入了十二個批次，已完成十個。
+  zh_tw_pinyin: zuótiān tóurù le shí'èr gè pīcì, yǐ wánchéng shí gè.
+- id: mtg-yield-down
+  situation: 수율 변동 보고
+  ko: 이번 주 수율이 지난주보다 조금 내려갔습니다.
+  en: This week's yield is slightly lower than last week's.
+  ja: 今週の歩留まりは先週より少し下がりました。
+  ja_reading: こんしゅうのぶどまりはせんしゅうよりすこしさがりました。
+  zh_cn: 本周良率比上周略有下降。
+  zh_cn_pinyin: běn zhōu liánglǜ bǐ shàng zhōu lüè yǒu xiàjiàng.
+  zh_tw: 本週良率比上週略有下降。
+  zh_tw_pinyin: běn zhōu liánglǜ bǐ shàng zhōu lüè yǒu xiàjiàng.
+- id: mtg-wip-high
+  situation: 재공품 현황 보고
+  ko: 공정 중 재공품이 평소보다 많이 쌓여 있습니다.
+  en: More work in process than usual is piling up.
+  ja: 仕掛品がいつもより多く滞留しています。
+  ja_reading: しかかりひんがいつもよりおおくたいりゅうしています。
+  zh_cn: 在制品比平时积压得多。
+  zh_cn_pinyin: zàizhìpǐn bǐ píngshí jīyā de duō.
+  zh_tw: 在製品比平時積壓得多。
+  zh_tw_pinyin: zàizhìpǐn bǐ píngshí jīyā de duō.
+- id: mtg-spc-out
+  situation: 관리 한계 이탈 보고
+  ko: 이 측정값은 관리 한계를 벗어났습니다.
+  en: This measurement is outside the control limit.
+  ja: この測定値は管理限界を外れました。
+  ja_reading: このそくていちはかんりげんかいをはずれました。
+  zh_cn: 这个测量值超出了管控界限。
+  zh_cn_pinyin: zhège cèliáng zhí chāochū le guǎnkòng jièxiàn.
+  zh_tw: 這個量測值超出了管制界限。
+  zh_tw_pinyin: zhège liàngcè zhí chāochū le guǎnzhì jièxiàn.
+- id: mtg-defect-rise
+  situation: 결함 증가 보고
+  ko: 결함 수가 특정 설비에서만 늘었습니다.
+  en: The defect count rose only on one specific tool.
+  ja: 欠陥の数が特定の装置だけで増えました。
+  ja_reading: けっかんのかずがとくていのそうちだけでふえました。
+  zh_cn: 缺陷数量只在特定设备上增加了。
+  zh_cn_pinyin: quēxiàn shùliàng zhǐ zài tèdìng shèbèi shàng zēngjiā le.
+  zh_tw: 缺陷數量只在特定設備上增加了。
+  zh_tw_pinyin: quēxiàn shùliàng zhǐ zài tèdìng shèbèi shàng zēngjiā le.
+- id: mtg-delay
+  situation: 일정 지연 보고
+  ko: 이 로트는 설비 점검 때문에 하루 늦어질 것 같습니다.
+  en: This lot will probably be one day late because of tool maintenance.
+  ja: このロットは装置の点検のため、1日遅れそうです。
+  ja_reading: このろっとはそうちのてんけんのため、いちにちおくれそうです。
+  zh_cn: 这批次因为设备检修，可能会晚一天。
+  zh_cn_pinyin: zhè pīcì yīnwèi shèbèi jiǎnxiū, kěnéng huì wǎn yì tiān.
+  zh_tw: 這批次因為設備檢修，可能會晚一天。
+  zh_tw_pinyin: zhè pīcì yīnwèi shèbèi jiǎnxiū, kěnéng huì wǎn yì tiān.
+- id: mtg-cause-unknown
+  situation: 원인 미확인 보고
+  ko: 아직 정확한 원인은 모릅니다. 데이터를 더 확인하겠습니다.
+  en: We do not know the exact cause yet. We will check more data.
+  ja: まだ正確な原因は分かりません。データをさらに確認します。
+  ja_reading: まだせいかくなげんいんはわかりません。でーたをさらにかくにんします。
+  zh_cn: 目前还不清楚确切原因，我们会再确认数据。
+  zh_cn_pinyin: mùqián hái bù qīngchu quèqiè yuányīn, wǒmen huì zài quèrèn shùjù.
+  zh_tw: 目前還不清楚確切原因，我們會再確認資料。
+  zh_tw_pinyin: mùqián hái bù qīngchu quèqiè yuányīn, wǒmen huì zài quèrèn zīliào.
+- id: mtg-cause-found
+  situation: 원인 추정 보고
+  ko: 원인은 가스 유량의 변동으로 보입니다.
+  en: The cause appears to be a fluctuation in gas flow.
+  ja: 原因はガス流量の変動と見られます。
+  ja_reading: げんいんはがすりゅうりょうのへんどうとみられます。
+  zh_cn: 原因似乎是气体流量出现了波动。
+  zh_cn_pinyin: yuányīn sìhū shì qìtǐ liúliàng chūxiàn le bōdòng.
+  zh_tw: 原因似乎是氣體流量出現了波動。
+  zh_tw_pinyin: yuányīn sìhū shì qìtǐ liúliàng chūxiàn le bōdòng.
+- id: mtg-action-taken
+  situation: 조치 결과 보고
+  ko: 센서를 교체했고 지금은 정상 범위입니다.
+  en: We replaced the sensor, and it is within the normal range now.
+  ja: センサーを交換し、現在は正常範囲です。
+  ja_reading: せんさーをこうかんし、げんざいはせいじょうはんいです。
+  zh_cn: 已更换传感器，现在处于正常范围。
+  zh_cn_pinyin: yǐ gēnghuàn chuángǎnqì, xiànzài chǔyú zhèngcháng fànwéi.
+  zh_tw: 已更換感測器，現在處於正常範圍。
+  zh_tw_pinyin: yǐ gēnghuàn gǎncèqì, xiànzài chǔyú zhèngcháng fànwéi.
+- id: mtg-pm-plan
+  situation: 정비 계획 공유
+  ko: 예방 정비는 이번 주 금요일에 하겠습니다.
+  en: We will do the preventive maintenance this Friday.
+  ja: 予防保全は今週の金曜日に行います。
+  ja_reading: よぼうほぜんはこんしゅうのきんようびにおこないます。
+  zh_cn: 预防性维护安排在本周五进行。
+  zh_cn_pinyin: yùfángxìng wéihù ānpái zài běn zhōu wǔ jìnxíng.
+  zh_tw: 預防性維護安排在本週五進行。
+  zh_tw_pinyin: yùfángxìng wéihù ānpái zài běn zhōu wǔ jìnxíng.
+- id: mtg-recurrence
+  situation: 재발 방지 대책
+  ko: 같은 문제가 다시 생기지 않도록 점검 기준을 바꾸겠습니다.
+  en: To keep the same problem from happening again, we will change the check criteria.
+  ja: 同じ問題が再発しないよう、点検基準を変更します。
+  ja_reading: おなじもんだいがさいはつしないよう、てんけんきじゅんをへんこうします。
+  zh_cn: 为避免同样的问题再次发生，我们会修改检查标准。
+  zh_cn_pinyin: wèi bìmiǎn tóngyàng de wèntí zàicì fāshēng, wǒmen huì xiūgǎi jiǎnchá biāozhǔn.
+  zh_tw: 為避免同樣的問題再次發生，我們會修改檢查標準。
+  zh_tw_pinyin: wèi bìmiǎn tóngyàng de wèntí zàicì fāshēng, wǒmen huì xiūgǎi jiǎnchá biāozhǔn.
+- id: mtg-need-support
+  situation: 지원 요청
+  ko: 이 건은 설비 엔지니어의 지원이 필요합니다.
+  en: This issue needs support from the equipment engineer.
+  ja: この件は設備エンジニアの支援が必要です。
+  ja_reading: このけんはせつびえんじにあのしえんがひつようです。
+  zh_cn: 这件事需要设备工程师的支持。
+  zh_cn_pinyin: zhè jiàn shì xūyào shèbèi gōngchéngshī de zhīchí.
+  zh_tw: 這件事需要設備工程師的支援。
+  zh_tw_pinyin: zhè jiàn shì xūyào shèbèi gōngchéngshī de zhīyuán.
+- id: mtg-deadline
+  situation: 기한 요청
+  ko: 금요일 오전까지 결과를 공유해 주세요.
+  en: Please share the results by Friday morning.
+  ja: 金曜日の午前中までに結果を共有してください。
+  ja_reading: きんようびのごぜんちゅうまでにけっかをきょうゆうしてください。
+  zh_cn: 请在周五上午之前分享结果。
+  zh_cn_pinyin: qǐng zài zhōuwǔ shàngwǔ zhīqián fēnxiǎng jiéguǒ.
+  zh_tw: 請在週五上午之前分享結果。
+  zh_tw_pinyin: qǐng zài zhōuwǔ shàngwǔ zhīqián fēnxiǎng jiéguǒ.
+- id: mtg-confirm
+  situation: 이해 내용 확인
+  ko: 제가 이해한 내용이 맞는지 확인하겠습니다.
+  en: Let me confirm that I have understood correctly.
+  ja: 私の理解が合っているか、確認させてください。
+  ja_reading: わたしのりかいがあっているか、かくにんさせてください。
+  zh_cn: 我确认一下自己的理解是否正确。
+  zh_cn_pinyin: wǒ quèrèn yíxià zìjǐ de lǐjiě shìfǒu zhèngquè.
+  zh_tw: 我確認一下自己的理解是否正確。
+  zh_tw_pinyin: wǒ quèrèn yíxià zìjǐ de lǐjiě shìfǒu zhèngquè.
+- id: mtg-repeat
+  situation: 다시 말해 달라고 요청
+  ko: 죄송하지만 한 번 더 말씀해 주시겠습니까?
+  en: Sorry, could you say that once more?
+  ja: すみませんが、もう一度お願いできますか。
+  ja_reading: すみませんが、もういちどおねがいできますか。
+  zh_cn: 不好意思，能请您再说一遍吗？
+  zh_cn_pinyin: bù hǎoyìsi, néng qǐng nín zài shuō yí biàn ma?
+  zh_tw: 不好意思，能請您再說一遍嗎？
+  zh_tw_pinyin: bù hǎoyìsi, néng qǐng nín zài shuō yí biàn ma?
+- id: mtg-disagree
+  situation: 다른 의견 제시
+  ko: 그 부분은 제 생각이 조금 다릅니다. 이유를 말씀드리겠습니다.
+  en: I see that part a little differently. Let me explain why.
+  ja: その点は私の考えが少し違います。理由を説明します。
+  ja_reading: そのてんはわたしのかんがえがすこしちがいます。りゆうをせつめいします。
+  zh_cn: 这一点我的看法略有不同，我来说明理由。
+  zh_cn_pinyin: zhè yì diǎn wǒ de kànfǎ lüè yǒu bùtóng, wǒ lái shuōmíng lǐyóu.
+  zh_tw: 這一點我的看法略有不同，我來說明理由。
+  zh_tw_pinyin: zhè yì diǎn wǒ de kànfǎ lüè yǒu bùtóng, wǒ lái shuōmíng lǐyóu.
+- id: mtg-owner
+  situation: 담당자 확인
+  ko: 이 항목의 담당자는 누구입니까?
+  en: Who is the owner of this item?
+  ja: この項目の担当者はどなたですか。
+  ja_reading: このこうもくのたんとうしゃはどなたですか。
+  zh_cn: 这一项的负责人是谁？
+  zh_cn_pinyin: zhè yí xiàng de fùzérén shì shéi?
+  zh_tw: 這一項的負責人是誰？
+  zh_tw_pinyin: zhè yí xiàng de fùzérén shì shéi?
+- id: mtg-close
+  situation: 회의 마무리
+  ko: 오늘 결정한 내용을 정리하고 회의를 마치겠습니다.
+  en: Let me summarize today's decisions and close the meeting.
+  ja: 本日決定した内容をまとめて、会議を終わります。
+  ja_reading: ほんじつけっていしたないようをまとめて、かいぎをおわります。
+  zh_cn: 我来总结一下今天的决定，会议到此结束。
+  zh_cn_pinyin: wǒ lái zǒngjié yíxià jīntiān de juédìng, huìyì dào cǐ jiéshù.
+  zh_tw: 我來總結一下今天的決定，會議到此結束。
+  zh_tw_pinyin: wǒ lái zǒngjié yíxià jīntiān de juédìng, huìyì dào cǐ jiéshù.
+- id: slang-down
+  situation: 설비가 다운됐다고 말할 때
+  ko: 3번 설비 다운됐어요. 바로 확인해 주세요.
+  en: Tool 3 is down. Please check it right away.
+  ja: 3号機がダウンしました。すぐ確認してください。
+  ja_reading: さんごうきがだうんしました。すぐかくにんしてください。
+  zh_cn: 3号设备宕机了，请马上确认。
+  zh_cn_pinyin: sān hào shèbèi dàngjī le, qǐng mǎshàng quèrèn.
+  zh_tw: 3號設備當機了，請馬上確認。
+  zh_tw_pinyin: sān hào shèbèi dàngjī le, qǐng mǎshàng quèrèn.
+- id: slang-hot-lot
+  situation: 급한 로트를 먼저 돌릴 때
+  ko: 이 핫랏은 우선 진행해 주세요.
+  en: Please run this hot lot first.
+  ja: このホットロットを優先して流してください。
+  ja_reading: このほっとろっとをゆうせんしてながしてください。
+  zh_cn: 这个紧急批次请优先处理。
+  zh_cn_pinyin: zhège jǐnjí pīcì qǐng yōuxiān chǔlǐ.
+  zh_tw: 這個緊急批次請優先處理。
+  zh_tw_pinyin: zhège jǐnjí pīcì qǐng yōuxiān chǔlǐ.
+- id: slang-contam
+  situation: 오염이 의심될 때
+  ko: 컨탐 의심돼서 웨이퍼를 잠시 세워 뒀어요.
+  en: We suspect contamination, so we put the wafers on hold.
+  ja: コンタミが疑われるので、ウェーハを一時止めています。
+  ja_reading: こんたみがうたがわれるので、うえーはをいちじとめています。
+  zh_cn: 怀疑有污染，所以先把晶圆暂停了。
+  zh_cn_pinyin: huáiyí yǒu wūrǎn, suǒyǐ xiān bǎ jīngyuán zàntíng le.
+  zh_tw: 懷疑有污染，所以先把晶圓暫停了。
+  zh_tw_pinyin: huáiyí yǒu wūrǎn, suǒyǐ xiān bǎ jīngyuán zàntíng le.
+- id: slang-interlock
+  situation: 안전 장치로 설비가 멈췄을 때
+  ko: 인터락 걸려서 설비가 안 돌아가요.
+  en: The interlock tripped, so the tool will not run.
+  ja: インターロックがかかって、装置が動きません。
+  ja_reading: いんたーろっくがかかって、そうちがうごきません。
+  zh_cn: 联锁触发了，设备运行不了。
+  zh_cn_pinyin: liánsuǒ chùfā le, shèbèi yùnxíng bù liǎo.
+  zh_tw: 連鎖觸發了，設備運轉不了。
+  zh_tw_pinyin: liánsuǒ chùfā le, shèbèi yùnzhuǎn bù liǎo.
+- id: slang-run
+  situation: 공정을 시작할 때
+  ko: 레시피 확인했으니 이제 런 돌릴게요.
+  en: The recipe is checked, so I will start the run now.
+  ja: レシピを確認したので、これからランを回します。
+  ja_reading: れしぴをかくにんしたので、これかららんをまわします。
+  zh_cn: 配方确认过了，现在开始跑货。
+  zh_cn_pinyin: pèifāng quèrèn guò le, xiànzài kāishǐ pǎo huò.
+  zh_tw: 配方確認過了，現在開始跑貨。
+  zh_tw_pinyin: pèifāng quèrèn guò le, xiànzài kāishǐ pǎo huò.
+- id: slang-scrap
+  situation: 웨이퍼를 폐기할 때
+  ko: 이 웨이퍼는 깨져서 스크랩 처리했습니다.
+  en: This wafer was broken, so we scrapped it.
+  ja: このウェーハは割れたので、スクラップ処理しました。
+  ja_reading: このうえーははわれたので、すくらっぷしょりしました。
+  zh_cn: 这片晶圆破了，已经报废处理了。
+  zh_cn_pinyin: zhè piàn jīngyuán pò le, yǐjīng bàofèi chǔlǐ le.
+  zh_tw: 這片晶圓破了，已經報廢處理了。
+  zh_tw_pinyin: zhè piàn jīngyuán pò le, yǐjīng bàofèi chǔlǐ le.

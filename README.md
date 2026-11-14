@@ -1,43 +1,28 @@
-# Astro Starter Kit: Minimal
+# 반도체 4개 국어 학습 사이트
+
+[English](README.en.md) | 한국어
+
+반도체 입문자가 기초부터 공정 전체까지 한국어·영어·일본어·중국어(간체/번체)로 익히는 무료 공개 학습 사이트입니다.
+Astro 정적 사이트(MDX)이며 GitHub Pages로 배포합니다. 서버와 DB는 없습니다.
+
+## 개발
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # ./dist/ 에 정적 사이트 생성
+npm run preview  # 빌드 결과 미리보기
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 구조
 
-## 🚀 Project Structure
+- `src/data/glossary.yaml`: 용어 데이터(유일한 원본)
+- `src/components/`: 공용 Astro 컴포넌트
+- `src/pages/`, 레슨 MDX: 학습 콘텐츠
 
-Inside of your Astro project, you'll see the following folders and files:
+## 라이선스
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- 코드: [MIT](LICENSE)
+- 콘텐츠(레슨 본문, 용어 데이터, 도해): [CC BY-SA 4.0](LICENSE-CONTENT.md)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+콘텐츠를 사용·재배포할 때는 출처를 표시하고 같은 라이선스로 공유해야 합니다.
