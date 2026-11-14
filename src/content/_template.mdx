@@ -29,18 +29,41 @@ import Quiz from '../components/Quiz.astro';
   StepAnimation: 바로 아래 자식 하나가 한 단계다. SVG를 그대로 넣거나 <figure>(SVG + figcaption)로 넣는다.
   props: label(도해 이름), prevLabel·nextLabel(버튼 글자, 생략 가능)
   SVG가 아직 없으면 아래처럼 자리만 둔다. viewBox는 "0 0 480 268".
+  figcaption에는 단계마다 "무엇을 하는가" 1문장과 "왜 하는가" 1문장을 반드시 쓴다.
+  단계 수와 이름은 본문 "어떻게 하는가"와 똑같이 맞춘다.
 */}
 
 <StepAnimation label="도해 이름">
-	<svg viewBox="0 0 480 268" role="img" aria-label="1단계 설명">
-		<text x="240" y="134" text-anchor="middle" fill="var(--color-text-muted)">1단계 그림 자리</text>
-	</svg>
-	<svg viewBox="0 0 480 268" role="img" aria-label="2단계 설명">
-		<text x="240" y="134" text-anchor="middle" fill="var(--color-text-muted)">2단계 그림 자리</text>
-	</svg>
-	<svg viewBox="0 0 480 268" role="img" aria-label="3단계 설명">
-		<text x="240" y="134" text-anchor="middle" fill="var(--color-text-muted)">3단계 그림 자리</text>
-	</svg>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="1단계 설명">
+			<text x="240" y="134" text-anchor="middle" fill="var(--color-text-muted)">1단계 그림 자리</text>
+		</svg>
+		<figcaption>
+			<strong>1단계 이름</strong>
+			<p>무엇을 하는가 1문장.</p>
+			<p>왜 하는가 1문장.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="2단계 설명">
+			<text x="240" y="134" text-anchor="middle" fill="var(--color-text-muted)">2단계 그림 자리</text>
+		</svg>
+		<figcaption>
+			<strong>2단계 이름</strong>
+			<p>무엇을 하는가 1문장.</p>
+			<p>왜 하는가 1문장.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="3단계 설명">
+			<text x="240" y="134" text-anchor="middle" fill="var(--color-text-muted)">3단계 그림 자리</text>
+		</svg>
+		<figcaption>
+			<strong>3단계 이름</strong>
+			<p>무엇을 하는가 1문장.</p>
+			<p>왜 하는가 1문장.</p>
+		</figcaption>
+	</figure>
 </StepAnimation>
 
 ## 영상으로 보기

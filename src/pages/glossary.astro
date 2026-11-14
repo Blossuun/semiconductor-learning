@@ -17,6 +17,8 @@ const modules = [
 
 const terms = (await getCollection('glossary')).sort((a, b) => a.data.ko.localeCompare(b.data.ko, 'ko'));
 
+const counts = modules.map((_, i) => terms.filter((t) => String(t.data.module) === String(i)).length);
+
 const searchText = (t: (typeof terms)[number]['data']) =>
 	[t.ko, t.en, t.ja, t.ja_reading, t.zh_cn, t.zh_cn_pinyin, t.zh_tw, t.zh_tw_pinyin, t.abbr, t.definition_ko]
 		.filter(Boolean)
@@ -25,29 +27,59 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 ---
 
 <Base title="용어집">
+	<nav slot="sidebar" class="stage-picker" aria-label="단계로 고르기">
+		<p class="picker-title">단계로 고르기</p>
+		<ul>
+			<li>
+				<button type="button" data-stage="" aria-pressed="true">
+					<span>전체</span>
+					<span class="n">{terms.length}</span>
+				</button>
+			</li>
+			{
+				modules.map((name, i) => (
+					<li>
+						<button type="button" data-stage={i} aria-pressed="false">
+							<span class="stage-num">{i}</span>
+							<span>{name}</span>
+							<span class="n">{counts[i]}</span>
+						</button>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+
 	<h1>용어집</h1>
 
-	<form class="filters" role="search" data-glossary-filters>
+	<form class="search" role="search" data-glossary-search>
 		<label>
 			<span>검색</span>
-			<input type="search" placeholder="한국어, English, 日本語, 中文" autocomplete="off" data-search />
-		</label>
-		<label>
-			<span>단계</span>
-			<select data-module>
-				<option value="">전체</option>
-				{modules.map((name, i) => <option value={i}>{i}. {name}</option>)}
-			</select>
+			<input type="search" placeholder="용어를 검색하세요" autocomplete="off" data-search />
 		</label>
 	</form>
 
-	<p class="count" aria-live="polite"><span data-count>{terms.length}</span>개 용어</p>
+	<p class="count" aria-live="polite"><span data-count>{terms.length}</span>개 용어 · 가나다순</p>
 
 	<ul class="terms">
 		{
 			terms.map((term) => (
 				<li data-term data-term-module={term.data.module} data-term-search={searchText(term.data)}>
-					<TermCard id={term.id} />
+					<details class="term">
+						<summary class="row">
+							<span class="row-ko">{term.data.ko}</span>
+							<span class="row-foreign">
+								{term.data.en && <span data-lang="en" lang="en">{term.data.en}</span>}
+								{term.data.ja && <span data-lang="ja" lang="ja">{term.data.ja}</span>}
+								{term.data.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{term.data.zh_cn}</span>}
+								{term.data.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{term.data.zh_tw}</span>}
+							</span>
+							<span class="badge">{term.data.module}단계</span>
+						</summary>
+						<div class="term-body">
+							<TermCard id={term.id} />
+						</div>
+					</details>
 				</li>
 			))
 		}
@@ -56,12 +88,14 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 </Base>
 
 <script>
-	const form = document.querySelector<HTMLFormElement>('[data-glossary-filters]')!;
+	const form = document.querySelector<HTMLFormElement>('[data-glossary-search]')!;
 	const search = form.querySelector<HTMLInputElement>('[data-search]')!;
-	const module = form.querySelector<HTMLSelectElement>('[data-module]')!;
+	const stageButtons = document.querySelectorAll<HTMLButtonElement>('[data-stage]');
 	const items = document.querySelectorAll<HTMLElement>('[data-term]');
 	const count = document.querySelector<HTMLElement>('[data-count]')!;
 	const empty = document.querySelector<HTMLElement>('[data-empty]')!;
+
+	let stage = '';
 
 	const apply = () => {
 		const words = search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -70,8 +104,7 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 		items.forEach((item) => {
 			const text = item.dataset.termSearch!;
 			const match =
-				(module.value === '' || item.dataset.termModule === module.value) &&
-				words.every((word) => text.includes(word));
+				(stage === '' || item.dataset.termModule === stage) && words.every((word) => text.includes(word));
 			item.hidden = !match;
 			if (match) shown++;
 		});
@@ -82,52 +115,205 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 
 	form.addEventListener('submit', (event) => event.preventDefault());
 	search.addEventListener('input', apply);
-	module.addEventListener('change', apply);
+
+	stageButtons.forEach((button) => {
+		button.addEventListener('click', () => {
+			stage = button.dataset.stage ?? '';
+			stageButtons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+			apply();
+		});
+	});
+
 	apply();
 </script>
 
 <style>
-	.filters {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-3);
-	}
-
-	label {
+	.search label {
 		display: grid;
 		gap: var(--space-1);
-		color: var(--color-text-muted);
-		font-size: var(--text-sm);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		color: var(--text-muted);
 	}
 
-	label:first-child {
-		flex: 1 1 14rem;
-	}
-
-	input,
-	select {
+	input {
 		width: 100%;
-		padding: var(--space-2) var(--space-3);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		background: var(--color-bg);
-		color: var(--color-text);
+		min-height: var(--touch-min);
+		padding: 0 var(--space-3);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		color: var(--text);
 		font: inherit;
+		font-size: var(--fs-body);
 	}
 
 	.count {
-		margin: var(--space-3) 0 0;
-		color: var(--color-text-muted);
-		font-size: var(--text-sm);
+		margin: var(--space-3) 0;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		color: var(--text-muted);
 	}
 
 	.terms {
+		display: grid;
+		gap: var(--space-2);
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
+	.terms > li {
+		min-width: 0;
+	}
+
+	/* 펼친 행 안의 카드는 행이 이미 테두리와 표제를 가지므로 겹치지 않게 한다 */
+	.term-body :global(.term-card) {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: none;
+	}
+
+	.term-body :global(.term-card .ko),
+	.term-body :global(.term-card .chip.caption) {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+
+	.term {
+		min-width: 0;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		background: var(--surface);
+	}
+
+	.term[open] {
+		border-color: var(--primary);
+	}
+
+	.row {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		min-height: 56px;
+		padding: 0 var(--space-4);
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.row::-webkit-details-marker {
+		display: none;
+	}
+
+	.row:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+		border-radius: var(--radius-lg);
+	}
+
+	.row-ko {
+		flex: none;
+		font-size: var(--fs-body);
+		line-height: var(--lh-body);
+		font-weight: 700;
+	}
+
+	.row-foreign {
+		flex: 1 1 auto;
+		min-width: 0;
+		overflow: hidden;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 500;
+		color: var(--text-muted);
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.badge {
+		flex: none;
+		padding: 0 var(--space-2);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-sm);
+		font-family: var(--font-mono);
+		font-size: var(--fs-caption);
+		line-height: var(--lh-caption);
+		font-weight: 500;
+		color: var(--accent);
+	}
+
+	.term-body {
+		padding: 0 var(--space-4) var(--space-4);
+	}
+
 	.empty {
-		color: var(--color-text-muted);
+		color: var(--text-muted);
+	}
+
+	.stage-picker {
+		display: block;
+	}
+
+	.picker-title {
+		margin: 0 0 var(--space-2);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		color: var(--text-muted);
+	}
+
+	.stage-picker ul {
+		display: grid;
+		gap: 2px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.stage-picker button {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		width: 100%;
+		min-height: var(--touch-min);
+		padding: 0 var(--space-3);
+		border: 0;
+		border-radius: var(--radius-md);
+		background: transparent;
+		color: var(--text);
+		font: inherit;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.stage-picker button[aria-pressed='true'] {
+		background: var(--primary-soft);
+		color: var(--primary);
+		font-weight: 600;
+	}
+
+	.stage-picker .stage-num {
+		font-family: var(--font-mono);
+		color: var(--accent);
+	}
+
+	.stage-picker .n {
+		margin-left: auto;
+		font-family: var(--font-mono);
+		font-size: var(--fs-caption);
+		color: var(--text-muted);
+	}
+
+	.stage-picker button:focus-visible,
+	input:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
 	}
 </style>

@@ -1,11 +1,83 @@
 ---
 import Base from '../layouts/Base.astro';
 import TourScenes from '../components/TourScenes.astro';
+
+const steps = [
+	{ n: 0, title: '칩 하나 만들어 보기', href: '/tour/' },
+	{ n: 1, title: '기초 원리' },
+	{ n: 2, title: '제품과 산업' },
+	{ n: 3, title: '팹과 클린룸' },
+	{ n: 4, title: '전공정' },
+	{ n: 5, title: '계측·검사·수율' },
+	{ n: 6, title: '후공정' },
+	{ n: 7, title: '최신 기술' },
+	{ n: 8, title: '현장 소통' },
+];
+
+const next = steps[1];
 ---
 
-<Base title="칩 하나 만들어 보기">
+<Base title="칩 하나 만들어 보기" steps={steps} currentStep={0}>
+	<p class="step-label"><span class="num">0</span> 단계</p>
 	<h1>칩 하나 만들어 보기</h1>
-	<p>모래가 반도체 칩이 되기까지를 8장면으로 따라가 봅니다. 원리는 뒤에서 배우니, 지금은 흐름만 눈에 담아 두세요.</p>
+	<p class="lead">모래가 반도체 칩이 되기까지를 8장면으로 따라가 봅니다. 원리는 뒤에서 배우니, 지금은 흐름만 눈에 담아 두세요.</p>
 	<TourScenes />
-	<p>모래가 칩이 되기까지 보통 석 달 넘게 걸립니다. 다음 단계부터는 각 장면을 하나씩 자세히 살펴봅니다.</p>
+	<p class="closing">모래가 칩이 되기까지 보통 석 달 넘게 걸립니다. 다음 단계부터는 각 장면을 하나씩 자세히 살펴봅니다.</p>
+	<div class="next">
+		<span class="btn is-disabled" aria-disabled="true">다음: {next.n}. {next.title}</span>
+	</div>
 </Base>
+
+<style>
+	.step-label {
+		margin: 0 0 var(--space-2);
+		font-size: var(--fs-caption);
+		line-height: var(--lh-caption);
+		font-weight: 500;
+		color: var(--text-muted);
+	}
+
+	.num {
+		font-family: var(--font-mono);
+		color: var(--accent);
+	}
+
+	.lead {
+		margin: var(--space-3) 0 var(--space-6);
+		font-size: var(--fs-lead);
+		line-height: var(--lh-lead);
+		color: var(--text-muted);
+	}
+
+	.closing {
+		margin: var(--space-6) 0 var(--space-5);
+		font-size: var(--fs-body);
+		line-height: var(--lh-body);
+	}
+
+	.next {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--touch-min);
+		padding: 0 var(--space-5);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		color: var(--text);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.btn.is-disabled {
+		border-color: var(--border);
+		color: var(--text-muted);
+		cursor: not-allowed;
+	}
+</style>

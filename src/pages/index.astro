@@ -2,17 +2,435 @@
 import Base from '../layouts/Base.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const pages = Object.keys(import.meta.glob('./**/*.{astro,mdx}'))
-	.map((file) => file.replace(/^\.\//, '').replace(/\.(astro|mdx)$/, '').replace(/(^|\/)index$/, ''))
-	.filter((path) => path !== '' && !path.includes('['))
-	.sort();
+
+// href가 있는 단계만 링크. 나머지는 "준비 중".
+const steps = [
+	{ n: 0, title: '칩 하나 만들어 보기', href: '/tour/' },
+	{ n: 1, title: '기초 원리', href: null },
+	{ n: 2, title: '제품과 산업', href: null },
+	{ n: 3, title: '팹과 클린룸', href: null },
+	{ n: 4, title: '전공정', href: null },
+	{ n: 5, title: '계측·검사·수율', href: null },
+	{ n: 6, title: '후공정', href: null },
+	{ n: 7, title: '최신 기술', href: null },
+	{ n: 8, title: '현장 소통', href: null },
+];
+
+// 예시 용어 "웨이퍼"의 외국어 표기. Base가 선택 밖 언어를 숨긴다.
+const langs = [
+	{ code: 'en', label: '영어', text: 'wafer', reading: '', speak: 'en-US' },
+	{ code: 'ja', label: '일본어', text: 'ウェーハ', reading: '', speak: 'ja-JP' },
+	{ code: 'zh-Hans', label: '중국어(간체)', text: '晶圆', reading: 'jīng yuán', speak: 'zh-CN' },
+	{ code: 'zh-Hant', label: '중국어(번체)', text: '晶圓', reading: 'jīng yuán', speak: 'zh-TW' },
+];
 ---
 
-<Base>
-	<h1>페이지 목록</h1>
-	<ul>
-		{pages.map((path) => (
-			<li><a href={`${base}/${path}/`}>/{path}/</a></li>
-		))}
-	</ul>
+<Base title="반도체 학습 시작" sidebar={false}>
+	<div class="home">
+		<section class="hero" aria-labelledby="home-title">
+			<h1 id="home-title" class="display">반도체, 기초부터 공정까지</h1>
+			<p class="lead">
+				칩이 만들어지는 순서를 그림으로 따라가며 용어를 익힙니다. 외국어 표기는 헤더에서 함께 볼 언어를 하나 고를 수 있습니다.
+			</p>
+			<div class="actions">
+				<a class="btn btn-primary" href={`${base}/tour/`}>칩 하나 만들어 보기</a>
+				<a class="btn btn-secondary" href={`${base}/glossary/`}>용어집 보기</a>
+			</div>
+		</section>
+
+		<section class="block" aria-labelledby="path-title">
+			<h2 id="path-title" class="h2">학습 경로</h2>
+			<ol class="path-list">
+				{steps.map((s) => (
+					<li>
+						{s.href ? (
+							<a class="path-row" href={`${base}${s.href}`}>
+								<span class="path-num">{s.n}</span>
+								<span class="path-name">{s.title}</span>
+								<svg class="path-arrow" viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M9 6l6 6-6 6" />
+								</svg>
+							</a>
+						) : (
+							<div class="path-row is-pending">
+								<span class="path-num">{s.n}</span>
+								<span class="path-name">{s.title}</span>
+								<span class="path-status">준비 중</span>
+							</div>
+						)}
+					</li>
+				))}
+			</ol>
+		</section>
+
+		<section class="block" aria-labelledby="example-title">
+			<h2 id="example-title" class="h2">용어 카드 예시</h2>
+			<article class="term-card">
+				<div class="term-head">
+					<h3 class="term-main">웨이퍼</h3>
+					<button class="icon-button" type="button" aria-label="웨이퍼 발음 듣기" data-speak="웨이퍼" data-speak-lang="ko-KR">
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M4 9h4l5-4v14l-5-4H4z" />
+							<path d="M16 9a4 4 0 0 1 0 6" />
+						</svg>
+					</button>
+					<span class="stage-badge"><span class="mono">4</span> 전공정</span>
+				</div>
+				<p class="body">반도체 칩을 만드는 얇고 둥근 실리콘 판이다. 한 장에서 칩이 여러 개 만들어진다.</p>
+				<div class="field-note">
+					<span class="caption-label">현장 메모</span>
+					<p class="small">지름이 커질수록 한 장에서 나오는 칩 수가 늘어난다.</p>
+				</div>
+				<div class="term-langs">
+					{langs.map((l) => (
+						<div class="term-lang" data-lang={l.code} lang={l.code}>
+							<span class="term-lang-label">{l.label}</span>
+							<div class="term-lang-text">
+								<span class="term-sub">{l.text}</span>
+								{l.reading && <span class="reading" lang="zh-Latn">{l.reading}</span>}
+							</div>
+							<button class="icon-button" type="button" aria-label={`${l.label} 발음 듣기`} data-speak={l.text} data-speak-lang={l.speak}>
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M4 9h4l5-4v14l-5-4H4z" />
+									<path d="M16 9a4 4 0 0 1 0 6" />
+								</svg>
+							</button>
+						</div>
+					))}
+				</div>
+			</article>
+		</section>
+	</div>
 </Base>
+
+<script>
+	document.querySelectorAll('[data-speak]').forEach((btn) => {
+		if (!('speechSynthesis' in window)) {
+			btn.disabled = true;
+			return;
+		}
+		btn.addEventListener('click', () => {
+			const u = new SpeechSynthesisUtterance(btn.dataset.speak);
+			u.lang = btn.dataset.speakLang || 'ko-KR';
+			window.speechSynthesis.cancel();
+			window.speechSynthesis.speak(u);
+		});
+	});
+</script>
+
+<style>
+	.home {
+		max-width: var(--content-max);
+		margin: 0 auto;
+		padding: var(--space-6) 0 var(--space-7);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-7);
+	}
+
+	.hero {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-5);
+		padding-top: var(--space-6);
+	}
+
+	.display {
+		margin: 0;
+		font-family: var(--font-sans-ko);
+		font-size: var(--fs-display);
+		line-height: var(--lh-display);
+		font-weight: 700;
+		color: var(--text);
+	}
+
+	.lead {
+		margin: 0;
+		font-size: var(--fs-lead);
+		line-height: var(--lh-lead);
+		color: var(--text-muted);
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: var(--touch-min);
+		padding: 0 var(--space-5);
+		border-radius: var(--radius-md);
+		border: 1px solid transparent;
+		font-family: var(--font-sans-ko);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.btn-primary {
+		background: var(--primary);
+		color: var(--on-primary);
+	}
+
+	.btn-secondary {
+		background: var(--surface);
+		color: var(--text);
+		border-color: var(--border-strong);
+	}
+
+	.block {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+
+	.h2 {
+		margin: 0;
+		font-family: var(--font-sans-ko);
+		font-size: var(--fs-h2);
+		line-height: var(--lh-h2);
+		font-weight: 700;
+		color: var(--text);
+	}
+
+	.path-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+	}
+
+	.path-list li + li {
+		border-top: 1px solid var(--border);
+	}
+
+	.path-row {
+		display: grid;
+		grid-template-columns: 32px minmax(0, 1fr) auto;
+		align-items: center;
+		gap: var(--space-3);
+		min-height: 56px;
+		padding: 0 var(--space-5);
+		color: var(--text);
+		text-decoration: none;
+	}
+
+	a.path-row:hover {
+		background: var(--primary-soft);
+	}
+
+	.path-row.is-pending {
+		color: var(--text-muted);
+	}
+
+	.path-num {
+		font-family: var(--font-mono);
+		font-size: var(--fs-mono);
+		line-height: var(--lh-mono);
+		font-weight: 500;
+		color: var(--accent);
+	}
+
+	.path-name {
+		font-size: var(--fs-h3);
+		line-height: var(--lh-h3);
+		font-weight: 600;
+	}
+
+	.path-arrow {
+		width: 24px;
+		height: 24px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		color: var(--primary);
+	}
+
+	.path-status {
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		color: var(--text-muted);
+	}
+
+	.term-card {
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: var(--space-5);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+
+	.term-head {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-2);
+	}
+
+	.term-main {
+		margin: 0;
+		font-family: var(--font-sans-ko);
+		font-size: var(--fs-term-main);
+		line-height: var(--lh-term-main);
+		font-weight: 700;
+		color: var(--text);
+	}
+
+	.stage-badge {
+		margin-left: auto;
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-1);
+		padding: 2px var(--space-2);
+		border-radius: var(--radius-sm);
+		background: var(--surface-sunken);
+		color: var(--text-muted);
+		font-size: var(--fs-caption);
+		line-height: var(--lh-caption);
+		font-weight: 500;
+	}
+
+	.stage-badge .mono {
+		font-family: var(--font-mono);
+		color: var(--accent);
+	}
+
+	.body {
+		margin: 0;
+		font-size: var(--fs-body);
+		line-height: var(--lh-body);
+		color: var(--text);
+	}
+
+	.field-note {
+		background: var(--accent-soft);
+		border-radius: var(--radius-md);
+		padding: var(--space-3) var(--space-4);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+	}
+
+	.caption-label {
+		font-size: var(--fs-caption);
+		line-height: var(--lh-caption);
+		font-weight: 600;
+		color: var(--accent);
+	}
+
+	.field-note p {
+		margin: 0;
+	}
+
+	.small {
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		color: var(--text);
+	}
+
+	.term-langs {
+		border-top: 1px solid var(--border);
+		padding-top: var(--space-4);
+	}
+
+	html[data-learn-lang='none'] .term-langs {
+		display: none;
+	}
+
+	.term-lang {
+		display: grid;
+		grid-template-columns: 72px minmax(0, 1fr) 44px;
+		align-items: center;
+		gap: var(--space-2);
+	}
+
+	.term-lang-label {
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 500;
+		color: var(--text-muted);
+	}
+
+	.term-lang-text {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+	}
+
+	.term-sub {
+		font-size: var(--fs-term-sub);
+		line-height: var(--lh-term-sub);
+		font-weight: 500;
+		color: var(--text);
+	}
+
+	.term-lang[lang='en'] .term-sub {
+		font-family: var(--font-sans-ko);
+	}
+
+	.term-lang[lang='ja'] .term-sub {
+		font-family: var(--font-sans-ja);
+	}
+
+	.term-lang[lang='zh-Hans'] .term-sub {
+		font-family: var(--font-sans-sc);
+	}
+
+	.term-lang[lang='zh-Hant'] .term-sub {
+		font-family: var(--font-sans-tc);
+	}
+
+	.reading {
+		font-size: var(--fs-reading);
+		line-height: var(--lh-reading);
+		color: var(--text-muted);
+	}
+
+	.icon-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--touch-min);
+		height: var(--touch-min);
+		padding: 0;
+		border-radius: var(--radius-full);
+		border: 1px solid var(--border-strong);
+		background: var(--surface);
+		color: var(--text);
+		cursor: pointer;
+	}
+
+	.icon-button:disabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+
+	.icon-button svg {
+		width: 24px;
+		height: 24px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.btn:focus-visible,
+	.path-row:focus-visible,
+	.icon-button:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+</style>

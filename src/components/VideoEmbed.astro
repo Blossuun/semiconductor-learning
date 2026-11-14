@@ -11,14 +11,20 @@ const watchUrl = `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` 
 ---
 
 <div class="video" data-video-id={id} data-video-start={start} data-video-title={title}>
-	<a class="facade" href={watchUrl} target="_blank" rel="noopener noreferrer" data-video-play>
-		<svg viewBox="0 0 68 48" width="68" height="48" aria-hidden="true">
-			<rect width="68" height="48" rx="12" fill="var(--color-accent)"></rect>
-			<path d="M27 14v20l18-10z" fill="var(--color-bg)"></path>
-		</svg>
-		<span class="title">{title}</span>
-		<span class="hint">{playLabel} · YouTube</span>
-	</a>
+	<div class="frame">
+		<a class="facade" href={watchUrl} target="_blank" rel="noopener noreferrer" data-video-play>
+			<span class="play" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="24" height="24">
+					<path d="M8 5v14l11-7z" fill="currentColor" />
+				</svg>
+			</span>
+			<span class="sr-only">{playLabel}: {title}</span>
+		</a>
+	</div>
+	<div class="caption">
+		<p class="title">{title}</p>
+		<p class="source">출처: YouTube</p>
+	</div>
 </div>
 
 <script>
@@ -46,46 +52,78 @@ const watchUrl = `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` 
 
 <style>
 	.video {
-		aspect-ratio: 16 / 9;
 		margin: var(--space-4) 0;
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		background: var(--color-surface);
+	}
+
+	.frame {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		background: var(--surface-sunken);
 		overflow: hidden;
 	}
 
 	.facade {
+		position: absolute;
+		inset: 0;
 		display: flex;
-		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: var(--space-2);
-		width: 100%;
-		height: 100%;
-		padding: var(--space-3);
-		color: var(--color-text);
-		text-align: center;
+		color: var(--on-primary);
 		text-decoration: none;
 	}
 
-	.facade:hover svg {
-		transform: scale(1.08);
+	.facade:focus-visible {
+		outline-offset: -4px;
 	}
 
-	svg {
+	.play {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 56px;
+		height: 56px;
+		border-radius: var(--radius-full);
+		background: var(--primary);
+		color: var(--on-primary);
 		transition: transform 0.15s ease;
 	}
 
+	.facade:hover .play {
+		transform: scale(1.08);
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+
+	.caption {
+		margin-top: var(--space-2);
+	}
+
 	.title {
-		font-weight: 700;
+		margin: 0;
+		font-size: var(--fs-body);
+		line-height: var(--lh-body);
+		font-weight: 600;
 	}
 
-	.hint {
-		color: var(--color-text-muted);
-		font-size: var(--text-sm);
+	.source {
+		margin: 0;
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
 	}
 
-	.video :global(iframe) {
+	.frame :global(iframe) {
+		position: absolute;
+		inset: 0;
 		display: block;
 		width: 100%;
 		height: 100%;
@@ -93,8 +131,12 @@ const watchUrl = `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` 
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		svg {
+		.play {
 			transition: none;
+		}
+
+		.facade:hover .play {
+			transform: none;
 		}
 	}
 </style>

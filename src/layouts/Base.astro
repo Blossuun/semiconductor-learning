@@ -1,33 +1,71 @@
 ---
+interface Step {
+	n: number;
+	title: string;
+	/** 없으면 아직 페이지가 없는 단계로 보고 링크 없이 그린다. */
+	href?: string;
+}
+
 interface Props {
 	title?: string;
 	lang?: string;
+	/** false면 사이드바를 그리지 않는다(홈). */
+	sidebar?: boolean;
+	/** 0~8단계 목차. href는 사이트 루트 기준 경로(예: "/tour/"). */
+	steps?: Step[];
+	/** 현재 단계 번호(0~8). 목차에서 강조한다. */
+	currentStep?: number;
+	/** 푸터 저장소 링크. 없으면 링크를 그리지 않는다. */
+	repoUrl?: string;
 }
 
 const siteName = '반도체 4개 국어 학습';
-const { title, lang = 'ko' } = Astro.props;
+const { title, lang = 'ko', sidebar = true, steps = [], currentStep, repoUrl } = Astro.props;
 const pageTitle = title ? `${title} | ${siteName}` : siteName;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const rawPath = Astro.url.pathname;
+const relPath = (rawPath.startsWith(base) ? rawPath.slice(base.length) : rawPath).replace(/\/+$/, '');
+const onHome = relPath === '';
+const onTour = relPath.startsWith('/tour');
+const onGlossary = relPath.startsWith('/glossary');
+
+const langOptions = [
+	{ value: 'none', label: '한국어만', lang: 'ko' },
+	{ value: 'en', label: 'English', lang: 'en' },
+	{ value: 'ja', label: '日本語', lang: 'ja' },
+	{ value: 'zh-Hans', label: '简体中文', lang: 'zh-Hans' },
+	{ value: 'zh-Hant', label: '繁體中文', lang: 'zh-Hant' },
+];
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} data-learn-lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
 		<link rel="icon" href={`${base}/favicon.ico`} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
+		/>
 		<title>{pageTitle}</title>
 		<script is:inline>
 			(function () {
-				var saved = null;
+				var root = document.documentElement;
+				var theme = null;
+				var learn = 'en';
 				try {
-					saved = localStorage.getItem('theme');
+					theme = localStorage.getItem('theme');
+					var saved = localStorage.getItem('learn-lang');
+					if (['none', 'en', 'ja', 'zh-Hans', 'zh-Hant'].indexOf(saved) !== -1) learn = saved;
 				} catch (e) {}
-				if (saved === 'light' || saved === 'dark') {
-					document.documentElement.dataset.theme = saved;
-				}
+				if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
+				root.dataset.learnLang = learn;
 			})();
 		</script>
 	</head>
@@ -35,21 +73,42 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 		<a class="skip-link" href="#main">본문으로 건너뛰기</a>
 
 		<header class="site-header">
-			<button
-				class="icon-button menu-button"
-				type="button"
-				aria-label="목차 열기"
-				aria-controls="sidebar"
-				aria-expanded="false"
-				data-menu-toggle
-			>
-				<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-					<path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-				</svg>
-			</button>
+			{
+				sidebar && (
+					<button
+						class="icon-button menu-button"
+						type="button"
+						aria-label="목차 열기"
+						aria-controls="sidebar"
+						aria-expanded="false"
+						data-menu-toggle
+					>
+						<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+							<path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+						</svg>
+					</button>
+				)
+			}
 			<a class="site-title" href={`${base}/`}>{siteName}</a>
+			<nav class="main-nav" aria-label="주요 메뉴">
+				<a class="nav-link" href={`${base}/`} aria-current={onHome ? 'page' : undefined}>학습 경로</a>
+				<a class="nav-link" href={`${base}/tour/`} aria-current={onTour ? 'page' : undefined}>칩 하나 만들어 보기</a>
+				<a class="nav-link" href={`${base}/glossary/`} aria-current={onGlossary ? 'page' : undefined}>용어집</a>
+			</nav>
 			<div class="header-actions">
 				<slot name="header" />
+				<label class="lang-picker">
+					<span class="lang-label">함께 볼 언어</span>
+					<select class="lang-select" data-lang-select aria-label="함께 볼 언어">
+						{
+							langOptions.map((o) => (
+								<option value={o.value} lang={o.lang}>
+									{o.label}
+								</option>
+							))
+						}
+					</select>
+				</label>
 				<button class="icon-button" type="button" aria-label="다크 모드 전환" data-theme-toggle>
 					<svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
 						<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"></path>
@@ -67,20 +126,55 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 			</div>
 		</header>
 
-		<div class="layout">
-			<aside class="sidebar" id="sidebar" aria-label="목차">
-				<slot name="sidebar" />
-			</aside>
+		<div class:list={['layout', !sidebar && 'is-full']}>
+			{
+				sidebar && (
+					<aside class="sidebar" id="sidebar" aria-label="목차">
+						<slot name="sidebar">
+							<nav class="toc" aria-label="학습 경로">
+								<p class="toc-title">학습 경로</p>
+								<ol class="toc-list">
+									{steps.map((s) => (
+										<li>
+											{s.href ? (
+												<a href={`${base}${s.href}`} aria-current={s.n === currentStep ? 'step' : undefined}>
+													<span class="toc-no">{s.n}</span>
+													<span>{s.title}</span>
+												</a>
+											) : (
+												<span class="toc-pending">
+													<span class="toc-no">{s.n}</span>
+													<span>{s.title}</span>
+													<span class="toc-soon">준비 중</span>
+												</span>
+											)}
+										</li>
+									))}
+								</ol>
+							</nav>
+						</slot>
+					</aside>
+				)
+			}
 			<main class="content" id="main">
 				<slot />
 			</main>
 		</div>
 
+		<footer class="site-footer">
+			<p>반도체 입문자가 기초부터 공정까지 한·영·일·중 용어로 익히는 무료 학습 사이트.</p>
+			{repoUrl && (
+				<a href={repoUrl} target="_blank" rel="noopener">저장소</a>
+			)}
+		</footer>
+
 		<script is:inline>
 			(function () {
 				var root = document.documentElement;
+				var body = document.body;
 				var themeButton = document.querySelector('[data-theme-toggle]');
 				var menuButton = document.querySelector('[data-menu-toggle]');
+				var langSelect = document.querySelector('[data-lang-select]');
 
 				themeButton.addEventListener('click', function () {
 					var current =
@@ -93,9 +187,27 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 					} catch (e) {}
 				});
 
-				menuButton.addEventListener('click', function () {
-					var open = document.body.classList.toggle('sidebar-open');
-					menuButton.setAttribute('aria-expanded', String(open));
+				langSelect.value = root.dataset.learnLang;
+				langSelect.addEventListener('change', function () {
+					root.dataset.learnLang = langSelect.value;
+					try {
+						localStorage.setItem('learn-lang', langSelect.value);
+					} catch (e) {}
+				});
+
+				function setMenu(open) {
+					body.classList.toggle('sidebar-open', open);
+					if (menuButton) menuButton.setAttribute('aria-expanded', String(open));
+				}
+
+				if (menuButton) {
+					menuButton.addEventListener('click', function () {
+						setMenu(!body.classList.contains('sidebar-open'));
+					});
+				}
+
+				document.addEventListener('keydown', function (e) {
+					if (e.key === 'Escape') setMenu(false);
 				});
 			})();
 		</script>
@@ -103,63 +215,185 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 </html>
 
 <style is:global>
-	:root {
+	/* 1. 토큰 (라이트 기본값) */
+	:root,
+	:root[data-theme='light'] {
 		color-scheme: light;
 
-		--color-bg: #ffffff;
-		--color-surface: #f5f7fa;
-		--color-text: #1b2330;
-		--color-text-muted: #5b6676;
-		--color-border: #dde2ea;
-		--color-accent: #1f5fd1;
-		--color-accent-soft: #e6eefc;
+		--bg: #f6f8fa;
+		--surface: #ffffff;
+		--surface-sunken: #eceff3;
+		--border: #d5dbe3;
+		--border-strong: #7a8797;
+		--text: #17202b;
+		--text-muted: #556170;
+		--primary: #2447b8;
+		--primary-soft: #e3eafb;
+		--on-primary: #ffffff;
+		--accent: #a8521a;
+		--accent-soft: #f8eadb;
+		--success: #1a7a4c;
+		--danger: #b3261e;
+		--warning: #8a6100;
+		--focus: #2447b8;
 
-		--font-sans:
-			system-ui, -apple-system, 'Segoe UI', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR',
-			'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC',
-			'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
-		--font-mono: ui-monospace, 'Cascadia Code', Consolas, 'SF Mono', Menlo, monospace;
+		--diagram-stroke: #17202b;
+		--diagram-silicon: #5c6778;
+		--diagram-sand: #d9b877;
+		--diagram-copper: #d68a45;
+		--diagram-oxide: #7fa8d9;
+		--diagram-resist: #b8477a;
+		--diagram-light: #7a4fd6;
 
-		--text-sm: 0.875rem;
-		--text-base: 1rem;
-		--text-lg: 1.25rem;
-		--text-xl: 1.75rem;
-		--line-height: 1.75;
+		--shadow-overlay: 0 8px 24px rgba(23, 32, 43, 0.18);
+	}
 
-		--space-1: 0.25rem;
-		--space-2: 0.5rem;
-		--space-3: 1rem;
-		--space-4: 1.5rem;
-		--space-5: 2.5rem;
+	/* 2. 다크 모드 (사용자 선택 우선, 없으면 시스템 설정) */
+	:root[data-theme='dark'] {
+		color-scheme: dark;
 
-		--radius: 8px;
-		--header-height: 3.5rem;
-		--sidebar-width: 16rem;
-		--content-width: 46rem;
+		--bg: #0f141a;
+		--surface: #171d25;
+		--surface-sunken: #0b0f14;
+		--border: #2a3340;
+		--border-strong: #5d6b7d;
+		--text: #e6eaf0;
+		--text-muted: #9ba7b6;
+		--primary: #8fb0ff;
+		--primary-soft: #1b2947;
+		--on-primary: #0f141a;
+		--accent: #e39a5c;
+		--accent-soft: #3a2615;
+		--success: #5fcf96;
+		--danger: #ff8a80;
+		--warning: #f2c14e;
+		--focus: #8fb0ff;
+
+		--diagram-stroke: #e6eaf0;
+		--diagram-silicon: #a3aebd;
+		--diagram-sand: #d9b877;
+		--diagram-copper: #d68a45;
+		--diagram-oxide: #6f9bd1;
+		--diagram-resist: #e07aa8;
+		--diagram-light: #b59bff;
+
+		--shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.5);
 	}
 
 	@media (prefers-color-scheme: dark) {
 		:root:not([data-theme='light']) {
 			color-scheme: dark;
-			--color-bg: #12161c;
-			--color-surface: #1a2029;
-			--color-text: #e4e8ee;
-			--color-text-muted: #9aa5b5;
-			--color-border: #2c3542;
-			--color-accent: #7fb0ff;
-			--color-accent-soft: #1d2c47;
+
+			--bg: #0f141a;
+			--surface: #171d25;
+			--surface-sunken: #0b0f14;
+			--border: #2a3340;
+			--border-strong: #5d6b7d;
+			--text: #e6eaf0;
+			--text-muted: #9ba7b6;
+			--primary: #8fb0ff;
+			--primary-soft: #1b2947;
+			--on-primary: #0f141a;
+			--accent: #e39a5c;
+			--accent-soft: #3a2615;
+			--success: #5fcf96;
+			--danger: #ff8a80;
+			--warning: #f2c14e;
+			--focus: #8fb0ff;
+
+			--diagram-stroke: #e6eaf0;
+			--diagram-silicon: #a3aebd;
+			--diagram-sand: #d9b877;
+			--diagram-copper: #d68a45;
+			--diagram-oxide: #6f9bd1;
+			--diagram-resist: #e07aa8;
+			--diagram-light: #b59bff;
+
+			--shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.5);
 		}
 	}
 
-	:root[data-theme='dark'] {
-		color-scheme: dark;
-		--color-bg: #12161c;
-		--color-surface: #1a2029;
-		--color-text: #e4e8ee;
-		--color-text-muted: #9aa5b5;
-		--color-border: #2c3542;
-		--color-accent: #7fb0ff;
-		--color-accent-soft: #1d2c47;
+	:root {
+		/* 글꼴 (lang 속성으로 묶음 선택) */
+		--font-sans-ko: 'IBM Plex Sans', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+		--font-sans-ja: 'IBM Plex Sans', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif;
+		--font-sans-sc: 'IBM Plex Sans', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+		--font-sans-tc: 'IBM Plex Sans', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
+		--font-mono: 'IBM Plex Mono', ui-monospace, Consolas, Menlo, monospace;
+
+		/* 글자 크기 / 줄 높이 */
+		--fs-display: 44px;
+		--lh-display: 52px;
+		--fs-h1: 32px;
+		--lh-h1: 40px;
+		--fs-h2: 24px;
+		--lh-h2: 32px;
+		--fs-h3: 20px;
+		--lh-h3: 28px;
+		--fs-lead: 18px;
+		--lh-lead: 30px;
+		--fs-body: 16px;
+		--lh-body: 28px;
+		--fs-small: 14px;
+		--lh-small: 22px;
+		--fs-caption: 12px;
+		--lh-caption: 18px;
+		--fs-term-main: 24px;
+		--lh-term-main: 32px;
+		--fs-term-sub: 18px;
+		--lh-term-sub: 26px;
+		--fs-reading: 13px;
+		--lh-reading: 20px;
+		--fs-mono: 14px;
+		--lh-mono: 22px;
+
+		/* 간격 */
+		--space-1: 4px;
+		--space-2: 8px;
+		--space-3: 12px;
+		--space-4: 16px;
+		--space-5: 24px;
+		--space-6: 32px;
+		--space-7: 48px;
+		--space-8: 64px;
+
+		/* 모서리 */
+		--radius-sm: 4px;
+		--radius-md: 8px;
+		--radius-lg: 12px;
+		--radius-full: 999px;
+
+		/* 틀 */
+		--header-h: 56px;
+		--sidebar-w: 264px;
+		--content-max: 720px;
+		--touch-min: 44px;
+
+		/* 이전 변수 별칭 (기존 컴포넌트 호환) */
+		--color-bg: var(--bg);
+		--color-surface: var(--surface);
+		--color-text: var(--text);
+		--color-text-muted: var(--text-muted);
+		--color-border: var(--border);
+		--color-accent: var(--primary);
+		--color-accent-soft: var(--primary-soft);
+		--font-sans: var(--font-sans-ko);
+		--text-sm: var(--fs-small);
+		--text-base: var(--fs-body);
+		--text-lg: var(--fs-h3);
+		--text-xl: var(--fs-h1);
+		--line-height: 1.75;
+		--radius: var(--radius-md);
+		--header-height: var(--header-h);
+		--sidebar-width: var(--sidebar-w);
+		--content-width: var(--content-max);
+	}
+
+	/* 720px 미만: 내비게이션이 두 번째 줄로 내려오므로 헤더 높이를 늘린다 */
+	@media (max-width: 719px) {
+		:root {
+			--header-h: 100px;
+		}
 	}
 
 	*,
@@ -169,33 +403,68 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 	}
 
 	html {
-		scroll-padding-top: calc(var(--header-height) + var(--space-3));
+		scroll-padding-top: calc(var(--header-h) + var(--space-3));
+		font-family: var(--font-sans-ko);
+	}
+
+	:lang(ko) {
+		font-family: var(--font-sans-ko);
+	}
+
+	:lang(ja) {
+		font-family: var(--font-sans-ja);
+	}
+
+	:lang(zh-Hans) {
+		font-family: var(--font-sans-sc);
+	}
+
+	:lang(zh-Hant) {
+		font-family: var(--font-sans-tc);
 	}
 
 	body {
 		margin: 0;
-		background: var(--color-bg);
-		color: var(--color-text);
-		font-family: var(--font-sans);
-		font-size: var(--text-base);
-		line-height: var(--line-height);
+		background: var(--bg);
+		color: var(--text);
+		font-size: var(--fs-body);
+		line-height: var(--lh-body);
 		word-break: keep-all;
 		overflow-wrap: anywhere;
 	}
 
 	a {
-		color: var(--color-accent);
+		color: var(--primary);
+	}
+
+	button,
+	select {
+		font: inherit;
+		color: inherit;
 	}
 
 	h1,
 	h2,
 	h3 {
-		line-height: 1.3;
+		margin: 0 0 var(--space-3);
 	}
 
 	h1 {
-		margin: 0 0 var(--space-3);
-		font-size: var(--text-xl);
+		font-size: var(--fs-h1);
+		line-height: var(--lh-h1);
+		font-weight: 700;
+	}
+
+	h2 {
+		font-size: var(--fs-h2);
+		line-height: var(--lh-h2);
+		font-weight: 700;
+	}
+
+	h3 {
+		font-size: var(--fs-h3);
+		line-height: var(--lh-h3);
+		font-weight: 600;
 	}
 
 	code,
@@ -203,8 +472,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 		font-family: var(--font-mono);
 	}
 
+	/* 선택하지 않은 언어 숨김: 대상 요소는 data-lang="en|ja|zh-Hans|zh-Hant" 속성을 가진다 */
+	html[data-learn-lang='none'] [data-lang],
+	html[data-learn-lang='en'] [data-lang]:not([data-lang='en']),
+	html[data-learn-lang='ja'] [data-lang]:not([data-lang='ja']),
+	html[data-learn-lang='zh-Hans'] [data-lang]:not([data-lang='zh-Hans']),
+	html[data-learn-lang='zh-Hant'] [data-lang]:not([data-lang='zh-Hant']) {
+		display: none !important;
+	}
+
 	:focus-visible {
-		outline: 2px solid var(--color-accent);
+		outline: 2px solid var(--focus);
 		outline-offset: 2px;
 	}
 
@@ -213,33 +491,67 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 		left: var(--space-2);
 		top: -10rem;
 		z-index: 30;
-		padding: var(--space-2) var(--space-3);
-		border-radius: var(--radius);
-		background: var(--color-accent);
-		color: var(--color-bg);
+		padding: var(--space-2) var(--space-4);
+		border-radius: var(--radius-md);
+		background: var(--primary);
+		color: var(--on-primary);
 	}
 
 	.skip-link:focus {
 		top: var(--space-2);
 	}
 
+	/* 헤더 */
 	.site-header {
 		position: sticky;
 		top: 0;
 		z-index: 20;
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
 		gap: var(--space-2);
-		height: var(--header-height);
-		padding: 0 var(--space-3);
-		border-bottom: 1px solid var(--color-border);
-		background: var(--color-bg);
+		height: var(--header-h);
+		padding: 0 var(--space-4);
+		border-bottom: 1px solid var(--border);
+		background: var(--surface);
 	}
 
 	.site-title {
-		color: var(--color-text);
+		flex: 0 1 auto;
+		min-width: 0;
+		overflow: hidden;
+		color: var(--text);
+		font-size: var(--fs-body);
+		line-height: var(--touch-min);
 		font-weight: 700;
 		text-decoration: none;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.main-nav {
+		display: flex;
+		align-items: center;
+		gap: var(--space-1);
+		margin-left: var(--space-3);
+	}
+
+	.nav-link {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--touch-min);
+		padding: 0 var(--space-2);
+		border-bottom: 2px solid transparent;
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		font-weight: 600;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.nav-link[aria-current='page'] {
+		color: var(--primary);
+		border-bottom-color: var(--primary);
 	}
 
 	.header-actions {
@@ -249,22 +561,45 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 		margin-left: auto;
 	}
 
+	.lang-picker {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+	}
+
+	.lang-label {
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		font-weight: 500;
+		white-space: nowrap;
+	}
+
+	.lang-select {
+		height: var(--touch-min);
+		padding: 0 var(--space-3);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		font-size: var(--fs-body);
+		cursor: pointer;
+	}
+
 	.icon-button {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 2.25rem;
-		height: 2.25rem;
+		width: var(--touch-min);
+		height: var(--touch-min);
 		padding: 0;
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		background: transparent;
-		color: var(--color-text);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		color: var(--text);
 		cursor: pointer;
 	}
 
 	.icon-button:hover {
-		background: var(--color-surface);
+		background: var(--surface-sunken);
 	}
 
 	.menu-button {
@@ -293,49 +628,151 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 		}
 	}
 
+	/* 틀: 사이드바 + 본문 */
 	.layout {
 		display: grid;
-		grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
-		min-height: calc(100vh - var(--header-height));
+		grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+		min-height: calc(100vh - var(--header-h));
+	}
+
+	.layout.is-full {
+		grid-template-columns: minmax(0, 1fr);
 	}
 
 	.sidebar {
 		position: sticky;
-		top: var(--header-height);
+		top: var(--header-h);
 		align-self: start;
-		height: calc(100vh - var(--header-height));
+		height: calc(100vh - var(--header-h));
 		overflow-y: auto;
-		padding: var(--space-4) var(--space-3);
-		border-right: 1px solid var(--color-border);
-		background: var(--color-surface);
-		font-size: var(--text-sm);
+		padding: var(--space-5) var(--space-4);
+		border-right: 1px solid var(--border);
+		background: var(--surface);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+	}
+
+	.sidebar a {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		min-height: var(--touch-min);
+		padding: 0 var(--space-2);
+		border-radius: var(--radius-md);
+		color: var(--text);
+		text-decoration: none;
+	}
+
+	.sidebar a[aria-current] {
+		background: var(--primary-soft);
+		color: var(--primary);
+		font-weight: 600;
+	}
+
+	.sidebar a[aria-current] .toc-no {
+		color: inherit;
+	}
+
+	.toc-pending {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		min-height: var(--touch-min);
+		padding: 0 var(--space-2);
+		color: var(--text-muted);
+	}
+
+	.toc-soon {
+		margin-left: auto;
+		font-size: var(--fs-caption);
+		line-height: var(--lh-caption);
+	}
+
+	.toc-title {
+		margin: 0 0 var(--space-2);
+		padding: 0 var(--space-2);
+		color: var(--text-muted);
+		font-size: var(--fs-caption);
+		line-height: var(--lh-caption);
+		font-weight: 500;
+	}
+
+	.toc-list {
+		display: grid;
+		gap: var(--space-1);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.toc-no {
+		flex: none;
+		width: 1.25rem;
+		color: var(--accent);
+		font-family: var(--font-mono);
+		font-size: var(--fs-mono);
+		line-height: var(--lh-mono);
+		font-weight: 500;
 	}
 
 	.content {
 		width: 100%;
-		max-width: calc(var(--content-width) + var(--space-5) * 2);
-		padding: var(--space-5);
+		min-width: 0;
+		max-width: calc(var(--content-max) + var(--space-5) * 2);
+		margin: 0 auto;
+		padding: var(--space-6) var(--space-5) var(--space-8);
 	}
 
-	@media (max-width: 800px) {
+	/* 푸터 */
+	.site-footer {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-2) var(--space-4);
+		padding: var(--space-5) var(--space-4);
+		border-top: 1px solid var(--border);
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+	}
+
+	.site-footer p {
+		margin: 0;
+	}
+
+	.site-footer a {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--touch-min);
+		color: var(--text-muted);
+	}
+
+	/* 960px 미만: 사이드바는 서랍 */
+	@media (max-width: 959px) {
 		.menu-button {
 			display: inline-flex;
 		}
 
-		.layout {
+		.layout,
+		.layout.is-full {
 			grid-template-columns: minmax(0, 1fr);
 		}
 
 		.sidebar {
 			position: fixed;
+			top: var(--header-h);
 			left: 0;
-			z-index: 10;
-			width: min(var(--sidebar-width), 85vw);
+			bottom: 0;
+			z-index: 15;
+			width: min(var(--sidebar-w), 85vw);
+			height: auto;
 			transform: translateX(-100%);
 			visibility: hidden;
+			box-shadow: var(--shadow-overlay);
 			transition:
-				transform 0.2s ease,
-				visibility 0.2s;
+				transform 200ms ease,
+				visibility 200ms;
 		}
 
 		.sidebar-open .sidebar {
@@ -344,13 +781,48 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 		}
 
 		.content {
-			padding: var(--space-4) var(--space-3);
+			padding: var(--space-4) var(--space-4) var(--space-7);
+		}
+	}
+
+	/* 720px 미만: 내비게이션을 두 번째 줄로 */
+	@media (max-width: 719px) {
+		.site-header {
+			flex-wrap: wrap;
+			align-content: center;
+			padding: 0 var(--space-3);
+		}
+
+		.site-title {
+			flex: 1 1 0;
+		}
+
+		.header-actions {
+			flex: none;
+		}
+
+		.main-nav {
+			order: 10;
+			flex-basis: 100%;
+			margin: 0;
+			overflow-x: auto;
+		}
+
+		.lang-label {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip: rect(0 0 0 0);
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.sidebar {
-			transition: none;
+		*,
+		*::before,
+		*::after {
+			transition: none !important;
+			animation: none !important;
 		}
 	}
 </style>

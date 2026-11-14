@@ -113,7 +113,7 @@ const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
 		max-width: 36rem;
 		margin-inline: auto;
 		font-family: var(--font-sans);
-		font-size: 14px;
+		font-size: 18px;
 	}
 
 	.photo-step text {
@@ -121,39 +121,48 @@ const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
 	}
 
 	.photo-step .title {
-		font-size: 15px;
+		font-size: 20px;
 		font-weight: 700;
 	}
 
 	.photo-step .substrate {
-		fill: var(--color-text-muted);
+		fill: var(--diagram-silicon);
 	}
 
 	.photo-step .film {
-		fill: var(--color-accent);
+		fill: var(--diagram-oxide);
 	}
 
 	.photo-step .resist {
-		fill: #e08a3c;
+		fill: var(--diagram-resist);
 	}
 
 	.photo-step .exposed {
-		fill: #f6d9b4;
-		stroke: #e08a3c;
-		stroke-width: 1.5;
+		fill: var(--diagram-resist);
+		fill-opacity: 0.35;
+		stroke: var(--diagram-resist);
+		stroke-width: 2;
 		stroke-dasharray: 4 3;
 	}
 
 	.photo-step .mask {
-		fill: var(--color-text);
+		fill: var(--diagram-stroke);
 	}
 
 	.photo-step .uv line {
-		stroke: #8a5cf6;
+		stroke: var(--diagram-light);
 		stroke-width: 2;
 	}
 
 	.photo-step .uv polygon {
-		fill: #8a5cf6;
+		fill: var(--diagram-light);
+	}
+
+	/* 좁은 화면: 그림이 줄어도 라벨이 14px 이상으로 보이게 */
+	@media (max-width: 600px) {
+		.photo-step,
+		.photo-step .title {
+			font-size: 22px;
+		}
 	}
 </style>

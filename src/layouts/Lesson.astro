@@ -1,0 +1,303 @@
+---
+import Base from './Base.astro';
+
+interface LessonMeta {
+	slug: string;
+	title: string;
+	module: number;
+	order: number;
+	summary: string;
+}
+
+interface Props {
+	lesson: LessonMeta;
+	lessons: LessonMeta[];
+	prev?: LessonMeta | null;
+	next?: LessonMeta | null;
+}
+
+const { lesson, lessons, prev = null, next = null } = Astro.props;
+
+const STEPS = [
+	{ n: 0, title: '칩 하나 만들어 보기' },
+	{ n: 1, title: '기초 원리' },
+	{ n: 2, title: '제품과 산업' },
+	{ n: 3, title: '팹과 클린룸' },
+	{ n: 4, title: '전공정' },
+	{ n: 5, title: '계측·검사·수율' },
+	{ n: 6, title: '후공정' },
+	{ n: 7, title: '최신 기술' },
+	{ n: 8, title: '현장 소통' },
+];
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const lessonHref = (l: LessonMeta) => `${base}/lessons/${l.slug}/`;
+const current = STEPS.find((s) => s.n === lesson.module);
+
+const stepTarget = (n: number): string | null => {
+	if (n === 0) return `${base}/tour/`;
+	const first = lessons.find((l) => l.module === n);
+	return first ? lessonHref(first) : null;
+};
+
+const pageSteps = STEPS.map((s) => {
+	const target = stepTarget(s.n);
+	return { n: s.n, title: s.title, href: target ? target.slice(base.length) : '' };
+});
+---
+
+<Base title={lesson.title} steps={pageSteps} currentStep={lesson.module}>
+	<nav slot="sidebar" class="toc" aria-label="학습 경로">
+		<p class="toc-title">학습 경로</p>
+		<ol class="toc-list">
+			{
+				STEPS.map((s) => {
+					const target = stepTarget(s.n);
+					const isCurrent = s.n === lesson.module;
+					const stepLessons = lessons.filter((l) => l.module === s.n);
+					return (
+						<li>
+							{target ? (
+								<a href={target} aria-current={isCurrent ? 'step' : undefined}>
+									<span class="toc-no">{s.n}</span>
+									<span>{s.title}</span>
+								</a>
+							) : (
+								<span class="toc-pending">
+									<span class="toc-no">{s.n}</span>
+									<span>{s.title}</span>
+								</span>
+							)}
+							{isCurrent && stepLessons.length > 0 && (
+								<ol class="lesson-list">
+									{stepLessons.map((l) => (
+										<li>
+											<a href={lessonHref(l)} aria-current={l.slug === lesson.slug ? 'page' : undefined}>
+												{l.title}
+											</a>
+										</li>
+									))}
+								</ol>
+							)}
+						</li>
+					);
+				})
+			}
+		</ol>
+	</nav>
+
+	<article class="lesson">
+		<p class="step-label">
+			<span class="step-no">{lesson.module}단계</span>
+			<span>{current?.title}</span>
+		</p>
+		<h1>{lesson.title}</h1>
+		{lesson.summary && <p class="lead">{lesson.summary}</p>}
+
+		<div class="lesson-body">
+			<slot />
+		</div>
+
+		<nav class="pager" aria-label="레슨 이동">
+			{
+				prev ? (
+					<a class="pager-link" href={lessonHref(prev)}>
+						<span class="pager-label">이전 레슨</span>
+						<span class="pager-title">{prev.title}</span>
+					</a>
+				) : (
+					<span class="pager-empty" />
+				)
+			}
+			{
+				next ? (
+					<a class="pager-link is-next" href={lessonHref(next)}>
+						<span class="pager-label">다음 레슨</span>
+						<span class="pager-title">{next.title}</span>
+					</a>
+				) : (
+					<span class="pager-empty" />
+				)
+			}
+		</nav>
+	</article>
+</Base>
+
+<style>
+	.toc-title {
+		margin: 0 0 var(--space-2);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		color: var(--text-muted);
+		font-weight: 500;
+	}
+
+	.toc-list,
+	.lesson-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: var(--space-1);
+	}
+
+	.toc-list a,
+	.toc-pending,
+	.lesson-list a {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		min-height: var(--touch-min);
+		padding: 0 var(--space-3);
+		border-radius: var(--radius-md);
+		color: var(--text);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		text-decoration: none;
+	}
+
+	.toc-list a:hover,
+	.lesson-list a:hover {
+		background: var(--surface);
+	}
+
+	.toc-list a[aria-current='step'] {
+		background: var(--primary-soft);
+		color: var(--primary);
+		font-weight: 600;
+	}
+
+	.toc-pending {
+		color: var(--text-muted);
+	}
+
+	.toc-no {
+		font-family: var(--font-mono);
+		font-size: var(--fs-mono);
+		line-height: var(--lh-mono);
+		color: var(--accent);
+		min-width: 1.5em;
+	}
+
+	.lesson-list {
+		margin: var(--space-1) 0 0 var(--space-5);
+		gap: 0;
+	}
+
+	.lesson-list a {
+		min-height: var(--touch-min);
+	}
+
+	.lesson-list a[aria-current='page'] {
+		background: var(--primary-soft);
+		color: var(--primary);
+		font-weight: 600;
+	}
+
+	.lesson {
+		max-width: var(--content-max);
+		display: grid;
+		gap: var(--space-4);
+	}
+
+	.step-label {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		margin: 0;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		color: var(--text-muted);
+	}
+
+	.step-no {
+		font-family: var(--font-mono);
+		font-weight: 500;
+		color: var(--accent);
+	}
+
+	.lesson h1 {
+		margin: 0;
+		font-size: var(--fs-h1);
+		line-height: var(--lh-h1);
+		font-weight: 700;
+	}
+
+	.lead {
+		margin: 0;
+		font-size: var(--fs-lead);
+		line-height: var(--lh-lead);
+		color: var(--text-muted);
+	}
+
+	.lesson-body {
+		display: grid;
+		gap: var(--space-4);
+	}
+
+	.lesson-body > :global(*) {
+		min-width: 0;
+		margin-block: 0;
+	}
+
+	.lesson-body > :global(h2) {
+		margin-top: var(--space-5);
+	}
+
+	.pager {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--space-3);
+		margin-top: var(--space-6);
+	}
+
+	.pager-link {
+		display: grid;
+		gap: var(--space-1);
+		min-height: var(--touch-min);
+		padding: var(--space-3) var(--space-4);
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		color: var(--text);
+		text-decoration: none;
+	}
+
+	.pager-link.is-next {
+		text-align: right;
+	}
+
+	.pager-link:hover {
+		border-color: var(--border-strong);
+	}
+
+	.pager-label {
+		font-size: var(--fs-caption);
+		line-height: var(--lh-caption);
+		color: var(--text-muted);
+	}
+
+	.pager-title {
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		color: var(--primary);
+	}
+
+	.pager-empty {
+		display: block;
+	}
+
+	a:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.toc-list a,
+		.lesson-list a,
+		.pager-link {
+			transition: none;
+		}
+	}
+</style>

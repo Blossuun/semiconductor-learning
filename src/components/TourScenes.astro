@@ -5,35 +5,35 @@ import StepAnimation from './StepAnimation.astro';
 const scenes = [
 	{
 		title: '모래에서 실리콘으로',
-		text: '칩의 재료는 모래에 많이 들어 있는 실리콘입니다. 모래를 녹이고 불순물을 걸러 내 아주 순수한 실리콘을 얻습니다.',
+		text: '칩의 재료는 모래에 많이 들어 있는 실리콘입니다. 모래를 녹이고 불순물을 걸러 내 아주 순수한 실리콘을 얻습니다. 회로를 그릴 바탕이 깨끗하지 않으면 전기가 엉뚱하게 흘러 칩이 제대로 동작하지 않습니다.',
 	},
 	{
 		title: '기둥을 만들고 얇게 자르기',
-		text: '녹인 실리콘을 천천히 끌어올려 둥근 기둥(잉곳)으로 굳힙니다. 이 기둥을 얇게 잘라 거울처럼 닦은 원판이 웨이퍼입니다.',
+		text: '녹인 실리콘을 천천히 끌어올려 둥근 기둥(잉곳)으로 굳힙니다. 이 기둥을 얇게 잘라 거울처럼 닦은 원판이 웨이퍼입니다. 한 장의 원판 위에 칩을 여러 개 만들어야 하므로, 넓고 평평한 판이 필요합니다.',
 	},
 	{
 		title: '막 입히기',
-		text: '웨이퍼 위에 얇은 막을 고르게 입힙니다. 이 막이 나중에 회로의 재료가 됩니다.',
+		text: '웨이퍼 위에 얇은 막을 고르게 입힙니다. 이 막이 나중에 회로의 재료가 됩니다. 회로는 얇은 층을 여러 겹 쌓아 만들어지므로, 먼저 층을 깔아 두어야 합니다.',
 	},
 	{
 		title: '빛으로 무늬 그리기',
-		text: '막 위에 빛에 반응하는 감광액을 바르고, 회로 무늬가 그려진 마스크를 통해 빛을 비춥니다. 빛을 받은 자리만 씻겨 나가 무늬가 남습니다.',
+		text: '막 위에 빛에 반응하는 감광액을 바르고, 회로 무늬가 그려진 마스크를 통해 빛을 비춥니다. 빛을 받은 자리만 씻겨 나가 무늬가 남습니다. 깎을 자리를 미리 정해 두지 않으면 원하는 곳만 남기고 깎을 수 없기 때문입니다.',
 	},
 	{
 		title: '깎아 내기',
-		text: '감광액이 가리지 않은 부분의 막을 깎아 냅니다. 감광액을 벗기면 막에 회로 무늬가 그대로 새겨져 있습니다.',
+		text: '감광액이 가리지 않은 부분의 막을 깎아 냅니다. 감광액을 벗기면 막에 회로 무늬가 그대로 새겨져 있습니다. 필요 없는 막이 남아 있으면 전기가 엉뚱한 길로 새기 때문에 깎아 냅니다.',
 	},
 	{
 		title: '성질 바꾸고 전기 길 놓기',
-		text: '실리콘에 다른 원자를 넣어 전기가 흐르는 성질을 바꾸고, 금속으로 전기가 다닐 길을 잇습니다. 3~5 장면을 수십 번 되풀이하며 층을 쌓아 올립니다.',
+		text: '실리콘에 다른 원자를 넣어 전기가 흐르는 성질을 바꾸고, 금속으로 전기가 다닐 길을 잇습니다. 3~5 장면을 수백 번 되풀이하며 층을 쌓아 올립니다. 실리콘만으로는 전기를 원하는 만큼 조절할 수 없어서, 성질을 바꾼 자리와 전선이 함께 있어야 회로가 동작합니다.',
 	},
 	{
 		title: '검사하고 낱개로 자르기',
-		text: '웨이퍼 한 장에는 같은 칩이 수백 개 들어 있습니다. 하나씩 전기를 흘려 검사한 뒤 낱개로 잘라 냅니다.',
+		text: '웨이퍼 한 장에는 같은 칩이 수백 개 들어 있습니다. 하나씩 전기를 흘려 검사한 뒤 낱개로 잘라 냅니다. 불량 칩을 미리 가려내야 그 칩에 포장 비용을 들이지 않습니다.',
 	},
 	{
 		title: '포장해서 완성',
-		text: '잘라 낸 칩을 기판에 붙여 바깥과 전기로 잇고 단단한 재료로 감쌉니다. 이제 휴대폰과 컴퓨터에 들어갈 반도체가 완성됐습니다.',
+		text: '잘라 낸 칩을 기판에 붙여 바깥과 전기로 잇고 단단한 재료로 감쌉니다. 이제 휴대폰과 컴퓨터에 들어갈 반도체가 완성됐습니다. 칩은 얇고 약해 그대로 쓰면 쉽게 깨지고 바깥 기기와 이을 수 없어서, 이 포장이 꼭 필요합니다.',
 	},
 ];
 
@@ -332,7 +332,7 @@ const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
 		height: auto;
 		margin-inline: auto;
 		font-family: var(--font-sans);
-		font-size: 14px;
+		font-size: 18px;
 	}
 
 	figcaption {
@@ -349,67 +349,69 @@ const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
 	}
 
 	.si {
-		fill: var(--color-text-muted);
+		fill: var(--diagram-silicon);
 	}
 
 	.shine {
-		fill: var(--color-border);
+		fill: var(--diagram-silicon);
+		fill-opacity: 0.5;
 	}
 
 	.film {
-		fill: var(--color-accent);
+		fill: var(--diagram-oxide);
 	}
 
 	.pr {
-		fill: #e08a3c;
+		fill: var(--diagram-resist);
 	}
 
 	.exposed {
-		fill: #f6d9b4;
-		stroke: #e08a3c;
-		stroke-width: 1.5;
+		fill: var(--diagram-resist);
+		fill-opacity: 0.35;
+		stroke: var(--diagram-resist);
+		stroke-width: 2;
 		stroke-dasharray: 4 3;
 	}
 
 	.mask,
 	.solid {
-		fill: var(--color-text);
+		fill: var(--diagram-stroke);
 	}
 
 	.light {
-		fill: #8a5cf6;
+		fill: var(--diagram-light);
 	}
 
 	.light-line {
-		stroke: #8a5cf6;
+		stroke: var(--diagram-light);
 		stroke-width: 2;
 	}
 
 	.metal {
-		fill: #c9a227;
+		fill: var(--diagram-copper);
 	}
 
 	.sand {
-		fill: #d9b97a;
+		fill: var(--diagram-sand);
 	}
 
 	.sand-dot {
-		fill: #a8874a;
+		fill: var(--diagram-silicon);
 	}
 
 	.heat {
-		fill: #e08a3c;
+		fill: var(--diagram-copper);
 	}
 
 	.box {
 		fill: var(--color-bg);
-		stroke: var(--color-text);
+		stroke: var(--diagram-stroke);
 		stroke-width: 2;
 	}
 
 	.outline {
 		fill: none;
-		stroke: var(--color-text);
+		stroke: var(--diagram-stroke);
 		stroke-width: 2;
 		stroke-linecap: round;
 	}
@@ -422,66 +424,82 @@ const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
 	}
 
 	.fall {
-		stroke: var(--color-accent);
-		stroke-width: 1.5;
+		stroke: var(--diagram-light);
+		stroke-width: 2;
 		stroke-dasharray: 3 4;
 	}
 
 	.arrow line {
-		stroke: var(--color-text);
+		stroke: var(--diagram-stroke);
 		stroke-width: 2;
 	}
 
 	.arrow polygon {
-		fill: var(--color-text);
+		fill: var(--diagram-stroke);
 	}
 
 	.insulator {
-		fill: var(--color-accent-soft);
+		fill: var(--diagram-oxide);
+		fill-opacity: 0.35;
 	}
 
 	.doped {
-		fill: var(--color-accent-soft);
-		stroke: var(--color-accent);
-		stroke-width: 1.5;
+		fill: var(--diagram-sand);
+		fill-opacity: 0.45;
+		stroke: var(--diagram-stroke);
+		stroke-width: 2;
 	}
 
 	.die {
-		fill: var(--color-accent-soft);
-		stroke: var(--color-accent);
-		stroke-width: 1;
+		fill: var(--diagram-oxide);
+		fill-opacity: 0.35;
+		stroke: var(--diagram-stroke);
+		stroke-width: 2;
 	}
 
 	.die-fail {
-		fill: #f3c4c4;
-		stroke: #d04545;
+		fill: var(--diagram-resist);
+		fill-opacity: 0.35;
+		stroke: var(--diagram-resist);
+		stroke-width: 2;
 	}
 
 	.fail-mark {
-		fill: #a32020;
-		font-size: 13px;
+		fill: var(--diagram-resist);
+		font-size: 16px;
 		font-weight: 700;
 	}
 
 	.chip-line {
 		fill: none;
-		stroke: var(--color-accent);
-		stroke-width: 1.5;
+		stroke: var(--diagram-stroke);
+		stroke-width: 2;
 	}
 
 	.mold {
-		fill: var(--color-border);
-		stroke: var(--color-text-muted);
-		stroke-width: 1.5;
+		fill: var(--diagram-silicon);
+		stroke: var(--diagram-stroke);
+		stroke-width: 2;
 	}
 
 	.package {
-		fill: #2b2f36;
-		stroke: var(--color-text-muted);
-		stroke-width: 1.5;
+		fill: var(--diagram-silicon);
+		stroke: var(--diagram-stroke);
+		stroke-width: 2;
 	}
 
 	.pin {
-		fill: #c9cdd4;
+		fill: var(--diagram-silicon);
+	}
+
+	/* 좁은 화면: 그림이 줄어도 라벨이 14px 이상으로 보이게 */
+	@media (max-width: 600px) {
+		.scene svg {
+			font-size: 22px;
+		}
+
+		.scene .fail-mark {
+			font-size: 22px;
+		}
 	}
 </style>
