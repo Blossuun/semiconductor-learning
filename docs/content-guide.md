@@ -21,6 +21,11 @@
   zh_tw_pinyin: wéiyǐng
   abbr: Photo, Litho
   field_usage: "현장에서는 '포토'로 줄여 부름"
+  example_ko: 이번 로트는 포토 공정에서 노광 불량이 나서 재작업한다.
+  example_en: This lot had exposure defects in photolithography, so it will be reworked.
+  example_ja: 今回のロットはフォトリソグラフィで露光不良が出たため、再作業する。
+  example_zh_cn: 这批次在光刻工序出现曝光不良，需要返工。
+  example_zh_tw: 這批次在微影製程出現曝光不良，需要重工。
   definition_ko: 빛으로 회로 무늬를 웨이퍼에 옮겨 그리는 공정
   module: 4
   sources: [url1, url2]

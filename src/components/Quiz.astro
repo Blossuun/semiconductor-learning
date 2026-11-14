@@ -52,12 +52,15 @@ const { questions, correctLabel = '정답입니다.', wrongLabel = '오답입니
 
 			choices.forEach((choice) => {
 				choice.addEventListener('click', () => {
+					if (choice.getAttribute('aria-disabled') === 'true') return;
 					const picked = Number(choice.dataset.choice);
 					const correct = picked === answer;
 
 					choices.forEach((button) => {
 						const index = Number(button.dataset.choice);
-						button.disabled = true;
+						// disabled 속성은 초점을 잃게 하므로 aria-disabled로 잠근다
+						button.setAttribute('aria-disabled', 'true');
+						button.setAttribute('aria-pressed', String(index === picked));
 						if (index === answer) button.classList.add('is-correct');
 						else if (index === picked) button.classList.add('is-wrong');
 					});
@@ -126,7 +129,7 @@ const { questions, correctLabel = '정답입니다.', wrongLabel = '오답입니
 		cursor: pointer;
 	}
 
-	.choice:hover:not(:disabled) {
+	.choice:hover:not(:disabled):not([aria-disabled='true']) {
 		border-color: var(--primary);
 		color: var(--primary);
 	}
@@ -136,7 +139,8 @@ const { questions, correctLabel = '정답입니다.', wrongLabel = '오답입니
 		outline-offset: 2px;
 	}
 
-	.choice:disabled {
+	.choice:disabled,
+	.choice[aria-disabled='true'] {
 		cursor: default;
 	}
 

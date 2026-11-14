@@ -1,0 +1,152 @@
+---
+title: 메모리와 로직
+module: 2
+order: 1
+summary: 반도체 칩은 정보를 기억하는 메모리(DRAM·NAND·HBM)와 정보를 계산하는 로직으로 나뉜다.
+---
+
+import StepAnimation from '../../components/StepAnimation.astro';
+import TermCard from '../../components/TermCard.astro';
+import Quiz from '../../components/Quiz.astro';
+
+## 한 줄 요약
+
+메모리 칩은 정보를 담아 두고, 로직 칩은 그 정보로 계산한다.
+
+일상 비유 1개: 메모리는 책상 서랍과 책장, 로직은 책상 위에서 문제를 푸는 사람과 비슷하다.
+
+## 단계별로 보기
+
+<StepAnimation label="메모리와 로직이 일하는 방식">
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="트랜지스터 스위치가 꺼짐이면 0, 켜짐이면 1을 나타낸다">
+			<rect x="60" y="90" width="150" height="90" rx="8" fill="none" stroke="currentColor" stroke-width="2" />
+			<line x1="75" y1="135" x2="195" y2="135" stroke="currentColor" stroke-width="3" stroke-dasharray="6 6" />
+			<text x="135" y="75" text-anchor="middle" fill="currentColor">꺼짐</text>
+			<text x="135" y="210" text-anchor="middle" fill="currentColor" font-size="28">0</text>
+			<rect x="270" y="90" width="150" height="90" rx="8" fill="none" stroke="currentColor" stroke-width="2" />
+			<line x1="285" y1="135" x2="405" y2="135" stroke="currentColor" stroke-width="5" />
+			<text x="345" y="75" text-anchor="middle" fill="currentColor">켜짐</text>
+			<text x="345" y="210" text-anchor="middle" fill="currentColor" font-size="28">1</text>
+		</svg>
+		<figcaption>
+			<strong>0과 1 정하기</strong>
+			<p>트랜지스터 스위치의 꺼짐과 켜짐을 0과 1로 약속한다.</p>
+			<p>글자, 사진, 소리를 모두 0과 1의 줄로 바꿔야 칩이 다룰 수 있기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="DRAM은 저장통에 전자를 채우고 NAND는 절연막 안에 전자를 가둔다">
+			<text x="120" y="40" text-anchor="middle" fill="currentColor">DRAM</text>
+			<rect x="85" y="70" width="70" height="110" fill="none" stroke="currentColor" stroke-width="2" />
+			<rect x="85" y="125" width="70" height="55" fill="currentColor" opacity="0.35" />
+			<text x="120" y="210" text-anchor="middle" fill="currentColor">저장통에 전자</text>
+			<text x="120" y="235" text-anchor="middle" fill="currentColor">전원 꺼지면 사라짐</text>
+			<text x="360" y="40" text-anchor="middle" fill="currentColor">NAND</text>
+			<rect x="300" y="70" width="120" height="110" fill="none" stroke="currentColor" stroke-width="2" />
+			<rect x="325" y="100" width="70" height="50" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4" />
+			<circle cx="345" cy="125" r="6" fill="currentColor" />
+			<circle cx="360" cy="125" r="6" fill="currentColor" />
+			<circle cx="375" cy="125" r="6" fill="currentColor" />
+			<text x="360" y="210" text-anchor="middle" fill="currentColor">절연막 안에 전자</text>
+			<text x="360" y="235" text-anchor="middle" fill="currentColor">전원 꺼져도 남음</text>
+		</svg>
+		<figcaption>
+			<strong>메모리는 저장하기</strong>
+			<p>DRAM은 작은 저장통에 전자를 채우고, NAND는 절연막 안에 전자를 가둬 0과 1을 기억한다.</p>
+			<p>빠르게 쓰는 기억(DRAM)과 오래 보관하는 기억(NAND)을 따로 두면 각자 역할에 맞게 설계할 수 있기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="입력 두 개가 로직 회로를 지나 결과 하나가 된다">
+			<text x="50" y="105" text-anchor="middle" fill="currentColor">입력 A</text>
+			<text x="50" y="175" text-anchor="middle" fill="currentColor">입력 B</text>
+			<line x1="90" y1="100" x2="190" y2="100" stroke="currentColor" stroke-width="2" />
+			<line x1="90" y1="170" x2="190" y2="170" stroke="currentColor" stroke-width="2" />
+			<rect x="190" y="70" width="110" height="130" rx="10" fill="none" stroke="currentColor" stroke-width="2" />
+			<text x="245" y="140" text-anchor="middle" fill="currentColor">로직 회로</text>
+			<line x1="300" y1="135" x2="390" y2="135" stroke="currentColor" stroke-width="2" />
+			<text x="430" y="140" text-anchor="middle" fill="currentColor">결과</text>
+		</svg>
+		<figcaption>
+			<strong>로직은 계산하기</strong>
+			<p>트랜지스터를 AND, OR 같은 회로로 이어 붙여 입력에서 결과를 만든다.</p>
+			<p>저장만 해서는 정보가 쓸모를 얻지 못하고, 판단과 연산이 있어야 프로그램이 돌아가기 때문이다.</p>
+		</figcaption>
+	</figure>
+</StepAnimation>
+
+## 자세히 알아보기
+
+### 왜 필요한가
+
+컴퓨터는 두 가지 일을 한다. 정보를 기억하고, 정보를 계산한다. 한 칩이 둘 다 잘하기는 어렵다. 기억은 같은 구조를 아주 많이 반복해 용량을 키우는 일이고, 계산은 다양한 회로를 빠르게 돌리는 일이다. 그래서 칩을 메모리와 로직으로 나눠 만든다.
+
+### 어떻게 하는가
+
+1. 0과 1 정하기: 모든 정보를 0과 1(비트)로 바꾼다. 트랜지스터(전류를 켜고 끄는 스위치)의 꺼짐과 켜짐이 0과 1이 된다.
+2. 메모리는 저장하기: DRAM은 작은 저장통(캐패시터, 전하를 담는 부품)에 전자를 채우면 1, 비우면 0이다. 전하가 조금씩 새서 계속 다시 채워야 하고, 전원이 꺼지면 사라진다(휘발성). NAND는 전자를 절연막 안에 가둔다. 전원이 꺼져도 남는다(비휘발성). 그래서 USB, SSD에 쓴다.
+3. 로직은 계산하기: 트랜지스터를 이어 붙인 회로가 입력에서 결과를 만든다. CPU(컴퓨터의 두뇌)와 GPU(그래픽·AI 계산용 칩)가 로직 칩이다.
+
+### 앞뒤 공정과 어떻게 이어지는가
+
+메모리와 로직 모두 웨이퍼 위에서 포토, 식각, 증착 같은 같은 공정을 되풀이해 만든다. 다른 점은 회로의 모양이다. 메모리는 같은 셀을 수십억 개 반복하고, 로직은 서로 다른 회로를 배치한다. 완성된 칩은 패키징으로 넘어간다. HBM은 DRAM을 여러 장 쌓아 로직 칩 곁에 붙인 메모리다. 로직이 계산하는 동안 자료를 빠르게 대 주는 역할이다.
+
+## 더 깊이 알아보기
+
+<details>
+<summary>원리 더 보기 (셀 구조와 메모리 벽)</summary>
+
+DRAM 셀은 트랜지스터 1개와 캐패시터 1개로 이뤄진다. 읽을 때 저장통의 전하가 흐트러지므로 읽은 뒤 다시 써 넣어야 한다. 또 전하가 새므로 일정한 주기로 다시 채우는 리프레시가 필요하다. NAND는 셀을 줄줄이 이어 한 번에 많은 칸을 지우고 쓰는 구조여서, 같은 면적에 용량을 크게 키우기에 알맞다.
+
+로직은 메모리보다 계산이 빠른 경우가 많다. 그러면 로직이 자료를 기다리는 시간이 병목이 된다. 이를 메모리 벽이라 부른다. HBM은 DRAM을 쌓고 TSV(실리콘을 위아래로 뚫은 배선)로 이어 한꺼번에 많은 자료를 보내 이 병목을 줄인다.
+
+</details>
+
+## 용어
+
+<TermCard id="memory-semiconductor" />
+<TermCard id="logic-semiconductor" />
+<TermCard id="dram" />
+<TermCard id="nand-flash" />
+<TermCard id="hbm" />
+<TermCard id="volatile-memory" />
+<TermCard id="nonvolatile-memory" />
+<TermCard id="mosfet" />
+
+## 확인 문제
+
+<Quiz
+	questions={[
+		{
+			question: '전원이 꺼져도 데이터가 남는 메모리는 무엇인가?',
+			choices: ['NAND 플래시', 'DRAM', '로직 칩', '캐패시터 한 개'],
+			answer: 0,
+			explanation: 'NAND는 전자를 절연막 안에 가둬 전원이 꺼져도 남는 비휘발성 메모리다.',
+		},
+		{
+			question: 'DRAM 한 칸(셀)의 구성으로 맞는 것은?',
+			choices: ['저항 1개', '트랜지스터 1개와 캐패시터 1개', '다이오드 2개', '코일 1개'],
+			answer: 1,
+			explanation: '트랜지스터가 문 역할을 하고 캐패시터가 전하를 담는다.',
+		},
+		{
+			question: 'CPU와 GPU처럼 계산을 맡는 칩을 무엇이라 부르는가?',
+			choices: ['메모리 칩', '패키징 칩', '로직 칩', '웨이퍼'],
+			answer: 2,
+			explanation: '입력에서 결과를 만들어 내는 연산용 칩이 로직 칩이다.',
+		},
+		{
+			question: 'HBM의 설명으로 알맞은 것은?',
+			choices: ['전원 없이 데이터를 보관하는 USB용 칩', '로직 칩의 연산 회로', '실리콘을 깎는 장비', 'DRAM을 쌓아 한꺼번에 많은 자료를 보내는 메모리'],
+			answer: 3,
+			explanation: 'HBM은 DRAM을 여러 장 쌓아 TSV로 이은 고대역폭 메모리다.',
+		},
+		{
+			question: 'DRAM이 주기적으로 다시 채우기(리프레시)를 해야 하는 이유는?',
+			choices: ['저장통의 전하가 조금씩 새기 때문', '트랜지스터가 녹기 때문', '웨이퍼가 휘기 때문', '전원이 너무 세기 때문'],
+			answer: 0,
+			explanation: '캐패시터의 전하가 시간이 지나면 빠져나가 값이 흐려진다.',
+		},
+	]}
+/>

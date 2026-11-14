@@ -30,6 +30,16 @@ const onHome = relPath === '';
 const onTour = relPath.startsWith('/tour');
 const onGlossary = relPath.startsWith('/glossary');
 
+// 단계(module)별 레슨 slug. 진도 표시에 쓴다.
+const lessonModules = import.meta.glob('../content/lessons/*.mdx', { eager: true }) as Record<string, any>;
+const stepLessons: Record<number, string[]> = {};
+for (const [path, mod] of Object.entries(lessonModules)) {
+	const slug = path.split('/').pop()!.replace(/\.mdx$/, '');
+	const m = Number(mod.frontmatter?.module ?? -1);
+	if (!stepLessons[m]) stepLessons[m] = [];
+	stepLessons[m].push(slug);
+}
+
 const langOptions = [
 	{ value: 'none', label: '한국어만', lang: 'ko' },
 	{ value: 'en', label: 'English', lang: 'en' },
@@ -140,12 +150,14 @@ const langOptions = [
 												<a href={`${base}${s.href}`} aria-current={s.n === currentStep ? 'step' : undefined}>
 													<span class="toc-no">{s.n}</span>
 													<span>{s.title}</span>
+														{stepLessons[s.n]?.length > 0 && <span class="toc-progress" data-step-progress={s.n}>0/{stepLessons[s.n].length}</span>}
 												</a>
 											) : (
 												<span class="toc-pending">
 													<span class="toc-no">{s.n}</span>
 													<span>{s.title}</span>
-													<span class="toc-soon">준비 중</span>
+													{stepLessons[s.n]?.length > 0 && <span class="toc-progress" data-step-progress={s.n}>0/{stepLessons[s.n].length}</span>}
+														<span class="toc-soon">준비 중</span>
 												</span>
 											)}
 										</li>
@@ -197,7 +209,21 @@ const langOptions = [
 
 				function setMenu(open) {
 					body.classList.toggle('sidebar-open', open);
-					if (menuButton) menuButton.setAttribute('aria-expanded', String(open));
+					if (!menuButton) return;
+					var wasOpen = menuButton.getAttribute('aria-expanded') === 'true';
+					menuButton.setAttribute('aria-expanded', String(open));
+					menuButton.setAttribute('aria-label', open ? '목차 닫기' : '목차 열기');
+					if (open === wasOpen) return;
+					// 서랍을 열면 초점을 서랍 안으로, 닫으면 버튼으로 되돌린다
+					if (open) {
+						var first = document.querySelector(
+							'#sidebar a[href], #sidebar button, #sidebar input, #sidebar select, #sidebar [tabindex]'
+						);
+						// 서랍이 보이기 시작한 뒤에야 초점을 받을 수 있다
+						if (first) setTimeout(function () { first.focus(); }, 220);
+					} else {
+						menuButton.focus();
+					}
 				}
 
 				if (menuButton) {
@@ -209,6 +235,33 @@ const langOptions = [
 				document.addEventListener('keydown', function (e) {
 					if (e.key === 'Escape') setMenu(false);
 				});
+			})();
+		</script>
+
+		<script is:inline define:vars={{ stepLessons }}>
+			(function () {
+				var KEY = 'learn-progress';
+				function readDone() {
+					try {
+						var v = JSON.parse(localStorage.getItem(KEY) || '[]');
+						return Array.isArray(v) ? v : [];
+					} catch (e) {
+						return [];
+					}
+				}
+				function renderToc() {
+					var done = readDone();
+					document.querySelectorAll('[data-step-progress]').forEach(function (el) {
+						var list = stepLessons[el.getAttribute('data-step-progress')] || [];
+						var count = list.filter(function (slug) {
+							return done.indexOf(slug) !== -1;
+						}).length;
+						el.textContent = count + '/' + list.length;
+						el.classList.toggle('is-done', list.length > 0 && count === list.length);
+					});
+				}
+				window.addEventListener('learn-progress-change', renderToc);
+				renderToc();
 			})();
 		</script>
 	</body>
@@ -686,6 +739,19 @@ const langOptions = [
 		margin-left: auto;
 		font-size: var(--fs-caption);
 		line-height: var(--lh-caption);
+	}
+
+	.toc-progress {
+		margin-left: auto;
+		font-family: var(--font-mono);
+		font-size: var(--fs-mono);
+		line-height: var(--lh-mono);
+		font-weight: 500;
+		color: var(--text-muted);
+	}
+
+	.toc-progress.is-done {
+		color: var(--primary);
 	}
 
 	.toc-title {

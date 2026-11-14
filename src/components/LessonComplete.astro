@@ -1,0 +1,105 @@
+---
+interface Props {
+	/** 레슨 slug. localStorage 'learn-progress' 배열에 이 값으로 저장한다. */
+	slug: string;
+}
+
+const { slug } = Astro.props;
+---
+
+<div class="lesson-complete">
+	<button class="complete-button" type="button" data-complete-slug={slug} aria-pressed="false">
+		<svg class="complete-icon" viewBox="0 0 24 24" aria-hidden="true">
+			<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"></circle>
+			<path d="M8 12.5l2.5 2.5L16 9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+		</svg>
+		<span class="complete-text">완료로 표시</span>
+	</button>
+</div>
+
+<script>
+	const KEY = 'learn-progress';
+	const EVENT = 'learn-progress-change';
+
+	function readDone(): string[] {
+		try {
+			const v = JSON.parse(localStorage.getItem(KEY) || '[]');
+			return Array.isArray(v) ? v : [];
+		} catch {
+			return [];
+		}
+	}
+
+	function writeDone(list: string[]) {
+		try {
+			localStorage.setItem(KEY, JSON.stringify(list));
+		} catch {
+			// 저장소가 막혀 있어도 버튼 상태만 이번 화면에서 바뀐다
+		}
+	}
+
+	document.querySelectorAll<HTMLButtonElement>('[data-complete-slug]').forEach((btn) => {
+		const slug = btn.dataset.completeSlug || '';
+		const text = btn.querySelector<HTMLElement>('.complete-text');
+
+		function render() {
+			const done = readDone().indexOf(slug) !== -1;
+			btn.setAttribute('aria-pressed', String(done));
+			btn.classList.toggle('is-done', done);
+			if (text) text.textContent = done ? '완료됨' : '완료로 표시';
+		}
+
+		btn.addEventListener('click', () => {
+			const list = readDone();
+			const i = list.indexOf(slug);
+			if (i === -1) list.push(slug);
+			else list.splice(i, 1);
+			writeDone(list);
+			render();
+			window.dispatchEvent(new Event(EVENT));
+		});
+
+		render();
+	});
+</script>
+
+<style>
+	.lesson-complete {
+		display: flex;
+		justify-content: flex-start;
+	}
+
+	.complete-button {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		min-height: var(--touch-min);
+		padding: 0 var(--space-5);
+		border-radius: var(--radius-md);
+		border: 1px solid var(--border-strong);
+		background: var(--surface);
+		color: var(--text);
+		font-family: var(--font-sans-ko);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.complete-button.is-done {
+		background: var(--primary);
+		border-color: var(--primary);
+		color: var(--on-primary);
+	}
+
+	.complete-button:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+
+	.complete-icon {
+		width: 20px;
+		height: 20px;
+		flex: none;
+	}
+</style>

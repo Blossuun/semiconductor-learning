@@ -61,11 +61,17 @@ const pageSteps = STEPS.map((s) => {
 								<a href={target} aria-current={isCurrent ? 'step' : undefined}>
 									<span class="toc-no">{s.n}</span>
 									<span>{s.title}</span>
+									{stepLessons.length > 0 && (
+										<span class="toc-progress" data-step-progress={s.n}>0/{stepLessons.length}</span>
+									)}
 								</a>
 							) : (
 								<span class="toc-pending">
 									<span class="toc-no">{s.n}</span>
 									<span>{s.title}</span>
+									{stepLessons.length > 0 && (
+										<span class="toc-progress" data-step-progress={s.n}>0/{stepLessons.length}</span>
+									)}
 								</span>
 							)}
 							{isCurrent && stepLessons.length > 0 && (

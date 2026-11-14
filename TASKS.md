@@ -84,14 +84,14 @@ T-18 전에 `frontend-design` 플러그인을 켜 둔다.
 
 | 번호 | 유형 | 모델 | 작업 | 읽을 파일 | 완료 기준 | 진행 |
 |---|---|---|---|---|---|---|
-| [ ] T-31 | A | F | 용어 스키마에 예문 추가: `example_ko·en·ja·zh_cn·zh_tw` (현장에서 실제 쓸 법한 한 문장씩). 스키마·`/term` 절차·가이드 3곳 수정 (파일 3개, 사용자 승인됨) | src/content.config.ts, .claude/skills/term/SKILL.md, docs/content-guide.md | 빌드 통과 | 단독 |
-| [ ] T-32 | B | F | `TermCard`에 언어별 예문 표시. 기기에 해당 언어 음성이 없으면 발음 버튼을 숨기고 읽기 표기를 강조 | src/components/TermCard.astro | 예문이 뜨고, 음성 없는 언어에서 오류 없음 | 동시 |
-| [ ] T-33 | C | F | 기존 용어 51개에 예문 추가 (10개씩 나눠 진행) | glossary.yaml 해당 구간 | 예문 없는 용어 0개 | 동시 |
-| [ ] T-34 | B | F | 현장 문장 데이터 `src/data/phrases.yaml` (상황, 5개 표기, 읽기) + `PhraseCard` 컴포넌트 + 견본 5문장 | docs/content-guide.md | 문장 id를 넣으면 카드가 뜸 | 동시 |
-| [ ] T-35 | B | F | `TermQuiz` 컴포넌트: glossary에서 자동 출제해 4개 국어로 용어 맞히기 (단계 필터). 용어집 페이지에 배치 | src/pages/glossary.astro, src/components/Quiz.astro | 용어집에서 연습 가능 | 동시 |
-| [ ] T-38 | D | F | 레슨 구조에 "더 깊이 알아보기" 절 추가 (원리 심화, 접어 두는 형태). `/lesson` 절차·템플릿 수정 후 포토 레슨에 적용 | .claude/skills/lesson/SKILL.md, src/content/_template.mdx, src/content/lessons/photolithography.mdx | 포토 레슨에 심화 절이 있음 | 동시 |
-| [ ] T-36 | B | F | 학습 진도: 레슨 완료 표시를 localStorage에 저장하고 사이드바·홈에 진도 표시 | docs/design-system.md, src/layouts/Base.astro 해당 구간 | 새로 고침 후에도 진도 유지 | 단독 |
-| [ ] T-37 | A | F | 길 찾기: 사이드바 단계별 목차, 레슨 이전·다음 이동, `TermCard`에서 용어집 항목으로 링크 | src/layouts/Base.astro 해당 구간, 레슨 라우트 파일 | 모든 레슨에서 앞뒤·목차 이동 가능 | 단독 |
+| [x] T-31 | A | F | 용어 스키마에 예문 추가: `example_ko·en·ja·zh_cn·zh_tw` (현장에서 실제 쓸 법한 한 문장씩). 스키마·`/term` 절차·가이드 3곳 수정 (파일 3개, 사용자 승인됨) | src/content.config.ts, .claude/skills/term/SKILL.md, docs/content-guide.md | 빌드 통과 | 단독 |
+| [x] T-32 | B | F | `TermCard`에 언어별 예문 표시. 기기에 해당 언어 음성이 없으면 발음 버튼을 숨기고 읽기 표기를 강조 | src/components/TermCard.astro | 예문이 뜨고, 음성 없는 언어에서 오류 없음 | 동시 |
+| [x] T-33 | C | F | 기존 용어 51개에 예문 추가 (10개씩 나눠 진행) | glossary.yaml 해당 구간 | 예문 없는 용어 0개 | 동시 |
+| [x] T-34 | B | F | 현장 문장 데이터 `src/data/phrases.yaml` (상황, 5개 표기, 읽기) + `PhraseCard` 컴포넌트 + 견본 5문장 | docs/content-guide.md | 문장 id를 넣으면 카드가 뜸 | 동시 |
+| [x] T-35 | B | F | `TermQuiz` 컴포넌트: glossary에서 자동 출제해 4개 국어로 용어 맞히기 (단계 필터). 용어집 페이지에 배치 | src/pages/glossary.astro, src/components/Quiz.astro | 용어집에서 연습 가능 | 동시 |
+| [x] T-38 | D | F | 레슨 구조에 "더 깊이 알아보기" 절 추가 (원리 심화, 접어 두는 형태). `/lesson` 절차·템플릿 수정 후 포토 레슨에 적용 | .claude/skills/lesson/SKILL.md, src/content/_template.mdx, src/content/lessons/photolithography.mdx | 포토 레슨에 심화 절이 있음 | 동시 |
+| [x] T-36 | B | F | 학습 진도: 레슨 완료 표시를 localStorage에 저장하고 사이드바·홈에 진도 표시 | docs/design-system.md, src/layouts/Base.astro 해당 구간 | 새로 고침 후에도 진도 유지 | 단독 |
+| [x] T-37 | A | F | 길 찾기: 사이드바 단계별 목차, 레슨 이전·다음 이동, `TermCard`에서 용어집 항목으로 링크 | src/layouts/Base.astro 해당 구간, 레슨 라우트 파일 | 모든 레슨에서 앞뒤·목차 이동 가능 | 단독 |
 
 → 여기서 사용자 재검토 (구조). 통과하면 양산 시작.
 
@@ -101,18 +101,18 @@ T-18 전에 `frontend-design` 플러그인을 켜 둔다.
 
 | 번호 | 유형 | 모델 | 작업 | 읽을 파일 | 완료 기준 | 진행 |
 |---|---|---|---|---|---|---|
-| [ ] T-40 | D | S | 1단계 레슨: 도체·부도체·반도체 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-41 | D | S | 1단계 레슨: 도핑 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-42 | D | S | 1단계 레슨: PN 접합 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-43 | D | S | 1단계 레슨: 트랜지스터(MOSFET) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-44 | D | S | 2단계 레슨: 메모리와 로직 (DRAM·NAND·HBM vs 로직) (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-45 | D | S | 2단계 레슨: 산업 구조 (IDM·팹리스·파운드리·OSAT·소부장) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-46 | D | S | 3단계 레슨: 팹과 클린룸 (공장 구조, 방진복) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-47 | D | S | 3단계 레슨: 웨이퍼 이송 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-48 | D | S | 4단계 레슨: 웨이퍼 제조 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-49 | D | S | 4단계 레슨: 산화 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-50 | D | S | 4단계 레슨: 식각 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
-| [ ] T-51 | D | S | 4단계 레슨: 증착 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-40 | D | S | 1단계 레슨: 도체·부도체·반도체 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-41 | D | S | 1단계 레슨: 도핑 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-42 | D | S | 1단계 레슨: PN 접합 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-43 | D | S | 1단계 레슨: 트랜지스터(MOSFET) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-44 | D | S | 2단계 레슨: 메모리와 로직 (DRAM·NAND·HBM vs 로직) (검색 필요) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-45 | D | S | 2단계 레슨: 산업 구조 (IDM·팹리스·파운드리·OSAT·소부장) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-46 | D | S | 3단계 레슨: 팹과 클린룸 (공장 구조, 방진복) | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-47 | D | S | 3단계 레슨: 웨이퍼 이송 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-48 | D | S | 4단계 레슨: 웨이퍼 제조 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-49 | D | S | 4단계 레슨: 산화 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-50 | D | S | 4단계 레슨: 식각 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
+| [x] T-51 | D | S | 4단계 레슨: 증착 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
 | [ ] T-52 | D | S | 4단계 레슨: 이온 주입 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
 | [ ] T-53 | D | S | 4단계 레슨: 금속 배선 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |
 | [ ] T-54 | D | S | 4단계 레슨: CMP·세정 | .claude/skills/lesson/SKILL.md | 페이지 완성 | 동시 |

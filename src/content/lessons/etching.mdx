@@ -1,0 +1,145 @@
+---
+title: 식각
+module: 4
+order: 2
+summary: 식각은 포토 공정이 그린 무늬를 따라 막을 깎아 내어, 무늬를 웨이퍼 위 실제 구조로 새기는 공정이다.
+---
+
+import StepAnimation from '../../components/StepAnimation.astro';
+import TermCard from '../../components/TermCard.astro';
+import Quiz from '../../components/Quiz.astro';
+
+## 한 줄 요약
+
+식각(etching)은 감광막이 가리지 않은 부분의 막을 깎아 내어 회로 무늬를 웨이퍼에 새기는 공정이다.
+
+일상 비유: 스티커를 붙인 유리에 모래를 분사하면 스티커가 없는 곳만 깎여 무늬가 남는 샌드블라스트와 비슷하다.
+
+## 단계별로 보기
+
+<StepAnimation label="식각 3단계">
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="웨이퍼 위 막 위에 감광막 무늬가 얹힌 단면">
+			<rect x="60" y="200" width="360" height="40" fill="#9aa3ad" />
+			<rect x="60" y="160" width="360" height="40" fill="#5b8def" />
+			<rect x="100" y="120" width="80" height="40" fill="#e0a030" />
+			<rect x="260" y="120" width="80" height="40" fill="#e0a030" />
+			<text x="140" y="108" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">감광막</text>
+			<text x="440" y="185" text-anchor="end" fill="var(--color-text-muted)" font-size="13">깎을 막</text>
+			<text x="240" y="258" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">웨이퍼</text>
+		</svg>
+		<figcaption>
+			<strong>1. 감광막 무늬 확인</strong>
+			<p>포토 공정이 남긴 감광막 무늬가 깎지 않을 자리를 덮고 있는 상태에서 시작한다.</p>
+			<p>감광막이 가림막 역할을 해야 원하는 자리만 깎을 수 있기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="위에서 내려오는 화살표가 노출된 막을 아래로 깎아 내는 단면">
+			<rect x="60" y="200" width="360" height="40" fill="#9aa3ad" />
+			<rect x="100" y="160" width="80" height="40" fill="#5b8def" />
+			<rect x="260" y="160" width="80" height="40" fill="#5b8def" />
+			<rect x="100" y="120" width="80" height="40" fill="#e0a030" />
+			<rect x="260" y="120" width="80" height="40" fill="#e0a030" />
+			<g stroke="var(--color-text-muted)" stroke-width="2" fill="none">
+				<path d="M200 70 V180 M190 170 L200 182 L210 170" />
+				<path d="M220 70 V180 M210 170 L220 182 L230 170" />
+				<path d="M360 70 V180 M350 170 L360 182 L370 170" />
+				<path d="M380 70 V180 M370 170 L380 182 L390 170" />
+			</g>
+			<text x="440" y="60" text-anchor="end" fill="var(--color-text-muted)" font-size="13">플라스마 속 이온·반응 기체</text>
+		</svg>
+		<figcaption>
+			<strong>2. 노출된 막 깎기</strong>
+			<p>가스를 플라스마(전기를 띤 기체 상태) 로 만들어 감광막이 덮지 않은 막을 위에서 아래로 깎아 낸다.</p>
+			<p>깎는 방향이 곧게 아래여야 무늬의 폭이 설계대로 유지되기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="감광막이 제거되고 막 무늬만 남은 단면">
+			<rect x="60" y="200" width="360" height="40" fill="#9aa3ad" />
+			<rect x="100" y="160" width="80" height="40" fill="#5b8def" />
+			<rect x="260" y="160" width="80" height="40" fill="#5b8def" />
+			<text x="140" y="148" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">남은 막 무늬</text>
+			<text x="300" y="148" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">남은 막 무늬</text>
+		</svg>
+		<figcaption>
+			<strong>3. 감광막 제거</strong>
+			<p>역할을 마친 감광막을 벗겨 내고 웨이퍼를 깨끗이 씻는다.</p>
+			<p>남은 감광막이 다음 공정에서 오염의 원인이 되지 않게 하기 위해서이다.</p>
+		</figcaption>
+	</figure>
+</StepAnimation>
+
+## 자세히 알아보기
+
+### 왜 필요한가
+
+포토 공정은 감광막(빛에 반응하는 막)에 무늬를 만들 뿐이다. 감광막은 얇고 약해 그대로는 회로가 되지 못한다. 무늬를 단단한 막에 옮겨 새겨야 한다.
+
+### 어떻게 하는가
+
+감광막이 가림막(마스크) 역할을 한다. 먼저 감광막 무늬를 확인한다. 다음으로 노출된 막만 깎는다. 깎는 방식에는 약액에 담그는 방식과 플라스마를 쓰는 방식이 있다. 미세한 회로에는 곧게 깎이는 플라스마 방식을 주로 쓴다. 마지막으로 감광막을 벗겨 낸다. 감광막은 잘 깎이지 않고 막은 잘 깎이는 조건을 골라야 한다. 이 차이가 클수록 무늬가 정확히 남는다. 깎은 폭이 설계한 선폭(임계 치수)과 맞는지도 잰다.
+
+### 앞뒤 공정과 어떻게 이어지는가
+
+앞 공정인 포토 공정에서 감광막 무늬가 있는 웨이퍼를 받는다. 식각이 끝나면 웨이퍼에는 막으로 된 무늬가 남는다. 이어서 증착으로 빈 틈을 채우거나 이온 주입으로 불순물을 넣는다. 층마다 이 흐름을 되풀이한다.
+
+## 더 깊이 알아보기
+
+<details>
+<summary>원리 더 보기 (곧게 깎는 이유)</summary>
+
+플라스마 안에는 전기를 띤 이온과 반응성이 큰 입자가 있다. 웨이퍼 쪽에 전압을 걸면 이온이 아래로 가속되어 수직으로 부딪친다. 반응 입자는 막과 화학 반응을 일으켜 휘발성 물질로 바꾸고, 이 물질은 기체로 날아간다. 물리적 충돌과 화학 반응이 함께 작용하는 것이다.
+
+약액으로 깎으면 모든 방향으로 고르게 깎이기 쉽다. 그러면 감광막 아래로 파고들어 폭이 넓어진다. 선폭이 작아질수록 이 오차를 견디기 어려워서 곧게 깎는 방식이 중요해진다.
+
+</details>
+
+## 용어
+
+<TermCard id="etching" />
+<TermCard id="photoresist" />
+<TermCard id="photomask" />
+<TermCard id="photolithography" />
+<TermCard id="development" />
+<TermCard id="critical-dimension" />
+<TermCard id="deposition" />
+<TermCard id="wafer" />
+
+## 확인 문제
+
+<Quiz
+	questions={[
+		{
+			question: '식각의 목적으로 가장 알맞은 것은?',
+			choices: ['감광막 무늬를 막에 옮겨 새긴다', '웨이퍼 위에 막을 쌓는다', '불순물을 넣는다', '웨이퍼를 자른다'],
+			answer: 0,
+			explanation: '식각은 감광막 무늬를 따라 막을 깎아 무늬를 실제 구조로 만든다.',
+		},
+		{
+			question: '식각에서 감광막의 역할은?',
+			choices: ['막을 녹이는 약액', '깎지 않을 자리를 가리는 가림막', '전기를 흐르게 하는 도선', '웨이퍼를 식히는 층'],
+			answer: 1,
+			explanation: '감광막이 덮은 곳은 깎이지 않고 무늬로 남는다.',
+		},
+		{
+			question: '미세한 회로에 플라스마 식각을 주로 쓰는 이유는?',
+			choices: ['값이 가장 싸서', '약액이 필요 없어서', '위에서 아래로 곧게 깎여 선폭이 유지되어서', '감광막이 필요 없어서'],
+			answer: 2,
+			explanation: '이온이 수직으로 부딪쳐 옆으로 파고드는 오차가 작다.',
+		},
+		{
+			question: '식각이 끝난 뒤 하는 일은?',
+			choices: ['노광', '현상', '감광막을 바른다', '남은 감광막을 제거한다'],
+			answer: 3,
+			explanation: '감광막은 역할을 마치면 벗겨 내어 다음 공정에 영향이 없게 한다.',
+		},
+		{
+			question: '식각 직전 공정은?',
+			choices: ['포토 공정', '증착', '패키징', '웨이퍼 출하'],
+			answer: 0,
+			explanation: '포토 공정이 만든 감광막 무늬가 식각의 가림막이 된다.',
+		},
+	]}
+/>

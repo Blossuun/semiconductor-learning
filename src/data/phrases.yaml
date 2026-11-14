@@ -1,0 +1,52 @@
+# 현장 문장 데이터. 문장은 직접 작성한다(외부 문장 복사 금지).
+# readings는 ja(후리가나), zh_cn/zh_tw(병음)만 쓴다. 해당 없으면 생략.
+- id: lot-rework
+  situation: 로트 재작업 지시
+  ko: 이 로트는 노광 불량이라 재작업합니다.
+  en: This lot has exposure defects, so it will be reworked.
+  ja: このロットは露光不良のため、再作業します。
+  ja_reading: このろっとはろこうふりょうのため、さいさぎょうします。
+  zh_cn: 这批次曝光不良，需要返工。
+  zh_cn_pinyin: zhè pīcì bàoguāng bùliáng, xūyào fǎngōng.
+  zh_tw: 這批次曝光不良，需要重工。
+  zh_tw_pinyin: zhè pīcì pùguāng bùliáng, xūyào chònggōng.
+- id: equipment-down
+  situation: 설비 정지 보고
+  ko: 식각 설비가 멈췄습니다. 원인을 확인 중입니다.
+  en: The etch tool is down. We are checking the cause.
+  ja: エッチング装置が停止しました。原因を確認中です。
+  ja_reading: えっちんぐそうちがていししました。げんいんをかくにんちゅうです。
+  zh_cn: 刻蚀设备停机了，正在确认原因。
+  zh_cn_pinyin: kèshí shèbèi tíngjī le, zhèngzài quèrèn yuányīn.
+  zh_tw: 蝕刻設備停機了，正在確認原因。
+  zh_tw_pinyin: shíkè shèbèi tíngjī le, zhèngzài quèrèn yuányīn.
+- id: shift-handover
+  situation: 교대 인수인계
+  ko: 야간 조에서 넘어온 웨이퍼 여섯 장은 검사가 끝나지 않았습니다.
+  en: Six wafers from the night shift have not finished inspection.
+  ja: 夜勤から引き継いだウエハー6枚はまだ検査が終わっていません。
+  ja_reading: やきんからひきつぐうえはーろくまいはまだけんさがおわっていません。
+  zh_cn: 夜班移交的六片晶圆还没有完成检测。
+  zh_cn_pinyin: yèbān yíjiāo de liù piàn jīngyuán hái méiyǒu wánchéng jiǎncè.
+  zh_tw: 夜班移交的六片晶圓還沒有完成檢測。
+  zh_tw_pinyin: yèbān yíjiāo de liù piàn jīngyuán hái méiyǒu wánchéng jiǎncè.
+- id: particle-alarm
+  situation: 클린룸 파티클 경보
+  ko: 파티클 수치가 기준을 넘었습니다. 작업을 잠시 멈추겠습니다.
+  en: Particle count is over the limit. We will pause the work for now.
+  ja: パーティクル数が基準を超えました。作業を一時停止します。
+  ja_reading: ぱーてぃくるすうがきじゅんをこえました。さぎょうをいちじていしします。
+  zh_cn: 颗粒数超过标准，暂时停止作业。
+  zh_cn_pinyin: kēlì shù chāoguò biāozhǔn, zànshí tíngzhǐ zuòyè.
+  zh_tw: 顆粒數超過標準，暫時停止作業。
+  zh_tw_pinyin: kēlì shù chāoguò biāozhǔn, zànshí tíngzhǐ zuòyè.
+- id: wafer-move
+  situation: 웨이퍼 이송 요청
+  ko: 3번 포드를 다음 공정으로 옮겨 주세요.
+  en: Please move pod number 3 to the next process.
+  ja: 3番のポッドを次の工程へ移してください。
+  ja_reading: さんばんのぽっどをつぎのこうていへうつしてください。
+  zh_cn: 请把3号FOUP转到下一道工序。
+  zh_cn_pinyin: qǐng bǎ sān hào FOUP zhuǎn dào xià yí dào gōngxù.
+  zh_tw: 請把3號FOUP轉到下一道製程。
+  zh_tw_pinyin: qǐng bǎ sān hào FOUP zhuǎn dào xià yí dào zhìchéng.

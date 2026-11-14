@@ -1,0 +1,144 @@
+---
+title: 웨이퍼 이송
+module: 3
+order: 1
+summary: 웨이퍼를 밀폐 용기에 담아 자동으로 장비 사이를 옮기고, 장비 안에서는 로봇이 한 장씩 넣고 꺼낸다.
+---
+
+import StepAnimation from '../../components/StepAnimation.astro';
+import TermCard from '../../components/TermCard.astro';
+import Quiz from '../../components/Quiz.astro';
+
+## 한 줄 요약
+
+웨이퍼를 먼지와 충격에서 지키면서 공정 장비 사이로 자동으로 옮기는 일이다.
+
+일상 비유 1개: 깨지기 쉬운 접시를 상자에 담고, 전용 컨베이어로 배달해, 식당 안에서는 직원이 한 장씩 꺼내 쓰는 것과 비슷하다.
+
+## 단계별로 보기
+
+<StepAnimation label="웨이퍼 이송 도해">
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="웨이퍼 여러 장이 FOUP 안에 꽂힌 모습">
+			<rect x="170" y="50" width="140" height="160" rx="10" fill="none" stroke="var(--color-text-muted)" stroke-width="3" />
+			<rect x="190" y="75" width="100" height="8" rx="4" fill="currentColor" />
+			<rect x="190" y="100" width="100" height="8" rx="4" fill="currentColor" />
+			<rect x="190" y="125" width="100" height="8" rx="4" fill="currentColor" />
+			<rect x="190" y="150" width="100" height="8" rx="4" fill="currentColor" />
+			<rect x="190" y="175" width="100" height="8" rx="4" fill="currentColor" />
+			<text x="240" y="238" text-anchor="middle" fill="var(--color-text-muted)">FOUP</text>
+		</svg>
+		<figcaption>
+			<strong>1. FOUP에 담기</strong>
+			<p>웨이퍼 여러 장을 한 장씩 칸에 나눠 밀폐 용기에 꽂는다.</p>
+			<p>웨이퍼끼리 닿거나 바깥 먼지가 묻는 것을 막기 위해서다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="천장 레일 위의 OHT가 FOUP을 매달아 옮기는 모습">
+			<line x1="20" y1="40" x2="460" y2="40" stroke="var(--color-text-muted)" stroke-width="4" />
+			<rect x="190" y="40" width="100" height="26" rx="4" fill="currentColor" />
+			<line x1="240" y1="66" x2="240" y2="100" stroke="currentColor" stroke-width="3" />
+			<rect x="200" y="100" width="80" height="90" rx="8" fill="none" stroke="currentColor" stroke-width="3" />
+			<path d="M300 150 L350 150 M338 138 L350 150 L338 162" fill="none" stroke="var(--color-text-muted)" stroke-width="3" />
+			<text x="240" y="230" text-anchor="middle" fill="var(--color-text-muted)">OHT 반송</text>
+		</svg>
+		<figcaption>
+			<strong>2. OHT로 반송</strong>
+			<p>천장 레일을 달리는 OHT가 FOUP을 들어 다음 장비 앞으로 옮긴다.</p>
+			<p>바닥의 사람과 먼지를 피하고 공장 전체의 흐름을 자동으로 이어 가기 위해서다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="장비 앞 포트의 FOUP에서 로봇 팔이 웨이퍼를 꺼내 챔버로 넣는 모습">
+			<rect x="40" y="90" width="80" height="90" rx="8" fill="none" stroke="currentColor" stroke-width="3" />
+			<circle cx="230" cy="135" r="22" fill="none" stroke="currentColor" stroke-width="3" />
+			<line x1="252" y1="135" x2="330" y2="135" stroke="currentColor" stroke-width="6" />
+			<rect x="350" y="80" width="100" height="110" rx="8" fill="none" stroke="var(--color-text-muted)" stroke-width="3" />
+			<line x1="120" y1="135" x2="208" y2="135" stroke="var(--color-text-muted)" stroke-width="2" stroke-dasharray="6 4" />
+			<text x="80" y="210" text-anchor="middle" fill="var(--color-text-muted)">FOUP</text>
+			<text x="230" y="190" text-anchor="middle" fill="var(--color-text-muted)">로봇</text>
+			<text x="400" y="210" text-anchor="middle" fill="var(--color-text-muted)">챔버</text>
+		</svg>
+		<figcaption>
+			<strong>3. 장비에 로딩</strong>
+			<p>장비 안 로봇 팔이 FOUP에서 웨이퍼를 한 장씩 꺼내 챔버에 넣고, 끝나면 다시 FOUP에 돌려놓는다.</p>
+			<p>FOUP 문을 장비 안에서만 열어 웨이퍼가 바깥 공기에 닿지 않게 하기 위해서다.</p>
+		</figcaption>
+	</figure>
+</StepAnimation>
+
+## 자세히 알아보기
+
+### 왜 필요한가
+
+웨이퍼는 얇고 깨지기 쉽다. 먼지 한 알도 회로를 망칠 수 있다. 칩 하나를 만들려면 수백 개 공정을 거치고, 장비 사이를 수없이 오간다. 사람이 손으로 옮기면 먼지와 파손 위험이 크다. 그래서 밀폐 용기와 자동 반송을 쓴다.
+
+### 어떻게 하는가
+
+1. FOUP에 담기: 웨이퍼 여러 장(보통 25장)을 FOUP(웨이퍼를 밀폐해 담는 전용 용기)에 꽂는다.
+2. OHT로 반송: OHT(천장 레일을 따라 달리는 자동 반송 장치)가 FOUP을 들어 다음 장비 앞으로 옮긴다.
+3. 장비에 로딩: 장비 앞 포트에 FOUP을 내려놓으면 문이 열린다. 로봇 팔이 웨이퍼를 한 장씩 꺼내 챔버(공정이 일어나는 방)에 넣는다. 공정이 끝나면 반대로 FOUP에 돌려놓는다.
+
+### 앞뒤 공정과 어떻게 이어지는가
+
+앞 장비에서 끝난 웨이퍼를 받아 다음 장비로 넘긴다. 세정처럼 대기 시간에 제한이 있는 공정은 기다리는 동안 표면이 변할 수 있다. 이 제한이 큐 타임(Queue Time)이다. MES(공장 전체를 관리하는 제조 실행 시스템)가 FOUP 위치를 추적하며 다음 목적지를 지시한다. 반송이 막히면 WIP(공정 중인 웨이퍼)가 쌓이고 TAT(투입부터 완료까지 걸리는 시간)가 길어진다.
+
+## 더 깊이 알아보기
+
+<details>
+<summary>원리 더 보기 (FOUP이 청정도를 지키는 방식)</summary>
+
+클린룸 전체를 아주 깨끗하게 유지하는 것보다 웨이퍼 주변만 깨끗하게 지키는 편이 비용이 적게 든다. FOUP은 이 생각에서 나왔다. 용기 안을 깨끗한 상태로 닫아 두고, 장비의 포트에 꼭 맞게 결합한 뒤에야 문을 연다. 용기와 장비 사이의 틈이 바깥 공기에 노출되지 않는다.
+
+로봇 팔은 웨이퍼의 뒷면 가장자리 근처만 받치도록 설계된다. 회로가 있는 앞면에 닿지 않아 긁힘과 오염이 줄어든다. 움직임도 진동과 먼지 발생이 적게 제어한다.
+
+</details>
+
+## 용어
+
+<TermCard id="wafer" />
+<TermCard id="foup" />
+<TermCard id="oht" />
+<TermCard id="wip" />
+<TermCard id="tat" />
+<TermCard id="queue-time" />
+<TermCard id="mes" />
+<TermCard id="cleaning" />
+
+## 확인 문제
+
+<Quiz
+	questions={[
+		{
+			question: 'FOUP의 역할은 무엇인가?',
+			choices: ['웨이퍼를 밀폐해 담아 보호한다', '웨이퍼에 회로를 새긴다', '웨이퍼를 가열한다', '웨이퍼를 자른다'],
+			answer: 0,
+			explanation: 'FOUP은 웨이퍼를 먼지와 충격에서 지키는 밀폐 용기다.',
+		},
+		{
+			question: 'OHT는 어디를 달리며 FOUP을 옮기는가?',
+			choices: ['바닥의 도로', '천장 레일', '지하 배관', '장비 내부 챔버'],
+			answer: 1,
+			explanation: 'OHT는 천장에 건 레일을 따라 움직이는 자동 반송 장치다.',
+		},
+		{
+			question: '장비 안에서 웨이퍼를 한 장씩 꺼내 챔버에 넣는 것은?',
+			choices: ['작업자의 손', 'OHT', '로봇 팔', 'FOUP 뚜껑'],
+			answer: 2,
+			explanation: '장비 안의 로봇 팔이 웨이퍼를 한 장씩 옮긴다.',
+		},
+		{
+			question: '반송이 막혀 공정 중인 웨이퍼가 쌓이면 어떤 문제가 커지는가?',
+			choices: ['웨이퍼 지름', '실리콘 순도', '도핑 농도', 'TAT(총 소요 시간)'],
+			answer: 3,
+			explanation: '기다리는 웨이퍼가 늘면 투입부터 완료까지 걸리는 시간이 길어진다.',
+		},
+		{
+			question: '웨이퍼를 사람 손 대신 자동으로 옮기는 가장 큰 이유는?',
+			choices: ['먼지와 파손 위험을 줄이기 위해', '웨이퍼를 더 무겁게 하려고', '공정 수를 줄이려고', '웨이퍼 색을 바꾸려고'],
+			answer: 0,
+			explanation: '사람이 만지면 먼지와 파손 위험이 커진다.',
+		},
+	]}
+/>

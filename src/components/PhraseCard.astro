@@ -1,0 +1,132 @@
+---
+import { getEntry } from 'astro:content';
+import { audioPath } from '../scripts/audio-path';
+
+interface Props {
+	id: string;
+}
+
+const { id } = Astro.props;
+const entry = await getEntry('phrases', id);
+if (!entry) {
+	throw new Error(`PhraseCard: phrases.yaml에 id "${id}" 문장이 없습니다.`);
+}
+const p = entry.data;
+
+const rows = [
+	{ label: '한국어', lang: 'ko', speak: 'ko-KR', audio: audioPath('phrases', id, 'ko'), text: p.ko, reading: undefined },
+	{ label: 'English', lang: 'en', speak: 'en-US', audio: audioPath('phrases', id, 'en'), text: p.en, reading: undefined },
+	{ label: '日本語', lang: 'ja', speak: 'ja-JP', audio: audioPath('phrases', id, 'ja'), text: p.ja, reading: p.ja_reading },
+	{ label: '简体中文', lang: 'zh-Hans', speak: 'zh-CN', audio: audioPath('phrases', id, 'zh_cn'), text: p.zh_cn, reading: p.zh_cn_pinyin },
+	{ label: '繁體中文', lang: 'zh-Hant', speak: 'zh-TW', audio: audioPath('phrases', id, 'zh_tw'), text: p.zh_tw, reading: p.zh_tw_pinyin },
+];
+---
+
+<article class="phrase-card" id={`phrase-${id}`}>
+	<header class="head">
+		<span class="situation">{p.situation}</span>
+	</header>
+	<div class="rows">
+		{
+			rows.map((row) => (
+				<div class="row" data-lang={row.lang === 'ko' ? undefined : row.lang} lang={row.lang}>
+					<span class="label">{row.label}</span>
+					<span class="text">
+						<span class="word">{row.text}</span>
+						{row.reading && <span class="reading">{row.reading}</span>}
+					</span>
+					<button
+						class="speak"
+						type="button"
+						aria-label={`${row.label} 문장 듣기`}
+						data-speak={row.text}
+						data-speak-lang={row.speak}
+						data-audio={row.audio}
+					>
+						<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+							<path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+							<path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+						</svg>
+					</button>
+				</div>
+			))
+		}
+	</div>
+</article>
+
+<script>
+	import '../scripts/speak.ts';
+</script>
+
+<style>
+	.phrase-card {
+		background: var(--surface, #ffffff);
+		border: 1px solid var(--border, #d0d7de);
+		border-radius: var(--radius-lg, 12px);
+		padding: 16px;
+		margin: 12px 0;
+		color: var(--text, #1f2328);
+	}
+	.head {
+		margin-bottom: 8px;
+	}
+	.situation {
+		display: inline-block;
+		padding: 2px 8px;
+		border-radius: var(--radius-sm, 4px);
+		background: var(--accent-soft, #e6f0ff);
+		font-size: 0.875rem;
+		font-weight: 600;
+	}
+	.rows {
+		display: flex;
+		flex-direction: column;
+	}
+	.row {
+		display: flex;
+		gap: 12px;
+		align-items: flex-start;
+		padding: 8px 0;
+		border-top: 1px solid var(--border, #d0d7de);
+	}
+	.label {
+		flex: 0 0 72px;
+		font-size: 0.8125rem;
+		color: var(--muted, #57606a);
+	}
+	.text {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		gap: 2px;
+		min-width: 0;
+	}
+	.speak {
+		display: inline-flex;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+		width: var(--touch-min, 44px);
+		height: var(--touch-min, 44px);
+		padding: 0;
+		border: 1px solid var(--border-strong, #afb8c1);
+		border-radius: var(--radius-full, 999px);
+		background: var(--surface, #ffffff);
+		color: var(--primary, #1f4fd8);
+		cursor: pointer;
+	}
+	.speak[hidden] {
+		display: none;
+	}
+	.speak:hover {
+		background: var(--primary-soft, #e6edff);
+	}
+	.word {
+		font-size: 1rem;
+		line-height: 1.5;
+	}
+	.reading {
+		font-size: 0.8125rem;
+		color: var(--muted, #57606a);
+	}
+</style>

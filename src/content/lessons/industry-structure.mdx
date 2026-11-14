@@ -1,0 +1,130 @@
+---
+title: 산업 구조 (IDM·팹리스·파운드리·OSAT·소부장)
+module: 2
+order: 1
+summary: 반도체는 설계, 제조, 패키징·테스트를 나눠 맡는 여러 기업과 이를 받치는 소재·부품·장비 기업이 함께 만든다.
+---
+
+import StepAnimation from '../../components/StepAnimation.astro';
+import TermCard from '../../components/TermCard.astro';
+import Quiz from '../../components/Quiz.astro';
+
+## 한 줄 요약
+
+반도체 산업은 설계, 제조, 패키징·테스트로 일을 나누고, 소재·부품·장비 기업이 그 전체를 뒷받침한다.
+
+일상 비유 1개: 책 한 권이 나오는 과정과 비슷하다. 작가가 원고를 쓰고(설계), 인쇄소가 찍고(제조), 제본소가 묶고 검수한다(패키징·테스트). 종이와 잉크, 인쇄기를 파는 회사가 뒤에서 받친다.
+
+## 단계별로 보기
+
+<StepAnimation label="반도체 산업의 가치사슬">
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="설계 단계: 팹리스가 회로 도면을 그린다">
+			<rect x="150" y="70" width="180" height="120" rx="8" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
+			<path d="M180 110 H230 V150 H300 M200 130 H260 M230 150 V170" fill="none" stroke="currentColor" stroke-width="2" />
+			<text x="240" y="225" text-anchor="middle" fill="var(--color-text-muted)">회로 도면</text>
+		</svg>
+		<figcaption>
+			<strong>설계</strong>
+			<p>팹리스(공장 없이 설계만 하는 회사)가 칩의 회로 도면을 만든다.</p>
+			<p>칩이 어떤 일을 할지 정해야 만들 수 있기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="제조 단계: 파운드리가 웨이퍼 위에 도면대로 칩을 만든다">
+			<circle cx="240" cy="125" r="70" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
+			<path d="M200 95 h20 v20 h-20z M230 95 h20 v20 h-20z M260 95 h20 v20 h-20z M200 125 h20 v20 h-20z M230 125 h20 v20 h-20z M260 125 h20 v20 h-20z" fill="none" stroke="currentColor" stroke-width="2" />
+			<text x="240" y="225" text-anchor="middle" fill="var(--color-text-muted)">웨이퍼 위의 칩</text>
+		</svg>
+		<figcaption>
+			<strong>제조</strong>
+			<p>파운드리(제조를 맡아 주는 회사)가 도면대로 웨이퍼 위에 칩을 만든다.</p>
+			<p>수백 단계의 공정에는 큰 공장과 장비 투자가 필요하기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="패키징·테스트 단계: OSAT가 칩을 자르고 포장하고 검사한다">
+			<rect x="190" y="85" width="100" height="70" rx="6" fill="none" stroke="currentColor" stroke-width="2" />
+			<path d="M205 155 v25 M225 155 v25 M245 155 v25 M265 155 v25 M205 85 v-25 M225 85 v-25 M245 85 v-25 M265 85 v-25" stroke="var(--color-text-muted)" stroke-width="2" />
+			<text x="240" y="225" text-anchor="middle" fill="var(--color-text-muted)">포장된 칩</text>
+		</svg>
+		<figcaption>
+			<strong>패키징·테스트</strong>
+			<p>OSAT(조립·검사를 맡는 회사)가 칩을 잘라 포장하고 작동을 검사한다.</p>
+			<p>칩을 보호하고 기판과 연결해야 제품에 쓸 수 있기 때문이다.</p>
+		</figcaption>
+	</figure>
+</StepAnimation>
+
+## 자세히 알아보기
+
+### 왜 필요한가
+
+반도체 한 개를 만들려면 설계 기술, 수십조 원대의 공장, 정밀한 조립 기술이 모두 필요하다. 한 회사가 전부 잘하기는 어렵다. 그래서 잘하는 분야를 나눠 맡는 구조가 생겼다.
+
+### 어떻게 하는가
+
+일은 세 단계로 나뉜다. 먼저 설계가 있다. 팹리스(fabless, 공장이 없는 설계 전문 회사)가 도면을 만든다. 다음은 제조다. 파운드리(foundry, 위탁 생산 회사)가 그 도면대로 웨이퍼 위에 칩을 만든다. 마지막은 패키징·테스트다. OSAT(외주 반도체 조립·테스트 회사)가 칩을 잘라 포장하고 검사한다.
+
+IDM(종합 반도체 회사)은 이 세 단계를 한 회사 안에서 모두 한다. 소부장(소재·부품·장비)은 직접 칩을 만들지 않는다. 대신 웨이퍼, 화학 물질, 제조 장비를 공급해 모든 단계를 받쳐 준다.
+
+### 앞뒤 공정과 어떻게 이어지는가
+
+팹리스가 넘긴 설계 파일이 파운드리의 출발점이다. 파운드리가 만든 웨이퍼는 OSAT로 넘어가 완성품이 된다. 완성된 칩은 전자 제품 회사로 간다. 소부장은 각 단계에 계속 물자를 공급한다.
+
+## 더 깊이 알아보기
+
+<details>
+<summary>원리 더 보기 (분업이 생긴 까닭)</summary>
+
+공장 하나를 짓고 최신 공정을 유지하는 비용은 해마다 커졌다. 이 비용을 감당하려면 여러 고객의 주문을 모아 공장을 꽉 채워 돌려야 한다. 파운드리가 여러 팹리스의 주문을 받는 이유다. 반대로 팹리스는 공장 투자 없이 설계에만 집중해 적은 자본으로 시작할 수 있다.
+
+분업에는 약점도 있다. 설계와 공정이 서로 떨어져 있으면 칩의 성능을 끝까지 맞추기 어렵다. IDM은 설계와 공정을 함께 다듬을 수 있다는 점이 강점이다. 어느 쪽이 더 유리한지는 제품과 시기에 따라 달라진다.
+
+</details>
+
+## 용어
+
+<TermCard id="semiconductor" />
+<TermCard id="wafer" />
+<TermCard id="silicon" />
+<TermCard id="packaging" />
+<TermCard id="dicing" />
+<TermCard id="eds" />
+
+## 확인 문제
+
+<Quiz
+	questions={[
+		{
+			question: '공장 없이 칩 설계만 전문으로 하는 회사는?',
+			choices: ['팹리스', '파운드리', 'OSAT', 'IDM'],
+			answer: 0,
+			explanation: '팹리스는 설계만 하고 제조는 파운드리에 맡긴다.',
+		},
+		{
+			question: '남의 설계 도면대로 웨이퍼 위에 칩을 만들어 주는 회사는?',
+			choices: ['팹리스', '파운드리', '소부장', '전자 제품 회사'],
+			answer: 1,
+			explanation: '파운드리는 위탁 생산을 맡는 제조 전문 회사다.',
+		},
+		{
+			question: '칩을 잘라 포장하고 검사하는 일을 주로 맡는 회사는?',
+			choices: ['팹리스', '파운드리', 'OSAT', '소재 회사'],
+			answer: 2,
+			explanation: 'OSAT는 패키징과 테스트를 외주로 맡는 회사다.',
+		},
+		{
+			question: '설계, 제조, 패키징을 한 회사 안에서 모두 하는 형태는?',
+			choices: ['팹리스', 'OSAT', '소부장', 'IDM'],
+			answer: 3,
+			explanation: 'IDM은 종합 반도체 회사로 세 단계를 직접 수행한다.',
+		},
+		{
+			question: '소부장이 하는 일로 알맞은 것은?',
+			choices: ['소재·부품·장비를 공급해 전 단계를 받친다', '칩 회로를 설계한다', '완성 칩을 소비자에게 판매한다', '웨이퍼 위에 칩을 직접 만든다'],
+			answer: 0,
+			explanation: '소부장은 칩을 직접 만들지 않고 필요한 물자와 장비를 공급한다.',
+		},
+	]}
+/>

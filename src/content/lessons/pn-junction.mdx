@@ -1,0 +1,127 @@
+---
+title: PN 접합
+module: 1
+order: 3
+summary: P형과 N형 반도체를 맞붙이면 전류를 한쪽 방향으로만 흐르게 하는 경계가 생긴다.
+---
+
+import StepAnimation from '../../components/StepAnimation.astro';
+import TermCard from '../../components/TermCard.astro';
+import Quiz from '../../components/Quiz.astro';
+
+## 한 줄 요약
+
+PN 접합은 P형과 N형 반도체가 맞닿은 경계로, 전류를 한쪽 방향으로만 통과시킨다.
+
+일상 비유 1개: 자전거 바퀴의 공기주입구 밸브와 비슷하다. 공기는 들어갈 수 있지만 거꾸로 빠져나오지는 못한다.
+
+## 단계별로 보기
+
+<StepAnimation label="PN 접합이 만들어지고 작동하는 과정">
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="P형과 N형이 맞닿은 모습">
+			<text x="240" y="134" text-anchor="middle" fill="var(--color-text-muted)">1단계 그림 자리</text>
+		</svg>
+		<figcaption>
+			<strong>접합 만들기</strong>
+			<p>한쪽에는 P형, 다른 쪽에는 N형이 되도록 불순물을 넣어 두 영역을 한 면에서 맞닿게 한다.</p>
+			<p>두 종류의 운반자를 한 결정 안에서 만나게 해야 경계에 전기적 성질이 생기기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="경계에 공핍층이 생긴 모습">
+			<text x="240" y="134" text-anchor="middle" fill="var(--color-text-muted)">2단계 그림 자리</text>
+		</svg>
+		<figcaption>
+			<strong>공핍층 만들기</strong>
+			<p>경계 양쪽의 전자와 정공이 서로 넘어가 짝을 이루어 사라지고, 운반자가 빈 얇은 층이 생긴다.</p>
+			<p>이 층에 생긴 전기장이 더 이상의 확산을 막아 경계가 안정되기 때문이다.</p>
+		</figcaption>
+	</figure>
+	<figure>
+		<svg viewBox="0 0 480 268" role="img" aria-label="전압 방향에 따라 공핍층 폭이 달라지는 모습">
+			<text x="240" y="134" text-anchor="middle" fill="var(--color-text-muted)">3단계 그림 자리</text>
+		</svg>
+		<figcaption>
+			<strong>전압 걸기</strong>
+			<p>P쪽에 +, N쪽에 -를 걸면 공핍층이 얇아져 전류가 흐르고, 반대로 걸면 넓어져 전류가 막힌다.</p>
+			<p>전압의 방향으로 전류를 켜고 끄는 스위치 동작을 얻기 위해서다.</p>
+		</figcaption>
+	</figure>
+</StepAnimation>
+
+## 자세히 알아보기
+
+### 왜 필요한가
+
+P형과 N형은 각각 따로 쓰면 전기가 조금 더 잘 통하는 재료일 뿐이다. 전류를 원하는 방향으로만 흐르게 하거나 막는 장치가 있어야 회로를 만들 수 있다. PN 접합(P형과 N형 반도체가 맞닿은 경계)이 그 역할을 한다. 다이오드와 트랜지스터의 기본 구조다.
+
+### 어떻게 하는가
+
+1. 접합 만들기: 실리콘 한 조각의 한쪽에는 억셉터(정공을 만드는 불순물)를, 다른 쪽에는 도너(전자를 내놓는 불순물)를 넣는다. P형과 N형이 한 면에서 맞닿는다.
+2. 공핍층 만들기: 경계에서 N쪽 전자는 P쪽으로, P쪽 정공은 N쪽으로 퍼진다(확산). 만나면 서로 짝을 이루어 사라진다. 경계에는 운반자가 빈 공핍층이 생기고, 남은 고정 이온이 만드는 전기장이 확산을 멈춘다.
+3. 전압 걸기: P쪽에 +, N쪽에 -를 걸면(순방향) 공핍층이 얇아져 전류가 흐른다. 반대로 걸면(역방향) 공핍층이 넓어져 전류가 거의 흐르지 않는다.
+
+### 앞뒤 공정과 어떻게 이어지는가
+
+앞 단계인 도핑(불순물을 넣어 전기적 성질을 바꾸는 일)에서 P형과 N형 영역을 받는다. 이 접합은 다이오드의 바탕이 되고, 이후 MOSFET(전압으로 전류를 켜고 끄는 소자)의 소스·드레인 구조에도 쓰인다.
+
+## 더 깊이 알아보기
+
+<details>
+<summary>원리 더 보기 (공핍층의 전기장과 에너지 장벽)</summary>
+
+확산이 끝난 뒤 공핍층에는 움직이지 못하는 이온이 남는다. P쪽은 음이온, N쪽은 양이온이다. 이 이온들이 N에서 P 방향으로 전기장을 만들고, 운반자가 넘어가려면 넘어야 하는 에너지 장벽이 된다.
+
+순방향 전압은 이 장벽을 낮춰 운반자가 쉽게 넘어가게 한다. 역방향 전압은 장벽을 높여 넘어가는 운반자를 거의 없앤다. 그래서 같은 접합이 방향에 따라 다른 저항처럼 행동한다.
+
+</details>
+
+## 용어
+
+<TermCard id="pn-junction" />
+<TermCard id="p-type-semiconductor" />
+<TermCard id="n-type-semiconductor" />
+<TermCard id="doping" />
+<TermCard id="hole" />
+<TermCard id="electron" />
+<TermCard id="carrier" />
+<TermCard id="donor" />
+<TermCard id="acceptor" />
+
+## 확인 문제
+
+<Quiz
+	questions={[
+		{
+			question: 'PN 접합이란 무엇인가?',
+			choices: ['P형과 N형 반도체가 맞닿은 경계', '금속과 절연체의 경계', 'P형 반도체끼리 붙인 면', '실리콘 웨이퍼의 가장자리'],
+			answer: 0,
+			explanation: 'PN 접합은 P형과 N형이 한 면에서 맞닿은 경계다.',
+		},
+		{
+			question: '공핍층에 대한 설명으로 맞는 것은?',
+			choices: ['전자가 가장 많이 모인 층', '운반자가 거의 없는 얇은 층', '금속 배선이 지나는 층', '산화막으로 된 층'],
+			answer: 1,
+			explanation: '전자와 정공이 짝을 이루어 사라져 운반자가 빈 층이 된다.',
+		},
+		{
+			question: '공핍층에서 확산이 멈추는 이유는?',
+			choices: ['온도가 내려가서', '불순물이 모두 사라져서', '고정 이온이 만든 전기장이 막아서', '웨이퍼가 식어서'],
+			answer: 2,
+			explanation: '남은 고정 이온이 만드는 전기장이 운반자의 이동을 막는다.',
+		},
+		{
+			question: '순방향 전압은 어떻게 거는가?',
+			choices: ['P쪽에 -, N쪽에 +', '양쪽에 모두 -', '양쪽에 모두 +', 'P쪽에 +, N쪽에 -'],
+			answer: 3,
+			explanation: 'P쪽에 +, N쪽에 -를 걸면 공핍층이 얇아져 전류가 흐른다.',
+		},
+		{
+			question: '역방향 전압을 걸면 어떻게 되는가?',
+			choices: ['공핍층이 넓어져 전류가 거의 흐르지 않는다', '공핍층이 얇아져 전류가 크게 흐른다', '공핍층이 금속으로 바뀐다', '정공이 모두 전자로 바뀐다'],
+			answer: 0,
+			explanation: '역방향에서는 공핍층이 넓어져 전류가 막힌다.',
+		},
+	]}
+/>

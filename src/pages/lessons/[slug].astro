@@ -1,5 +1,6 @@
 ---
 import Lesson from '../../layouts/Lesson.astro';
+import LessonComplete from '../../components/LessonComplete.astro';
 
 export function getStaticPaths() {
 	const modules = import.meta.glob('../../content/lessons/*.mdx', { eager: true }) as Record<string, any>;
@@ -34,4 +35,5 @@ const { lesson, Content, lessons, prev, next } = Astro.props;
 
 <Lesson lesson={lesson} lessons={lessons} prev={prev} next={next}>
 	<Content />
+	<LessonComplete slug={lesson.slug} />
 </Lesson>

@@ -9,6 +9,11 @@
   zh_tw_pinyin: wéiyǐng
   abbr: Photo, Litho
   field_usage: "현장에서는 '포토'로 줄여 부름"
+  example_ko: 이번 로트는 포토 공정에서 노광 불량이 나서 재작업한다.
+  example_en: This lot had exposure defects in photolithography, so it will be reworked.
+  example_ja: 今回のロットはフォトリソグラフィで露光不良が出たため、再作業する。
+  example_zh_cn: 这批次在光刻工序出现曝光不良，需要返工。
+  example_zh_tw: 這批次在微影製程出現曝光不良，需要重工。
   definition_ko: 빛으로 회로 무늬를 웨이퍼에 옮겨 그리는 공정
   module: 4
   verified: false
@@ -23,6 +28,11 @@
   zh_tw_pinyin: guāngzǔ
   abbr: PR
   field_usage: "현장에서는 'PR'(피알) 또는 '레지스트'라고 부름"
+  example_ko: 감광액이 얇게 도포되지 않으면 현상 후 선폭이 일정하지 않다.
+  example_en: If the photoresist is not coated thinly, the line width is uneven after development.
+  example_ja: フォトレジストが薄く塗布されないと、現像後の線幅がばらつく。
+  example_zh_cn: 光刻胶涂得不够薄的话，显影后线宽会不均匀。
+  example_zh_tw: 光阻塗得不夠薄的話，顯影後線寬會不均勻。
   definition_ko: 빛을 받으면 성질이 변해 현상액에 녹거나 녹지 않게 되는 액체 재료
   module: 4
   verified: false
@@ -36,6 +46,11 @@
   zh_tw: 光罩
   zh_tw_pinyin: guāngzhào
   field_usage: "현장에서는 '마스크' 또는 '레티클'이라고 부름"
+  example_ko: 포토마스크에 긁힘이 생겨 같은 패턴이 계속 불량으로 나오고 있다.
+  example_en: A scratch on the photomask is causing the same pattern to fail repeatedly.
+  example_ja: フォトマスクに傷が入り、同じパターンの不良が続いている。
+  example_zh_cn: 光掩模上有划伤，导致同一图形持续出现不良。
+  example_zh_tw: 光罩上有刮傷，導致同一圖形持續出現不良。
   definition_ko: 회로 무늬가 그려져 있어 빛이 지나갈 곳과 막힐 곳을 정해 주는 유리판
   module: 4
   verified: false
@@ -49,6 +64,11 @@
   zh_tw: 旋轉塗佈
   zh_tw_pinyin: xuánzhuǎn túbù
   field_usage: "현장에서는 '도포' 또는 '코팅'이라고 부름"
+  example_ko: 스핀 코팅 후 웨이퍼 가장자리의 막 두께가 두꺼워서 재측정을 요청했다.
+  example_en: After spin coating, the film at the wafer edge was thick, so we requested re-measurement.
+  example_ja: スピンコート後、ウエハ端の膜厚が厚かったため再測定を依頼した。
+  example_zh_cn: 旋涂后晶圆边缘的膜厚偏厚，因此申请了重新测量。
+  example_zh_tw: 旋轉塗佈後晶圓邊緣的膜厚偏厚，因此申請了重新量測。
   definition_ko: 웨이퍼를 빠르게 돌려 감광액을 얇고 고르게 펴 바르는 방법
   module: 4
   verified: false
@@ -61,6 +81,11 @@
   zh_cn_pinyin: ruǎnhōng
   zh_tw: 軟烤
   zh_tw_pinyin: ruǎnkǎo
+  example_ko: 소프트 베이크 온도가 낮으면 용제가 남아 노광 후 패턴이 흐려진다.
+  example_en: If the soft bake temperature is too low, residual solvent blurs the pattern after exposure.
+  example_ja: ソフトベークの温度が低いと溶剤が残り、露光後にパターンがぼやける。
+  example_zh_cn: 软烘温度过低时溶剂残留，曝光后图形会变模糊。
+  example_zh_tw: 軟烤溫度過低時溶劑殘留，曝光後圖形會變模糊。
   definition_ko: 감광액을 바른 뒤 살짝 구워 용제를 날리고 막을 굳히는 단계
   module: 4
   verified: false
@@ -73,6 +98,11 @@
   zh_cn_pinyin: bàoguāng
   zh_tw: 曝光
   zh_tw_pinyin: pùguāng
+  example_ko: 노광 에너지가 부족해서 이번 로트는 패턴이 덜 찍혔다.
+  example_en: Exposure energy was insufficient, so the pattern was under-printed on this lot.
+  example_ja: 露光エネルギーが不足したため、今回のロットはパターンが十分に転写されなかった。
+  example_zh_cn: 曝光能量不足，这批次的图形转印不充分。
+  example_zh_tw: 曝光能量不足，這批次的圖形轉印不充分。
   definition_ko: 마스크를 통과한 빛을 감광액에 비춰 회로 무늬를 옮기는 단계
   module: 4
   verified: false
@@ -85,6 +115,11 @@
   zh_cn_pinyin: xiǎnyǐng
   zh_tw: 顯影
   zh_tw_pinyin: xiǎnyǐng
+  example_ko: 현상 시간이 길어져 패턴 가장자리가 과하게 깎였다는 보고가 올라왔다.
+  example_en: A report came in that development time was too long, so the pattern edges were over-etched.
+  example_ja: 現像時間が長くなり、パターン端が削られすぎたという報告が上がった。
+  example_zh_cn: 报告显示显影时间过长，图形边缘被过度去除。
+  example_zh_tw: 回報指出顯影時間過長，圖形邊緣被過度去除。
   definition_ko: 현상액으로 감광액의 필요 없는 부분을 녹여 무늬를 드러내는 단계
   module: 4
   verified: false
@@ -98,6 +133,11 @@
   zh_tw: 曝光機
   zh_tw_pinyin: pùguāngjī
   field_usage: "현장에서는 노광 장비를 통틀어 '노광기'라고 부름"
+  example_ko: 스캐너 점검 후 첫 로트에서 정렬 오차가 줄었는지 확인한다.
+  example_en: After scanner maintenance, we check whether alignment error decreased on the first lot.
+  example_ja: スキャナーの点検後、最初のロットでアライメント誤差が減ったかを確認する。
+  example_zh_cn: 光刻机保养后，要确认首批次的对准误差是否减小。
+  example_zh_tw: 曝光機保養後，要確認首批次的對準誤差是否減小。
   definition_ko: 마스크와 웨이퍼를 함께 움직이며 빛을 비춰 무늬를 옮기는 노광 장비
   module: 4
   verified: false
@@ -110,6 +150,11 @@
   zh_cn_pinyin: fēnbiànlǜ
   zh_tw: 解析度
   zh_tw_pinyin: jiěxīdù
+  example_ko: 새 레이어는 해상도 한계에 가까워서 공정 마진이 얼마 남지 않았다.
+  example_en: The new layer is close to the resolution limit, so little process margin remains.
+  example_ja: 新しいレイヤーは解像度の限界に近く、プロセスマージンがほとんど残っていない。
+  example_zh_cn: 新层接近分辨率极限，工艺余量所剩无几。
+  example_zh_tw: 新層接近解析度極限，製程餘裕所剩無幾。
   definition_ko: 노광 장비가 구분해서 그릴 수 있는 가장 작은 무늬의 크기
   module: 4
   verified: false
@@ -124,6 +169,11 @@
   zh_tw_pinyin: guānjiàn chǐcùn
   abbr: CD
   field_usage: "현장에서는 'CD'(씨디) 또는 '선폭'이라고 부름"
+  example_ko: 이번 로트는 CD 측정값이 규격 상한을 벗어나 재검토가 필요하다.
+  example_en: CD measurements on this lot exceed the upper spec limit, so they need review.
+  example_ja: 今回のロットはCD測定値が規格上限を外れたため、再検討が必要だ。
+  example_zh_cn: 这批次的关键尺寸测量值超出规格上限，需要复查。
+  example_zh_tw: 這批次的關鍵尺寸量測值超出規格上限，需要複查。
   definition_ko: 회로 무늬에서 반드시 맞춰야 하는 선의 폭이나 간격
   module: 4
   verified: false
@@ -137,6 +187,11 @@
   zh_tw: 疊對
   zh_tw_pinyin: diéduì
   field_usage: "일본어 현장에서는 '重ね合わせ'(かさねあわせ)라고도 부름"
+  example_ko: 오버레이 값이 허용 범위를 벗어나 이번 로트는 재노광 대상으로 분류됐다.
+  example_en: The overlay value is outside the allowed range, so this lot was classified for rework exposure.
+  example_ja: オーバーレイ値が許容範囲を外れたため、今回のロットは再露光の対象に分類された。
+  example_zh_cn: 套刻值超出允许范围，这批次被归类为需要重新曝光。
+  example_zh_tw: 疊對值超出允許範圍，這批次被歸類為需要重新曝光。
   definition_ko: 아래층 무늬와 새로 그린 위층 무늬가 얼마나 정확히 겹쳤는지를 나타내는 값
   module: 4
   verified: false
@@ -149,6 +204,11 @@
   zh_cn_pinyin: jīngyuán
   zh_tw: 晶圓
   zh_tw_pinyin: jīngyuán
+  example_ko: 이번 웨이퍼 로트는 표면 결함이 많아서 전수 검사를 진행한다.
+  example_en: This wafer lot has many surface defects, so we are running a full inspection.
+  example_ja: 今回のウェーハロットは表面欠陥が多いため、全数検査を行う。
+  example_zh_cn: 这批晶圆表面缺陷较多，因此进行全检。
+  example_zh_tw: 這批晶圓表面缺陷較多，因此進行全檢。
   definition_ko: 반도체 칩을 만드는 바탕이 되는 얇고 둥근 실리콘 판
   module: 4
   verified: false
@@ -161,6 +221,11 @@
   zh_cn_pinyin: yǎnghuà
   zh_tw: 氧化
   zh_tw_pinyin: yǎnghuà
+  example_ko: 산화 공정 후 산화막 두께가 목표보다 얇아서 재산화를 검토한다.
+  example_en: After oxidation, the oxide thickness is thinner than the target, so re-oxidation is under review.
+  example_ja: 酸化工程の後、酸化膜の厚さが目標より薄いため、再酸化を検討している。
+  example_zh_cn: 氧化工序后氧化层厚度低于目标值，因此正在考虑再次氧化。
+  example_zh_tw: 氧化製程後氧化層厚度低於目標值，因此正在考慮再次氧化。
   definition_ko: 웨이퍼 표면을 산소와 반응시켜 얇은 보호막(산화막)을 만드는 공정
   module: 4
   verified: false
@@ -175,6 +240,11 @@
   zh_tw_pinyin: shíkè
   abbr: Etch
   field_usage: "현장에서는 '에치'로 줄여 부름"
+  example_ko: 식각 시간이 길어져 하부 막까지 깎여서 이번 로트는 폐기 판정을 받았다.
+  example_en: Etch time ran long and cut into the underlying film, so this lot was scrapped.
+  example_ja: エッチング時間が長くなり下層膜まで削られたため、今回のロットは廃棄と判定された。
+  example_zh_cn: 刻蚀时间过长，连下层膜也被刻掉，因此这批次被判定报废。
+  example_zh_tw: 蝕刻時間過長，連下層膜也被蝕掉，因此這批次被判定報廢。
   definition_ko: 포토레지스트가 덮지 않은 부분의 막을 깎아 내어 무늬를 새기는 공정
   module: 4
   verified: false
@@ -189,6 +259,11 @@
   zh_tw_pinyin: chénjī
   abbr: Depo
   field_usage: "일본어 현장에서는 'デポ'(でぽ)라고도 부름"
+  example_ko: 증착 두께가 얇게 나와서 이번 로트는 증착 장비 점검 후 재작업한다.
+  example_en: The deposited thickness came out thin, so this lot will be reworked after checking the deposition tool.
+  example_ja: 成膜の厚さが薄く出たため、今回のロットは成膜装置の点検後に再作業する。
+  example_zh_cn: 沉积厚度偏薄，这批次将在检查沉积设备后返工。
+  example_zh_tw: 沉積厚度偏薄，這批次將在檢查沉積設備後重工。
   definition_ko: 웨이퍼 위에 원하는 물질을 얇은 막으로 입히는 공정
   module: 4
   verified: false
@@ -203,6 +278,11 @@
   zh_tw_pinyin: huàxué qìxiàng chénjī
   abbr: CVD
   field_usage: "현장에서는 '씨브이디'로 부름"
+  example_ko: 이 CVD 챔버는 가스 유량이 흔들려서 막 균일도가 떨어진다는 점검 결과가 나왔다.
+  example_en: Inspection found that gas flow in this CVD chamber is unstable, which reduces film uniformity.
+  example_ja: このCVDチャンバーはガス流量が不安定で膜の均一性が落ちているという点検結果が出た。
+  example_zh_cn: 检查结果显示此CVD腔体的气体流量不稳定，导致膜层均匀性下降。
+  example_zh_tw: 檢查結果顯示此CVD腔體的氣體流量不穩定，導致膜層均勻性下降。
   definition_ko: 기체를 화학 반응시켜 그 결과물을 웨이퍼 위에 막으로 쌓는 증착 방법
   module: 4
   verified: false
@@ -217,6 +297,11 @@
   zh_tw_pinyin: wùlǐ qìxiàng chénjī
   abbr: PVD
   field_usage: "현장에서는 '피브이디'로 부름"
+  example_ko: 스퍼터 타깃 수명이 다해서 PVD 금속막 두께가 흔들리고 있다.
+  example_en: The sputter target has reached the end of its life, so the PVD metal film thickness is drifting.
+  example_ja: スパッタターゲットの寿命が尽きたため、PVD金属膜の厚さがばらついている。
+  example_zh_cn: 溅射靶材已接近寿命极限，PVD金属膜厚度出现波动。
+  example_zh_tw: 濺鍍靶材已接近壽命極限，PVD金屬膜厚度出現波動。
   definition_ko: 재료를 물리적으로 떼어 내 웨이퍼 위에 막으로 붙이는 증착 방법
   module: 4
   verified: false
@@ -231,6 +316,11 @@
   zh_tw_pinyin: lízǐ bùzhí
   abbr: IMP
   field_usage: "현장에서는 '임플란트' 또는 'IMP'로 부름"
+  example_ko: 이온 주입량이 규격보다 많아서 이번 로트의 문턱 전압이 기준을 벗어났다.
+  example_en: The ion implantation dose was higher than spec, so the threshold voltage on this lot is out of range.
+  example_ja: イオン注入量が規格より多かったため、今回のロットのしきい値電圧が基準を外れた。
+  example_zh_cn: 离子注入剂量高于规格，因此这批次的阈值电压超出标准。
+  example_zh_tw: 離子佈植劑量高於規格，因此這批次的臨界電壓超出標準。
   definition_ko: 전기가 통하는 성질을 바꾸려고 불순물 이온을 빠르게 쏘아 웨이퍼 속에 넣는 공정
   module: 4
   verified: false
@@ -244,6 +334,11 @@
   zh_tw: 金屬化
   zh_tw_pinyin: jīnshǔhuà
   field_usage: "현장에서는 '메탈'로 줄여 부름"
+  example_ko: 금속 배선 공정에서 비아 저항이 높게 나와서 원인을 분석 중이다.
+  example_en: Via resistance came out high in the metallization step, so we are analyzing the cause.
+  example_ja: 金属配線工程でビア抵抗が高く出たため、原因を分析している。
+  example_zh_cn: 金属化工序中过孔电阻偏高，目前正在分析原因。
+  example_zh_tw: 金屬化製程中介層窗電阻偏高，目前正在分析原因。
   definition_ko: 소자들 사이에 전기가 흐르도록 금속으로 길을 만드는 공정
   module: 4
   verified: false
@@ -258,6 +353,11 @@
   zh_tw_pinyin: huàxué jīxiè yánmó
   abbr: CMP
   field_usage: "현장에서는 '씨엠피'로 부름"
+  example_ko: CMP 후 웨이퍼 표면 단차가 기준보다 커서 연마 조건을 다시 잡는다.
+  example_en: After CMP, the surface step height exceeds the standard, so we are resetting the polishing conditions.
+  example_ja: CMP後のウェーハ表面の段差が基準より大きいため、研磨条件を見直す。
+  example_zh_cn: CMP后晶圆表面段差超出标准，因此重新设定抛光条件。
+  example_zh_tw: CMP後晶圓表面段差超出標準，因此重新設定研磨條件。
   definition_ko: 약품과 연마 패드로 웨이퍼 표면을 갈아 평평하게 만드는 공정
   module: 4
   verified: false
@@ -270,6 +370,11 @@
   zh_cn_pinyin: qīngxǐ
   zh_tw: 清洗
   zh_tw_pinyin: qīngxǐ
+  example_ko: 세정 후에도 파티클이 남아 있어서 세정 장비의 노즐을 점검한다.
+  example_en: Particles remain even after cleaning, so we are checking the nozzles on the cleaning tool.
+  example_ja: 洗浄後もパーティクルが残っているため、洗浄装置のノズルを点検する。
+  example_zh_cn: 清洗后仍有颗粒残留，因此检查清洗设备的喷嘴。
+  example_zh_tw: 清洗後仍有顆粒殘留，因此檢查清洗設備的噴嘴。
   definition_ko: 공정 사이사이에 웨이퍼 표면의 먼지와 찌꺼기를 씻어 내는 공정
   module: 4
   verified: false
@@ -284,6 +389,11 @@
   zh_tw_pinyin: jīngyuán cèshì
   abbr: EDS
   field_usage: "EDS는 주로 한국에서 쓰는 이름이고, 해외에서는 wafer test, wafer sort, CP라고 부름"
+  example_ko: 이번 웨이퍼는 EDS에서 불량률이 높게 나와서 원인 공정을 추적한다.
+  example_en: This wafer showed a high fail rate in EDS, so we are tracing the responsible process.
+  example_ja: このウェーハはウェーハテストで不良率が高く出たため、原因工程を追跡している。
+  example_zh_cn: 这片晶圆在晶圆测试中不良率偏高，因此正在追溯责任工序。
+  example_zh_tw: 這片晶圓在晶圓測試中不良率偏高，因此正在追溯責任製程。
   definition_ko: 웨이퍼를 자르기 전에 칩 하나하나에 전기를 흘려 양품과 불량을 가려내는 검사
   module: 6
   verified: false
@@ -297,6 +407,11 @@
   zh_tw: 封裝
   zh_tw_pinyin: fēngzhuāng
   abbr: PKG
+  example_ko: 패키징 공정에서 몰딩 두께가 설계보다 얇아서 신뢰성 시험을 다시 한다.
+  example_en: In packaging, the molding thickness is thinner than designed, so reliability tests will be rerun.
+  example_ja: パッケージング工程でモールドの厚さが設計より薄いため、信頼性試験をやり直す。
+  example_zh_cn: 封装工序中塑封厚度低于设计值，因此需要重新进行可靠性测试。
+  example_zh_tw: 封裝製程中塑封厚度低於設計值，因此需要重新進行可靠度測試。
   definition_ko: 칩을 보호하고 바깥 기판과 전기로 이어 주도록 감싸는 공정
   module: 6
   verified: false
@@ -310,6 +425,11 @@
   zh_tw: 切割
   zh_tw_pinyin: qiēgē
   field_usage: "현장에서는 '쏘잉'(sawing)이라고도 부름"
+  example_ko: 다이싱 중 칩 가장자리에 크랙이 생겨서 블레이드 교체 주기를 앞당겼다.
+  example_en: Cracks appeared on the chip edges during dicing, so we moved up the blade replacement cycle.
+  example_ja: ダイシング中にチップ端にクラックが発生したため、ブレードの交換周期を早めた。
+  example_zh_cn: 划片过程中芯片边缘出现裂纹，因此提前了刀片更换周期。
+  example_zh_tw: 切割過程中晶片邊緣出現裂紋，因此提前了刀片更換週期。
   definition_ko: 웨이퍼를 낱개 칩으로 잘라 나누는 공정
   module: 6
   verified: false
@@ -323,6 +443,11 @@
   zh_tw: 打線接合
   zh_tw_pinyin: dǎxiàn jiēhé
   abbr: WB
+  example_ko: 와이어 본딩 후 접합 강도 시험에서 일부 와이어가 떨어져 조건을 조정했다.
+  example_en: Some wires lifted off in the bond pull test after wire bonding, so we adjusted the conditions.
+  example_ja: ワイヤボンディング後の接合強度試験で一部のワイヤが外れたため、条件を調整した。
+  example_zh_cn: 引线键合后的拉力测试中有部分引线脱落，因此调整了工艺条件。
+  example_zh_tw: 打線接合後的拉力測試中有部分導線脫落，因此調整了製程條件。
   definition_ko: 칩과 기판을 가는 금속 선으로 이어 주는 연결 방법
   module: 6
   verified: false
@@ -336,6 +461,11 @@
   zh_tw: 覆晶
   zh_tw_pinyin: fùjīng
   abbr: FC
+  example_ko: 플립 칩 공정에서 범프 높이가 고르지 않아 일부 접합이 불량으로 나왔다.
+  example_en: In the flip chip process, uneven bump height caused some joints to fail.
+  example_ja: フリップチップ工程でバンプ高さが不揃いのため、一部の接合が不良になった。
+  example_zh_cn: 倒装芯片工序中凸块高度不一致，导致部分接合不良。
+  example_zh_tw: 覆晶製程中凸塊高度不一致，導致部分接合不良。
   definition_ko: 칩을 뒤집어 범프로 기판에 바로 붙이는 연결 방법
   module: 6
   verified: false
@@ -348,6 +478,11 @@
   zh_cn_pinyin: tūkuài
   zh_tw: 凸塊
   zh_tw_pinyin: tūkuài
+  example_ko: 범프 도금 두께가 얇게 나와서 접합 저항이 기준보다 높게 측정됐다.
+  example_en: The bump plating came out thin, so the joint resistance measured higher than the standard.
+  example_ja: バンプのめっき厚が薄く出たため、接合抵抗が基準より高く測定された。
+  example_zh_cn: 凸块镀层偏薄，因此接合电阻测得高于标准值。
+  example_zh_tw: 凸塊鍍層偏薄，因此接合電阻量測結果高於標準值。
   definition_ko: 칩과 기판 또는 칩과 칩을 잇는 작은 금속 돌기
   module: 6
   verified: false
@@ -362,6 +497,11 @@
   zh_tw_pinyin: xì chuānkǒng
   abbr: TSV
   field_usage: "현장에서는 '티에스브이'로 부름"
+  example_ko: TSV 에칭 깊이가 목표보다 얕아서 위아래 칩의 연결이 끊어졌다.
+  example_en: The TSV etch depth was shallower than the target, so the connection between the upper and lower chips was broken.
+  example_ja: TSVのエッチング深さが目標より浅く、上下のチップの接続が切れた。
+  example_zh_cn: TSV刻蚀深度低于目标值，导致上下芯片之间的连接断开。
+  example_zh_tw: TSV蝕刻深度低於目標值，導致上下晶片之間的連接斷開。
   definition_ko: 칩에 구멍을 뚫고 금속을 채워 위아래 칩을 곧바로 잇는 통로
   module: 6
   verified: false
@@ -376,6 +516,11 @@
   zh_tw_pinyin: gāo pínkuān jìyìtǐ
   abbr: HBM
   field_usage: "네 언어 모두 현장에서는 'HBM'으로 부름"
+  example_ko: AI 가속기에 들어가는 HBM은 데이터 대역폭이 커서 수요가 계속 늘고 있다.
+  example_en: HBM used in AI accelerators has very high data bandwidth, so demand keeps growing.
+  example_ja: AIアクセラレーターに使われるHBMはデータ帯域幅が大きく、需要が増え続けている。
+  example_zh_cn: 用于AI加速器的HBM数据带宽很大，因此需求持续增长。
+  example_zh_tw: 用於AI加速器的HBM資料頻寬很大，因此需求持續成長。
   definition_ko: D램 칩을 여러 장 쌓고 TSV로 이어 데이터를 한꺼번에 많이 주고받게 만든 메모리
   module: 6
   verified: false
@@ -389,6 +534,11 @@
   zh_tw: 混合鍵合
   zh_tw_pinyin: hùnhé jiànhé
   field_usage: "일본어에서는 'ハイブリッド接合'(はいぶりっどせつごう)이라고도 씀"
+  example_ko: 하이브리드 본딩 후 구리 패드 정렬이 어긋나서 해당 칩은 수율 손실로 처리됐다.
+  example_en: After hybrid bonding, the copper pads were misaligned, so the chip was treated as a yield loss.
+  example_ja: ハイブリッドボンディング後に銅パッドの位置がずれたため、そのチップは歩留まり損失として扱われた。
+  example_zh_cn: 混合键合后铜焊盘对位偏移，因此该芯片被计为良率损失。
+  example_zh_tw: 混合鍵合後銅墊對位偏移，因此該晶片被計為良率損失。
   definition_ko: 범프 없이 칩의 구리와 구리, 절연막과 절연막을 직접 맞붙이는 접합 방법
   module: 6
   verified: false
@@ -401,6 +551,11 @@
   zh_cn_pinyin: dǐbù tiánchōng
   zh_tw: 底部填充膠
   zh_tw_pinyin: dǐbù tiánchōng jiāo
+  example_ko: 언더필이 칩 가장자리까지 덜 채워져서 열 사이클 시험에서 균열이 생겼다.
+  example_en: Underfill did not fully reach the chip edges, so cracks appeared in the thermal cycle test.
+  example_ja: アンダーフィルがチップ端まで十分に充填されず、熱サイクル試験でクラックが生じた。
+  example_zh_cn: 底部填充未完全填充到芯片边缘，因此在热循环测试中出现裂纹。
+  example_zh_tw: 底部填充膠未完全填充到晶片邊緣，因此在熱循環測試中出現裂紋。
   definition_ko: 칩과 기판 사이의 틈을 채워 범프를 보호하는 재료 또는 그 공정
   module: 6
   verified: false
@@ -413,6 +568,11 @@
   zh_cn_pinyin: dǎotǐ
   zh_tw: 導體
   zh_tw_pinyin: dǎotǐ
+  example_ko: 배선 저항을 줄이려고 도체 재료를 구리로 바꾸는 방안을 검토한다.
+  example_en: To reduce wiring resistance, we are reviewing a switch of the conductor material to copper.
+  example_ja: 配線抵抗を下げるため、導体材料を銅に変更する案を検討している。
+  example_zh_cn: 为降低布线电阻，正在考虑将导体材料改为铜。
+  example_zh_tw: 為降低佈線電阻，正在考慮將導體材料改為銅。
   definition_ko: 구리처럼 전기가 잘 통하는 물질
   module: 1
   verified: false
@@ -426,6 +586,11 @@
   zh_tw: 絕緣體
   zh_tw_pinyin: juéyuántǐ
   field_usage: "현장에서는 '절연체'라고 더 자주 부름"
+  example_ko: 소자 사이의 절연막이 얇아져서 누설 전류가 기준보다 높게 나왔다.
+  example_en: The insulator film between devices became thinner, so leakage current came out higher than the standard.
+  example_ja: 素子間の絶縁膜が薄くなったため、リーク電流が基準より高く出た。
+  example_zh_cn: 器件之间的绝缘层变薄，因此漏电流高于标准值。
+  example_zh_tw: 元件之間的絕緣層變薄，因此漏電流高於標準值。
   definition_ko: 유리나 고무처럼 전기가 거의 통하지 않는 물질
   module: 1
   verified: false
@@ -438,6 +603,11 @@
   zh_cn_pinyin: bàndǎotǐ
   zh_tw: 半導體
   zh_tw_pinyin: bàndǎotǐ
+  example_ko: 반도체 공정 장비는 웨이퍼 온도 변화에 민감해서 조건 관리가 중요하다.
+  example_en: Semiconductor process tools are sensitive to wafer temperature changes, so condition control is important.
+  example_ja: 半導体の工程装置はウェーハの温度変化に敏感なため、条件管理が重要だ。
+  example_zh_cn: 半导体工艺设备对晶圆温度变化很敏感，因此条件管理很重要。
+  example_zh_tw: 半導體製程設備對晶圓溫度變化很敏感，因此條件管理很重要。
   definition_ko: 조건에 따라 전기가 통하기도 하고 안 통하기도 하는 물질
   module: 1
   verified: false
@@ -452,6 +622,11 @@
   zh_tw_pinyin: xì
   abbr: Si
   field_usage: "화학 용어로는 '규소'라고 함"
+  example_ko: 이번 웨이퍼는 실리콘 결함 밀도가 높아서 입고 검사에서 보류됐다.
+  example_en: This wafer had a high silicon defect density, so it was held at incoming inspection.
+  example_ja: このウェーハはシリコンの欠陥密度が高いため、受入検査で保留になった。
+  example_zh_cn: 这片晶圆的硅缺陷密度较高，因此在来料检验中被暂停。
+  example_zh_tw: 這片晶圓的矽缺陷密度較高，因此在進料檢驗中被暫停。
   definition_ko: 모래에서 얻는 원소로, 반도체 칩을 만드는 데 가장 널리 쓰이는 재료
   module: 1
   verified: false
@@ -464,6 +639,11 @@
   zh_cn_pinyin: chānzá
   zh_tw: 摻雜
   zh_tw_pinyin: chānzá
+  example_ko: 도핑 농도가 목표보다 낮게 측정돼서 저항 값이 기준을 벗어났다.
+  example_en: The doping concentration measured lower than the target, so the resistance fell outside the standard.
+  example_ja: ドーピング濃度が目標より低く測定され、抵抗値が基準を外れた。
+  example_zh_cn: 掺杂浓度测得低于目标值，因此电阻值超出标准。
+  example_zh_tw: 摻雜濃度測得低於目標值，因此電阻值超出標準。
   definition_ko: 순수한 반도체에 불순물을 조금 넣어 전기가 통하는 정도를 조절하는 일
   module: 1
   verified: false
@@ -477,6 +657,11 @@
   zh_tw: 電洞
   zh_tw_pinyin: diàndòng
   field_usage: "일본어에서는 'ホール'(ほーる)이라고도 부름"
+  example_ko: P형 영역에서는 정공이 주로 전류를 나르기 때문에 캐리어 농도를 함께 본다.
+  example_en: In the P-type region, holes carry most of the current, so we also check the carrier concentration.
+  example_ja: P型領域では正孔が主に電流を運ぶため、キャリア濃度も合わせて確認する。
+  example_zh_cn: P型区域中空穴主要承载电流，因此还要一并检查载流子浓度。
+  example_zh_tw: P型區域中電洞主要承載電流，因此還要一併檢查載子濃度。
   definition_ko: 전자가 빠져나간 빈자리로, 양전하를 띤 알갱이처럼 움직이며 전기를 나름
   module: 1
   verified: false
@@ -489,6 +674,11 @@
   zh_cn_pinyin: N xíng bàndǎotǐ
   zh_tw: N型半導體
   zh_tw_pinyin: N xíng bàndǎotǐ
+  example_ko: 이 웨이퍼는 N형 반도체 영역의 인 농도가 높아서 저항이 낮게 나왔다.
+  example_en: This wafer has a high phosphorus concentration in its N-type region, so the resistance came out low.
+  example_ja: このウェーハはN型半導体領域のリン濃度が高いため、抵抗が低く出た。
+  example_zh_cn: 这片晶圆的N型半导体区域磷浓度较高，因此电阻偏低。
+  example_zh_tw: 這片晶圓的N型半導體區域磷濃度較高，因此電阻偏低。
   definition_ko: 도핑으로 전자가 남게 만들어 전자가 주로 전기를 나르는 반도체
   module: 1
   verified: false
@@ -501,6 +691,11 @@
   zh_cn_pinyin: P xíng bàndǎotǐ
   zh_tw: P型半導體
   zh_tw_pinyin: P xíng bàndǎotǐ
+  example_ko: P형 반도체 영역의 붕소 도핑량이 부족해서 정공 농도를 다시 맞춘다.
+  example_en: The boron doping in the P-type semiconductor region is insufficient, so we are readjusting the hole concentration.
+  example_ja: P型半導体領域のホウ素ドーピング量が不足しているため、正孔濃度を再調整する。
+  example_zh_cn: P型半导体区域的硼掺杂量不足，因此重新调整空穴浓度。
+  example_zh_tw: P型半導體區域的硼摻雜量不足，因此重新調整電洞濃度。
   definition_ko: 도핑으로 정공이 많아지게 만들어 정공이 주로 전기를 나르는 반도체
   module: 1
   verified: false
@@ -513,6 +708,11 @@
   zh_cn_pinyin: PN jié
   zh_tw: PN接面
   zh_tw_pinyin: PN jiēmiàn
+  example_ko: PN 접합의 역방향 누설이 커서 다이오드 특성 시험에서 불합격 판정이 나왔다.
+  example_en: Reverse leakage at the p-n junction was large, so the diode characteristic test failed.
+  example_ja: pn接合の逆方向リークが大きく、ダイオード特性試験で不合格になった。
+  example_zh_cn: PN结的反向漏电较大，因此二极管特性测试判定不合格。
+  example_zh_tw: PN接面的反向漏電較大，因此二極體特性測試判定不合格。
   definition_ko: P형과 N형 반도체가 맞닿은 경계로, 전류를 한쪽 방향으로만 잘 흐르게 함
   module: 1
   verified: false
@@ -527,6 +727,11 @@
   zh_tw_pinyin: jīnyǎngbàn chǎngxiào diànjīngtǐ
   abbr: MOSFET
   field_usage: "네 언어 모두 현장에서는 'MOSFET' 또는 'MOS'로 부름"
+  example_ko: 이 모스펫은 문턱 전압이 낮게 나와서 대기 전류가 기준보다 높다.
+  example_en: This MOSFET has a low threshold voltage, so its standby current is higher than the standard.
+  example_ja: このMOSFETはしきい値電圧が低く出ているため、待機電流が基準より高い。
+  example_zh_cn: 此MOSFET的阈值电压偏低，因此待机电流高于标准。
+  example_zh_tw: 此MOSFET的臨界電壓偏低，因此待機電流高於標準。
   definition_ko: 게이트에 거는 전압으로 전류의 길을 열고 닫는 스위치 역할의 트랜지스터
   module: 1
   verified: false
@@ -541,6 +746,11 @@
   zh_tw_pinyin: yùfáng bǎoyǎng
   abbr: PM
   field_usage: "현장에서는 '피엠'이라 부르고 '설비 PM 들어간다'처럼 씀"
+  example_ko: 이번 주 식각 설비는 예방 정비 일정이 잡혀 있어서 오전 생산량을 줄인다.
+  example_en: The etch tool has preventive maintenance scheduled this week, so we are reducing the morning output.
+  example_ja: 今週はエッチング装置の予防保全が予定されているため、午前の生産量を減らす。
+  example_zh_cn: 本周刻蚀设备安排了预防性维护，因此上午的产量要减少。
+  example_zh_tw: 本週蝕刻設備安排了預防保養，因此上午的產量要減少。
   definition_ko: 설비가 고장 나기 전에 정해진 주기로 미리 점검하고 부품을 바꾸는 일
   module: 8
   verified: false
@@ -555,6 +765,11 @@
   zh_tw_pinyin: gùzhàng wéixiū
   abbr: BM
   field_usage: "한국 현장에서는 설비 고장 자체를 '비엠 났다'라고 말함"
+  example_ko: 펌프가 갑자기 멈춰서 고장 정비로 전환했고, 라인은 두 시간 동안 멈췄다.
+  example_en: The pump stopped suddenly, so we switched to breakdown maintenance and the line was down for two hours.
+  example_ja: ポンプが突然停止したため事後保全に切り替え、ラインは2時間止まった。
+  example_zh_cn: 泵突然停止，因此转为故障维修，产线停机了两个小时。
+  example_zh_tw: 泵浦突然停止，因此轉為故障維修，產線停機了兩個小時。
   definition_ko: 설비가 갑자기 고장 난 뒤에 하는 수리
   module: 8
   verified: false
@@ -569,6 +784,11 @@
   zh_tw_pinyin: qiánkāishì jīngyuán chuánsònghé
   abbr: FOUP
   field_usage: "네 언어 모두 현장에서는 'FOUP'으로 부름"
+  example_ko: 이 FOUP은 도어 씰이 헐거워서 교체 후 입자 수를 다시 확인한다.
+  example_en: This FOUP has a loose door seal, so we will recheck particle counts after replacement.
+  example_ja: このFOUPはドアシールが緩んでいるため、交換後にパーティクル数を再確認する。
+  example_zh_cn: 此FOUP的门密封条松动，因此更换后要重新检查颗粒数。
+  example_zh_tw: 此FOUP的門密封條鬆動，因此更換後要重新檢查顆粒數。
   definition_ko: 웨이퍼 여러 장을 담아 먼지 없이 옮기는 앞문 달린 밀폐 상자
   module: 8
   verified: false
@@ -583,6 +803,11 @@
   zh_tw_pinyin: tiānchē
   abbr: OHT
   field_usage: "현장에서는 '오에이치티'로 부름"
+  example_ko: 4번 베이의 OHT가 멈춰서 FOUP이 설비 앞에 쌓이고 있으니 확인해 달라.
+  example_en: The OHT in bay 4 has stopped and FOUPs are piling up in front of the tools, please check it.
+  example_ja: 4番ベイのOHTが停止し、FOUPが装置前に滞留しているので確認してほしい。
+  example_zh_cn: 4号区域的天车停了，FOUP在设备前堆积，请确认。
+  example_zh_tw: 4號區域的天車停了，FOUP在設備前堆積，請確認。
   definition_ko: 천장 레일을 따라 다니며 FOUP을 설비에서 설비로 나르는 무인 이송 장치
   module: 8
   verified: false
@@ -597,6 +822,11 @@
   zh_tw_pinyin: zàizhìpǐn
   abbr: WIP
   field_usage: "현장에서는 '윕'이라 부르고 '윕이 쌓였다'처럼 씀"
+  example_ko: 식각 공정 앞에 WIP이 800장 넘게 쌓여서 투입 순서를 조정했다.
+  example_en: WIP piled up to over 800 wafers in front of the etch step, so we adjusted the input sequence.
+  example_ja: エッチング工程の前にWIPが800枚を超えて滞留したため、投入順序を調整した。
+  example_zh_cn: 刻蚀工序前在制品堆积超过800片，因此调整了投料顺序。
+  example_zh_tw: 蝕刻製程前在製品堆積超過800片，因此調整了投料順序。
   definition_ko: 공정에 들어갔지만 아직 완성되지 않아 라인 안에 있는 웨이퍼 물량
   module: 8
   verified: false
@@ -611,6 +841,11 @@
   zh_tw_pinyin: zhōuzhuǎn shíjiān
   abbr: TAT
   field_usage: "현장에서는 '탯' 또는 '티에이티'로 부르고, 비슷한 뜻으로 cycle time도 씀"
+  example_ko: 이번 달 로트 TAT가 늘어서 병목 설비의 가동률을 먼저 점검한다.
+  example_en: Lot TAT increased this month, so we are checking the utilization of the bottleneck tools first.
+  example_ja: 今月はロットのTATが伸びたため、ボトルネック装置の稼働率を先に点検する。
+  example_zh_cn: 本月批次的周转时间变长，因此先检查瓶颈设备的稼动率。
+  example_zh_tw: 本月批次的週轉時間變長，因此先檢查瓶頸設備的稼動率。
   definition_ko: 웨이퍼가 공정에 들어가서 나올 때까지 걸리는 전체 시간
   module: 8
   verified: false
@@ -625,6 +860,11 @@
   zh_tw_pinyin: tǒngjì zhìchéng guǎnzhì
   abbr: SPC
   field_usage: "현장에서는 '에스피씨'로 부르고 관리선을 벗어나면 'SPC 아웃'이라고 함"
+  example_ko: 증착 두께 관리도에서 연속 7점이 한쪽으로 쏠려 SPC 아웃 알람이 떴다.
+  example_en: Seven consecutive points on the deposition thickness control chart drifted to one side, so an SPC alarm was raised.
+  example_ja: 成膜厚さの管理図で連続7点が片側に偏り、SPCアウトのアラームが出た。
+  example_zh_cn: 沉积厚度控制图上连续7点偏向一侧，因此触发了SPC报警。
+  example_zh_tw: 沉積厚度管制圖上連續7點偏向一側，因此觸發了SPC警報。
   definition_ko: 측정값을 통계 그래프로 지켜보며 공정이 평소 범위를 벗어나는지 관리하는 방법
   module: 8
   verified: false
@@ -639,6 +879,11 @@
   zh_tw_pinyin: gùzhàng zhēncè yǔ fēnlèi
   abbr: FDC
   field_usage: "네 언어 모두 현장에서는 'FDC'로 부름"
+  example_ko: FDC가 챔버 압력 이상을 잡아내서 해당 설비를 바로 정지시켰다.
+  example_en: FDC detected an abnormal chamber pressure and stopped the tool right away.
+  example_ja: FDCがチャンバー圧力の異常を検知し、該当装置を直ちに停止させた。
+  example_zh_cn: FDC检测到腔体压力异常，并立即让该设备停机。
+  example_zh_tw: FDC偵測到腔體壓力異常，並立即讓該設備停機。
   definition_ko: 설비 센서 값을 실시간으로 살펴 이상을 찾아내고 종류별로 나누는 시스템
   module: 8
   verified: false
@@ -653,6 +898,11 @@
   zh_tw_pinyin: zhìzào zhíxíng xìtǒng
   abbr: MES
   field_usage: "네 언어 모두 현장에서는 'MES'로 부름"
+  example_ko: MES에 등록되지 않은 로트는 설비에서 투입이 막혀 있으니 먼저 등록해 달라.
+  example_en: Lots not registered in MES are blocked from tool input, so please register them first.
+  example_ja: MESに登録されていないロットは装置への投入が止まっているため、先に登録してほしい。
+  example_zh_cn: 未在MES中登记的批次无法投入设备，请先完成登记。
+  example_zh_tw: 未在MES登錄的批次無法投入設備，請先完成登錄。
   definition_ko: 웨이퍼가 어느 공정에 있고 다음에 어디로 갈지를 기록하고 지시하는 공장 전산 시스템
   module: 8
   verified: false
@@ -667,6 +917,260 @@
   zh_tw_pinyin: děnghòu shíjiān
   abbr: Q-time
   field_usage: "현장에서는 '큐타임'이라 부르고 제한을 넘기면 '큐타임 오버'라고 함"
+  example_ko: 산화 후 큐타임을 넘겨서 해당 로트는 재세정 후 다시 진행해야 한다.
+  example_en: The queue time after oxidation was exceeded, so this lot must be re-cleaned before it proceeds.
+  example_ja: 酸化後のキュータイムを超過したため、そのロットは再洗浄してから工程を進める必要がある。
+  example_zh_cn: 氧化后的等待时间超限，因此该批次需要重新清洗后才能继续。
+  example_zh_tw: 氧化後的等候時間超限，因此該批次需要重新清洗後才能繼續。
   definition_ko: 한 공정이 끝난 뒤 다음 공정을 시작하기 전까지 허용되는 대기 시간
   module: 8
+  verified: false
+- id: electron
+  ko: 전자
+  en: electron
+  ja: 電子
+  ja_reading: でんし
+  zh_cn: 电子
+  zh_cn_pinyin: diànzǐ
+  zh_tw: 電子
+  zh_tw_pinyin: diànzǐ
+  example_ko: 이 물질은 자유롭게 움직이는 전자가 많아 전류가 잘 흐른다.
+  example_en: This material has many freely moving electrons, so current flows easily.
+  example_ja: この物質は自由に動く電子が多いため、電流が流れやすい。
+  example_zh_cn: 这种材料中自由移动的电子很多，所以电流容易通过。
+  example_zh_tw: 這種材料中自由移動的電子很多，所以電流容易通過。
+  definition_ko: 원자 안에서 음(-)의 전기를 띠고 움직이는 아주 작은 입자
+  module: 1
+  verified: false
+- id: band-gap
+  ko: 띠틈
+  en: band gap
+  ja: バンドギャップ
+  ja_reading: ばんどぎゃっぷ
+  zh_cn: 带隙
+  zh_cn_pinyin: dàixì
+  zh_tw: 能隙
+  zh_tw_pinyin: néngxì
+  abbr: Eg
+  field_usage: "현장에서는 '밴드갭'이라고 부름"
+  example_ko: 실리콘은 밴드갭이 중간 크기라 반도체로 쓰기 알맞다.
+  example_en: Silicon has a medium band gap, which makes it suitable as a semiconductor.
+  example_ja: シリコンはバンドギャップが中程度なので、半導体に適している。
+  example_zh_cn: 硅的带隙大小适中，适合用作半导体。
+  example_zh_tw: 矽的能隙大小適中，適合用作半導體。
+  definition_ko: 전자가 움직이려면 넘어야 하는 에너지 간격. 클수록 전기가 잘 안 통한다
+  module: 1
+  verified: false
+- id: resistivity
+  ko: 비저항
+  en: resistivity
+  ja: 抵抗率
+  ja_reading: ていこうりつ
+  zh_cn: 电阻率
+  zh_cn_pinyin: diànzǔlǜ
+  zh_tw: 電阻率
+  zh_tw_pinyin: diànzǔlǜ
+  example_ko: 웨이퍼의 비저항을 측정해 도핑 농도를 확인한다.
+  example_en: We measure the wafer's resistivity to check the doping level.
+  example_ja: ウェハーの抵抗率を測定してドーピング濃度を確認する。
+  example_zh_cn: 测量晶圆的电阻率来确认掺杂浓度。
+  example_zh_tw: 測量晶圓的電阻率來確認摻雜濃度。
+  definition_ko: 물질이 전류를 얼마나 막는지 나타내는 값. 클수록 전기가 잘 안 통한다
+  module: 1
+  verified: false
+- id: dopant
+  ko: 도펀트
+  en: dopant
+  ja: ドーパント
+  ja_reading: どーぱんと
+  zh_cn: 掺杂剂
+  zh_cn_pinyin: chānzájì
+  zh_tw: 摻雜劑
+  zh_tw_pinyin: chānzájì
+  field_usage: "'도펀트' 또는 '불순물'이라고 부름"
+  example_ko: 이번 웨이퍼는 도펀트 농도가 규격보다 낮게 나왔다.
+  example_en: The dopant concentration on this wafer came out below spec.
+  example_ja: 今回のウェハーはドーパント濃度が規格より低かった。
+  example_zh_cn: 这片晶圆的掺杂剂浓度低于规格。
+  example_zh_tw: 這片晶圓的摻雜劑濃度低於規格。
+  definition_ko: 반도체의 전기적 성질을 바꾸려고 아주 조금 섞어 넣는 원소
+  module: 1
+  verified: false
+- id: carrier
+  ko: 캐리어
+  en: carrier
+  ja: キャリア
+  ja_reading: きゃりあ
+  zh_cn: 载流子
+  zh_cn_pinyin: zàiliúzǐ
+  zh_tw: 載子
+  zh_tw_pinyin: zàizǐ
+  field_usage: "'캐리어'로 부름. 전자와 정공을 함께 가리킴"
+  example_ko: 도핑 농도를 높이면 캐리어 수가 늘어난다.
+  example_en: Raising the doping level increases the number of carriers.
+  example_ja: ドーピング濃度を上げるとキャリアが増える。
+  example_zh_cn: 提高掺杂浓度会增加载流子数量。
+  example_zh_tw: 提高摻雜濃度會增加載子數量。
+  definition_ko: 전류를 실어 나르는 입자. 전자와 정공이 있다
+  module: 1
+  verified: false
+- id: donor
+  ko: 도너
+  en: donor
+  ja: ドナー
+  ja_reading: どなー
+  zh_cn: 施主
+  zh_cn_pinyin: shīzhǔ
+  zh_tw: 施體
+  zh_tw_pinyin: shītǐ
+  example_ko: 인은 실리콘에서 전자를 내주는 도너 역할을 한다.
+  example_en: Phosphorus acts as a donor in silicon by giving up electrons.
+  example_ja: リンはシリコン中で電子を与えるドナーとして働く。
+  example_zh_cn: 磷在硅中充当施主，提供电子。
+  example_zh_tw: 磷在矽中擔任施體，提供電子。
+  definition_ko: 전자를 내주어 n형을 만드는 불순물
+  module: 1
+  verified: false
+- id: acceptor
+  ko: 억셉터
+  en: acceptor
+  ja: アクセプター
+  ja_reading: あくせぷたー
+  zh_cn: 受主
+  zh_cn_pinyin: shòuzhǔ
+  zh_tw: 受體
+  zh_tw_pinyin: shòutǐ
+  example_ko: 붕소는 실리콘에서 정공을 만드는 억셉터다.
+  example_en: Boron is an acceptor that creates holes in silicon.
+  example_ja: ホウ素はシリコン中で正孔を作るアクセプターである。
+  example_zh_cn: 硼是在硅中产生空穴的受主。
+  example_zh_tw: 硼是在矽中產生電洞的受體。
+  definition_ko: 전자를 받아들여 정공을 만들고 p형을 만드는 불순물
+  module: 1
+  verified: false
+- id: annealing
+  ko: 열처리
+  en: annealing
+  ja: アニール
+  ja_reading: あにーる
+  zh_cn: 退火
+  zh_cn_pinyin: tuìhuǒ
+  zh_tw: 退火
+  zh_tw_pinyin: tuìhuǒ
+  abbr: Anneal
+  field_usage: "'어닐'이라고 줄여 부름"
+  example_ko: 이온 주입 뒤 어닐로 도펀트를 활성화한다.
+  example_en: After ion implantation, annealing activates the dopants.
+  example_ja: イオン注入後にアニールでドーパントを活性化する。
+  example_zh_cn: 离子注入后通过退火激活掺杂剂。
+  example_zh_tw: 離子植入後透過退火活化摻雜劑。
+  definition_ko: 웨이퍼를 가열해 깨진 결정을 복구하고 불순물을 제자리에 앉히는 공정
+  module: 1
+  verified: false
+- id: memory-semiconductor
+  ko: 메모리 반도체
+  en: memory semiconductor
+  ja: メモリ半導体
+  ja_reading: めもりはんどうたい
+  zh_cn: 存储芯片
+  zh_cn_pinyin: cúnchǔ xīnpiàn
+  zh_tw: 記憶體晶片
+  zh_tw_pinyin: jìyìtǐ jīngpiàn
+  abbr: 메모리
+  example_ko: 올해 메모리 반도체 수요는 서버용이 이끌고 있다.
+  example_en: Demand for memory chips is being led by servers this year.
+  example_ja: 今年のメモリ半導体需要はサーバー向けが牽引している。
+  example_zh_cn: 今年存储芯片的需求由服务器带动。
+  example_zh_tw: 今年記憶體晶片的需求由伺服器帶動。
+  definition_ko: 데이터를 저장하는 반도체 칩
+  module: 2
+  verified: false
+- id: logic-semiconductor
+  ko: 로직 반도체
+  en: logic semiconductor
+  ja: ロジック半導体
+  ja_reading: ろじっくはんどうたい
+  zh_cn: 逻辑芯片
+  zh_cn_pinyin: luójí xīnpiàn
+  zh_tw: 邏輯晶片
+  zh_tw_pinyin: luójí jīngpiàn
+  abbr: 로직
+  field_usage: "'비메모리', '시스템 반도체'로도 부름"
+  example_ko: 이 라인은 로직 반도체 전용으로 운영한다.
+  example_en: This line is dedicated to logic chips.
+  example_ja: このラインはロジック半導体専用で運用している。
+  example_zh_cn: 这条产线专用于逻辑芯片。
+  example_zh_tw: 這條產線專用於邏輯晶片。
+  definition_ko: 입력을 계산해 결과를 만드는 반도체 칩
+  module: 2
+  verified: false
+- id: dram
+  ko: 디램
+  en: DRAM (dynamic random access memory)
+  ja: DRAM
+  ja_reading: でぃーらむ
+  zh_cn: 动态随机存取存储器
+  zh_cn_pinyin: dòngtài suíjī cúnqǔ cúnchǔqì
+  zh_tw: 動態隨機存取記憶體
+  zh_tw_pinyin: dòngtài suíjī cúnqǔ jìyìtǐ
+  abbr: DRAM
+  example_ko: DRAM 셀의 캐패시터 용량이 수율에 영향을 준다.
+  example_en: The capacitor size of the DRAM cell affects yield.
+  example_ja: DRAMセルのキャパシタ容量が歩留まりに影響する。
+  example_zh_cn: DRAM单元的电容大小会影响良率。
+  example_zh_tw: DRAM記憶單元的電容大小會影響良率。
+  definition_ko: 전하를 담는 저장통으로 빠르게 기억하지만 전원이 꺼지면 사라지는 메모리
+  module: 2
+  verified: false
+- id: nand-flash
+  ko: 낸드 플래시
+  en: NAND flash
+  ja: NANDフラッシュ
+  ja_reading: なんどふらっしゅ
+  zh_cn: NAND闪存
+  zh_cn_pinyin: NAND shǎncún
+  zh_tw: NAND快閃記憶體
+  zh_tw_pinyin: NAND kuàishǎn jìyìtǐ
+  abbr: NAND
+  example_ko: 이 SSD에는 낸드 플래시가 여러 층으로 쌓여 있다.
+  example_en: This SSD has NAND flash stacked in many layers.
+  example_ja: このSSDにはNANDフラッシュが多層に積まれている。
+  example_zh_cn: 这块SSD里的NAND闪存堆叠了很多层。
+  example_zh_tw: 這顆SSD裡的NAND快閃記憶體堆疊了很多層。
+  definition_ko: 전원이 꺼져도 데이터가 남는, 저장용 메모리
+  module: 2
+  verified: false
+- id: volatile-memory
+  ko: 휘발성 메모리
+  en: volatile memory
+  ja: 揮発性メモリ
+  ja_reading: きはつせいめもり
+  zh_cn: 易失性存储器
+  zh_cn_pinyin: yìshīxìng cúnchǔqì
+  zh_tw: 揮發性記憶體
+  zh_tw_pinyin: huīfāxìng jìyìtǐ
+  example_ko: DRAM은 휘발성 메모리라서 전원이 꺼지면 값이 사라진다.
+  example_en: DRAM is volatile memory, so its data is lost when power is off.
+  example_ja: DRAMは揮発性メモリなので、電源が切れると値が消える。
+  example_zh_cn: DRAM是易失性存储器，断电后数据会丢失。
+  example_zh_tw: DRAM是揮發性記憶體，斷電後資料會消失。
+  definition_ko: 전원이 꺼지면 저장한 데이터가 사라지는 메모리
+  module: 2
+  verified: false
+- id: nonvolatile-memory
+  ko: 비휘발성 메모리
+  en: non-volatile memory
+  ja: 不揮発性メモリ
+  ja_reading: ふきはつせいめもり
+  zh_cn: 非易失性存储器
+  zh_cn_pinyin: fēi yìshīxìng cúnchǔqì
+  zh_tw: 非揮發性記憶體
+  zh_tw_pinyin: fēi huīfāxìng jìyìtǐ
+  example_ko: 낸드 플래시는 비휘발성 메모리라서 저장장치에 쓴다.
+  example_en: NAND flash is non-volatile memory, so it is used for storage.
+  example_ja: NANDフラッシュは不揮発性メモリなのでストレージに使われる。
+  example_zh_cn: NAND闪存是非易失性存储器，因此用于存储设备。
+  example_zh_tw: NAND快閃記憶體是非揮發性記憶體，因此用於儲存裝置。
+  definition_ko: 전원이 꺼져도 저장한 데이터가 남는 메모리
+  module: 2
   verified: false

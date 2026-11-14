@@ -1,0 +1,504 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+	modules: string[];
+}
+
+const { modules } = Astro.props;
+
+const entries = (await getCollection('glossary'))
+	.filter((t) => Boolean(t.data.definition_ko))
+	.map((t) => ({
+		id: t.id,
+		module: Number(t.data.module),
+		ko: t.data.ko,
+		abbr: t.data.abbr ?? '',
+		def: t.data.definition_ko ?? '',
+		en: t.data.en ?? '',
+		ja: t.data.ja ?? '',
+		jaRead: t.data.ja_reading ?? '',
+		zhHans: t.data.zh_cn ?? '',
+		zhHansRead: t.data.zh_cn_pinyin ?? '',
+		zhHant: t.data.zh_tw ?? '',
+		zhHantRead: t.data.zh_tw_pinyin ?? '',
+	}));
+
+const poolJson = JSON.stringify({ modules, entries }).replace(/</g, '\\u003c');
+
+const langs = [
+	{ key: 'en', label: 'English', lang: 'en' },
+	{ key: 'ja', label: '日本語', lang: 'ja' },
+	{ key: 'zh-Hans', label: '简体中文', lang: 'zh-Hans' },
+	{ key: 'zh-Hant', label: '繁體中文', lang: 'zh-Hant' },
+];
+---
+
+<section class="tq" data-tq-root aria-labelledby="tq-title">
+	<h2 id="tq-title">용어 맞히기</h2>
+	<p class="tq-lead">뜻풀이를 읽고 알맞은 용어를 고르세요. 보기는 고른 언어로 나옵니다.</p>
+
+	<div class="tq-controls">
+		<div class="tq-group" role="group" aria-labelledby="tq-stage-label">
+			<span id="tq-stage-label" class="tq-label">단계</span>
+			<div class="tq-pills">
+				<button type="button" class="tq-pill" data-tq-stage="" aria-pressed="true">전체</button>
+				{
+					modules.map((name, i) => (
+						<button type="button" class="tq-pill" data-tq-stage={String(i)} aria-pressed="false" aria-label={`${i}단계 ${name}`}>
+							{i}단계
+						</button>
+					))
+				}
+			</div>
+		</div>
+		<div class="tq-group" role="group" aria-labelledby="tq-lang-label">
+			<span id="tq-lang-label" class="tq-label">보기 언어</span>
+			<div class="tq-pills">
+				{
+					langs.map((l) => (
+						<button type="button" class="tq-pill" data-tq-lang={l.key} lang={l.lang} aria-pressed={l.key === 'en' ? 'true' : 'false'}>
+							{l.label}
+						</button>
+					))
+				}
+			</div>
+		</div>
+	</div>
+
+	<p class="tq-meta" aria-live="polite" data-tq-meta></p>
+
+	<div class="tq-card" data-tq-card>
+		<p class="tq-q-label"><span class="tq-number">Q</span> 이 뜻풀이에 맞는 용어는?</p>
+		<p class="tq-def" data-tq-def></p>
+		<div class="tq-choices" data-tq-choices></div>
+		<div class="tq-feedback" data-tq-feedback hidden>
+			<p class="tq-result" data-tq-result aria-live="polite"></p>
+			<p class="tq-answer" data-tq-answer></p>
+			<button type="button" class="tq-next" data-tq-next>다음 문제</button>
+		</div>
+	</div>
+
+	<p class="tq-empty" hidden data-tq-empty>이 조건에서는 보기 4개를 만들 수 없습니다. 다른 단계나 언어를 고르세요.</p>
+
+	<script is:inline type="application/json" data-tq-pool set:html={poolJson}></script>
+</section>
+
+<script>
+	type Entry = {
+		id: string;
+		module: number;
+		ko: string;
+		abbr: string;
+		def: string;
+		en: string;
+		ja: string;
+		jaRead: string;
+		zhHans: string;
+		zhHansRead: string;
+		zhHant: string;
+		zhHantRead: string;
+	};
+
+	type Lang = 'en' | 'ja' | 'zh-Hans' | 'zh-Hant';
+
+	const FIELDS: Record<Lang, { text: (e: Entry) => string; read: (e: Entry) => string }> = {
+		en: { text: (e) => e.en, read: () => '' },
+		ja: { text: (e) => e.ja, read: (e) => e.jaRead },
+		'zh-Hans': { text: (e) => e.zhHans, read: (e) => e.zhHansRead },
+		'zh-Hant': { text: (e) => e.zhHant, read: (e) => e.zhHantRead },
+	};
+
+	function shuffle<T>(arr: T[]): T[] {
+		const a = arr.slice();
+		for (let i = a.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[a[i], a[j]] = [a[j], a[i]];
+		}
+		return a;
+	}
+
+	function init(root: HTMLElement) {
+		const data = JSON.parse(root.querySelector<HTMLScriptElement>('[data-tq-pool]')!.textContent ?? '{}') as {
+			modules: string[];
+			entries: Entry[];
+		};
+		const pool = data.entries;
+
+		const stageButtons = root.querySelectorAll<HTMLButtonElement>('[data-tq-stage]');
+		const langButtons = root.querySelectorAll<HTMLButtonElement>('[data-tq-lang]');
+		const meta = root.querySelector<HTMLElement>('[data-tq-meta]')!;
+		const card = root.querySelector<HTMLElement>('[data-tq-card]')!;
+		const defEl = root.querySelector<HTMLElement>('[data-tq-def]')!;
+		const choicesEl = root.querySelector<HTMLElement>('[data-tq-choices]')!;
+		const feedback = root.querySelector<HTMLElement>('[data-tq-feedback]')!;
+		const resultEl = root.querySelector<HTMLElement>('[data-tq-result]')!;
+		const answerEl = root.querySelector<HTMLElement>('[data-tq-answer]')!;
+		const nextBtn = root.querySelector<HTMLButtonElement>('[data-tq-next]')!;
+		const empty = root.querySelector<HTMLElement>('[data-tq-empty]')!;
+
+		let stage = '';
+		let lang: Lang = 'en';
+		let score = 0;
+		let total = 0;
+		let lastId: string | null = null;
+		let answered = false;
+
+		const textOf = (e: Entry) => FIELDS[lang].text(e).trim();
+
+		const candidates = () =>
+			pool.filter((e) => (stage === '' || e.module === Number(stage)) && textOf(e) !== '');
+
+		const uniqueByText = (list: Entry[]) => {
+			const seen = new Set<string>();
+			return list.filter((e) => {
+				const t = textOf(e);
+				if (seen.has(t)) return false;
+				seen.add(t);
+				return true;
+			});
+		};
+
+		const updateMeta = (pickCount: number) => {
+			meta.textContent = `${pickCount}개 용어에서 출제 · 맞힌 수 ${score} / ${total}`;
+		};
+
+		const next = () => {
+			answered = false;
+			feedback.hidden = true;
+			choicesEl.replaceChildren();
+
+			const set = uniqueByText(candidates());
+			if (set.length < 4) {
+				card.hidden = true;
+				empty.hidden = false;
+				meta.textContent = '';
+				return;
+			}
+			card.hidden = false;
+			empty.hidden = true;
+
+			const pickable = set.filter((e) => e.id !== lastId);
+			const question = shuffle(pickable.length > 0 ? pickable : set)[0];
+			lastId = question.id;
+
+			const answerText = textOf(question);
+			const distractors = shuffle(set.filter((e) => e.id !== question.id)).slice(0, 3);
+			const options = shuffle([question, ...distractors]);
+			const answerIndex = options.indexOf(question);
+
+			defEl.textContent = question.def;
+			updateMeta(set.length);
+
+			const readOf = (e: Entry) => FIELDS[lang].read(e).trim();
+
+			options.forEach((opt, index) => {
+				const button = document.createElement('button');
+				button.type = 'button';
+				button.className = 'tq-choice';
+				button.dataset.tqIndex = String(index);
+
+				const text = document.createElement('span');
+				text.className = 'tq-text';
+				text.lang = lang;
+				text.textContent = textOf(opt);
+				button.appendChild(text);
+
+				const read = readOf(opt);
+				if (read) {
+					const readEl = document.createElement('span');
+					readEl.className = 'tq-read';
+					readEl.textContent = read;
+					button.appendChild(readEl);
+				}
+
+				button.addEventListener('click', () => {
+					if (answered) return;
+					answered = true;
+					total++;
+					const correct = index === answerIndex;
+					if (correct) score++;
+
+					choicesEl.querySelectorAll<HTMLButtonElement>('[data-tq-index]').forEach((b) => {
+						const i = Number(b.dataset.tqIndex);
+						b.setAttribute('aria-disabled', 'true');
+						b.setAttribute('aria-pressed', String(i === index));
+						if (i === answerIndex) b.classList.add('is-correct');
+						else if (i === index) b.classList.add('is-wrong');
+					});
+
+					resultEl.textContent = correct ? '정답입니다.' : '오답입니다.';
+					resultEl.className = `tq-result ${correct ? 'is-correct' : 'is-wrong'}`;
+					answerEl.textContent = `정답: ${question.ko}${question.abbr ? ` (${question.abbr})` : ''} · ${answerText}`;
+					feedback.hidden = false;
+					updateMeta(set.length);
+					nextBtn.focus();
+				});
+
+				choicesEl.appendChild(button);
+			});
+		};
+
+		const setPressed = (buttons: NodeListOf<HTMLButtonElement>, active: HTMLButtonElement) => {
+			buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === active)));
+		};
+
+		stageButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				stage = button.dataset.tqStage ?? '';
+				setPressed(stageButtons, button);
+				score = 0;
+				total = 0;
+				next();
+			});
+		});
+
+		langButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				lang = (button.dataset.tqLang ?? 'en') as Lang;
+				setPressed(langButtons, button);
+				score = 0;
+				total = 0;
+				next();
+			});
+		});
+
+		nextBtn.addEventListener('click', next);
+
+		next();
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-tq-root]').forEach(init);
+</script>
+
+<style>
+	.tq {
+		margin: var(--space-7) 0 0;
+		padding-top: var(--space-5);
+		border-top: 1px solid var(--border);
+	}
+
+	h2 {
+		margin: 0;
+		color: var(--text);
+		font-size: var(--fs-h2, 24px);
+		line-height: var(--lh-h2, 32px);
+		font-weight: 700;
+	}
+
+	.tq-lead {
+		margin: var(--space-1) 0 0;
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+	}
+
+	.tq-controls {
+		display: grid;
+		gap: var(--space-3);
+		margin-top: var(--space-4);
+	}
+
+	.tq-group {
+		display: grid;
+		gap: var(--space-1);
+	}
+
+	.tq-label {
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+	}
+
+	.tq-pills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+	}
+
+	.tq-pill {
+		min-height: var(--touch-min);
+		padding: 0 var(--space-3);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		color: var(--text);
+		font: inherit;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.tq-pill[aria-pressed='true'] {
+		border-color: var(--primary);
+		background: var(--primary-soft);
+		color: var(--primary);
+	}
+
+	.tq-pill:focus-visible,
+	.tq-next:focus-visible,
+	.tq-choices :global(.tq-choice:focus-visible) {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+
+	.tq-meta {
+		min-height: 1lh;
+		margin: var(--space-4) 0 var(--space-2);
+		color: var(--text-muted);
+		font-family: var(--font-mono);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 500;
+	}
+
+	.tq-card {
+		min-width: 0;
+		padding: var(--space-4) var(--space-5);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		background: var(--surface);
+	}
+
+	.tq-card[hidden] {
+		display: none;
+	}
+
+	.tq-q-label {
+		margin: 0;
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+	}
+
+	.tq-number {
+		color: var(--accent);
+		font-family: var(--font-mono);
+		font-weight: 500;
+	}
+
+	.tq-def {
+		margin: var(--space-2) 0 0;
+		color: var(--text);
+		font-size: var(--fs-body);
+		line-height: var(--lh-body);
+		font-weight: 600;
+	}
+
+	.tq-choices {
+		display: grid;
+		gap: var(--space-2);
+		margin-top: var(--space-4);
+	}
+
+	.tq-choices :global(.tq-choice) {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: var(--space-1) var(--space-3);
+		width: 100%;
+		min-height: var(--touch-min);
+		padding: var(--space-2) var(--space-4);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		color: var(--text);
+		font: inherit;
+		font-size: var(--fs-body);
+		line-height: var(--lh-body);
+		font-weight: 600;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.tq-choices :global(.tq-choice:hover:not([aria-disabled='true'])) {
+		border-color: var(--primary);
+		color: var(--primary);
+	}
+
+	.tq-choices :global(.tq-choice[aria-disabled='true']) {
+		cursor: default;
+	}
+
+	.tq-choices :global(.tq-choice.is-correct) {
+		border-color: var(--success);
+		background: var(--surface-sunken);
+		color: var(--success);
+	}
+
+	.tq-choices :global(.tq-choice.is-wrong) {
+		border-color: var(--danger);
+		background: var(--surface-sunken);
+		color: var(--danger);
+	}
+
+	.tq-choices :global(.tq-read) {
+		color: var(--text-muted);
+		font-family: var(--font-mono);
+		font-size: var(--fs-caption);
+		line-height: var(--lh-caption);
+		font-weight: 500;
+	}
+
+	.tq-feedback {
+		margin-top: var(--space-3);
+	}
+
+	.tq-feedback[hidden] {
+		display: none;
+	}
+
+	.tq-feedback p {
+		margin: 0;
+	}
+
+	.tq-result {
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+	}
+
+	.tq-result.is-correct {
+		color: var(--success);
+	}
+
+	.tq-result.is-wrong {
+		color: var(--danger);
+	}
+
+	.tq-answer {
+		margin-top: var(--space-1);
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+	}
+
+	.tq-next {
+		min-height: var(--touch-min);
+		margin-top: var(--space-3);
+		padding: 0 var(--space-4);
+		border: 0;
+		border-radius: var(--radius-md);
+		background: var(--primary);
+		color: var(--on-primary);
+		font: inherit;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.tq-empty {
+		margin: var(--space-3) 0 0;
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+	}
+
+	.tq-empty[hidden] {
+		display: none;
+	}
+</style>

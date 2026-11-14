@@ -47,13 +47,29 @@ const { label = '단계별 도해', prevLabel = '이전', nextLabel = '다음' }
 				step.setAttribute('aria-hidden', String(i !== index));
 			});
 			dots.forEach((dot, i) => dot.toggleAttribute('data-active', i === index));
-			prev.disabled = index === 0;
-			next.disabled = index === steps.length - 1;
+			// disabled 속성은 초점을 잃게 하므로 aria-disabled로 표시한다
+			prev.setAttribute('aria-disabled', String(index === 0));
+			next.setAttribute('aria-disabled', String(index === steps.length - 1));
 			counter.textContent = `${index + 1} / ${steps.length}`;
+			// 화면 낭독기에는 장면 제목도 함께 알린다
+			const title =
+				steps[index].getAttribute('aria-label') ??
+				steps[index].querySelector('[aria-label]')?.getAttribute('aria-label');
+			if (title) {
+				const spoken = document.createElement('span');
+				spoken.textContent = ` ${title}`;
+				spoken.style.cssText =
+					'position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap';
+				counter.appendChild(spoken);
+			}
 		};
 
-		prev.addEventListener('click', () => show(index - 1));
-		next.addEventListener('click', () => show(index + 1));
+		prev.addEventListener('click', () => {
+			if (index > 0) show(index - 1);
+		});
+		next.addEventListener('click', () => {
+			if (index < steps.length - 1) show(index + 1);
+		});
 		root.addEventListener('keydown', (event) => {
 			if (event.key === 'ArrowLeft') show(index - 1);
 			if (event.key === 'ArrowRight') show(index + 1);
@@ -176,7 +192,8 @@ const { label = '단계별 도해', prevLabel = '이전', nextLabel = '다음' }
 		outline-offset: 2px;
 	}
 
-	button:disabled {
+	button:disabled,
+	button[aria-disabled='true'] {
 		color: var(--text-muted);
 		opacity: 0.5;
 		cursor: default;
