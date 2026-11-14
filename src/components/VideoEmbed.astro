@@ -4,15 +4,18 @@ interface Props {
 	title: string;
 	start?: number; // 시작 위치(초)
 	playLabel?: string;
+	channel?: string; // 공식 채널 이름
 }
 
-const { id, title, start, playLabel = '영상 재생' } = Astro.props;
+const { id, title, start, playLabel = '영상 재생', channel } = Astro.props;
 const watchUrl = `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` : ''}`;
+const thumbUrl = `https://i.ytimg.com/vi/${encodeURIComponent(id)}/hqdefault.jpg`;
 ---
 
 <div class="video" data-video-id={id} data-video-start={start} data-video-title={title}>
 	<div class="frame">
 		<a class="facade" href={watchUrl} target="_blank" rel="noopener noreferrer" data-video-play>
+			<img class="thumb" src={thumbUrl} alt="" loading="lazy" decoding="async" />
 			<span class="play" aria-hidden="true">
 				<svg viewBox="0 0 24 24" width="24" height="24">
 					<path d="M8 5v14l11-7z" fill="currentColor" />
@@ -23,7 +26,7 @@ const watchUrl = `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` 
 	</div>
 	<div class="caption">
 		<p class="title">{title}</p>
-		<p class="source">출처: YouTube</p>
+		<p class="source">출처: {channel ? `${channel} (YouTube)` : 'YouTube'}</p>
 	</div>
 </div>
 
@@ -78,7 +81,16 @@ const watchUrl = `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` 
 		outline-offset: -4px;
 	}
 
+	.thumb {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
 	.play {
+		position: relative;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;

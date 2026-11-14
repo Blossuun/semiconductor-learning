@@ -7,12 +7,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 // 단계(module)별 레슨 slug. 학습 경로 행의 진도 표시에 쓴다.
 const lessonModules = import.meta.glob('../content/lessons/*.mdx', { eager: true }) as Record<string, any>;
 const stepLessons: Record<number, string[]> = {};
+const stepItems: Record<number, { slug: string; title: string; order: number }[]> = {};
 for (const [path, mod] of Object.entries(lessonModules)) {
 	const slug = path.split('/').pop()!.replace(/\.mdx$/, '');
 	const m = Number(mod.frontmatter?.module ?? -1);
 	if (!stepLessons[m]) stepLessons[m] = [];
 	stepLessons[m].push(slug);
+	if (!stepItems[m]) stepItems[m] = [];
+	stepItems[m].push({ slug, title: String(mod.frontmatter?.title ?? slug), order: Number(mod.frontmatter?.order ?? 0) });
 }
+for (const m of Object.keys(stepItems)) stepItems[Number(m)].sort((a, b) => a.order - b.order);
 
 // href가 있는 단계만 링크. 나머지는 "준비 중".
 const steps = [
@@ -64,15 +68,31 @@ const langs = [
 								</svg>
 							</a>
 						) : (
-							<div class="path-row is-pending" data-lessons={(stepLessons[s.n] ?? []).join(',')}>
-								<span class="path-num">{s.n}</span>
-								<span class="path-name">{s.title}</span>
-								{(stepLessons[s.n]?.length ?? 0) > 0 ? (
-										<span class="path-status" data-progress>0/{stepLessons[s.n].length}</span>
-									) : (
-										<span class="path-status">준비 중</span>
-									)}
-							</div>
+							(stepItems[s.n]?.length ?? 0) > 0 ? (
+								<details class="path-step" data-lessons={stepLessons[s.n].join(',')}>
+									<summary class="path-row">
+										<span class="path-num">{s.n}</span>
+										<span class="path-name">{s.title}</span>
+										<span class="path-progress" data-progress>0/{stepLessons[s.n].length}</span>
+										<svg class="path-arrow path-chevron" viewBox="0 0 24 24" aria-hidden="true">
+											<path d="M6 9l6 6 6-6" />
+										</svg>
+									</summary>
+									<ol class="lesson-list">
+										{stepItems[s.n].map((l) => (
+											<li>
+												<a class="lesson-link" href={`${base}/lessons/${l.slug}/`}>{l.title}</a>
+											</li>
+										))}
+									</ol>
+								</details>
+							) : (
+								<div class="path-row is-pending">
+									<span class="path-num">{s.n}</span>
+									<span class="path-name">{s.title}</span>
+									<span class="path-status">준비 중</span>
+								</div>
+							)
 						)}
 					</li>
 				))}
@@ -81,6 +101,7 @@ const langs = [
 
 		<section class="block" aria-labelledby="example-title">
 			<h2 id="example-title" class="h2">용어 카드 예시</h2>
+				<p class="body">레슨에서 만나는 용어는 이런 카드로 뜻, 현장 메모, 언어별 표기와 발음을 한 번에 보여 줍니다.</p>
 			<article class="term-card">
 				<div class="term-head">
 					<h3 class="term-main">웨이퍼</h3>
@@ -258,6 +279,51 @@ const langs = [
 
 	a.path-row:hover {
 		background: var(--primary-soft);
+	}
+
+	summary.path-row {
+		cursor: pointer;
+		list-style: none;
+	}
+
+	summary.path-row::-webkit-details-marker {
+		display: none;
+	}
+
+	summary.path-row:hover {
+		background: var(--primary-soft);
+	}
+
+	.path-step[open] .path-chevron {
+		transform: rotate(180deg);
+	}
+
+	.lesson-list {
+		list-style: none;
+		margin: 0;
+		padding: 0 0 var(--space-2);
+	}
+
+	.path-list .lesson-list li + li {
+		border-top: 0;
+	}
+
+	.lesson-link {
+		display: block;
+		padding: var(--space-2) var(--space-5) var(--space-2) calc(var(--space-5) + 32px + var(--space-3));
+		color: var(--text);
+		text-decoration: none;
+	}
+
+	.lesson-link:hover {
+		background: var(--primary-soft);
+		color: var(--primary);
+	}
+
+	.lesson-link:focus-visible,
+	summary.path-row:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: -2px;
 	}
 
 	.path-row.is-pending {

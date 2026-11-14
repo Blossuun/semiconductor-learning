@@ -2,112 +2,121 @@
 title: EDS (전기적 특성 검사)
 module: 6
 order: 1
-summary: EDS는 웨이퍼를 자르기 전에 칩마다 전기를 흘려 양품과 불량을 가려내는 검사다.
+summary: EDS는 웨이퍼를 자르기 전에 칩마다 전기를 흘려 양품과 불량을 가려내는 검사입니다.
 ---
 
 import StepAnimation from '../../components/StepAnimation.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import TermCard from '../../components/TermCard.astro';
 import Quiz from '../../components/Quiz.astro';
 
 ## 한 줄 요약
 
-EDS는 웨이퍼 위의 칩 하나하나에 전기를 흘려 제대로 동작하는지 확인하고, 양품과 불량을 나누는 검사 공정이다.
+EDS는 웨이퍼 위의 칩 하나하나에 전기를 흘려 제대로 동작하는지 확인하고, 양품과 불량을 나누는 검사 공정입니다.
 
-일상 비유 1개: EDS는 과수원에서 수확한 사과를 상자에 담기 전에 하나씩 살펴 상한 것을 골라내는 일과 비슷하다.
+EDS는 과수원에서 수확한 사과를 상자에 담기 전에 하나씩 살펴 상한 것을 골라내는 일과 비슷합니다.
 
 ## 단계별로 보기
 
 <StepAnimation label="EDS 3단계 도해">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="탐침 카드의 바늘이 웨이퍼 위 칩의 전극 패드에 닿는 모습">
-			<rect x="60" y="200" width="360" height="16" rx="3" fill="var(--color-text-muted)" opacity="0.4" />
-			<rect x="150" y="170" width="180" height="30" fill="none" stroke="currentColor" stroke-width="2" />
-			<rect x="162" y="176" width="22" height="10" fill="currentColor" />
-			<rect x="229" y="176" width="22" height="10" fill="currentColor" />
-			<rect x="296" y="176" width="22" height="10" fill="currentColor" />
-			<rect x="120" y="40" width="240" height="30" rx="4" fill="none" stroke="currentColor" stroke-width="2" />
-			<path d="M173 70 L173 172 M240 70 L240 172 M307 70 L307 172" stroke="currentColor" stroke-width="2" fill="none" />
-			<text x="240" y="30" text-anchor="middle" fill="currentColor">탐침 카드</text>
-			<text x="240" y="242" text-anchor="middle" fill="currentColor">웨이퍼 위의 칩</text>
+			<rect x="60" y="206" width="360" height="34" rx="3" fill="#5c6778" />
+			<rect x="150" y="170" width="180" height="36" fill="#d9b877" stroke="currentColor" stroke-width="2" />
+			<rect x="162" y="176" width="22" height="10" fill="#d68a45" />
+			<rect x="229" y="176" width="22" height="10" fill="#d68a45" />
+			<rect x="296" y="176" width="22" height="10" fill="#d68a45" />
+			<rect x="120" y="40" width="240" height="30" rx="4" fill="#7fa8d9" stroke="currentColor" stroke-width="2" />
+			<path d="M173 70 L173 176 M240 70 L240 176 M307 70 L307 176" stroke="currentColor" stroke-width="2" fill="none" />
+			<text x="110" y="62" text-anchor="end" font-size="20" fill="currentColor">탐침 카드</text>
+			<text x="345" y="194" font-size="20" fill="currentColor">칩</text>
+			<text x="240" y="230" text-anchor="middle" font-size="20" fill="#ffffff">웨이퍼</text>
 		</svg>
 		<figcaption>
 			<strong>접촉</strong>
-			<p>탐침 카드(가느다란 금속 바늘이 달린 판)의 바늘을 칩의 전극 패드(전선을 잇는 금속 자리)에 댄다.</p>
-			<p>칩은 너무 작아 손으로 연결할 수 없어서, 바늘로 전기가 드나드는 길을 만들어야 한다.</p>
+			<p>탐침 카드(가느다란 금속 바늘이 달린 판)의 바늘을 칩의 전극 패드(전선을 잇는 금속 자리)에 댑니다.</p>
+			<p>칩은 너무 작아 손으로 연결할 수 없어서, 바늘로 전기가 드나드는 길을 만들어야 합니다.</p>
 		</figcaption>
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="검사 장비가 칩에 신호를 보내고 응답을 받는 모습">
-			<rect x="30" y="100" width="130" height="70" rx="6" fill="none" stroke="currentColor" stroke-width="2" />
-			<text x="95" y="140" text-anchor="middle" fill="currentColor">검사 장비</text>
-			<rect x="320" y="100" width="130" height="70" rx="6" fill="none" stroke="currentColor" stroke-width="2" />
-			<text x="385" y="140" text-anchor="middle" fill="currentColor">칩</text>
-			<path d="M165 118 L315 118" stroke="currentColor" stroke-width="2" fill="none" />
-			<path d="M305 112 L315 118 L305 124" stroke="currentColor" stroke-width="2" fill="none" />
-			<path d="M315 152 L165 152" stroke="currentColor" stroke-width="2" fill="none" />
-			<path d="M175 146 L165 152 L175 158" stroke="currentColor" stroke-width="2" fill="none" />
-			<text x="240" y="108" text-anchor="middle" fill="currentColor">입력 신호</text>
-			<text x="240" y="176" text-anchor="middle" fill="currentColor">응답 신호</text>
+			<rect x="30" y="90" width="140" height="80" rx="6" fill="#7fa8d9" stroke="currentColor" stroke-width="2" />
+			<text x="100" y="137" text-anchor="middle" font-size="20" fill="#17202b">검사 장비</text>
+			<rect x="310" y="90" width="140" height="80" rx="6" fill="#d9b877" stroke="currentColor" stroke-width="2" />
+			<text x="380" y="137" text-anchor="middle" font-size="20" fill="#17202b">칩</text>
+			<path d="M174 112 L296 112" stroke="currentColor" stroke-width="2" fill="none" />
+			<path d="M308 112 L296 106 L296 118 Z" fill="currentColor" />
+			<path d="M306 152 L184 152" stroke="currentColor" stroke-width="2" fill="none" />
+			<path d="M172 152 L184 146 L184 158 Z" fill="currentColor" />
+			<text x="240" y="100" text-anchor="middle" font-size="20" fill="currentColor">입력 신호</text>
+			<text x="240" y="180" text-anchor="middle" font-size="20" fill="currentColor">응답 신호</text>
 		</svg>
 		<figcaption>
 			<strong>측정</strong>
-			<p>바늘로 전기 신호를 넣고, 칩이 돌려주는 신호가 기대한 값과 같은지 읽는다.</p>
-			<p>칩이 설계한 대로 동작하는지는 실제로 전기를 흘려 봐야 알 수 있기 때문이다.</p>
+			<p>바늘로 전기 신호를 넣고, 칩이 돌려주는 신호가 기대한 값과 같은지 읽습니다.</p>
+			<p>칩이 설계한 대로 동작하는지는 실제로 전기를 흘려 봐야 알 수 있기 때문입니다.</p>
 		</figcaption>
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="양품과 불량 위치를 표시한 웨이퍼 맵">
-			<circle cx="240" cy="134" r="110" fill="none" stroke="currentColor" stroke-width="2" />
-			<rect x="180" y="74" width="24" height="24" fill="currentColor" opacity="0.7" />
-			<rect x="210" y="74" width="24" height="24" fill="currentColor" opacity="0.7" />
-			<rect x="240" y="74" width="24" height="24" fill="currentColor" opacity="0.7" />
-			<rect x="270" y="74" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" />
-			<rect x="180" y="104" width="24" height="24" fill="currentColor" opacity="0.7" />
-			<rect x="210" y="104" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" />
-			<rect x="240" y="104" width="24" height="24" fill="currentColor" opacity="0.7" />
-			<rect x="270" y="104" width="24" height="24" fill="currentColor" opacity="0.7" />
-			<rect x="180" y="134" width="24" height="24" fill="currentColor" opacity="0.7" />
-			<rect x="210" y="134" width="24" height="24" fill="currentColor" opacity="0.7" />
-			<rect x="240" y="134" width="24" height="24" fill="currentColor" opacity="0.7" />
-			<rect x="270" y="134" width="24" height="24" fill="currentColor" opacity="0.7" />
-			<rect x="210" y="164" width="24" height="24" fill="currentColor" opacity="0.7" />
-			<rect x="240" y="164" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" />
-			<text x="240" y="262" text-anchor="middle" fill="currentColor">채움 = 양품, 빈칸 = 불량</text>
+			<circle cx="240" cy="124" r="104" fill="#d9b877" stroke="currentColor" stroke-width="2" />
+			<rect x="180" y="64" width="24" height="24" fill="#2447b8" />
+			<rect x="210" y="64" width="24" height="24" fill="#2447b8" />
+			<rect x="240" y="64" width="24" height="24" fill="#2447b8" />
+			<rect x="270" y="64" width="24" height="24" fill="#b8477a" />
+			<rect x="180" y="94" width="24" height="24" fill="#2447b8" />
+			<rect x="210" y="94" width="24" height="24" fill="#b8477a" />
+			<rect x="240" y="94" width="24" height="24" fill="#2447b8" />
+			<rect x="270" y="94" width="24" height="24" fill="#2447b8" />
+			<rect x="180" y="124" width="24" height="24" fill="#2447b8" />
+			<rect x="210" y="124" width="24" height="24" fill="#2447b8" />
+			<rect x="240" y="124" width="24" height="24" fill="#2447b8" />
+			<rect x="270" y="124" width="24" height="24" fill="#2447b8" />
+			<rect x="210" y="154" width="24" height="24" fill="#2447b8" />
+			<rect x="240" y="154" width="24" height="24" fill="#b8477a" />
+			<rect x="120" y="242" width="20" height="20" fill="#2447b8" />
+			<text x="148" y="259" font-size="20" fill="currentColor">양품</text>
+			<rect x="216" y="242" width="20" height="20" fill="#b8477a" />
+			<text x="244" y="259" font-size="20" fill="currentColor">불량</text>
 		</svg>
 		<figcaption>
 			<strong>분류</strong>
-			<p>결과를 칩 위치마다 기록해 웨이퍼 맵(양품과 불량의 위치를 나타낸 지도)을 만든다.</p>
-			<p>이 기록이 있어야 양품만 다음 공정으로 보내고, 불량이 몰린 자리에서 원인 공정을 추적할 수 있다.</p>
+			<p>결과를 칩 위치마다 기록해 웨이퍼 맵(양품과 불량의 위치를 나타낸 지도)을 만듭니다.</p>
+			<p>이 기록이 있어야 양품만 다음 공정으로 보내고, 불량이 몰린 자리에서 원인 공정을 추적할 수 있습니다.</p>
 		</figcaption>
 	</figure>
 </StepAnimation>
+
+## 영상으로 보기
+
+<VideoEmbed id="2jVJ21FaoBk" title="[EDS공정] 불량은 없어~ 불량 웨이퍼 씨 말리는 반도체 공정" channel="삼성전자 반도체 뉴스룸" />
 
 ## 자세히 알아보기
 
 ### 왜 필요한가
 
-웨이퍼 한 장에는 같은 칩(다이, 웨이퍼 위의 칩 한 조각)이 수백 개에서 수천 개 들어 있다. 이 칩이 모두 정상이지는 않다. 불량 칩을 모르고 자르고 포장하면 비용과 재료만 낭비된다. 그래서 포장하기 전에 먼저 걸러 낸다.
+웨이퍼 한 장에는 같은 칩(다이, 웨이퍼 위의 칩 한 조각)이 수백 개에서 수천 개 들어 있습니다. 이 칩이 모두 정상이지는 않습니다. 불량 칩을 모르고 자르고 포장하면 비용과 재료만 낭비됩니다. 그래서 포장하기 전에 먼저 걸러 냅니다.
 
 ### 어떻게 하는가
 
-세 단계로 진행한다.
+세 단계로 진행합니다.
 
-1. 접촉: 탐침 카드(가느다란 금속 바늘이 달린 판)를 칩의 전극 패드(전선을 잇는 금속 자리)에 댄다.
-2. 측정: 바늘로 신호를 넣고 칩이 돌려주는 신호를 읽는다. 전류가 정상인지, 기능이 동작하는지 본다.
-3. 분류: 결과를 위치별로 기록해 웨이퍼 맵(양품과 불량의 위치를 나타낸 지도)을 만든다. 메모리 칩은 일부 불량 부분을 여분 부분으로 바꿔 살리기도 한다.
+1. 접촉: 탐침 카드(가느다란 금속 바늘이 달린 판)를 칩의 전극 패드(전선을 잇는 금속 자리)에 댑니다.
+2. 측정: 바늘로 신호를 넣고 칩이 돌려주는 신호를 읽습니다. 전류가 정상인지, 기능이 동작하는지 봅니다.
+3. 분류: 결과를 위치별로 기록해 웨이퍼 맵(양품과 불량의 위치를 나타낸 지도)을 만듭니다. 메모리 칩은 일부 불량 부분을 여분 부분으로 바꿔 살리기도 합니다.
 
-### 앞뒤 공정과 어떻게 이어지는가
+### 앞뒤 레슨과 어떻게 이어지는가
 
-앞에서는 증착, 식각, 이온 주입 같은 웨이퍼 공정이 모두 끝난 웨이퍼를 받는다. 뒤로는 양품 위치 정보를 넘긴다. 이 정보로 웨이퍼를 칩 단위로 자르고(다이싱) 포장(패키징)할 때 양품만 골라 쓴다. 불량 위치와 비율은 앞 공정에 되돌려 수율(만든 칩 중 양품의 비율)을 높이는 데도 쓴다.
+앞에서는 증착, 식각, 이온 주입 같은 웨이퍼 공정이 모두 끝난 웨이퍼를 받습니다. 뒤로는 양품 위치 정보를 넘깁니다. 이 정보로 웨이퍼를 칩 단위로 자르고(다이싱) 포장(패키징)할 때 양품만 골라 씁니다. 불량 위치와 비율은 앞 공정에 되돌려 수율(만든 칩 중 양품의 비율)을 높이는 데도 씁니다.
 
 ## 더 깊이 알아보기
 
 <details>
 <summary>원리 더 보기 (왜 웨이퍼 상태에서 검사하는가)</summary>
 
-칩을 자르고 포장한 뒤에 불량이 드러나면, 이미 들인 포장 재료와 공정 시간이 모두 손실이다. 웨이퍼 상태에서 검사하면 이 손실을 앞 단계에서 막는다. 검사 비용은 불량 칩에 들어갈 뒷공정 비용을 줄여서 얻는 이익과 비교해 정한다.
+칩을 자르고 포장한 뒤에 불량이 드러나면, 이미 들인 포장 재료와 공정 시간이 모두 손실입니다. 웨이퍼 상태에서 검사하면 이 손실을 앞 단계에서 막습니다. 검사 비용은 불량 칩에 들어갈 뒷공정 비용을 줄여서 얻는 이익과 비교해 정합니다.
 
-웨이퍼 맵의 불량 분포는 원인을 가리키는 단서가 된다. 가장자리에 몰리면 막 두께나 식각의 균일성 문제를, 한 줄로 이어지면 노광이나 긁힘 같은 국소 요인을 의심한다. 이렇게 불량 패턴을 읽으면 어느 공정을 고칠지 좁힐 수 있다.
+웨이퍼 맵의 불량 분포는 원인을 가리키는 단서가 됩니다. 가장자리에 몰리면 막 두께나 식각의 균일성 문제를, 한 줄로 이어지면 노광이나 긁힘 같은 국소 요인을 의심합니다. 이렇게 불량 패턴을 읽으면 어느 공정을 고칠지 좁힐 수 있습니다.
 
 </details>
 
@@ -128,31 +137,31 @@ EDS는 웨이퍼 위의 칩 하나하나에 전기를 흘려 제대로 동작하
 			question: 'EDS를 하는 시점으로 알맞은 것은?',
 			choices: ['웨이퍼를 자르고 포장하기 전', '포장이 끝난 뒤', '웨이퍼를 만들기 전', '노광 직후'],
 			answer: 0,
-			explanation: 'EDS는 웨이퍼 상태에서 칩을 검사해 불량을 포장 전에 걸러 낸다.',
+			explanation: 'EDS는 웨이퍼 상태에서 칩을 검사해 불량을 포장 전에 걸러 냅니다.',
 		},
 		{
 			question: '탐침 카드의 역할은?',
 			choices: ['웨이퍼를 자른다', '바늘로 칩의 전극 패드에 전기를 연결한다', '칩을 포장한다', '회로를 그린다'],
 			answer: 1,
-			explanation: '탐침 카드의 바늘이 전극 패드에 닿아 신호가 드나드는 길을 만든다.',
+			explanation: '탐침 카드의 바늘이 전극 패드에 닿아 신호가 드나드는 길을 만듭니다.',
 		},
 		{
 			question: '웨이퍼 맵이 나타내는 것은?',
 			choices: ['웨이퍼의 두께', '칩별 양품과 불량의 위치', '노광 파장', '클린룸의 온도'],
 			answer: 1,
-			explanation: '웨이퍼 맵은 칩마다 검사 결과를 위치별로 표시한 지도다.',
+			explanation: '웨이퍼 맵은 칩마다 검사 결과를 위치별로 표시한 지도입니다.',
 		},
 		{
 			question: 'EDS와 같은 검사를 해외에서 부르는 이름은?',
 			choices: ['wafer sort 또는 wafer test', 'wire bonding', 'ion implantation', 'photoresist'],
 			answer: 0,
-			explanation: 'EDS는 주로 한국에서 쓰는 이름이고, 해외에서는 wafer sort, wafer test 등으로 부른다.',
+			explanation: 'EDS는 주로 한국에서 쓰는 이름입니다. 해외에서는 wafer sort, wafer test 등으로 부릅니다.',
 		},
 		{
 			question: 'EDS 결과가 뒤 공정에서 쓰이는 방식은?',
 			choices: ['불량 칩도 모두 포장한다', '양품만 골라 다이싱과 패키징을 진행한다', '웨이퍼를 처음부터 다시 만든다', '결과를 버린다'],
 			answer: 1,
-			explanation: '양품 위치 정보를 받아 양품만 자르고 포장한다.',
+			explanation: '양품 위치 정보를 받아 양품만 자르고 포장합니다.',
 		},
 	]}
 />

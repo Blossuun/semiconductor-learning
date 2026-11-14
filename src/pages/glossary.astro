@@ -21,7 +21,7 @@ const terms = (await getCollection('glossary')).sort((a, b) => a.data.ko.localeC
 const counts = modules.map((_, i) => terms.filter((t) => String(t.data.module) === String(i)).length);
 
 const searchText = (t: (typeof terms)[number]['data']) =>
-	[t.ko, t.en, t.ja, t.ja_reading, t.zh_cn, t.zh_cn_pinyin, t.zh_tw, t.zh_tw_pinyin, t.abbr, t.definition_ko]
+	[t.ko, t.en, t.ja, t.ja_reading, t.zh_cn, t.zh_cn_pinyin, t.zh_tw, t.zh_tw_pinyin, t.abbr, t.field_usage, t.definition_ko]
 		.filter(Boolean)
 		.join(' ')
 		.toLowerCase();
@@ -53,10 +53,16 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 
 	<h1>용어집</h1>
 
+	<nav class="views" aria-label="보기 전환">
+		<a href="#" data-view-link="list" aria-current="page">용어 목록</a>
+		<a href="#quiz" data-view-link="quiz">용어 맞히기</a>
+	</nav>
+
+	<div data-view="list">
 	<form class="search" role="search" data-glossary-search>
 		<label>
 			<span>검색</span>
-			<input type="search" placeholder="용어를 검색하세요" autocomplete="off" data-search />
+			<input type="search" placeholder="용어, 약어, 현장 표현 검색" autocomplete="off" data-search />
 		</label>
 	</form>
 
@@ -79,6 +85,19 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 						</summary>
 						<div class="term-body">
 							<TermCard id={term.id} glossaryLink={false} />
+							{term.data.sources && term.data.sources.length > 0 && (
+								<p class="sources">
+									출처:{' '}
+									{term.data.sources.map((url: string, i: number) => (
+										<>
+											{i > 0 && ', '}
+											<a href={url} target="_blank" rel="noopener noreferrer">
+												{new URL(url).hostname.replace(/^www\./, '')}
+											</a>
+										</>
+									))}
+								</p>
+							)}
 						</div>
 					</details>
 				</li>
@@ -86,7 +105,11 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 		}
 	</ul>
 	<p class="empty" hidden data-empty>조건에 맞는 용어가 없습니다.</p>
+		</div>
+
+	<div data-view="quiz" hidden>
 		<TermQuiz modules={modules} />
+	</div>
 </Base>
 
 <script>
@@ -127,7 +150,19 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 	});
 
 	// #term-{id} 해시로 들어오면 필터를 풀고, 그 항목을 펼쳐서 보여 준다.
+	const views = document.querySelectorAll<HTMLElement>('[data-view]');
+	const viewLinks = document.querySelectorAll<HTMLElement>('[data-view-link]');
+	const showView = () => {
+		const name = window.location.hash === '#quiz' ? 'quiz' : 'list';
+		views.forEach((v) => (v.hidden = v.dataset.view !== name));
+		viewLinks.forEach((a) => {
+			if (a.dataset.viewLink === name) a.setAttribute('aria-current', 'page');
+			else a.removeAttribute('aria-current');
+		});
+	};
+
 	const openFromHash = () => {
+		showView();
 		const hash = window.location.hash;
 		if (!hash.startsWith('#term-')) return;
 		const target = document.getElementById(decodeURIComponent(hash.slice(1)));
@@ -169,6 +204,35 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 		color: var(--text);
 		font: inherit;
 		font-size: var(--fs-body);
+	}
+
+	.views {
+		display: flex;
+		gap: var(--space-2);
+		margin: 0 0 var(--space-4);
+	}
+
+	.views a {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--touch-min);
+		padding: 0 var(--space-4);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		color: var(--text);
+		text-decoration: none;
+	}
+
+	.views a[aria-current='page'] {
+		border-color: var(--primary);
+		font-weight: 700;
+	}
+
+	.sources {
+		margin: var(--space-3) 0 0;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		color: var(--text-muted);
 	}
 
 	.count {

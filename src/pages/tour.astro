@@ -2,29 +2,18 @@
 import Base from '../layouts/Base.astro';
 import TourScenes from '../components/TourScenes.astro';
 
-const steps = [
-	{ n: 0, title: '칩 하나 만들어 보기', href: '/tour/' },
-	{ n: 1, title: '기초 원리' },
-	{ n: 2, title: '제품과 산업' },
-	{ n: 3, title: '팹과 클린룸' },
-	{ n: 4, title: '전공정' },
-	{ n: 5, title: '계측·검사·수율' },
-	{ n: 6, title: '후공정' },
-	{ n: 7, title: '최신 기술' },
-	{ n: 8, title: '현장 소통' },
-];
-
-const next = steps[1];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const nextHref = `${base}/lessons/conductor-insulator-semiconductor/`;
 ---
 
-<Base title="칩 하나 만들어 보기" steps={steps} currentStep={0}>
+<Base title="칩 하나 만들어 보기" currentStep={0}>
 	<p class="step-label"><span class="num">0</span> 단계</p>
 	<h1>칩 하나 만들어 보기</h1>
 	<p class="lead">모래가 반도체 칩이 되기까지를 8장면으로 따라가 봅니다. 원리는 뒤에서 배우니, 지금은 흐름만 눈에 담아 두세요.</p>
 	<TourScenes />
 	<p class="closing">모래가 칩이 되기까지 보통 석 달 넘게 걸립니다. 다음 단계부터는 각 장면을 하나씩 자세히 살펴봅니다.</p>
 	<div class="next">
-		<span class="btn is-disabled" aria-disabled="true">다음: {next.n}. {next.title}</span>
+		<a class="btn" href={nextHref}>다음: 1. 기초 원리</a>
 	</div>
 </Base>
 

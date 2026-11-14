@@ -23,6 +23,11 @@ const abbrs = term.abbr
 			.filter(Boolean)
 	: [];
 
+// 현장에서 약어로 부르는 용어(HBM, MOSFET, FinFET 등)는 약어를 표제어로, 한국어 이름을 부제로 쓴다.
+const headAbbr = abbrs.find((a) => /^[A-Z][A-Za-z0-9]{2,}$/.test(a) && (a.match(/[A-Z]/g) ?? []).length >= 2);
+// 용어집 안에서는 표제어 줄이 가려지므로 약어 칩을 그대로 둔다.
+const chipAbbrs = glossaryLink ? abbrs.filter((a) => a !== headAbbr) : abbrs;
+
 const rows = [
 	{ name: 'English', lang: 'en', speak: 'en-US', text: term.en, reading: undefined, example: term.example_en, audio: audioPath('terms', id, 'en'), exampleAudio: audioPath('terms', id, 'example_en') },
 	{ name: '日本語', lang: 'ja', speak: 'ja-JP', text: term.ja, reading: term.ja_reading, example: term.example_ja, audio: audioPath('terms', id, 'ja'), exampleAudio: audioPath('terms', id, 'example_ja') },
@@ -35,7 +40,16 @@ const koExampleAudio = audioPath('terms', id, 'example_ko');
 
 <article class="term-card" id={`term-${id}`}>
 	<header class="head">
-		<p class="ko" lang="ko">{term.ko}</p>
+		{
+			headAbbr ? (
+				<p class="ko" lang="ko">
+					<span lang="en">{headAbbr}</span>
+					<span class="sub">{term.ko}</span>
+				</p>
+			) : (
+				<p class="ko" lang="ko">{term.ko}</p>
+			)
+		}
 		<button
 			class="speak"
 			type="button"
@@ -55,7 +69,7 @@ const koExampleAudio = audioPath('terms', id, 'example_ko');
 				/>
 			</svg>
 		</button>
-		{abbrs.map((abbr) => <span class="chip mono">{abbr}</span>)}
+		{chipAbbrs.map((abbr) => <span class="chip mono">{abbr}</span>)}
 		{term.module !== undefined && <span class="chip caption">{term.module}단계</span>}
 			{glossaryLink && (
 				<a class="glossary-link" href={`${base}/glossary/#term-${id}`}>용어집에서 보기</a>
@@ -175,6 +189,13 @@ const koExampleAudio = audioPath('terms', id, 'example_ko');
 		font-size: var(--fs-term-main);
 		line-height: var(--lh-term-main);
 		font-weight: 700;
+	}
+
+	.sub {
+		margin-left: var(--space-2);
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		font-weight: 500;
 	}
 
 	.chip {

@@ -33,15 +33,39 @@ const onGlossary = relPath.startsWith('/glossary');
 // 단계(module)별 레슨 slug. 진도 표시에 쓴다.
 const lessonModules = import.meta.glob('../content/lessons/*.mdx', { eager: true }) as Record<string, any>;
 const stepLessons: Record<number, string[]> = {};
+const firstOrder: Record<number, number> = {};
+const firstSlug: Record<number, string> = {};
 for (const [path, mod] of Object.entries(lessonModules)) {
 	const slug = path.split('/').pop()!.replace(/\.mdx$/, '');
 	const m = Number(mod.frontmatter?.module ?? -1);
 	if (!stepLessons[m]) stepLessons[m] = [];
 	stepLessons[m].push(slug);
+	const order = Number(mod.frontmatter?.order ?? 0);
+	if (!(m in firstOrder) || order < firstOrder[m]) {
+		firstOrder[m] = order;
+		firstSlug[m] = slug;
+	}
 }
 
+// steps를 넘기지 않은 페이지(용어집 등)는 레슨 페이지와 같은 목차를 쓴다.
+const defaultSteps = [
+	'칩 하나 만들어 보기',
+	'기초 원리',
+	'제품과 산업',
+	'팹과 클린룸',
+	'전공정',
+	'계측·검사·수율',
+	'후공정',
+	'최신 기술',
+	'현장 소통',
+].map((t, n) => ({
+	n,
+	title: t,
+	href: n === 0 ? '/tour/' : firstSlug[n] ? `/lessons/${firstSlug[n]}/` : '',
+}));
+const tocSteps = steps.length > 0 ? steps : defaultSteps;
+
 const langOptions = [
-	{ value: 'none', label: '한국어만', lang: 'ko' },
 	{ value: 'en', label: 'English', lang: 'en' },
 	{ value: 'ja', label: '日本語', lang: 'ja' },
 	{ value: 'zh-Hans', label: '简体中文', lang: 'zh-Hans' },
@@ -50,7 +74,7 @@ const langOptions = [
 ---
 
 <!doctype html>
-<html lang={lang} data-learn-lang="en">
+<html lang={lang} data-learn-lang="en ja zh-Hans zh-Hant">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -68,11 +92,18 @@ const langOptions = [
 			(function () {
 				var root = document.documentElement;
 				var theme = null;
-				var learn = 'en';
+				var codes = ['en', 'ja', 'zh-Hans', 'zh-Hant'];
+					var learn = codes.join(' ');
 				try {
 					theme = localStorage.getItem('theme');
 					var saved = localStorage.getItem('learn-lang');
-					if (['none', 'en', 'ja', 'zh-Hans', 'zh-Hant'].indexOf(saved) !== -1) learn = saved;
+					if (saved === 'none') {
+							learn = 'none';
+						} else if (saved) {
+							// 저장값은 "en,ja" 같은 목록 또는 예전 단일 값("en")이다
+							var picked = codes.filter(function (c) { return saved.split(',').indexOf(c) !== -1; });
+							if (picked.length) learn = picked.join(' ');
+						}
 				} catch (e) {}
 				if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
 				root.dataset.learnLang = learn;
@@ -107,18 +138,19 @@ const langOptions = [
 			</nav>
 			<div class="header-actions">
 				<slot name="header" />
-				<label class="lang-picker">
-					<span class="lang-label">함께 볼 언어</span>
-					<select class="lang-select" data-lang-select aria-label="함께 볼 언어">
+				<details class="lang-picker">
+					<summary class="lang-summary">함께 볼 언어</summary>
+					<div class="lang-menu" role="group" aria-label="함께 볼 언어">
+						<label class="lang-check"><input type="checkbox" data-lang-all /><span>전체</span></label>
 						{
 							langOptions.map((o) => (
-								<option value={o.value} lang={o.lang}>
+								<label class="lang-check"><input type="checkbox" value={o.value} data-lang-check /><span lang={o.lang}>
 									{o.label}
-								</option>
+								</span></label>
 							))
 						}
-					</select>
-				</label>
+					</div>
+				</details>
 				<button class="icon-button" type="button" aria-label="다크 모드 전환" data-theme-toggle>
 					<svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
 						<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"></path>
@@ -144,7 +176,7 @@ const langOptions = [
 							<nav class="toc" aria-label="학습 경로">
 								<p class="toc-title">학습 경로</p>
 								<ol class="toc-list">
-									{steps.map((s) => (
+									{tocSteps.map((s) => (
 										<li>
 											{s.href ? (
 												<a href={`${base}${s.href}`} aria-current={s.n === currentStep ? 'step' : undefined}>
@@ -186,7 +218,43 @@ const langOptions = [
 				var body = document.body;
 				var themeButton = document.querySelector('[data-theme-toggle]');
 				var menuButton = document.querySelector('[data-menu-toggle]');
-				var langSelect = document.querySelector('[data-lang-select]');
+				var langBoxes = Array.prototype.slice.call(document.querySelectorAll('[data-lang-check]'));
+				var langAll = document.querySelector('[data-lang-all]');
+
+				function currentLangs() {
+					return langBoxes.filter(function (b) { return b.checked; }).map(function (b) { return b.value; });
+				}
+
+				function syncLangAll() {
+					var n = currentLangs().length;
+					langAll.checked = n === langBoxes.length;
+					langAll.indeterminate = n > 0 && n < langBoxes.length;
+				}
+
+				var activeLangs = root.dataset.learnLang.split(' ');
+				langBoxes.forEach(function (b) {
+					b.checked = activeLangs.indexOf(b.value) !== -1;
+				});
+				syncLangAll();
+
+				function applyLangs() {
+					var on = currentLangs();
+					root.dataset.learnLang = on.length ? on.join(' ') : 'none';
+					syncLangAll();
+					try {
+						localStorage.setItem('learn-lang', on.length ? on.join(',') : 'none');
+					} catch (e) {}
+				}
+
+				langAll.addEventListener('change', function () {
+					langBoxes.forEach(function (b) { b.checked = langAll.checked; });
+					applyLangs();
+				});
+				langBoxes.forEach(function (b) {
+					b.addEventListener('change', applyLangs);
+				});
+
+				syncLangAll();
 
 				themeButton.addEventListener('click', function () {
 					var current =
@@ -199,13 +267,6 @@ const langOptions = [
 					} catch (e) {}
 				});
 
-				langSelect.value = root.dataset.learnLang;
-				langSelect.addEventListener('change', function () {
-					root.dataset.learnLang = langSelect.value;
-					try {
-						localStorage.setItem('learn-lang', langSelect.value);
-					} catch (e) {}
-				});
 
 				function setMenu(open) {
 					body.classList.toggle('sidebar-open', open);
@@ -526,11 +587,10 @@ const langOptions = [
 	}
 
 	/* 선택하지 않은 언어 숨김: 대상 요소는 data-lang="en|ja|zh-Hans|zh-Hant" 속성을 가진다 */
-	html[data-learn-lang='none'] [data-lang],
-	html[data-learn-lang='en'] [data-lang]:not([data-lang='en']),
-	html[data-learn-lang='ja'] [data-lang]:not([data-lang='ja']),
-	html[data-learn-lang='zh-Hans'] [data-lang]:not([data-lang='zh-Hans']),
-	html[data-learn-lang='zh-Hant'] [data-lang]:not([data-lang='zh-Hant']) {
+	html:not([data-learn-lang~='en']) [data-lang='en'],
+	html:not([data-learn-lang~='ja']) [data-lang='ja'],
+	html:not([data-learn-lang~='zh-Hans']) [data-lang='zh-Hans'],
+	html:not([data-learn-lang~='zh-Hant']) [data-lang='zh-Hant'] {
 		display: none !important;
 	}
 
@@ -615,25 +675,72 @@ const langOptions = [
 	}
 
 	.lang-picker {
+		position: relative;
+	}
+
+	.lang-summary {
 		display: inline-flex;
 		align-items: center;
-		gap: var(--space-2);
-	}
-
-	.lang-label {
-		color: var(--text-muted);
-		font-size: var(--fs-small);
-		font-weight: 500;
-		white-space: nowrap;
-	}
-
-	.lang-select {
 		height: var(--touch-min);
 		padding: 0 var(--space-3);
 		border: 1px solid var(--border-strong);
 		border-radius: var(--radius-md);
 		background: var(--surface);
-		font-size: var(--fs-body);
+		color: var(--text);
+		font-size: var(--fs-small);
+		font-weight: 600;
+		white-space: nowrap;
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.lang-summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.lang-summary::after {
+		content: '';
+		margin-left: var(--space-2);
+		border: 4px solid transparent;
+		border-top-color: currentColor;
+		border-bottom-width: 0;
+	}
+
+	.lang-menu {
+		position: absolute;
+		top: calc(100% + var(--space-1));
+		right: 0;
+		z-index: 30;
+		display: flex;
+		flex-direction: column;
+		min-width: 160px;
+		padding: var(--space-1);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+	}
+
+	.lang-check {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		min-height: var(--touch-min);
+		padding: 0 var(--space-2);
+		border-radius: var(--radius-md);
+		font-size: var(--fs-small);
+		white-space: nowrap;
+		cursor: pointer;
+	}
+
+	.lang-check:hover {
+		background: var(--surface-sunken);
+	}
+
+	.lang-check input {
+		margin: 0;
+		width: 16px;
+		height: 16px;
+		accent-color: var(--primary, #1f4fd8);
 		cursor: pointer;
 	}
 
@@ -872,14 +979,6 @@ const langOptions = [
 			flex-basis: 100%;
 			margin: 0;
 			overflow-x: auto;
-		}
-
-		.lang-label {
-			position: absolute;
-			width: 1px;
-			height: 1px;
-			overflow: hidden;
-			clip: rect(0 0 0 0);
 		}
 	}
 

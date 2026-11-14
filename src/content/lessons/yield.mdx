@@ -2,7 +2,7 @@
 title: 수율
 module: 5
 order: 2
-summary: 수율은 웨이퍼에서 만든 칩 중 정상 칩의 비율이며, 불량 원인을 찾아 공정에 되먹여 끌어올린다.
+summary: 수율은 웨이퍼에서 만든 칩 중 정상 칩의 비율이며, 불량 원인을 찾아 공정에 되먹여 끌어올립니다.
 ---
 
 import StepAnimation from '../../components/StepAnimation.astro';
@@ -11,71 +11,72 @@ import Quiz from '../../components/Quiz.astro';
 
 ## 한 줄 요약
 
-수율(yield)은 만든 칩 중 제대로 동작하는 칩의 비율이다.
+수율(yield)은 만든 칩 중 제대로 동작하는 칩의 비율입니다.
 
-일상 비유: 쿠키 반죽을 틀로 찍어 구웠을 때, 깨지지 않고 팔 수 있는 쿠키가 몇 개인지 세는 것과 비슷하다.
+일상 비유: 쿠키 반죽을 틀로 찍어 구웠을 때, 깨지지 않고 팔 수 있는 쿠키가 몇 개인지 세는 것과 비슷합니다.
 
 ## 단계별로 보기
 
 <StepAnimation label="수율 관리 도해">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="웨이퍼의 정상 칩과 불량 칩을 세는 그림">
-			<circle cx="240" cy="134" r="110" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<g stroke="var(--color-text-muted)" fill="none">
-				<rect x="180" y="74" width="40" height="40" />
-				<rect x="220" y="74" width="40" height="40" />
-				<rect x="260" y="74" width="40" height="40" />
-				<rect x="180" y="114" width="40" height="40" />
-				<rect x="220" y="114" width="40" height="40" fill="currentColor" fill-opacity="0.35" />
-				<rect x="260" y="114" width="40" height="40" />
-				<rect x="180" y="154" width="40" height="40" />
-				<rect x="220" y="154" width="40" height="40" />
-				<rect x="260" y="154" width="40" height="40" fill="currentColor" fill-opacity="0.35" />
+			<circle cx="240" cy="124" r="104" fill="#d9b877" stroke="currentColor" stroke-width="2" />
+			<g stroke="currentColor" stroke-width="2">
+				<rect x="180" y="64" width="40" height="40" fill="#2447b8" />
+				<rect x="220" y="64" width="40" height="40" fill="#2447b8" />
+				<rect x="260" y="64" width="40" height="40" fill="#2447b8" />
+				<rect x="180" y="104" width="40" height="40" fill="#2447b8" />
+				<rect x="220" y="104" width="40" height="40" fill="#b8477a" />
+				<rect x="260" y="104" width="40" height="40" fill="#2447b8" />
+				<rect x="180" y="144" width="40" height="40" fill="#2447b8" />
+				<rect x="220" y="144" width="40" height="40" fill="#2447b8" />
+				<rect x="260" y="144" width="40" height="40" fill="#b8477a" />
 			</g>
-			<text x="240" y="252" text-anchor="middle" fill="currentColor">정상 7 / 전체 9</text>
+			<text x="240" y="252" text-anchor="middle" font-size="20" fill="currentColor">정상 7 / 전체 9</text>
 		</svg>
 		<figcaption>
 			<strong>수율 계산</strong>
-			<p>웨이퍼 시험에서 정상 칩을 세어 전체 칩 수로 나눈다.</p>
-			<p>공정이 얼마나 잘 돌아가는지 하나의 숫자로 봐야 개선 효과를 비교할 수 있기 때문이다.</p>
+			<p>웨이퍼 시험에서 정상 칩을 세어 전체 칩 수로 나눕니다.</p>
+			<p>공정이 얼마나 잘 돌아가는지 하나의 숫자로 봐야 개선 효과를 비교할 수 있기 때문입니다.</p>
 		</figcaption>
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="웨이퍼 지도에서 불량 칩이 가장자리에 몰린 모습">
-			<circle cx="240" cy="134" r="110" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<circle cx="240" cy="134" r="85" fill="none" stroke="var(--color-text-muted)" stroke-dasharray="4 4" />
-			<g fill="currentColor">
-				<circle cx="160" cy="90" r="7" />
-				<circle cx="150" cy="134" r="7" />
-				<circle cx="162" cy="182" r="7" />
-				<circle cx="320" cy="86" r="7" />
-				<circle cx="330" cy="140" r="7" />
-				<circle cx="318" cy="186" r="7" />
+			<circle cx="240" cy="124" r="104" fill="#d9b877" stroke="currentColor" stroke-width="2" />
+			<circle cx="240" cy="124" r="85" fill="none" stroke="currentColor" stroke-dasharray="4 4" />
+			<g fill="#b8477a">
+				<circle cx="160" cy="80" r="9" />
+				<circle cx="150" cy="124" r="9" />
+				<circle cx="162" cy="172" r="9" />
+				<circle cx="320" cy="76" r="9" />
+				<circle cx="330" cy="130" r="9" />
+				<circle cx="318" cy="176" r="9" />
 			</g>
-			<text x="240" y="252" text-anchor="middle" fill="currentColor">불량 위치 지도</text>
+			<text x="240" y="252" text-anchor="middle" font-size="20" fill="currentColor">불량 위치 지도</text>
 		</svg>
 		<figcaption>
 			<strong>불량 분석</strong>
-			<p>불량 칩의 위치를 웨이퍼 지도에 찍어 몰린 모양을 살핀다.</p>
-			<p>가장자리인지, 줄무늬인지에 따라 원인이 되는 공정과 장비를 좁힐 수 있기 때문이다.</p>
+			<p>불량 칩의 위치를 웨이퍼 지도에 찍어 몰린 모양을 살핍니다.</p>
+			<p>가장자리인지, 줄무늬인지에 따라 원인이 되는 공정과 장비를 좁힐 수 있기 때문입니다.</p>
 		</figcaption>
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="공정 조건을 고쳐 수율이 오르는 그림">
+			<polygon points="70,200 170,170 270,120 400,70 400,226 70,226" fill="#7fa8d9" />
 			<polyline points="70,200 170,170 270,120 400,70" fill="none" stroke="currentColor" stroke-width="3" />
-			<g fill="currentColor">
-				<circle cx="70" cy="200" r="6" />
-				<circle cx="170" cy="170" r="6" />
-				<circle cx="270" cy="120" r="6" />
-				<circle cx="400" cy="70" r="6" />
+			<g fill="#2447b8">
+				<circle cx="70" cy="200" r="7" />
+				<circle cx="170" cy="170" r="7" />
+				<circle cx="270" cy="120" r="7" />
+				<circle cx="400" cy="70" r="7" />
 			</g>
-			<line x1="50" y1="226" x2="430" y2="226" stroke="var(--color-text-muted)" />
-			<text x="240" y="252" text-anchor="middle" fill="currentColor">로트가 지날수록 수율 상승</text>
+			<line x1="50" y1="226" x2="430" y2="226" stroke="currentColor" stroke-width="2" />
+			<text x="240" y="252" text-anchor="middle" font-size="20" fill="currentColor">로트가 지날수록 수율 상승</text>
 		</svg>
 		<figcaption>
 			<strong>공정 개선</strong>
-			<p>원인 공정의 조건을 고치고 다음 로트에서 수율이 오르는지 확인한다.</p>
-			<p>같은 원인이 되풀이되지 않게 하려면 고친 결과를 숫자로 확인해야 하기 때문이다.</p>
+			<p>원인 공정의 조건을 고치고 다음 로트에서 수율이 오르는지 확인합니다.</p>
+			<p>같은 원인이 되풀이되지 않게 하려면 고친 결과를 숫자로 확인해야 하기 때문입니다.</p>
 		</figcaption>
 	</figure>
 </StepAnimation>
@@ -84,26 +85,26 @@ import Quiz from '../../components/Quiz.astro';
 
 ### 왜 필요한가
 
-웨이퍼 한 장에는 칩이 수백 개 이상 들어간다. 공정은 수백 단계라서, 먼지 한 알이나 선폭(회로 선의 너비) 오차만으로도 칩 하나가 죽는다. 정상 칩의 비율이 수율이다. 수율이 낮으면 같은 비용으로 팔 수 있는 칩이 줄어 원가가 오른다. 그래서 수율을 숫자로 재고 끌어올려야 한다.
+웨이퍼 한 장에는 칩이 수백 개 이상 들어갑니다. 공정은 수백 단계라서, 먼지 한 알이나 선폭(회로 선의 너비) 오차만으로도 칩 하나가 죽습니다. 정상 칩의 비율이 수율입니다. 수율이 낮으면 같은 비용으로 팔 수 있는 칩이 줄어 원가가 오릅니다. 그래서 수율을 숫자로 재고 끌어올려야 합니다.
 
 ### 어떻게 하는가
 
-1. 수율 계산: 웨이퍼 시험에서 정상 칩을 세고, 전체 칩 수로 나눈 뒤 백분율로 나타낸다.
-2. 불량 분석: 불량 칩의 위치를 웨이퍼 지도에 찍는다. 가장자리에 몰렸는지, 한 줄로 이어졌는지에 따라 원인 공정이 좁혀진다.
-3. 공정 개선: 원인 공정의 조건을 고치고, 다음 로트(함께 흘러가는 웨이퍼 묶음)에서 수율이 오르는지 본다.
+1. 수율 계산: 웨이퍼 시험에서 정상 칩을 세고, 전체 칩 수로 나눈 뒤 백분율로 나타냅니다.
+2. 불량 분석: 불량 칩의 위치를 웨이퍼 지도에 찍습니다. 가장자리에 몰렸는지, 한 줄로 이어졌는지에 따라 원인 공정이 좁혀집니다.
+3. 공정 개선: 원인 공정의 조건을 고치고, 다음 로트(함께 흘러가는 웨이퍼 묶음)에서 수율이 오르는지 봅니다.
 
-### 앞뒤 공정과 어떻게 이어지는가
+### 앞뒤 레슨과 어떻게 이어지는가
 
-앞에서는 계측·검사가 선폭과 결함 수를 재어 수율 분석의 재료를 준다. 웨이퍼 시험(EDS)이 칩별 정상 여부를 가려 수율 수치를 만든다. 분석 결과는 포토·식각·세정 같은 앞 공정으로 되돌아가 조건을 바꾸는 데 쓰인다. 정상으로 가려진 칩만 다이싱과 패키징으로 넘어간다.
+앞에서는 계측·검사가 선폭과 결함 수를 재어 수율 분석의 재료를 줍니다. 웨이퍼 시험(EDS)이 칩별 정상 여부를 가려 수율 수치를 만듭니다. 분석 결과는 포토·식각·세정 같은 앞 공정으로 되돌아가 조건을 바꾸는 데 쓰입니다. 정상으로 가려진 칩만 다이싱과 패키징으로 넘어갑니다.
 
 ## 더 깊이 알아보기
 
 <details>
 <summary>원리 더 보기 (결함 밀도와 누적 수율)</summary>
 
-칩 면적이 넓을수록, 웨이퍼의 결함 밀도(단위 면적당 결함 수)가 높을수록 칩 안에 결함이 들어갈 확률이 커진다. 결함이 무작위로 흩어진다고 보는 단순 모형에서는 수율이 칩 면적과 결함 밀도의 곱에 따라 지수적으로 줄어든다. 그래서 큰 칩일수록 같은 공정에서도 수율이 불리하다.
+칩 면적이 넓을수록, 웨이퍼의 결함 밀도(단위 면적당 결함 수)가 높을수록 칩 안에 결함이 들어갈 확률이 커집니다. 결함이 무작위로 흩어진다고 보는 단순 모형에서는 수율이 칩 면적과 결함 밀도의 곱에 따라 지수적으로 줄어듭니다. 그래서 큰 칩일수록 같은 공정에서도 수율이 불리합니다.
 
-또 공정 단계마다 수율이 있다면 전체 수율은 각 단계 수율의 곱이다. 단계별 수율이 99퍼센트여도 단계가 많으면 곱이 눈에 띄게 낮아진다. 한 단계의 작은 개선이 전체 수율에 곱해져 반영되는 까닭이다.
+또 공정 단계마다 수율이 있다면 전체 수율은 각 단계 수율의 곱입니다. 단계별 수율이 99퍼센트여도 단계가 많으면 곱이 눈에 띄게 낮아집니다. 한 단계의 작은 개선이 전체 수율에 곱해져 반영되는 까닭입니다.
 
 </details>
 
@@ -126,31 +127,31 @@ import Quiz from '../../components/Quiz.astro';
 			question: '수율의 뜻으로 알맞은 것은?',
 			choices: ['만든 칩 중 정상 칩의 비율', '웨이퍼 한 장의 가격', '공정에 걸리는 시간', '칩의 동작 속도'],
 			answer: 0,
-			explanation: '수율은 전체 칩 중 정상으로 동작하는 칩이 차지하는 비율이다.',
+			explanation: '수율은 전체 칩 중 정상으로 동작하는 칩이 차지하는 비율입니다.',
 		},
 		{
 			question: '웨이퍼 한 장에 칩이 100개 있고 정상 칩이 85개면 수율은?',
 			choices: ['15퍼센트', '70퍼센트', '85퍼센트', '100퍼센트'],
 			answer: 2,
-			explanation: '85를 100으로 나누면 0.85, 곧 85퍼센트다.',
+			explanation: '85를 100으로 나누면 0.85, 곧 85퍼센트입니다.',
 		},
 		{
 			question: '불량 칩이 웨이퍼 가장자리에 몰려 있다. 이 지도를 보는 가장 큰 이유는?',
 			choices: ['칩 가격을 정하려고', '원인이 되는 공정이나 장비를 좁히려고', '웨이퍼를 더 얇게 하려고', '패키징 방법을 고르려고'],
 			answer: 1,
-			explanation: '불량 분포의 모양이 원인 공정을 짐작하는 단서가 된다.',
+			explanation: '불량 분포의 모양이 원인 공정을 짐작하는 단서가 됩니다.',
 		},
 		{
 			question: '다른 조건이 같을 때 수율이 불리한 쪽은?',
 			choices: ['결함 밀도가 낮은 웨이퍼', '작은 칩', '단계 수가 적은 공정', '큰 칩'],
 			answer: 3,
-			explanation: '칩이 클수록 칩 안에 결함이 들어갈 확률이 커진다.',
+			explanation: '칩이 클수록 칩 안에 결함이 들어갈 확률이 커집니다.',
 		},
 		{
 			question: '단계별 수율이 각각 99퍼센트인 공정을 여러 번 거치면 전체 수율은?',
 			choices: ['99퍼센트로 유지된다', '단계 수가 늘수록 낮아진다', '단계 수가 늘수록 높아진다', '단계와 관계없다'],
 			answer: 1,
-			explanation: '전체 수율은 각 단계 수율의 곱이라 단계가 많을수록 낮아진다.',
+			explanation: '전체 수율은 각 단계 수율의 곱이라 단계가 많을수록 낮아집니다.',
 		},
 	]}
 />

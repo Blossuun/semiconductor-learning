@@ -1488,3 +1488,448 @@
   module: 7
   verified: true
   sources: [https://en.wikipedia.org/wiki/Leakage_(electronics)]
+- id: cleanroom
+  ko: 클린룸
+  en: cleanroom
+  ja: クリーンルーム
+  ja_reading: くりーんるーむ
+  zh_cn: 洁净室
+  zh_cn_pinyin: jiéjìngshì
+  zh_tw: 無塵室
+  zh_tw_pinyin: wúchénshì
+  abbr: CR
+  example_ko: 클린룸에 들어가기 전에 방진복부터 입어야 한다.
+  example_en: You must put on a bunny suit before entering the cleanroom.
+  definition_ko: 먼지와 입자를 거의 없앤 공기로 채운, 반도체를 만드는 깨끗한 방
+  module: 3
+  verified: false
+- id: bunny-suit
+  ko: 방진복
+  en: bunny suit
+  ja: クリーンスーツ
+  ja_reading: くりーんすーつ
+  zh_cn: 洁净服
+  zh_cn_pinyin: jiéjìngfú
+  zh_tw: 無塵衣
+  zh_tw_pinyin: wúchényī
+  field_usage: "현장에서는 '방진복', 영어권에서는 'bunny suit'라고 부름"
+  example_ko: 방진복 지퍼가 열려 있으면 입자가 나올 수 있다.
+  example_en: If the bunny suit zipper is open, particles can escape.
+  definition_ko: 사람 몸에서 나오는 먼지를 막으려고 머리부터 발끝까지 덮어 입는 옷
+  module: 3
+  verified: false
+- id: air-shower
+  ko: 에어샤워
+  en: air shower
+  ja: エアシャワー
+  ja_reading: えあしゃわー
+  zh_cn: 风淋室
+  zh_cn_pinyin: fēnglínshì
+  zh_tw: 風淋室
+  zh_tw_pinyin: fēnglínshì
+  example_ko: 에어샤워를 10초 이상 맞고 들어간다.
+  example_en: Stand in the air shower for at least 10 seconds before going in.
+  definition_ko: 클린룸에 들어가기 전에 센 바람으로 옷의 먼지를 털어내는 작은 방
+  module: 3
+  verified: false
+- id: lot
+  ko: 로트
+  en: lot
+  ja: ロット
+  ja_reading: ろっと
+  zh_cn: 批次
+  zh_cn_pinyin: pīcì
+  zh_tw: 批次
+  zh_tw_pinyin: pīcì
+  field_usage: "현장에서는 '랏' 또는 '로트'로 부름"
+  example_ko: 이 로트는 25장이 한 FOUP에 담겨 이동한다.
+  example_en: This lot of 25 wafers moves together in one FOUP.
+  definition_ko: 함께 공정을 거치도록 묶어 관리하는 웨이퍼 한 묶음
+  module: 3
+  verified: false
+- id: particle
+  ko: 파티클
+  en: particle
+  ja: パーティクル
+  ja_reading: ぱーてぃくる
+  zh_cn: 颗粒
+  zh_cn_pinyin: kēlì
+  zh_tw: 微粒
+  zh_tw_pinyin: wēilì
+  field_usage: "현장에서는 '파티클'로 부름"
+  example_ko: 장비 점검 후 파티클 수가 기준을 넘었다.
+  example_en: The particle count exceeded the limit after equipment maintenance.
+  definition_ko: 웨이퍼에 붙어 불량을 일으키는 아주 작은 먼지 알갱이
+  module: 3
+  verified: false
+- id: hepa-filter
+  ko: 헤파 필터
+  en: HEPA filter
+  ja: HEPAフィルター
+  ja_reading: へぱふぃるたー
+  zh_cn: 高效过滤器
+  zh_cn_pinyin: gāoxiào guòlǜqì
+  zh_tw: 高效率空氣過濾器
+  zh_tw_pinyin: gāoxiàolǜ kōngqì guòlǜqì
+  abbr: HEPA
+  example_ko: 천장의 헤파 필터가 깨끗한 공기를 아래로 내려보낸다.
+  example_en: The HEPA filters in the ceiling blow clean air downward.
+  definition_ko: 공기 속의 아주 작은 먼지까지 걸러내는 필터
+  module: 3
+  verified: false
+- id: fab
+  ko: 팹
+  en: fab
+  ja: ファブ
+  ja_reading: ふぁぶ
+  zh_cn: 晶圆厂
+  zh_cn_pinyin: jīngyuánchǎng
+  zh_tw: 晶圓廠
+  zh_tw_pinyin: jīngyuánchǎng
+  abbr: Fab
+  example_ko: 새 팹은 내년에 가동을 시작한다.
+  example_en: The new fab starts operation next year.
+  definition_ko: 웨이퍼에 회로를 만드는 공장
+  module: 3
+  verified: false
+- id: sub-fab
+  ko: 서브팹
+  en: sub-fab
+  ja: サブファブ
+  ja_reading: さぶふぁぶ
+  zh_cn: 下层厂房
+  zh_cn_pinyin: xiàcéng chǎngfáng
+  zh_tw: 地下機房
+  zh_tw_pinyin: dìxià jīfáng
+  field_usage: "현장에서는 '서브팹'으로 부름"
+  example_ko: 펌프는 클린룸 아래 서브팹에 설치되어 있다.
+  example_en: The pumps are installed in the sub-fab below the cleanroom.
+  definition_ko: 클린룸 아래층에서 펌프와 배관 같은 지원 설비를 두는 공간
+  module: 3
+  verified: false
+- id: cleanroom-class
+  ko: 청정도 등급
+  en: cleanroom class
+  ja: クリーン度クラス
+  ja_reading: くりーんどくらす
+  zh_cn: 洁净度等级
+  zh_cn_pinyin: jiéjìngdù děngjí
+  zh_tw: 潔淨度等級
+  zh_tw_pinyin: jiéjìngdù děngjí
+  field_usage: "현장에서는 '클래스'로 줄여 부름"
+  example_ko: 포토 구역은 청정도 등급이 더 높게 관리된다.
+  example_en: The photo area is kept at a stricter cleanroom class.
+  definition_ko: 공기 속 먼지가 얼마나 적은지를 나타내는 깨끗함의 단계
+  module: 3
+  verified: false
+- id: esd
+  ko: 정전기 방전
+  en: electrostatic discharge
+  ja: 静電気放電
+  ja_reading: せいでんきほうでん
+  zh_cn: 静电放电
+  zh_cn_pinyin: jìngdiàn fàngdiàn
+  zh_tw: 靜電放電
+  zh_tw_pinyin: jìngdiàn fàngdiàn
+  abbr: ESD
+  example_ko: 정전기 방전으로 칩이 손상될 수 있어 손목 밴드를 착용한다.
+  example_en: ESD can damage chips, so we wear wrist straps.
+  definition_ko: 쌓인 정전기가 한꺼번에 흘러 칩 회로를 망가뜨리는 현상
+  module: 3
+  verified: false
+- id: metrology
+  ko: 계측
+  en: metrology
+  ja: 計測
+  ja_reading: けいそく
+  zh_cn: 量测
+  zh_cn_pinyin: liángcè
+  zh_tw: 量測
+  zh_tw_pinyin: liángcè
+  field_usage: "현장에서는 '메트로'로 줄여 부름"
+  example_ko: 식각 후 계측으로 선폭을 확인한다.
+  example_en: Line width is checked by metrology after etching.
+  definition_ko: 두께나 선폭 같은 값을 재서 공정이 잘 됐는지 확인하는 일
+  module: 5
+  verified: false
+- id: inspection
+  ko: 검사
+  en: inspection
+  ja: 検査
+  ja_reading: けんさ
+  zh_cn: 检测
+  zh_cn_pinyin: jiǎncè
+  zh_tw: 檢測
+  zh_tw_pinyin: jiǎncè
+  example_ko: 웨이퍼 표면 검사에서 스크래치가 발견되었다.
+  example_en: A scratch was found during wafer surface inspection.
+  definition_ko: 웨이퍼에 불량이 있는지 찾아내는 일
+  module: 5
+  verified: false
+- id: defect
+  ko: 결함
+  en: defect
+  ja: 欠陥
+  ja_reading: けっかん
+  zh_cn: 缺陷
+  zh_cn_pinyin: quēxiàn
+  zh_tw: 缺陷
+  zh_tw_pinyin: quēxiàn
+  field_usage: "현장에서는 '디펙트'로 부름"
+  example_ko: 이 구역에서 디펙트가 갑자기 늘었다.
+  example_en: Defects suddenly increased in this area.
+  definition_ko: 칩이 제대로 동작하지 못하게 만드는 웨이퍼 위의 흠이나 이상
+  module: 5
+  verified: false
+- id: wafer-map
+  ko: 웨이퍼 맵
+  en: wafer map
+  ja: ウェーハマップ
+  ja_reading: うぇーはまっぷ
+  zh_cn: 晶圆图
+  zh_cn_pinyin: jīngyuántú
+  zh_tw: 晶圓圖
+  zh_tw_pinyin: jīngyuántú
+  example_ko: 웨이퍼 맵을 보면 불량이 가장자리에 몰려 있다.
+  example_en: The wafer map shows failures clustered at the edge.
+  definition_ko: 웨이퍼 위 칩마다 합격과 불합격을 색으로 그린 그림
+  module: 5
+  verified: false
+- id: sem
+  ko: 주사전자현미경
+  en: scanning electron microscope
+  ja: 走査型電子顕微鏡
+  ja_reading: そうさがたでんしけんびきょう
+  zh_cn: 扫描电子显微镜
+  zh_cn_pinyin: sǎomiáo diànzǐ xiǎnwēijìng
+  zh_tw: 掃描式電子顯微鏡
+  zh_tw_pinyin: sǎomiáoshì diànzǐ xiǎnwēijìng
+  abbr: SEM
+  example_ko: SEM으로 패턴 단면을 찍어 확인했다.
+  example_en: We checked the pattern cross-section with an SEM.
+  definition_ko: 전자 빔으로 아주 작은 패턴의 모양을 확대해 보는 현미경
+  module: 5
+  verified: false
+- id: ellipsometer
+  ko: 엘립소미터
+  en: ellipsometer
+  ja: エリプソメーター
+  ja_reading: えりぷそめーたー
+  zh_cn: 椭偏仪
+  zh_cn_pinyin: tuǒpiānyí
+  zh_tw: 橢圓偏光儀
+  zh_tw_pinyin: tuǒyuán piānguāngyí
+  example_ko: 엘립소미터로 산화막 두께를 쟀다.
+  example_en: We measured the oxide thickness with an ellipsometer.
+  definition_ko: 빛이 반사되는 모습으로 얇은 막의 두께를 재는 장비
+  module: 5
+  verified: false
+- id: defect-review
+  ko: 결함 리뷰
+  en: defect review
+  ja: 欠陥レビュー
+  ja_reading: けっかんれびゅー
+  zh_cn: 缺陷复查
+  zh_cn_pinyin: quēxiàn fùchá
+  zh_tw: 缺陷複檢
+  zh_tw_pinyin: quēxiàn fùjiǎn
+  field_usage: "현장에서는 '리뷰'로 줄여 부름"
+  example_ko: 검사에서 찾은 결함을 리뷰 장비로 다시 확대해 본다.
+  example_en: Defects found in inspection are magnified again on a review tool.
+  definition_ko: 검사에서 찾은 결함을 더 크게 확대해 종류와 원인을 살피는 일
+  module: 5
+  verified: false
+- id: bin
+  ko: 빈
+  en: bin
+  ja: ビン
+  ja_reading: びん
+  zh_cn: 分级
+  zh_cn_pinyin: fēnjí
+  zh_tw: 分級
+  zh_tw_pinyin: fēnjí
+  field_usage: "현장에서는 '빈'으로 부르며 테스트 결과 등급을 뜻함"
+  example_ko: 빈 1은 양품, 나머지는 불량 유형별로 나뉜다.
+  example_en: Bin 1 is good, and the others are split by failure type.
+  definition_ko: 테스트 결과에 따라 칩을 나눈 등급 번호
+  module: 5
+  verified: false
+- id: sampling-inspection
+  ko: 샘플링 검사
+  en: sampling inspection
+  ja: サンプリング検査
+  ja_reading: さんぷりんぐけんさ
+  zh_cn: 抽样检测
+  zh_cn_pinyin: chōuyàng jiǎncè
+  zh_tw: 抽樣檢測
+  zh_tw_pinyin: chōuyàng jiǎncè
+  example_ko: 로트마다 웨이퍼 두 장만 샘플링 검사한다.
+  example_en: Only two wafers per lot go through sampling inspection.
+  definition_ko: 전부 보지 않고 일부만 뽑아서 검사하는 방법
+  module: 5
+  verified: false
+- id: tem
+  ko: 투과전자현미경
+  en: transmission electron microscope
+  ja: 透過型電子顕微鏡
+  ja_reading: とうかがたでんしけんびきょう
+  zh_cn: 透射电子显微镜
+  zh_cn_pinyin: tòushè diànzǐ xiǎnwēijìng
+  zh_tw: 穿透式電子顯微鏡
+  zh_tw_pinyin: chuāntòushì diànzǐ xiǎnwēijìng
+  abbr: TEM
+  example_ko: 박막 계면은 TEM으로 원자 수준까지 본다.
+  example_en: The thin-film interface is viewed down to the atomic level by TEM.
+  definition_ko: 아주 얇게 깎은 시료에 전자를 통과시켜 내부를 보는 현미경
+  module: 5
+  verified: false
+- id: ingot
+  ko: 잉곳
+  en: ingot
+  ja: インゴット
+  ja_reading: いんごっと
+  zh_cn: 晶锭
+  zh_cn_pinyin: jīngdìng
+  zh_tw: 晶棒
+  zh_tw_pinyin: jīngbàng
+  field_usage: "현장에서는 '잉곳'으로 부름"
+  example_ko: 잉곳을 얇게 잘라 웨이퍼를 만든다.
+  example_en: Wafers are made by slicing the ingot thin.
+  definition_ko: 웨이퍼를 자르기 전의 둥근 기둥 모양 실리콘 덩어리
+  module: 0
+  verified: false
+- id: recipe
+  ko: 레시피
+  en: recipe
+  ja: レシピ
+  ja_reading: れしぴ
+  zh_cn: 工艺菜单
+  zh_cn_pinyin: gōngyì càidān
+  zh_tw: 製程配方
+  zh_tw_pinyin: zhìchéng pèifāng
+  field_usage: "중국 현장에서는 '配方'도 흔히 씀"
+  example_ko: 레시피를 바꾸기 전에 엔지니어 승인을 받아야 한다.
+  example_en: You need engineer approval before changing the recipe.
+  definition_ko: 장비가 따라야 하는 온도, 시간, 가스량 같은 공정 조건 모음
+  module: 0
+  verified: false
+- id: interlock
+  ko: 인터락
+  en: interlock
+  ja: インターロック
+  ja_reading: いんたーろっく
+  zh_cn: 联锁
+  zh_cn_pinyin: liánsuǒ
+  zh_tw: 連鎖
+  zh_tw_pinyin: liánsuǒ
+  field_usage: "현장에서는 '인터락'으로 부름"
+  example_ko: 도어가 열려 인터락이 걸려서 장비가 멈췄다.
+  example_en: The door opened, the interlock tripped, and the tool stopped.
+  definition_ko: 위험하거나 이상할 때 장비가 자동으로 멈추게 하는 안전 장치
+  module: 0
+  verified: false
+- id: down
+  ko: 다운
+  en: down
+  ja: ダウン
+  ja_reading: だうん
+  zh_cn: 宕机
+  zh_cn_pinyin: dàngjī
+  zh_tw: 當機
+  zh_tw_pinyin: dàngjī
+  field_usage: "현장에서는 '장비 다운'이라고 부름"
+  example_ko: 3번 장비가 다운되어 로트를 다른 장비로 옮긴다.
+  example_en: Tool 3 is down, so the lot moves to another tool.
+  definition_ko: 장비가 고장이나 점검으로 멈춰 쓸 수 없는 상태
+  module: 0
+  verified: false
+- id: hot-lot
+  ko: 핫랏
+  en: hot lot
+  ja: ホットロット
+  ja_reading: ほっとろっと
+  zh_cn: 急件批次
+  zh_cn_pinyin: jíjiàn pīcì
+  zh_tw: 急件批次
+  zh_tw_pinyin: jíjiàn pīcì
+  field_usage: "현장에서는 '핫랏'으로 부름"
+  example_ko: 핫랏은 대기 없이 먼저 장비에 넣는다.
+  example_en: A hot lot is loaded into the tool first, without waiting.
+  definition_ko: 급하게 먼저 처리하도록 우선순위를 높인 로트
+  module: 0
+  verified: false
+- id: scrap
+  ko: 스크랩
+  en: scrap
+  ja: スクラップ
+  ja_reading: すくらっぷ
+  zh_cn: 报废
+  zh_cn_pinyin: bàofèi
+  zh_tw: 報廢
+  zh_tw_pinyin: bàofèi
+  field_usage: "현장에서는 '스크랩'으로 부름"
+  example_ko: 깨진 웨이퍼는 스크랩 처리한다.
+  example_en: A broken wafer is scrapped.
+  definition_ko: 고칠 수 없어 버리기로 한 웨이퍼나 제품
+  module: 0
+  verified: false
+- id: rework
+  ko: 재작업
+  en: rework
+  ja: リワーク
+  ja_reading: りわーく
+  zh_cn: 返工
+  zh_cn_pinyin: fǎngōng
+  zh_tw: 重工
+  zh_tw_pinyin: chónggōng
+  field_usage: "현장에서는 '리워크'로 부름"
+  example_ko: 포토 불량 웨이퍼는 레지스트를 벗기고 리워크한다.
+  example_en: Photo-defect wafers have the resist stripped and are reworked.
+  definition_ko: 불량이 난 공정을 지우고 다시 하는 일
+  module: 0
+  verified: false
+- id: hold
+  ko: 홀드
+  en: hold
+  ja: ホールド
+  ja_reading: ほーるど
+  zh_cn: 暂停处理
+  zh_cn_pinyin: zàntíng chǔlǐ
+  zh_tw: 暫停處理
+  zh_tw_pinyin: zàntíng chǔlǐ
+  field_usage: "현장에서는 '홀드 걸다'라고 부름"
+  example_ko: 이상이 발견되어 해당 로트에 홀드를 걸었다.
+  example_en: An anomaly was found, so the lot was put on hold.
+  definition_ko: 원인을 확인할 때까지 로트의 다음 공정 진행을 막아 두는 일
+  module: 0
+  verified: false
+- id: split-lot
+  ko: 스플릿 랏
+  en: split lot
+  ja: スプリットロット
+  ja_reading: すぷりっとろっと
+  zh_cn: 分批实验
+  zh_cn_pinyin: fēnpī shíyàn
+  zh_tw: 分批實驗
+  zh_tw_pinyin: fēnpī shíyàn
+  field_usage: "현장에서는 '스플릿'이라고 줄여 부름"
+  example_ko: 조건 비교를 위해 로트를 스플릿 랏으로 나눈다.
+  example_en: The lot is split into split lots to compare conditions.
+  definition_ko: 조건을 다르게 비교하려고 한 로트를 나눠 다르게 처리하는 실험
+  module: 0
+  verified: false
+- id: alarm
+  ko: 알람
+  en: alarm
+  ja: アラーム
+  ja_reading: あらーむ
+  zh_cn: 报警
+  zh_cn_pinyin: bàojǐng
+  zh_tw: 警報
+  zh_tw_pinyin: jǐngbào
+  field_usage: "현장에서는 '알람'으로 부름"
+  example_ko: 챔버 압력 알람이 울려서 공정이 중단되었다.
+  example_en: The chamber pressure alarm sounded and the process stopped.
+  definition_ko: 장비나 공정에 이상이 생겼을 때 알려 주는 경고
+  module: 0
+  verified: false

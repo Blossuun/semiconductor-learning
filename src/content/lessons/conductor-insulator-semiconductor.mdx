@@ -2,7 +2,7 @@
 title: 도체·부도체·반도체
 module: 1
 order: 1
-summary: 전기가 흐르는 정도에 따라 물질을 도체, 부도체, 반도체로 나누고 반도체가 스위치 재료인 이유를 익힌다.
+summary: 전기가 흐르는 정도에 따라 물질을 도체, 부도체, 반도체로 나누고 반도체가 스위치 재료인 이유를 익힙니다.
 ---
 
 import StepAnimation from '../../components/StepAnimation.astro';
@@ -11,68 +11,60 @@ import Quiz from '../../components/Quiz.astro';
 
 ## 한 줄 요약
 
-반도체는 전기가 잘 흐르는 도체와 거의 안 흐르는 부도체의 중간 성질을 가진 물질이다.
+반도체는 전기가 잘 흐르는 도체와 거의 안 흐르는 부도체의 중간 성질을 가진 물질입니다.
 
-수도관에 비유할 수 있다. 도체는 늘 열린 관, 부도체는 막힌 관이다. 반도체는 밸브가 달린 관이라 열고 닫을 수 있다.
+수도관에 비유할 수 있습니다. 도체는 늘 열린 관, 부도체는 막힌 관입니다. 반도체는 밸브가 달린 관이라 열고 닫을 수 있습니다.
 
 ## 단계별로 보기
 
 <StepAnimation label="도체·부도체·반도체 비교 도해">
 	<figure>
-		<svg viewBox="0 0 480 268" role="img" aria-label="도체의 에너지 띠. 두 띠가 겹쳐 전자가 자유롭게 움직인다">
-			<rect x="60" y="30" width="360" height="80" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<rect x="60" y="90" width="360" height="80" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<text x="76" y="52" font-size="13" fill="var(--color-text-muted)">전도띠(전자가 움직이는 층)</text>
-			<text x="76" y="162" font-size="13" fill="var(--color-text-muted)">가전자띠(전자가 묶인 층)</text>
-			<circle cx="150" cy="105" r="8" fill="currentColor" />
-			<circle cx="240" cy="98" r="8" fill="currentColor" />
-			<circle cx="330" cy="112" r="8" fill="currentColor" />
-			<path d="M160 105 H215 M250 98 H305 M340 112 H395" stroke="currentColor" stroke-width="2" fill="none" />
-			<text x="240" y="215" text-anchor="middle" font-size="15" fill="currentColor">두 층이 겹쳐 전자가 바로 움직인다</text>
+		<svg viewBox="0 0 480 268" role="img" aria-label="늘 열린 수도관. 관 안의 물이 한쪽으로 쉽게 흐른다">
+			<rect x="40" y="90" width="400" height="84" rx="8" fill="var(--diagram-silicon)" stroke="var(--diagram-stroke)" stroke-width="2" />
+			<rect x="52" y="102" width="376" height="60" fill="var(--diagram-oxide)" />
+			<path d="M110 132 H330" stroke="var(--diagram-stroke)" stroke-width="4" fill="none" />
+			<path d="M326 120 L352 132 L326 144 Z" fill="var(--diagram-stroke)" />
+			<text x="240" y="60" text-anchor="middle" font-size="18" fill="currentColor">관이 늘 열려 있다</text>
+			<text x="240" y="222" text-anchor="middle" font-size="18" fill="currentColor">물이 쉽게 흐른다</text>
 		</svg>
 		<figcaption>
 			<strong>도체</strong>
-			<p>구리 같은 금속에서 자유롭게 움직이는 전자가 많아 전류가 잘 흐르는 모습을 본다.</p>
-			<p>반도체의 "중간"이 어디쯤인지 정하려면 한쪽 끝 기준이 먼저 필요하기 때문이다.</p>
+			<p>늘 열린 관에서 물이 쉽게 흐르는 모습을 봅니다.</p>
+			<p>잘 흐르는 쪽 기준을 먼저 알아야 나머지 두 물질과 비교할 수 있기 때문입니다.</p>
 		</figcaption>
 	</figure>
 	<figure>
-		<svg viewBox="0 0 480 268" role="img" aria-label="부도체의 에너지 띠. 두 띠 사이 간격이 넓어 전자가 건너지 못한다">
-			<rect x="60" y="30" width="360" height="50" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<rect x="60" y="150" width="360" height="50" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<text x="76" y="52" font-size="13" fill="var(--color-text-muted)">전도띠</text>
-			<text x="76" y="172" font-size="13" fill="var(--color-text-muted)">가전자띠</text>
-			<circle cx="150" cy="185" r="8" fill="currentColor" />
-			<circle cx="240" cy="185" r="8" fill="currentColor" />
-			<circle cx="330" cy="185" r="8" fill="currentColor" />
-			<path d="M240 100 V130 M232 108 L240 100 L248 108 M232 122 L240 130 L248 122" stroke="var(--color-text-muted)" stroke-width="2" fill="none" />
-			<text x="270" y="120" font-size="13" fill="var(--color-text-muted)">띠틈: 넓다</text>
-			<text x="240" y="235" text-anchor="middle" font-size="15" fill="currentColor">간격이 넓어 전자가 건너지 못한다</text>
+		<svg viewBox="0 0 480 268" role="img" aria-label="막힌 수도관. 벽 앞에서 물이 거의 흐르지 못한다">
+			<rect x="40" y="90" width="400" height="84" rx="8" fill="var(--diagram-silicon)" stroke="var(--diagram-stroke)" stroke-width="2" />
+			<rect x="52" y="102" width="174" height="60" fill="var(--diagram-oxide)" />
+			<rect x="226" y="90" width="28" height="84" fill="var(--diagram-stroke)" />
+			<path d="M100 132 H190" stroke="var(--diagram-stroke)" stroke-width="4" fill="none" />
+			<path d="M186 120 L212 132 L186 144 Z" fill="var(--diagram-stroke)" />
+			<text x="240" y="60" text-anchor="middle" font-size="18" fill="currentColor">관이 막혀 있다</text>
+			<text x="240" y="222" text-anchor="middle" font-size="18" fill="currentColor">물이 거의 흐르지 않는다</text>
 		</svg>
 		<figcaption>
 			<strong>부도체</strong>
-			<p>유리와 고무에서 전자가 원자에 묶여 있고 띠틈이 넓어 전류가 거의 흐르지 않는 모습을 본다.</p>
-			<p>전류를 막는 쪽 끝 기준을 알아야 반도체가 둘 사이 어디인지 비교할 수 있기 때문이다.</p>
+			<p>막힌 관에서 물이 벽에 막혀 거의 흐르지 않는 모습을 봅니다.</p>
+			<p>흐름을 막는 쪽 기준을 알아야 반도체가 그 사이 어디인지 정할 수 있기 때문입니다.</p>
 		</figcaption>
 	</figure>
 	<figure>
-		<svg viewBox="0 0 480 268" role="img" aria-label="반도체의 에너지 띠. 간격이 중간이라 열이나 빛을 받으면 일부 전자가 건넌다">
-			<rect x="60" y="30" width="360" height="50" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<rect x="60" y="130" width="360" height="50" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<text x="76" y="52" font-size="13" fill="var(--color-text-muted)">전도띠</text>
-			<text x="76" y="152" font-size="13" fill="var(--color-text-muted)">가전자띠</text>
-			<circle cx="150" cy="165" r="8" fill="currentColor" />
-			<circle cx="330" cy="165" r="8" fill="currentColor" />
-			<circle cx="240" cy="165" r="8" fill="none" stroke="currentColor" stroke-width="2" />
-			<circle cx="240" cy="60" r="8" fill="currentColor" />
-			<path d="M240 150 V90 M232 98 L240 90 L248 98" stroke="currentColor" stroke-width="2" fill="none" />
-			<text x="262" y="112" font-size="13" fill="var(--color-text-muted)">띠틈: 중간</text>
-			<text x="240" y="225" text-anchor="middle" font-size="15" fill="currentColor">열·빛·불순물로 건너는 전자 수를 바꾼다</text>
+		<svg viewBox="0 0 480 268" role="img" aria-label="밸브가 달린 수도관. 밸브가 반쯤 열려 있어 물이 조금 흐른다">
+			<rect x="40" y="90" width="400" height="84" rx="8" fill="var(--diagram-silicon)" stroke="var(--diagram-stroke)" stroke-width="2" />
+			<rect x="52" y="102" width="376" height="60" fill="var(--diagram-oxide)" />
+			<rect x="236" y="64" width="8" height="38" fill="var(--diagram-copper)" />
+			<rect x="230" y="102" width="20" height="30" fill="var(--diagram-copper)" />
+			<rect x="218" y="54" width="44" height="12" rx="4" fill="var(--diagram-copper)" />
+			<path d="M100 147 H340" stroke="var(--diagram-stroke)" stroke-width="4" fill="none" />
+			<path d="M336 139 L358 147 L336 155 Z" fill="var(--diagram-stroke)" />
+			<text x="240" y="40" text-anchor="middle" font-size="18" fill="currentColor">밸브가 달린 관</text>
+			<text x="240" y="222" text-anchor="middle" font-size="18" fill="currentColor">열림 정도로 흐름을 조절한다</text>
 		</svg>
 		<figcaption>
 			<strong>반도체</strong>
-			<p>실리콘처럼 띠틈이 중간인 물질에서 열, 빛, 불순물에 따라 전류의 양이 달라지는 모습을 본다.</p>
-			<p>전류를 켜고 끄는 조절이 가능해야 트랜지스터 같은 스위치를 만들 수 있기 때문이다.</p>
+			<p>밸브가 반쯤 열린 관에서 흐름의 양이 조절되는 모습을 봅니다.</p>
+			<p>흐름을 열고 닫을 수 있어야 스위치를 만들 수 있기 때문입니다.</p>
 		</figcaption>
 	</figure>
 </StepAnimation>
@@ -81,28 +73,74 @@ import Quiz from '../../components/Quiz.astro';
 
 ### 왜 필요한가
 
-전자 회로의 소자는 전류를 켜고 꺼야 한다. 늘 흐르는 물질만 있으면 끌 수 없다. 안 흐르는 물질만 있으면 켤 수 없다. 반도체(도체와 부도체의 중간 성질을 지닌 물질)는 조건에 따라 흐름이 바뀌므로 스위치의 재료가 된다.
+전자 회로의 소자는 전류를 켜고 꺼야 합니다. 늘 흐르는 물질만 있으면 끌 수 없습니다. 안 흐르는 물질만 있으면 켤 수 없습니다. 반도체(도체와 부도체의 중간 성질을 지닌 물질)는 조건에 따라 흐름이 바뀌므로 스위치의 재료가 됩니다.
 
 ### 어떻게 하는가
 
-세 물질을 차례로 비교한다.
+세 물질을 차례로 비교합니다.
 
-1. 도체: 구리 같은 금속이다. 원자에서 풀려나 움직이는 전자(electron, 음의 전기를 띤 작은 입자)가 많아 전류가 잘 흐른다.
-2. 부도체: 유리나 고무다. 전자가 원자에 단단히 묶여 있다. 전자가 움직이려면 넘어야 하는 에너지 간격, 곧 띠틈(band gap)이 넓어 전류가 거의 흐르지 않는다.
-3. 반도체: 대표는 실리콘(silicon, 규소)이다. 띠틈이 중간이라 평소에는 전류가 약하다. 온도를 올리거나 빛을 쬐거나 불순물을 조금 섞으면 전류가 흐르는 정도가 크게 달라진다.
+1. 도체: 구리 같은 금속입니다. 원자에서 풀려나 움직이는 전자(electron, 음의 전기를 띤 작은 입자)가 많아 전류가 잘 흐릅니다.
+2. 부도체: 유리나 고무입니다. 전자가 원자에 단단히 묶여 있습니다. 전자가 움직이려면 넘어야 하는 에너지 간격, 곧 띠틈(band gap)이 넓어 전류가 거의 흐르지 않습니다.
+3. 반도체: 대표는 실리콘(silicon, 규소)입니다. 띠틈이 중간이라 평소에는 전류가 약합니다. 온도를 올리거나 빛을 쬐거나 불순물을 조금 섞으면 전류가 흐르는 정도가 크게 달라집니다.
 
-### 앞뒤 공정과 어떻게 이어지는가
+### 앞뒤 레슨과 어떻게 이어지는가
 
-이 레슨은 1단계의 시작이다. 다음 레슨 도핑에서는 불순물을 넣어 반도체의 전기 성질을 조절하는 방법을 배운다. 이후 이런 재료가 웨이퍼(wafer, 반도체 재료를 얇게 자른 원판)가 되고, 그 위에 소자를 만드는 공정이 이어진다.
+이 레슨은 1단계의 시작입니다. 다음 레슨 도핑에서는 불순물을 넣어 반도체의 전기 성질을 조절하는 방법을 배웁니다. 이후 이런 재료가 웨이퍼(wafer, 반도체 재료를 얇게 자른 원판)가 되고, 그 위에 소자를 만드는 공정이 이어집니다.
 
 ## 더 깊이 알아보기
 
 <details>
 <summary>원리 더 보기 (에너지 띠와 비저항)</summary>
 
-원자가 모여 고체가 되면 전자가 가질 수 있는 에너지는 띠 모양으로 모인다. 가전자띠는 전자가 원자에 묶인 층이고, 전도띠는 전자가 자유롭게 움직이는 층이다. 두 띠 사이 간격이 띠틈이다. 전자가 이 간격을 넘으면 전류를 나를 수 있다.
+원자가 모여 고체가 되면 전자가 가질 수 있는 에너지는 띠 모양으로 모입니다. 가전자띠는 전자가 원자에 묶인 층이고, 전도띠는 전자가 자유롭게 움직이는 층입니다. 두 띠 사이 간격이 띠틈입니다. 전자가 이 간격을 넘으면 전류를 나를 수 있습니다.
 
-물질이 전류를 막는 정도는 비저항(resistivity)으로 나타낸다. 도체는 아주 작고 부도체는 아주 크다. 반도체는 그 사이에 있고, 도핑으로 이 값을 넓은 범위에서 바꿀 수 있다. 이 조절 가능성이 반도체를 쓰는 가장 큰 이유다.
+물질이 전류를 막는 정도는 비저항(resistivity)으로 나타냅니다. 도체는 아주 작고 부도체는 아주 큽니다. 반도체는 그 사이에 있고, 도핑으로 이 값을 넓은 범위에서 바꿀 수 있습니다. 이 조절 가능성이 반도체를 쓰는 가장 큰 이유입니다.
+
+<figure>
+	<svg viewBox="0 0 480 268" role="img" aria-label="도체의 에너지 띠. 두 띠가 겹쳐 전자가 자유롭게 움직인다">
+		<rect x="60" y="30" width="360" height="80" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
+		<rect x="60" y="90" width="360" height="80" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
+		<text x="76" y="52" font-size="18" fill="var(--color-text-muted)">전도띠(전자가 움직이는 층)</text>
+		<text x="76" y="162" font-size="18" fill="var(--color-text-muted)">가전자띠(전자가 묶인 층)</text>
+		<circle cx="150" cy="105" r="8" fill="currentColor" />
+		<circle cx="240" cy="98" r="8" fill="currentColor" />
+		<circle cx="330" cy="112" r="8" fill="currentColor" />
+		<path d="M160 105 H215 M250 98 H305 M340 112 H395" stroke="currentColor" stroke-width="2" fill="none" />
+		<text x="240" y="215" text-anchor="middle" font-size="18" fill="currentColor">두 층이 겹쳐 전자가 바로 움직인다</text>
+	</svg>
+	<figcaption>도체의 에너지 띠</figcaption>
+</figure>
+<figure>
+	<svg viewBox="0 0 480 268" role="img" aria-label="부도체의 에너지 띠. 두 띠 사이 간격이 넓어 전자가 건너지 못한다">
+		<rect x="60" y="30" width="360" height="50" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
+		<rect x="60" y="150" width="360" height="50" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
+		<text x="76" y="52" font-size="18" fill="var(--color-text-muted)">전도띠</text>
+		<text x="76" y="172" font-size="18" fill="var(--color-text-muted)">가전자띠</text>
+		<circle cx="150" cy="185" r="8" fill="currentColor" />
+		<circle cx="240" cy="185" r="8" fill="currentColor" />
+		<circle cx="330" cy="185" r="8" fill="currentColor" />
+		<path d="M240 100 V130 M232 108 L240 100 L248 108 M232 122 L240 130 L248 122" stroke="var(--color-text-muted)" stroke-width="2" fill="none" />
+		<text x="270" y="120" font-size="18" fill="var(--color-text-muted)">띠틈: 넓다</text>
+		<text x="240" y="235" text-anchor="middle" font-size="18" fill="currentColor">간격이 넓어 전자가 건너지 못한다</text>
+	</svg>
+	<figcaption>부도체의 에너지 띠</figcaption>
+</figure>
+<figure>
+	<svg viewBox="0 0 480 268" role="img" aria-label="반도체의 에너지 띠. 간격이 중간이라 열이나 빛을 받으면 일부 전자가 건넌다">
+		<rect x="60" y="30" width="360" height="50" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
+		<rect x="60" y="130" width="360" height="50" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
+		<text x="76" y="52" font-size="18" fill="var(--color-text-muted)">전도띠</text>
+		<text x="76" y="152" font-size="18" fill="var(--color-text-muted)">가전자띠</text>
+		<circle cx="150" cy="165" r="8" fill="currentColor" />
+		<circle cx="330" cy="165" r="8" fill="currentColor" />
+		<circle cx="240" cy="165" r="8" fill="none" stroke="currentColor" stroke-width="2" />
+		<circle cx="240" cy="60" r="8" fill="currentColor" />
+		<path d="M240 150 V90 M232 98 L240 90 L248 98" stroke="currentColor" stroke-width="2" fill="none" />
+		<text x="262" y="112" font-size="18" fill="var(--color-text-muted)">띠틈: 중간</text>
+		<text x="240" y="225" text-anchor="middle" font-size="18" fill="currentColor">열·빛·불순물로 건너는 전자 수를 바꾼다</text>
+	</svg>
+	<figcaption>반도체의 에너지 띠</figcaption>
+</figure>
 
 </details>
 
@@ -125,31 +163,31 @@ import Quiz from '../../components/Quiz.astro';
 			question: '반도체를 가장 알맞게 설명한 것은?',
 			choices: ['전기가 항상 잘 흐르는 물질', '전기가 전혀 흐르지 않는 물질', '도체와 부도체의 중간 성질을 가진 물질', '열에 닿으면 녹는 물질'],
 			answer: 2,
-			explanation: '반도체는 도체와 부도체의 중간 성질을 가지며 조건에 따라 전류가 바뀐다.',
+			explanation: '반도체는 도체와 부도체의 중간 성질을 가지며 조건에 따라 전류가 바뀝니다.',
 		},
 		{
 			question: '띠틈이 가장 넓어 전류가 거의 흐르지 않는 것은?',
 			choices: ['도체', '부도체', '반도체', '모두 같다'],
 			answer: 1,
-			explanation: '부도체는 띠틈이 넓어 전자가 건너기 어렵다.',
+			explanation: '부도체는 띠틈이 넓어 전자가 건너기 어렵습니다.',
 		},
 		{
 			question: '도체에 전류가 잘 흐르는 이유는?',
 			choices: ['자유롭게 움직이는 전자가 많다', '띠틈이 매우 넓다', '원자가 없다', '온도가 항상 낮다'],
 			answer: 0,
-			explanation: '도체에는 원자에서 풀려나 움직이는 전자가 많다.',
+			explanation: '도체에는 원자에서 풀려나 움직이는 전자가 많습니다.',
 		},
 		{
 			question: '반도체의 전류 흐름을 바꾸는 요인이 아닌 것은?',
 			choices: ['온도', '빛', '불순물', '물질의 색깔 이름'],
 			answer: 3,
-			explanation: '열, 빛, 불순물은 전류에 영향을 주지만 색 이름은 관계가 없다.',
+			explanation: '열, 빛, 불순물은 전류에 영향을 주지만 색 이름은 관계가 없습니다.',
 		},
 		{
 			question: '반도체가 스위치 재료로 쓰이는 이유는?',
 			choices: ['항상 전류를 막아서', '항상 전류를 통과시켜서', '전류를 켜고 끄는 조절이 가능해서', '가격이 가장 비싸서'],
 			answer: 2,
-			explanation: '조건에 따라 전류를 조절할 수 있어 켜고 끄는 소자를 만들 수 있다.',
+			explanation: '조건에 따라 전류를 조절할 수 있어 켜고 끄는 소자를 만들 수 있습니다.',
 		},
 	]}
 />

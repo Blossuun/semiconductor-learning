@@ -16,6 +16,14 @@ export function getStaticPaths() {
 		}))
 		.sort((a, b) => a.module - b.module || a.order - b.order || a.slug.localeCompare(b.slug));
 
+	for (let i = 1; i < entries.length; i++) {
+		const a = entries[i - 1];
+		const b = entries[i];
+		if (a.module === b.module && a.order === b.order) {
+			throw new Error(`레슨 order 중복: module ${b.module}, order ${b.order} (${a.slug}, ${b.slug})`);
+		}
+	}
+
 	const meta = entries.map(({ Content, ...m }) => m);
 
 	return entries.map((e, i) => ({
