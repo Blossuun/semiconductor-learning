@@ -21,17 +21,21 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="웨이퍼 제조 4단계">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="모래에서 얻은 실리콘이 정제되어 순도 높은 덩어리가 되는 모습">
-			<rect x="60" y="150" width="120" height="70" rx="6" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<circle cx="90" cy="195" r="4" fill="var(--color-text-muted)" />
-			<circle cx="115" cy="205" r="3" fill="var(--color-text-muted)" />
-			<circle cx="140" cy="190" r="5" fill="var(--color-text-muted)" />
-			<circle cx="160" cy="207" r="3" fill="var(--color-text-muted)" />
-			<path d="M200 185 H280" stroke="currentColor" stroke-width="3" fill="none" />
-			<path d="M270 175 L282 185 L270 195" stroke="currentColor" stroke-width="3" fill="none" />
-			<polygon points="320,170 400,170 420,210 300,210" fill="none" stroke="currentColor" stroke-width="2" />
-			<path d="M330 185 L350 200 M360 180 L380 198 M345 175 L370 205" stroke="currentColor" stroke-width="1.5" fill="none" />
-			<text x="120" y="140" text-anchor="middle" fill="var(--color-text-muted)">모래</text>
-			<text x="360" y="150" text-anchor="middle" fill="var(--color-text-muted)">다결정 실리콘</text>
+			<ellipse class="g-ground" cx="120" cy="222" rx="76" ry="6" />
+			<path class="g-sand" d="M52 220 C80 218 92 158 120 158 C148 158 160 218 188 220 Z" />
+			<path class="g-sand-lo" d="M120 158 C148 158 160 218 188 220 H134 C138 196 130 172 120 158 Z" />
+			<circle class="g-bg m-twinkle" cx="96" cy="200" r="2.2" />
+			<circle class="g-bg m-twinkle" cx="110" cy="180" r="2.2" style="--d:0.6s" />
+			<circle class="g-bg m-twinkle" cx="84" cy="210" r="2.2" style="--d:1.2s" />
+			<circle class="g-bg m-twinkle" cx="118" cy="204" r="2.2" style="--d:1.7s" />
+			<path class="s-arrow" d="M206 190 h64 m-9 -8 l9 8 l-9 8" />
+			<ellipse class="g-ground" cx="362" cy="222" rx="70" ry="6" />
+			<polygon class="g-si" points="300,220 318,172 366,190 352,220" />
+			<polygon class="g-si-hi" points="318,172 372,160 418,182 366,190" />
+			<polygon class="g-si-lo" points="366,190 418,182 424,220 352,220" />
+			<path class="g-white m-pulse" d="M398 156 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 l8 -3 Z" />
+			<text class="t-muted" x="120" y="140" text-anchor="middle">모래</text>
+			<text class="t-muted" x="362" y="140" text-anchor="middle">다결정 실리콘</text>
 		</svg>
 		<figcaption>
 			<strong>정제</strong>
@@ -41,17 +45,22 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="녹인 실리콘에서 씨앗 결정을 돌리며 끌어올려 잉곳이 자라는 모습">
-			<rect x="170" y="190" width="140" height="56" rx="8" fill="none" stroke="currentColor" stroke-width="2" />
-			<path d="M176 205 H304" stroke="var(--color-text-muted)" stroke-width="2" />
-			<rect x="222" y="90" width="36" height="100" fill="none" stroke="currentColor" stroke-width="2" />
-			<line x1="240" y1="30" x2="240" y2="70" stroke="var(--color-text-muted)" stroke-width="2" />
-			<rect x="232" y="70" width="16" height="20" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<path d="M330 120 V60" stroke="currentColor" stroke-width="3" fill="none" />
-			<path d="M322 70 L330 58 L338 70" stroke="currentColor" stroke-width="3" fill="none" />
-			<path d="M160 100 a30 12 0 1 1 0 1" stroke="var(--color-text-muted)" stroke-width="2" fill="none" />
-			<text x="380" y="95" text-anchor="middle" fill="var(--color-text-muted)">천천히 끌어올림</text>
-			<text x="240" y="262" text-anchor="middle" fill="var(--color-text-muted)">녹인 실리콘</text>
-			<text x="110" y="140" text-anchor="middle" fill="var(--color-text-muted)">회전</text>
+			<rect class="g-si-lo" x="170" y="190" width="140" height="56" rx="8" />
+			<g class="m-shift" style="--dy:-8px;--t:5s">
+				<line class="s-muted" x1="240" y1="20" x2="240" y2="70" />
+				<rect class="g-si-lo" x="232" y="70" width="16" height="20" />
+				<rect class="g-si" x="222" y="90" width="36" height="120" />
+				<rect class="g-si-hi" x="227" y="90" width="6" height="120" />
+				<rect class="g-si-lo" x="249" y="90" width="9" height="120" />
+			</g>
+			<rect class="g-cu m-glow" x="178" y="204" width="124" height="34" rx="5" />
+			<rect class="g-cu-hi" x="178" y="204" width="124" height="5" rx="2" />
+			<path class="s-arrow m-shift" style="--dy:-8px;--t:5s" d="M330 122 v-58 m-8 10 l8 -10 l8 10" />
+			<path class="s-muted m-flow" d="M190 128 a50 13 0 0 0 100 0" />
+			<path class="s-muted" d="M282 136 l8 -8 l3 11" />
+			<text class="t-muted" x="392" y="95" text-anchor="middle">천천히 끌어올림</text>
+			<text class="t-muted" x="240" y="264" text-anchor="middle">녹인 실리콘</text>
+			<text class="t-muted" x="150" y="130" text-anchor="middle">회전</text>
 		</svg>
 		<figcaption>
 			<strong>잉곳 성장</strong>
@@ -61,15 +70,50 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="잉곳이 얇은 원판 여러 장으로 잘리는 모습">
-			<rect x="60" y="110" width="200" height="60" fill="none" stroke="currentColor" stroke-width="2" />
-			<path d="M100 110 V170 M140 110 V170 M180 110 V170 M220 110 V170" stroke="var(--color-text-muted)" stroke-width="2" stroke-dasharray="4 3" />
-			<path d="M290 140 H340" stroke="currentColor" stroke-width="3" fill="none" />
-			<path d="M330 130 L342 140 L330 150" stroke="currentColor" stroke-width="3" fill="none" />
-			<ellipse cx="385" cy="100" rx="40" ry="10" fill="none" stroke="currentColor" stroke-width="2" />
-			<ellipse cx="385" cy="140" rx="40" ry="10" fill="none" stroke="currentColor" stroke-width="2" />
-			<ellipse cx="385" cy="180" rx="40" ry="10" fill="none" stroke="currentColor" stroke-width="2" />
-			<text x="160" y="205" text-anchor="middle" fill="var(--color-text-muted)">잉곳</text>
-			<text x="385" y="220" text-anchor="middle" fill="var(--color-text-muted)">얇은 원판</text>
+			<ellipse class="g-ground" cx="160" cy="180" rx="104" ry="5" />
+			<g class="m-shift" style="--dx:-8px">
+				<rect class="g-si" x="62" y="110" width="36" height="60" />
+				<ellipse class="g-si-lo" cx="98" cy="140" rx="6" ry="30" />
+				<ellipse class="g-si-hi" cx="62" cy="140" rx="6" ry="30" />
+			</g>
+			<g class="m-shift" style="--dx:-4px">
+				<rect class="g-si" x="102" y="110" width="36" height="60" />
+				<ellipse class="g-si-lo" cx="138" cy="140" rx="6" ry="30" />
+				<ellipse class="g-si-hi" cx="102" cy="140" rx="6" ry="30" />
+			</g>
+			<g>
+				<rect class="g-si" x="142" y="110" width="36" height="60" />
+				<ellipse class="g-si-lo" cx="178" cy="140" rx="6" ry="30" />
+				<ellipse class="g-si-hi" cx="142" cy="140" rx="6" ry="30" />
+			</g>
+			<g class="m-shift" style="--dx:4px">
+				<rect class="g-si" x="182" y="110" width="36" height="60" />
+				<ellipse class="g-si-lo" cx="218" cy="140" rx="6" ry="30" />
+				<ellipse class="g-si-hi" cx="182" cy="140" rx="6" ry="30" />
+			</g>
+			<g class="m-shift" style="--dx:8px">
+				<rect class="g-si" x="222" y="110" width="36" height="60" />
+				<ellipse class="g-si-lo" cx="258" cy="140" rx="6" ry="30" />
+				<ellipse class="g-si-hi" cx="222" cy="140" rx="6" ry="30" />
+			</g>
+			<path class="s-arrow" d="M286 140 h46 m-9 -8 l9 8 l-9 8" />
+			<g class="m-float" style="--d:0.8s">
+				<ellipse class="g-si-lo" cx="390" cy="184" rx="42" ry="11" />
+				<ellipse class="g-si" cx="390" cy="180" rx="42" ry="11" />
+				<ellipse class="g-si-hi" cx="376" cy="177" rx="18" ry="3" />
+			</g>
+			<g class="m-float" style="--d:0.4s">
+				<ellipse class="g-si-lo" cx="390" cy="144" rx="42" ry="11" />
+				<ellipse class="g-si" cx="390" cy="140" rx="42" ry="11" />
+				<ellipse class="g-si-hi" cx="376" cy="137" rx="18" ry="3" />
+			</g>
+			<g class="m-float">
+				<ellipse class="g-si-lo" cx="390" cy="104" rx="42" ry="11" />
+				<ellipse class="g-si" cx="390" cy="100" rx="42" ry="11" />
+				<ellipse class="g-si-hi" cx="376" cy="97" rx="18" ry="3" />
+			</g>
+			<text class="t-muted" x="160" y="210" text-anchor="middle">잉곳</text>
+			<text class="t-muted" x="390" y="226" text-anchor="middle">얇은 원판</text>
 		</svg>
 		<figcaption>
 			<strong>절단</strong>
@@ -79,16 +123,18 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="거친 원판 표면이 연마와 세정을 거쳐 매끈해지는 모습">
-			<path d="M60 150 l15 -10 l15 10 l15 -8 l15 8 l15 -10 l15 10 l15 -8 l15 8" stroke="currentColor" stroke-width="2" fill="none" />
-			<path d="M60 150 V175 H210 V150" stroke="currentColor" stroke-width="2" fill="none" />
-			<path d="M235 160 H285" stroke="currentColor" stroke-width="3" fill="none" />
-			<path d="M275 150 L287 160 L275 170" stroke="currentColor" stroke-width="3" fill="none" />
-			<path d="M310 150 H460" stroke="currentColor" stroke-width="2" fill="none" />
-			<path d="M310 150 V175 H460 V150" stroke="currentColor" stroke-width="2" fill="none" />
-			<circle cx="340" cy="120" r="3" fill="var(--color-text-muted)" />
-			<circle cx="400" cy="105" r="3" fill="var(--color-text-muted)" />
-			<text x="135" y="210" text-anchor="middle" fill="var(--color-text-muted)">거친 표면</text>
-			<text x="385" y="210" text-anchor="middle" fill="var(--color-text-muted)">거울 같은 표면</text>
+			<path class="g-si" d="M60 150 l15 -10 l15 10 l15 -8 l15 8 l15 -10 l15 10 l15 -8 l15 8 l15 -10 l15 10 V182 H60 Z" />
+			<rect class="g-si-lo" x="60" y="172" width="150" height="10" />
+			<path class="s-arrow" d="M232 162 h50 m-9 -8 l9 8 l-9 8" />
+			<rect class="g-si" x="310" y="150" width="150" height="32" />
+			<rect class="g-si-hi" x="310" y="150" width="150" height="4" />
+			<rect class="g-si-lo" x="310" y="172" width="150" height="10" />
+			<rect class="g-white m-shift" style="--dx:112px;--t:3.5s" x="314" y="150" width="30" height="4" />
+			<circle class="g-ox m-move" style="--dy:-34px;--dx:10px;--t:2.6s" cx="340" cy="140" r="3" />
+			<circle class="g-ox m-move" style="--dy:-34px;--dx:-8px;--t:2.6s;--d:0.9s" cx="400" cy="140" r="3" />
+			<circle class="g-ox m-move" style="--dy:-34px;--dx:6px;--t:2.6s;--d:1.6s" cx="436" cy="140" r="3" />
+			<text class="t-muted" x="135" y="212" text-anchor="middle">거친 표면</text>
+			<text class="t-muted" x="385" y="212" text-anchor="middle">거울 같은 표면</text>
 		</svg>
 		<figcaption>
 			<strong>연마·세정</strong>

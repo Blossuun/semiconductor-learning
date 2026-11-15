@@ -20,14 +20,17 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="메모리와 로직이 일하는 방식">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="트랜지스터 스위치가 꺼짐이면 0, 켜짐이면 1을 나타낸다">
-			<rect x="60" y="90" width="150" height="90" rx="8" fill="#5c6778" stroke="currentColor" stroke-width="2" />
-			<line x1="75" y1="135" x2="195" y2="135" stroke="#ffffff" stroke-width="3" stroke-dasharray="6 6" />
-			<text x="135" y="75" text-anchor="middle" font-size="20" fill="currentColor">꺼짐</text>
-			<text x="135" y="216" text-anchor="middle" fill="currentColor" font-size="36">0</text>
-			<rect x="270" y="90" width="150" height="90" rx="8" fill="#2447b8" stroke="currentColor" stroke-width="2" />
-			<line x1="285" y1="135" x2="405" y2="135" stroke="#ffffff" stroke-width="5" />
-			<text x="345" y="75" text-anchor="middle" font-size="20" fill="currentColor">켜짐</text>
-			<text x="345" y="216" text-anchor="middle" fill="currentColor" font-size="36">1</text>
+			<rect class="g-si" x="60" y="90" width="150" height="90" rx="8" />
+			<rect class="g-si-hi" x="64" y="90" width="142" height="5" rx="2" />
+			<line class="s-white s-dash" style="stroke-width:3" x1="75" y1="135" x2="195" y2="135" />
+			<text class="t" x="135" y="75" text-anchor="middle" font-size="20">꺼짐</text>
+			<text class="t" x="135" y="216" text-anchor="middle" font-size="36">0</text>
+			<rect class="g-accent m-glow" x="270" y="90" width="150" height="90" rx="8" />
+			<line class="s-white" style="stroke-width:5" x1="285" y1="135" x2="405" y2="135" />
+			<circle class="g-sand m-move" style="--dx:112px;--t:1.4s" cx="289" cy="135" r="6" />
+			<circle class="g-sand m-move" style="--dx:112px;--t:1.4s;--d:0.7s" cx="289" cy="135" r="6" />
+			<text class="t" x="345" y="75" text-anchor="middle" font-size="20">켜짐</text>
+			<text class="t" x="345" y="216" text-anchor="middle" font-size="36">1</text>
 		</svg>
 		<figcaption>
 			<strong>0과 1 정하기</strong>
@@ -37,19 +40,22 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="DRAM은 저장통에 전자를 채우고 NAND는 절연막 안에 전자를 가둔다">
-			<text x="120" y="40" text-anchor="middle" font-size="20" fill="currentColor">DRAM</text>
-			<rect x="85" y="70" width="70" height="110" fill="#d9b877" stroke="currentColor" stroke-width="2" />
-			<rect x="85" y="125" width="70" height="55" fill="#2447b8" />
-			<text x="120" y="210" text-anchor="middle" font-size="20" fill="currentColor">저장통에 전자</text>
-			<text x="120" y="235" text-anchor="middle" font-size="20" fill="currentColor">전원 꺼지면 사라짐</text>
-			<text x="360" y="40" text-anchor="middle" font-size="20" fill="currentColor">NAND</text>
-			<rect x="300" y="70" width="120" height="110" fill="#7fa8d9" stroke="currentColor" stroke-width="2" />
-			<rect x="325" y="100" width="70" height="50" fill="#d68a45" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4" />
-			<circle cx="345" cy="125" r="6" fill="#2447b8" />
-			<circle cx="360" cy="125" r="6" fill="#2447b8" />
-			<circle cx="375" cy="125" r="6" fill="#2447b8" />
-			<text x="360" y="210" text-anchor="middle" font-size="20" fill="currentColor">절연막 안에 전자</text>
-			<text x="360" y="235" text-anchor="middle" font-size="20" fill="currentColor">전원 꺼져도 남음</text>
+			<text class="t" x="120" y="40" text-anchor="middle" font-size="20">DRAM</text>
+			<rect class="g-sand" x="85" y="70" width="70" height="110" rx="5" />
+			<rect class="g-accent m-grow-up" style="--t:4s" x="85" y="125" width="70" height="55" />
+			<rect class="g-sand-hi" x="89" y="74" width="6" height="102" rx="3" />
+			<text class="t" x="120" y="210" text-anchor="middle" font-size="20">저장통에 전자</text>
+			<text class="t" x="120" y="235" text-anchor="middle" font-size="20">전원 꺼지면 사라짐</text>
+			<text class="t" x="360" y="40" text-anchor="middle" font-size="20">NAND</text>
+			<rect class="g-ox" x="300" y="70" width="120" height="110" rx="6" />
+			<rect class="g-ox-hi" x="304" y="70" width="112" height="5" rx="2" />
+			<rect class="g-cu" x="325" y="100" width="70" height="50" rx="3" />
+			<rect class="s-ink s-dash" x="325" y="100" width="70" height="50" rx="3" />
+			<circle class="g-accent m-pulse" cx="345" cy="125" r="6" />
+			<circle class="g-accent m-pulse" style="--d:0.4s" cx="360" cy="125" r="6" />
+			<circle class="g-accent m-pulse" style="--d:0.8s" cx="375" cy="125" r="6" />
+			<text class="t" x="360" y="210" text-anchor="middle" font-size="20">절연막 안에 전자</text>
+			<text class="t" x="360" y="235" text-anchor="middle" font-size="20">전원 꺼져도 남음</text>
 		</svg>
 		<figcaption>
 			<strong>메모리는 저장하기</strong>
@@ -59,14 +65,18 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="입력 두 개가 로직 회로를 지나 결과 하나가 된다">
-			<text x="50" y="105" text-anchor="middle" font-size="20" fill="currentColor">입력 A</text>
-			<text x="50" y="175" text-anchor="middle" font-size="20" fill="currentColor">입력 B</text>
-			<line x1="90" y1="100" x2="190" y2="100" stroke="currentColor" stroke-width="2" />
-			<line x1="90" y1="170" x2="190" y2="170" stroke="currentColor" stroke-width="2" />
-			<rect x="190" y="70" width="110" height="130" rx="10" fill="#2447b8" stroke="currentColor" stroke-width="2" />
-			<text x="245" y="140" text-anchor="middle" font-size="20" fill="#ffffff">로직 회로</text>
-			<line x1="300" y1="135" x2="390" y2="135" stroke="currentColor" stroke-width="2" />
-			<text x="430" y="141" text-anchor="middle" font-size="20" fill="currentColor">결과</text>
+			<text class="t" x="50" y="105" text-anchor="middle" font-size="20">입력 A</text>
+			<text class="t" x="50" y="175" text-anchor="middle" font-size="20">입력 B</text>
+			<line class="s-ink" x1="90" y1="100" x2="190" y2="100" />
+			<line class="s-ink" x1="90" y1="170" x2="190" y2="170" />
+			<circle class="g-accent m-move" style="--dx:92px;--t:2.4s" cx="94" cy="100" r="6" />
+			<circle class="g-accent m-move" style="--dx:92px;--t:2.4s" cx="94" cy="170" r="6" />
+			<line class="s-ink" x1="300" y1="135" x2="390" y2="135" />
+			<circle class="g-accent m-move" style="--dx:84px;--t:2.4s;--d:1.2s" cx="304" cy="135" r="6" />
+			<rect class="g-accent" x="190" y="70" width="110" height="130" rx="10" />
+			<rect class="g-white g-soft m-twinkle" x="196" y="76" width="98" height="118" rx="7" />
+			<text x="245" y="142" text-anchor="middle" font-size="20" fill="#ffffff">로직 회로</text>
+			<text class="t" x="430" y="141" text-anchor="middle" font-size="20">결과</text>
 		</svg>
 		<figcaption>
 			<strong>로직은 계산하기</strong>

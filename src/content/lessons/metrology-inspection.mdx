@@ -20,15 +20,20 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="계측·검사 3단계">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="웨이퍼 위 회로선의 너비를 화살표로 재는 그림">
-			<rect x="60" y="170" width="360" height="30" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="140" y="120" width="40" height="50" fill="var(--color-text-muted)" />
-			<rect x="220" y="120" width="40" height="50" fill="var(--color-text-muted)" />
-			<rect x="300" y="120" width="40" height="50" fill="var(--color-text-muted)" />
-			<line x1="140" y1="100" x2="180" y2="100" stroke="currentColor" stroke-width="2" />
-			<line x1="140" y1="94" x2="140" y2="106" stroke="currentColor" stroke-width="2" />
-			<line x1="180" y1="94" x2="180" y2="106" stroke="currentColor" stroke-width="2" />
-			<text x="160" y="84" text-anchor="middle" fill="currentColor">선폭</text>
-			<text x="240" y="236" text-anchor="middle" fill="var(--color-text-muted)">회로선의 너비와 위치를 잰다</text>
+			<rect class="g-si" x="60" y="170" width="360" height="30" />
+			<rect class="g-si-lo" x="60" y="192" width="360" height="8" />
+			<rect class="g-ox" x="140" y="120" width="40" height="50" />
+			<rect class="g-ox" x="220" y="120" width="40" height="50" />
+			<rect class="g-ox" x="300" y="120" width="40" height="50" />
+			<rect class="g-ox-hi" x="140" y="120" width="40" height="4" />
+			<rect class="g-ox-hi" x="220" y="120" width="40" height="4" />
+			<rect class="g-ox-hi" x="300" y="120" width="40" height="4" />
+			<g class="m-shift" style="--dx:160px;--t:7s">
+				<rect class="g-beam" x="140" y="56" width="40" height="64" />
+				<path class="s-ink" d="M140 100 H180 M140 94 V106 M180 94 V106" />
+				<text class="t" x="160" y="84" text-anchor="middle">선폭</text>
+			</g>
+			<text class="t-muted" x="240" y="236" text-anchor="middle">회로선의 너비와 위치를 잰다</text>
 		</svg>
 		<figcaption>
 			<strong>측정</strong>
@@ -38,13 +43,18 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="원형 웨이퍼 위에 결함 위치를 점으로 표시한 지도">
-			<circle cx="240" cy="124" r="96" fill="none" stroke="currentColor" stroke-width="2" />
-			<circle cx="196" cy="90" r="5" fill="var(--color-text-muted)" />
-			<circle cx="270" cy="110" r="5" fill="var(--color-text-muted)" />
-			<circle cx="226" cy="160" r="5" fill="var(--color-text-muted)" />
-			<circle cx="290" cy="162" r="5" fill="var(--color-text-muted)" />
-			<circle cx="248" cy="70" r="5" fill="var(--color-text-muted)" />
-			<text x="240" y="250" text-anchor="middle" fill="var(--color-text-muted)">점 하나가 결함 한 곳</text>
+			<circle class="g-si-lo" cx="240" cy="128" r="96" />
+			<circle class="g-si" cx="240" cy="124" r="96" />
+			<circle class="g-pr m-pulse" cx="196" cy="90" r="5" />
+			<circle class="g-pr m-pulse" style="--d:0.3s" cx="270" cy="110" r="5" />
+			<circle class="g-pr m-pulse" style="--d:0.6s" cx="226" cy="160" r="5" />
+			<circle class="g-pr m-pulse" style="--d:0.9s" cx="290" cy="162" r="5" />
+			<circle class="g-pr m-pulse" style="--d:1.2s" cx="248" cy="70" r="5" />
+			<g class="m-shift" style="--dx:150px;--t:5s">
+				<rect class="g-light g-soft" x="158" y="40" width="14" height="168" />
+				<path class="s-light" d="M165 40 V208" />
+			</g>
+			<text class="t-muted" x="240" y="250" text-anchor="middle">점 하나가 결함 한 곳</text>
 		</svg>
 		<figcaption>
 			<strong>결함 검사</strong>
@@ -54,15 +64,18 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="측정값을 기준과 비교해 통과 또는 되먹임으로 나뉘는 흐름도">
-			<rect x="30" y="104" width="110" height="50" fill="none" stroke="currentColor" stroke-width="2" />
-			<text x="85" y="134" text-anchor="middle" fill="currentColor">측정값</text>
-			<line x1="140" y1="129" x2="200" y2="129" stroke="currentColor" stroke-width="2" />
-			<rect x="200" y="104" width="110" height="50" fill="none" stroke="currentColor" stroke-width="2" />
-			<text x="255" y="134" text-anchor="middle" fill="currentColor">기준 비교</text>
-			<line x1="310" y1="115" x2="380" y2="70" stroke="currentColor" stroke-width="2" />
-			<text x="420" y="74" text-anchor="middle" fill="currentColor">통과</text>
-			<line x1="310" y1="143" x2="380" y2="198" stroke="currentColor" stroke-width="2" />
-			<text x="420" y="202" text-anchor="middle" fill="currentColor">장비 보정</text>
+			<path class="s-ink m-flow" d="M140 129 H200 M310 115 L380 70 M310 143 L380 198" />
+			<rect class="g-ox" x="30" y="104" width="110" height="50" rx="8" />
+			<rect class="g-ox-hi" x="34" y="104" width="102" height="5" rx="2" />
+			<text x="85" y="135" text-anchor="middle" fill="#17202b">측정값</text>
+			<rect class="g-sand" x="200" y="104" width="110" height="50" rx="8" />
+			<rect class="g-sand-hi" x="204" y="104" width="102" height="5" rx="2" />
+			<text x="255" y="135" text-anchor="middle" fill="#17202b">기준 비교</text>
+			<circle class="g-accent m-move" style="--dx:52px;--t:2s" cx="144" cy="129" r="5" />
+			<circle class="g-accent m-move" style="--dx:62px;--dy:-40px;--t:2s;--d:1s" cx="314" cy="113" r="5" />
+			<circle class="g-pr m-move" style="--dx:62px;--dy:49px;--t:2s;--d:1s" cx="314" cy="146" r="5" />
+			<text class="t" x="420" y="74" text-anchor="middle">통과</text>
+			<text class="t" x="420" y="202" text-anchor="middle">장비 보정</text>
 		</svg>
 		<figcaption>
 			<strong>판정과 되먹임</strong>

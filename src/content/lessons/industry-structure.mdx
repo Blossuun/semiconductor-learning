@@ -20,9 +20,14 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="반도체 산업의 가치사슬">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="설계 단계: 팹리스가 회로 도면을 그린다">
-			<rect x="150" y="70" width="180" height="120" rx="8" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<path d="M180 110 H230 V150 H300 M200 130 H260 M230 150 V170" fill="none" stroke="currentColor" stroke-width="2" />
-			<text x="240" y="225" text-anchor="middle" fill="var(--color-text-muted)">회로 도면</text>
+			<rect class="g-ground" x="156" y="78" width="180" height="120" rx="8" />
+			<rect class="g-ox-lo" x="150" y="70" width="180" height="120" rx="8" />
+			<path class="s-white s-thin" style="stroke-opacity:0.25" d="M150 100 H330 M150 130 H330 M150 160 H330 M195 70 V190 M240 70 V190 M285 70 V190" />
+			<path class="s-white m-draw" pathLength="1" d="M180 110 H230 V150 H300 M200 130 H260 M230 150 V170" />
+			<circle class="g-white" cx="180" cy="110" r="4" />
+			<circle class="g-white" cx="300" cy="150" r="4" />
+			<circle class="g-white" cx="230" cy="170" r="4" />
+			<text class="t-muted" x="240" y="225" text-anchor="middle">회로 도면</text>
 		</svg>
 		<figcaption>
 			<strong>설계</strong>
@@ -32,9 +37,15 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="제조 단계: 파운드리가 웨이퍼 위에 도면대로 칩을 만든다">
-			<circle cx="240" cy="125" r="70" fill="none" stroke="var(--color-text-muted)" stroke-width="2" />
-			<path d="M200 95 h20 v20 h-20z M230 95 h20 v20 h-20z M260 95 h20 v20 h-20z M200 125 h20 v20 h-20z M230 125 h20 v20 h-20z M260 125 h20 v20 h-20z" fill="none" stroke="currentColor" stroke-width="2" />
-			<text x="240" y="225" text-anchor="middle" fill="var(--color-text-muted)">웨이퍼 위의 칩</text>
+			<circle class="g-si-lo" cx="240" cy="129" r="70" />
+			<circle class="g-si" cx="240" cy="125" r="70" />
+			<rect class="g-ox m-fade" style="--t:6s" x="200" y="95" width="20" height="20" rx="2" />
+			<rect class="g-ox m-fade" style="--t:6s;--d:0.3s" x="230" y="95" width="20" height="20" rx="2" />
+			<rect class="g-ox m-fade" style="--t:6s;--d:0.6s" x="260" y="95" width="20" height="20" rx="2" />
+			<rect class="g-ox m-fade" style="--t:6s;--d:0.9s" x="200" y="125" width="20" height="20" rx="2" />
+			<rect class="g-ox m-fade" style="--t:6s;--d:1.2s" x="230" y="125" width="20" height="20" rx="2" />
+			<rect class="g-ox m-fade" style="--t:6s;--d:1.5s" x="260" y="125" width="20" height="20" rx="2" />
+			<text class="t-muted" x="240" y="225" text-anchor="middle">웨이퍼 위의 칩</text>
 		</svg>
 		<figcaption>
 			<strong>제조</strong>
@@ -44,9 +55,12 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="패키징·테스트 단계: OSAT가 칩을 자르고 포장하고 검사한다">
-			<rect x="190" y="85" width="100" height="70" rx="6" fill="none" stroke="currentColor" stroke-width="2" />
-			<path d="M205 155 v25 M225 155 v25 M245 155 v25 M265 155 v25 M205 85 v-25 M225 85 v-25 M245 85 v-25 M265 85 v-25" stroke="var(--color-text-muted)" stroke-width="2" />
-			<text x="240" y="225" text-anchor="middle" fill="var(--color-text-muted)">포장된 칩</text>
+			<path class="s-cu s-thick s-butt" d="M205 155 v25 M225 155 v25 M245 155 v25 M265 155 v25 M205 85 v-25 M225 85 v-25 M245 85 v-25 M265 85 v-25" />
+			<rect class="g-si-lo" x="190" y="85" width="100" height="70" rx="6" />
+			<rect class="g-si" x="190" y="85" width="100" height="8" rx="4" />
+			<circle class="g-si-hi" cx="202" cy="103" r="3.5" />
+			<path class="s-white s-thick m-draw" style="--t:3s" pathLength="1" d="M222 122 l12 12 l24 -26" />
+			<text class="t-muted" x="240" y="225" text-anchor="middle">포장된 칩</text>
 		</svg>
 		<figcaption>
 			<strong>패키징·테스트</strong>

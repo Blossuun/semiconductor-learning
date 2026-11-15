@@ -20,22 +20,17 @@ HBM4는 쌓아 올린 DRAM 아래에 똑똑한 제어 칩을 깔고, 데이터 �
 <StepAnimation label="HBM4 만들기 3단계">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="TSV로 이어진 DRAM 코어 다이 여러 층">
-			<rect x="140" y="50" width="200" height="22" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="140" y="84" width="200" height="22" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="140" y="118" width="200" height="22" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="140" y="152" width="200" height="22" fill="var(--color-text-muted)" opacity="0.35" />
-			<g fill="currentColor">
-				<rect x="180" y="72" width="10" height="12" />
-				<rect x="235" y="72" width="10" height="12" />
-				<rect x="290" y="72" width="10" height="12" />
-				<rect x="180" y="106" width="10" height="12" />
-				<rect x="235" y="106" width="10" height="12" />
-				<rect x="290" y="106" width="10" height="12" />
-				<rect x="180" y="140" width="10" height="12" />
-				<rect x="235" y="140" width="10" height="12" />
-				<rect x="290" y="140" width="10" height="12" />
-			</g>
-			<text x="240" y="205" text-anchor="middle" fill="var(--color-text-muted)">DRAM 코어 다이를 TSV로 이어 쌓음</text>
+			<rect class="g-si" x="140" y="50" width="200" height="22" rx="2" />
+			<rect class="g-si" x="140" y="84" width="200" height="22" rx="2" />
+			<rect class="g-si" x="140" y="118" width="200" height="22" rx="2" />
+			<rect class="g-si" x="140" y="152" width="200" height="22" rx="2" />
+			<path class="g-si-hi" d="M140 50 h200 v4 h-200z M140 84 h200 v4 h-200z M140 118 h200 v4 h-200z M140 152 h200 v4 h-200z" />
+			<path class="g-cu-hi" d="M182 50 h6 v124 h-6z M237 50 h6 v124 h-6z M292 50 h6 v124 h-6z" />
+			<path class="g-cu" d="M180 72 h10 v12 h-10z M235 72 h10 v12 h-10z M290 72 h10 v12 h-10z M180 106 h10 v12 h-10z M235 106 h10 v12 h-10z M290 106 h10 v12 h-10z M180 140 h10 v12 h-10z M235 140 h10 v12 h-10z M290 140 h10 v12 h-10z" />
+			<circle class="g-white m-move" style="--dy:-112px;--t:1.8s" cx="185" cy="168" r="3" />
+			<circle class="g-white m-move" style="--dy:-112px;--t:1.8s;--d:0.6s" cx="240" cy="168" r="3" />
+			<circle class="g-white m-move" style="--dy:-112px;--t:1.8s;--d:1.2s" cx="295" cy="168" r="3" />
+			<text class="t-muted" x="240" y="205" text-anchor="middle">DRAM 코어 다이를 TSV로 이어 쌓음</text>
 		</svg>
 		<figcaption>
 			<strong>코어 다이 쌓기</strong>
@@ -45,12 +40,16 @@ HBM4는 쌓아 올린 DRAM 아래에 똑똑한 제어 칩을 깔고, 데이터 �
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="코어 다이 더미 아래에 놓인 넓은 베이스 다이">
-			<rect x="140" y="50" width="200" height="22" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="140" y="84" width="200" height="22" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="140" y="118" width="200" height="22" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="120" y="152" width="240" height="30" fill="currentColor" opacity="0.7" />
-			<text x="240" y="172" text-anchor="middle" fill="var(--color-bg, #fff)">베이스 다이</text>
-			<text x="240" y="215" text-anchor="middle" fill="var(--color-text-muted)">맨 아래에 제어용 베이스 다이를 접합</text>
+			<g class="m-shift" style="--dy:-10px;--t:4s">
+				<rect class="g-si" x="140" y="50" width="200" height="22" rx="2" />
+				<rect class="g-si" x="140" y="84" width="200" height="22" rx="2" />
+				<rect class="g-si" x="140" y="118" width="200" height="22" rx="2" />
+				<path class="g-si-hi" d="M140 50 h200 v4 h-200z M140 84 h200 v4 h-200z M140 118 h200 v4 h-200z" />
+				<path class="g-cu" d="M180 72 h10 v12 h-10z M235 72 h10 v12 h-10z M290 72 h10 v12 h-10z M180 106 h10 v12 h-10z M235 106 h10 v12 h-10z M290 106 h10 v12 h-10z M180 140 h10 v12 h-10z M235 140 h10 v12 h-10z M290 140 h10 v12 h-10z" />
+			</g>
+			<rect class="g-accent m-glow" x="120" y="152" width="240" height="30" rx="3" />
+			<text x="240" y="173" text-anchor="middle" fill="#ffffff">베이스 다이</text>
+			<text class="t-muted" x="240" y="215" text-anchor="middle">맨 아래에 제어용 베이스 다이를 접합</text>
 		</svg>
 		<figcaption>
 			<strong>베이스 다이 접합</strong>
@@ -60,12 +59,16 @@ HBM4는 쌓아 올린 DRAM 아래에 똑똑한 제어 칩을 깔고, 데이터 �
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="인터포저 위에서 GPU 옆에 놓인 HBM">
-			<rect x="60" y="150" width="360" height="20" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="90" y="90" width="120" height="60" fill="currentColor" opacity="0.7" />
-			<rect x="260" y="70" width="50" height="80" fill="var(--color-text-muted)" opacity="0.6" />
-			<rect x="330" y="70" width="50" height="80" fill="var(--color-text-muted)" opacity="0.6" />
-			<text x="150" y="125" text-anchor="middle" fill="var(--color-bg, #fff)">GPU</text>
-			<text x="240" y="200" text-anchor="middle" fill="var(--color-text-muted)">인터포저 위에 GPU와 HBM을 나란히 장착</text>
+			<rect class="g-si-lo" x="60" y="150" width="360" height="20" rx="2" />
+			<path class="s-white m-flow" style="--t:0.7s" d="M150 160 H355" />
+			<rect class="g-accent" x="90" y="90" width="120" height="60" rx="4" />
+			<rect class="g-white g-soft" x="94" y="90" width="112" height="5" rx="2" />
+			<rect class="g-si" x="260" y="70" width="50" height="80" rx="2" />
+			<rect class="g-si" x="330" y="70" width="50" height="80" rx="2" />
+			<path class="s-bg s-thin" d="M260 90 h50 M260 110 h50 M260 130 h50 M330 90 h50 M330 110 h50 M330 130 h50" />
+			<path class="g-si-hi" d="M260 70 h50 v4 h-50z M330 70 h50 v4 h-50z" />
+			<text x="150" y="126" text-anchor="middle" fill="#ffffff">GPU</text>
+			<text class="t-muted" x="240" y="200" text-anchor="middle">인터포저 위에 GPU와 HBM을 나란히 장착</text>
 		</svg>
 		<figcaption>
 			<strong>인터포저에 장착</strong>

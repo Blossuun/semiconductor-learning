@@ -64,33 +64,41 @@ const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
 			<svg class="photo-step" viewBox="0 0 480 268" role="img" aria-label={t.titles[i]}>
 				{step.expose && (
 					<g>
+						<rect class="g-beam m-beam" x={X0} y="22" width={X1 - X0} height="34" />
+						<rect class="g-beam m-beam" x={OPEN0} y="68" width={OPEN1 - OPEN0} height="48" />
 						{uvXs.map((x) => {
 							const through = x > OPEN0 && x < OPEN1;
-							const end = through ? 112 : 50;
 							return (
 								<g class="uv">
-									<line x1={x} y1="20" x2={x} y2={end - 6} />
-									<polygon points={`${x - 4},${end - 7} ${x + 4},${end - 7} ${x},${end}`} />
+									<line class="m-flow" x1={x} y1="22" x2={x} y2={through ? 116 : 56} />
 								</g>
 							);
 						})}
-						<rect class="mask" x={X0} y="56" width={OPEN0 - X0} height="12" />
-						<rect class="mask" x={OPEN1} y="56" width={X1 - OPEN1} height="12" />
+						<rect class="g-light m-glow" x={X0} y="12" width={X1 - X0} height="10" rx="5" />
+						<rect class="mask" x={X0} y="56" width={OPEN0 - X0} height="12" rx="2" />
+						<rect class="mask" x={OPEN1} y="56" width={X1 - OPEN1} height="12" rx="2" />
 						<text x={LABEL_X} y="36">{t.uv}</text>
 						<text x={LABEL_X} y="67">{t.mask}</text>
 					</g>
 				)}
 
 				{segments(step.resist).map(([x, w]) => (
-					<rect class="resist" x={x} y="116" width={w} height="44" />
+					<g>
+						<rect class="resist" x={x} y="116" width={w} height="44" />
+						<rect class="g-pr-hi" x={x} y="116" width={w} height="4" />
+					</g>
 				))}
 				{step.expose && (
-					<rect class="exposed" x={OPEN0} y="116" width={OPEN1 - OPEN0} height="44" />
+					<rect class="exposed m-fade" x={OPEN0 + 1} y="117" width={OPEN1 - OPEN0 - 2} height="42" />
 				)}
 				{segments(step.film).map(([x, w]) => (
-					<rect class="film" x={x} y="160" width={w} height="30" />
+					<g>
+						<rect class="film" x={x} y="160" width={w} height="30" />
+						<rect class="g-ox-hi" x={x} y="160" width={w} height="4" />
+					</g>
 				))}
 				<rect class="substrate" x={X0} y="190" width={X1 - X0} height="44" />
+				<rect class="g-si-lo" x={X0} y="222" width={X1 - X0} height="12" />
 
 				{step.resist !== 'none' && <text x={LABEL_X} y="143">{t.resist}</text>}
 				<text x={LABEL_X} y="180">{t.film}</text>
@@ -138,8 +146,7 @@ const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
 	}
 
 	.photo-step .exposed {
-		fill: var(--diagram-resist);
-		fill-opacity: 0.35;
+		fill: color-mix(in srgb, var(--diagram-resist) 35%, var(--color-bg));
 		stroke: var(--diagram-resist);
 		stroke-width: 2;
 		stroke-dasharray: 4 3;

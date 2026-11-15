@@ -21,12 +21,13 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="현장 은어 익히기 3단계">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="은어 다운이 설비가 멈췄다는 뜻으로 풀리는 그림">
-			<rect x="40" y="40" width="160" height="70" rx="10" fill="#e0a030" />
+			<rect class="g-sand" x="40" y="40" width="160" height="70" rx="10" />
+			<rect class="g-sand-hi" x="46" y="40" width="148" height="6" rx="3" />
 			<text x="120" y="85" text-anchor="middle" font-size="26" fill="#1f2328">다운</text>
-			<path d="M215 75 L265 75 M255 65 L265 75 L255 85" fill="none" stroke="#9aa3ad" stroke-width="3" />
-			<rect x="280" y="40" width="160" height="70" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" />
-			<text x="360" y="82" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">설비가 멈춤</text>
-			<text x="240" y="190" text-anchor="middle" font-size="15" fill="var(--color-text-muted)">영어 단어를 그대로 가져온 말이 많다</text>
+			<path class="s-arrow m-shift" style="--dx:6px;--t:1.6s" d="M212 75 h54 m-9 -8 l9 8 l-9 8" />
+			<rect class="s-si s-fill-bg" x="280" y="40" width="160" height="70" rx="10" />
+			<text class="t-muted m-fade" style="--t:4s" x="360" y="82" text-anchor="middle" font-size="16">설비가 멈춤</text>
+			<text class="t-muted" x="240" y="190" text-anchor="middle" font-size="15">영어 단어를 그대로 가져온 말이 많다</text>
 		</svg>
 		<figcaption>
 			<strong>뜻 풀기</strong>
@@ -36,12 +37,14 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="은어 핫랏과 정식 용어 긴급 로트를 짝짓는 그림">
-			<rect x="40" y="60" width="170" height="60" rx="10" fill="#e0a030" />
+			<rect class="g-sand" x="40" y="60" width="170" height="60" rx="10" />
+			<rect class="g-sand-hi" x="46" y="60" width="158" height="6" rx="3" />
 			<text x="125" y="97" text-anchor="middle" font-size="22" fill="#1f2328">핫랏</text>
-			<rect x="270" y="60" width="170" height="60" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" />
-			<text x="355" y="97" text-anchor="middle" font-size="18" fill="var(--color-text-muted)">긴급 로트</text>
-			<path d="M215 90 L265 90" stroke="#9aa3ad" stroke-width="3" />
-			<text x="240" y="190" text-anchor="middle" font-size="15" fill="var(--color-text-muted)">입말 ↔ 보고서용 정식 용어</text>
+			<rect class="s-si s-fill-bg" x="270" y="60" width="170" height="60" rx="10" />
+			<text class="t-muted" x="355" y="97" text-anchor="middle" font-size="18">긴급 로트</text>
+			<path class="s-si s-thick m-flow" d="M215 90 L265 90" />
+			<circle class="g-accent m-shift" style="--dx:42px;--t:2.4s" cx="219" cy="90" r="5" />
+			<text class="t-muted" x="240" y="190" text-anchor="middle" font-size="15">입말 ↔ 보고서용 정식 용어</text>
 		</svg>
 		<figcaption>
 			<strong>정식 용어와 짝짓기</strong>
@@ -51,13 +54,15 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="은어를 넣어 동료에게 말하는 말풍선 그림">
-			<circle cx="70" cy="110" r="28" fill="#9aa3ad" />
-			<rect x="60" y="150" width="20" height="60" rx="6" fill="#9aa3ad" />
-			<rect x="120" y="50" width="330" height="100" rx="14" fill="none" stroke="#9aa3ad" stroke-width="2" />
-			<path d="M120 100 L100 110 L120 120" fill="none" stroke="#9aa3ad" stroke-width="2" />
-			<text x="285" y="92" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">3번 설비 다운됐어요.</text>
-			<text x="285" y="122" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">바로 확인해 주세요.</text>
-			<text x="285" y="200" text-anchor="middle" font-size="15" fill="#e0a030">상황에 맞는 말로 짧게</text>
+			<circle class="g-si" cx="70" cy="110" r="28" />
+			<path class="g-si" d="M34 214 a36 44 0 0 1 72 0 Z" />
+			<g class="m-float">
+				<rect class="s-si s-fill-bg" x="120" y="50" width="330" height="100" rx="14" />
+				<path class="s-si s-fill-bg" d="M121 90 L100 108 L121 118" />
+				<text class="t" x="285" y="92" text-anchor="middle" font-size="16">3번 설비 <tspan class="t-accent t-bold">다운</tspan>됐어요.</text>
+				<text class="t" x="285" y="122" text-anchor="middle" font-size="16">바로 확인해 주세요.</text>
+			</g>
+			<text class="t-accent" x="285" y="200" text-anchor="middle" font-size="15">상황에 맞는 말로 짧게</text>
 		</svg>
 		<figcaption>
 			<strong>상황에 맞게 쓰기</strong>

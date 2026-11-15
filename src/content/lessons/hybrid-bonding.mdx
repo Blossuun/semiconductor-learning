@@ -21,13 +21,15 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="하이브리드 본딩 3단계">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="구리 패드가 절연막보다 살짝 낮게 파인 매끈한 표면">
-			<rect x="60" y="150" width="360" height="90" fill="var(--color-text-muted)" opacity="0.25" />
-			<rect x="120" y="150" width="70" height="90" fill="currentColor" opacity="0.5" />
-			<rect x="290" y="150" width="70" height="90" fill="currentColor" opacity="0.5" />
-			<rect x="120" y="146" width="70" height="4" fill="var(--color-text-muted)" opacity="0.25" />
-			<rect x="290" y="146" width="70" height="4" fill="var(--color-text-muted)" opacity="0.25" />
-			<text x="155" y="130" text-anchor="middle" fill="var(--color-text-muted)">구리 패드</text>
-			<text x="240" y="262" text-anchor="middle" fill="var(--color-text-muted)">절연막 (평탄하게 연마)</text>
+			<rect class="g-ox" x="60" y="150" width="360" height="90" />
+			<rect class="g-ox-hi" x="60" y="150" width="360" height="4" />
+			<rect class="g-cu" x="120" y="150" width="70" height="90" />
+			<rect class="g-cu" x="290" y="150" width="70" height="90" />
+			<rect class="g-sunken" x="120" y="150" width="70" height="5" />
+			<rect class="g-sunken" x="290" y="150" width="70" height="5" />
+			<rect class="g-white m-shift" style="--dx:300px;--t:4s" x="64" y="150" width="50" height="4" />
+			<text class="t-muted" x="155" y="130" text-anchor="middle">구리 패드</text>
+			<text class="t-muted" x="240" y="262" text-anchor="middle">절연막 (평탄하게 연마)</text>
 		</svg>
 		<figcaption>
 			<strong>표면 평탄화</strong>
@@ -37,14 +39,18 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="위 칩을 뒤집어 아래 칩에 정렬해 겹친 모습">
-			<rect x="60" y="150" width="360" height="70" fill="var(--color-text-muted)" opacity="0.25" />
-			<rect x="120" y="150" width="70" height="70" fill="currentColor" opacity="0.5" />
-			<rect x="290" y="150" width="70" height="70" fill="currentColor" opacity="0.5" />
-			<rect x="60" y="60" width="360" height="70" fill="var(--color-text-muted)" opacity="0.25" />
-			<rect x="120" y="60" width="70" height="70" fill="currentColor" opacity="0.5" />
-			<rect x="290" y="60" width="70" height="70" fill="currentColor" opacity="0.5" />
-			<text x="240" y="30" text-anchor="middle" fill="var(--color-text-muted)">위 칩을 정렬해 내려놓는다</text>
-			<text x="240" y="250" text-anchor="middle" fill="var(--color-text-muted)">상온에서 절연막끼리 먼저 붙는다</text>
+			<path class="s-muted s-thin s-dash" d="M155 44 V236 M325 44 V236" />
+			<rect class="g-ox" x="60" y="150" width="360" height="70" />
+			<rect class="g-cu" x="120" y="150" width="70" height="70" />
+			<rect class="g-cu" x="290" y="150" width="70" height="70" />
+			<g class="m-shift" style="--dy:-26px;--t:4.5s">
+				<rect class="g-ox-lo" x="60" y="80" width="360" height="70" />
+				<rect class="g-cu" x="120" y="80" width="70" height="70" />
+				<rect class="g-cu" x="290" y="80" width="70" height="70" />
+				<rect class="g-ox-hi" x="60" y="80" width="360" height="4" />
+			</g>
+			<text class="t-muted" x="240" y="30" text-anchor="middle">위 칩을 정렬해 내려놓는다</text>
+			<text class="t-muted" x="240" y="250" text-anchor="middle">상온에서 절연막끼리 먼저 붙는다</text>
 		</svg>
 		<figcaption>
 			<strong>정렬하고 붙이기</strong>
@@ -54,11 +60,18 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="가열로 구리가 팽창해 위아래 패드가 하나로 이어진 모습">
-			<rect x="60" y="60" width="360" height="160" fill="var(--color-text-muted)" opacity="0.25" />
-			<rect x="120" y="60" width="70" height="160" fill="currentColor" opacity="0.6" />
-			<rect x="290" y="60" width="70" height="160" fill="currentColor" opacity="0.6" />
-			<text x="240" y="30" text-anchor="middle" fill="var(--color-text-muted)">가열: 구리가 팽창해 맞닿는다</text>
-			<text x="240" y="250" text-anchor="middle" fill="var(--color-text-muted)">구리 원자가 섞여 하나로 이어진다</text>
+			<rect class="g-ox" x="60" y="140" width="360" height="80" />
+			<rect class="g-ox-lo" x="60" y="60" width="360" height="80" />
+			<rect class="g-cu m-glow" x="120" y="60" width="70" height="160" />
+			<rect class="g-cu m-glow" x="290" y="60" width="70" height="160" />
+			<circle class="g-cu-hi m-shift" style="--dy:16px;--t:2s" cx="138" cy="132" r="3.5" />
+			<circle class="g-cu-hi m-shift" style="--dy:-16px;--t:2s" cx="155" cy="148" r="3.5" />
+			<circle class="g-cu-hi m-shift" style="--dy:16px;--t:2s;--d:0.5s" cx="172" cy="132" r="3.5" />
+			<circle class="g-cu-hi m-shift" style="--dy:16px;--t:2s" cx="308" cy="132" r="3.5" />
+			<circle class="g-cu-hi m-shift" style="--dy:-16px;--t:2s" cx="325" cy="148" r="3.5" />
+			<circle class="g-cu-hi m-shift" style="--dy:16px;--t:2s;--d:0.5s" cx="342" cy="132" r="3.5" />
+			<text class="t-muted" x="240" y="30" text-anchor="middle">가열: 구리가 팽창해 맞닿는다</text>
+			<text class="t-muted" x="240" y="250" text-anchor="middle">구리 원자가 섞여 하나로 이어진다</text>
 		</svg>
 		<figcaption>
 			<strong>열처리로 구리 잇기</strong>

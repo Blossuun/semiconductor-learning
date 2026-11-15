@@ -21,10 +21,15 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="산화 3단계">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="깨끗한 실리콘 웨이퍼 단면">
-			<rect x="60" y="150" width="360" height="70" fill="var(--color-text-muted)" opacity="0.35" />
-			<text x="240" y="190" text-anchor="middle" fill="var(--color-text-muted)">실리콘 웨이퍼</text>
-			<text x="240" y="130" text-anchor="middle" fill="var(--color-text-muted)">표면이 깨끗함</text>
-			<text x="240" y="250" text-anchor="middle" fill="var(--color-text-muted)">세정 후 장입</text>
+			<rect class="g-si" x="60" y="150" width="360" height="70" />
+			<rect class="g-si-hi" x="60" y="150" width="360" height="4" />
+			<rect class="g-si-lo" x="60" y="206" width="360" height="14" />
+			<path class="g-ox-hi m-pulse" d="M120 126 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 l6 -2 Z" />
+			<path class="g-ox-hi m-pulse" style="--d:0.7s" d="M370 122 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 l6 -2 Z" />
+			<rect class="g-white m-shift" style="--dx:300px;--t:4s" x="64" y="150" width="50" height="4" />
+			<text class="g-bg" x="240" y="190" text-anchor="middle">실리콘 웨이퍼</text>
+			<text class="t-muted" x="240" y="130" text-anchor="middle">표면이 깨끗함</text>
+			<text class="t-muted" x="240" y="250" text-anchor="middle">세정 후 장입</text>
 		</svg>
 		<figcaption>
 			<strong>세정하고 장입하기</strong>
@@ -34,11 +39,17 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="고온에서 산소가 실리콘 표면과 반응해 막이 자라는 모습">
-			<rect x="60" y="170" width="360" height="50" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="60" y="150" width="360" height="20" fill="var(--color-text-muted)" opacity="0.7" />
-			<text x="240" y="110" text-anchor="middle" fill="var(--color-text-muted)">산소(또는 수증기) 공급</text>
-			<path d="M140 120 L140 145 M240 120 L240 145 M340 120 L340 145" stroke="var(--color-text-muted)" stroke-width="2" fill="none" />
-			<text x="240" y="250" text-anchor="middle" fill="var(--color-text-muted)">고온에서 산화막이 자람</text>
+			<rect class="g-cu m-glow" x="60" y="220" width="360" height="6" rx="3" />
+			<rect class="g-si" x="60" y="170" width="360" height="50" />
+			<rect class="g-si-lo" x="60" y="208" width="360" height="12" />
+			<rect class="g-ox m-grow-up" x="60" y="150" width="360" height="20" />
+			<circle class="g-ox-lo m-move" style="--dy:26px;--t:1.8s" cx="110" cy="120" r="4" />
+			<circle class="g-ox-lo m-move" style="--dy:26px;--t:1.8s;--d:0.5s" cx="175" cy="120" r="4" />
+			<circle class="g-ox-lo m-move" style="--dy:26px;--t:1.8s;--d:1s" cx="240" cy="120" r="4" />
+			<circle class="g-ox-lo m-move" style="--dy:26px;--t:1.8s;--d:0.3s" cx="305" cy="120" r="4" />
+			<circle class="g-ox-lo m-move" style="--dy:26px;--t:1.8s;--d:0.8s" cx="370" cy="120" r="4" />
+			<text class="t-muted" x="240" y="104" text-anchor="middle">산소(또는 수증기) 공급</text>
+			<text class="t-muted" x="240" y="252" text-anchor="middle">고온에서 산화막이 자람</text>
 		</svg>
 		<figcaption>
 			<strong>고온에서 산화시키기</strong>
@@ -48,11 +59,17 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="완성된 산화막의 두께를 재는 모습">
-			<rect x="60" y="170" width="360" height="50" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="60" y="150" width="360" height="20" fill="var(--color-text-muted)" opacity="0.7" />
-			<path d="M450 150 L450 170 M440 150 L460 150 M440 170 L460 170" stroke="var(--color-text-muted)" stroke-width="2" fill="none" />
-			<text x="240" y="130" text-anchor="middle" fill="var(--color-text-muted)">산화막 두께 확인</text>
-			<text x="240" y="250" text-anchor="middle" fill="var(--color-text-muted)">식힌 뒤 꺼냄</text>
+			<rect class="g-si" x="60" y="170" width="360" height="50" />
+			<rect class="g-si-lo" x="60" y="208" width="360" height="12" />
+			<rect class="g-ox" x="60" y="150" width="360" height="20" />
+			<rect class="g-ox-hi" x="60" y="150" width="360" height="4" />
+			<g class="m-shift" style="--dx:260px;--t:5s">
+				<rect class="g-si-lo" x="100" y="96" width="20" height="12" rx="3" />
+				<path class="s-light s-dash" d="M110 108 V170" />
+			</g>
+			<path class="s-ink" d="M450 150 V170 M440 150 H460 M440 170 H460" />
+			<text class="t-muted" x="240" y="84" text-anchor="middle">산화막 두께 확인</text>
+			<text class="t-muted" x="240" y="250" text-anchor="middle">식힌 뒤 꺼냄</text>
 		</svg>
 		<figcaption>
 			<strong>두께 확인하고 꺼내기</strong>

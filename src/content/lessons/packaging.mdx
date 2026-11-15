@@ -21,20 +21,21 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="패키징 4단계">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="웨이퍼를 격자선을 따라 잘라 칩으로 나누는 모습">
-			<circle cx="240" cy="124" r="104" fill="#d9b877" stroke="currentColor" stroke-width="2" />
-			<rect x="170" y="84" width="70" height="40" fill="#2447b8" />
-			<rect x="240" y="84" width="70" height="40" fill="#2447b8" />
-			<rect x="170" y="124" width="70" height="40" fill="#2447b8" />
-			<rect x="240" y="124" width="70" height="40" fill="#2447b8" />
-			<g stroke="currentColor" stroke-width="3">
-				<line x1="170" y1="50" x2="170" y2="198" />
-				<line x1="240" y1="24" x2="240" y2="224" />
-				<line x1="310" y1="50" x2="310" y2="198" />
-				<line x1="150" y1="84" x2="330" y2="84" />
-				<line x1="140" y1="124" x2="340" y2="124" />
-				<line x1="150" y1="164" x2="330" y2="164" />
+			<circle class="g-si-lo" cx="240" cy="128" r="104" />
+			<circle class="g-si" cx="240" cy="124" r="104" />
+			<rect class="g-ox" x="170" y="84" width="70" height="40" />
+			<rect class="g-ox" x="240" y="84" width="70" height="40" />
+			<rect class="g-ox" x="170" y="124" width="70" height="40" />
+			<rect class="g-ox" x="240" y="124" width="70" height="40" />
+			<g class="s-bg" style="stroke-width:3">
+				<line class="m-draw" pathLength="1" x1="170" y1="50" x2="170" y2="198" />
+				<line class="m-draw" style="--d:0.3s" pathLength="1" x1="240" y1="24" x2="240" y2="224" />
+				<line class="m-draw" style="--d:0.6s" pathLength="1" x1="310" y1="50" x2="310" y2="198" />
+				<line class="m-draw" style="--d:0.9s" pathLength="1" x1="150" y1="84" x2="330" y2="84" />
+				<line class="m-draw" style="--d:1.2s" pathLength="1" x1="140" y1="124" x2="340" y2="124" />
+				<line class="m-draw" style="--d:1.5s" pathLength="1" x1="150" y1="164" x2="330" y2="164" />
 			</g>
-			<text x="240" y="256" text-anchor="middle" font-size="20" fill="currentColor">격자선을 따라 절단</text>
+			<text class="t" x="240" y="258" text-anchor="middle" font-size="20">격자선을 따라 절단</text>
 		</svg>
 		<figcaption>
 			<strong>다이싱</strong>
@@ -44,10 +45,14 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="기판 위에 칩을 올려 붙이는 모습">
-			<rect x="100" y="170" width="280" height="30" fill="#7fa8d9" stroke="currentColor" stroke-width="2" />
-			<rect x="190" y="120" width="100" height="40" fill="#d9b877" stroke="currentColor" stroke-width="2" />
-			<path d="M240 50 V105 M228 93 L240 106 L252 93" fill="none" stroke="currentColor" stroke-width="3" />
-			<text x="240" y="236" text-anchor="middle" font-size="20" fill="currentColor">기판 위에 칩 부착</text>
+			<rect class="g-ox" x="100" y="170" width="280" height="30" rx="3" />
+			<rect class="g-ox-hi" x="100" y="170" width="280" height="4" rx="2" />
+			<g class="m-shift" style="--dy:-34px;--t:4s">
+				<rect class="g-sand" x="190" y="130" width="100" height="40" rx="3" />
+				<rect class="g-sand-hi" x="190" y="130" width="100" height="4" rx="2" />
+			</g>
+			<path class="s-arrow" d="M240 36 V76 M229 65 L240 78 L251 65" />
+			<text class="t" x="240" y="236" text-anchor="middle" font-size="20">기판 위에 칩 부착</text>
 		</svg>
 		<figcaption>
 			<strong>칩 부착</strong>
@@ -57,10 +62,15 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="칩과 기판을 가는 금속선으로 잇는 모습">
-			<rect x="100" y="170" width="280" height="30" fill="#7fa8d9" stroke="currentColor" stroke-width="2" />
-			<rect x="190" y="130" width="100" height="40" fill="#d9b877" stroke="currentColor" stroke-width="2" />
-			<path d="M195 130 Q160 80 130 170 M285 130 Q320 80 350 170" fill="none" stroke="#d68a45" stroke-width="4" />
-			<text x="240" y="236" text-anchor="middle" font-size="20" fill="currentColor">금속선 또는 범프로 연결</text>
+			<rect class="g-ox" x="100" y="170" width="280" height="30" rx="3" />
+			<rect class="g-ox-hi" x="100" y="170" width="280" height="4" rx="2" />
+			<rect class="g-sand" x="190" y="130" width="100" height="40" rx="3" />
+			<rect class="g-sand-hi" x="190" y="130" width="100" height="4" rx="2" />
+			<rect class="g-cu" x="122" y="166" width="16" height="6" rx="2" />
+			<rect class="g-cu" x="342" y="166" width="16" height="6" rx="2" />
+			<path class="s-cu s-thick m-draw" pathLength="1" d="M195 130 Q160 80 130 168" />
+			<path class="s-cu s-thick m-draw" style="--d:0.8s" pathLength="1" d="M285 130 Q320 80 350 168" />
+			<text class="t" x="240" y="236" text-anchor="middle" font-size="20">금속선 또는 범프로 연결</text>
 		</svg>
 		<figcaption>
 			<strong>전기 연결</strong>
@@ -70,10 +80,15 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="칩 전체를 몰딩 수지로 덮은 모습">
-			<rect x="100" y="170" width="280" height="30" fill="#7fa8d9" stroke="currentColor" stroke-width="2" />
-			<rect x="190" y="130" width="100" height="40" fill="#d9b877" stroke="currentColor" stroke-width="2" />
-			<rect x="120" y="90" width="240" height="80" rx="12" fill="#2447b8" fill-opacity="0.45" stroke="currentColor" stroke-width="2" />
-			<text x="240" y="236" text-anchor="middle" font-size="20" fill="currentColor">수지로 감싸 밀봉</text>
+			<rect class="g-ox" x="100" y="170" width="280" height="30" rx="3" />
+			<rect class="g-ox-hi" x="100" y="170" width="280" height="4" rx="2" />
+			<rect class="g-sand" x="190" y="130" width="100" height="40" rx="3" />
+			<path class="s-cu s-thick" d="M195 130 Q170 96 140 168 M285 130 Q310 96 340 168" />
+			<g class="m-fade" style="--t:5s">
+				<rect class="g-accent" style="fill-opacity:0.6" x="120" y="90" width="240" height="80" rx="12" />
+				<rect class="g-white g-soft" x="130" y="94" width="220" height="6" rx="3" />
+			</g>
+			<text class="t" x="240" y="236" text-anchor="middle" font-size="20">수지로 감싸 밀봉</text>
 		</svg>
 		<figcaption>
 			<strong>몰딩과 검사</strong>

@@ -20,13 +20,17 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="도핑 3단계">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="웨이퍼 위 막에 구멍이 뚫려 불순물이 들어갈 자리만 열린 모습">
-			<rect x="40" y="170" width="400" height="60" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="40" y="140" width="130" height="30" fill="var(--color-text-muted)" />
-			<rect x="310" y="140" width="130" height="30" fill="var(--color-text-muted)" />
-			<text x="105" y="130" text-anchor="middle" fill="var(--color-text-muted)">막</text>
-			<text x="375" y="130" text-anchor="middle" fill="var(--color-text-muted)">막</text>
-			<text x="240" y="130" text-anchor="middle" fill="var(--color-text-muted)">열린 자리</text>
-			<text x="240" y="255" text-anchor="middle" fill="var(--color-text-muted)">실리콘 웨이퍼</text>
+			<rect class="g-si" x="40" y="170" width="400" height="60" />
+			<rect class="g-si-lo" x="40" y="218" width="400" height="12" />
+			<rect class="g-pr" x="40" y="140" width="130" height="30" />
+			<rect class="g-pr" x="310" y="140" width="130" height="30" />
+			<rect class="g-pr-hi" x="40" y="140" width="130" height="4" />
+			<rect class="g-pr-hi" x="310" y="140" width="130" height="4" />
+			<path class="s-arrow m-shift" style="--dy:6px;--t:1.6s" d="M230 146 l10 12 l10 -12" />
+			<text class="t-muted" x="105" y="130" text-anchor="middle">막</text>
+			<text class="t-muted" x="375" y="130" text-anchor="middle">막</text>
+			<text class="t-muted" x="240" y="130" text-anchor="middle">열린 자리</text>
+			<text class="t-muted" x="240" y="255" text-anchor="middle">실리콘 웨이퍼</text>
 		</svg>
 		<figcaption>
 			<strong>1. 도핑할 자리 열기</strong>
@@ -36,22 +40,22 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="열린 자리로 이온이 날아와 웨이퍼 표면 아래에 박히는 모습">
-			<rect x="40" y="170" width="400" height="60" fill="var(--color-text-muted)" opacity="0.35" />
-			<rect x="40" y="140" width="130" height="30" fill="var(--color-text-muted)" />
-			<rect x="310" y="140" width="130" height="30" fill="var(--color-text-muted)" />
-			<g fill="currentColor">
-				<circle cx="200" cy="190" r="5" />
-				<circle cx="225" cy="200" r="5" />
-				<circle cx="250" cy="185" r="5" />
-				<circle cx="275" cy="198" r="5" />
-			</g>
-			<g stroke="currentColor" stroke-width="2" fill="none">
-				<path d="M200 40 V120 M196 112 L200 120 L204 112" />
-				<path d="M225 40 V120 M221 112 L225 120 L229 112" />
-				<path d="M250 40 V120 M246 112 L250 120 L254 112" />
-				<path d="M275 40 V120 M271 112 L275 120 L279 112" />
-			</g>
-			<text x="240" y="30" text-anchor="middle" fill="var(--color-text-muted)">불순물 이온</text>
+			<rect class="g-beam m-beam" x="170" y="40" width="140" height="10" rx="5" />
+			<rect class="g-si" x="40" y="170" width="400" height="60" />
+			<rect class="g-si-lo" x="40" y="218" width="400" height="12" />
+			<rect class="g-pr" x="40" y="140" width="130" height="30" />
+			<rect class="g-pr" x="310" y="140" width="130" height="30" />
+			<rect class="g-pr-hi" x="40" y="140" width="130" height="4" />
+			<rect class="g-pr-hi" x="310" y="140" width="130" height="4" />
+			<circle class="g-light m-move" style="--dy:128px;--t:1.5s" cx="200" cy="60" r="5" />
+			<circle class="g-light m-move" style="--dy:138px;--t:1.5s;--d:0.4s" cx="225" cy="60" r="5" />
+			<circle class="g-light m-move" style="--dy:124px;--t:1.5s;--d:0.8s" cx="250" cy="60" r="5" />
+			<circle class="g-light m-move" style="--dy:136px;--t:1.5s;--d:1.2s" cx="275" cy="60" r="5" />
+			<circle class="g-light-hi m-fade" style="--t:6s" cx="200" cy="190" r="5" />
+			<circle class="g-light-hi m-fade" style="--t:6s;--d:0.4s" cx="225" cy="200" r="5" />
+			<circle class="g-light-hi m-fade" style="--t:6s;--d:0.8s" cx="250" cy="185" r="5" />
+			<circle class="g-light-hi m-fade" style="--t:6s;--d:1.2s" cx="275" cy="198" r="5" />
+			<text class="t-muted" x="240" y="30" text-anchor="middle">불순물 이온</text>
 		</svg>
 		<figcaption>
 			<strong>2. 불순물 넣기</strong>
@@ -61,18 +65,21 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="가열로 결정이 복구되고 불순물 원자가 격자 자리에 앉은 모습">
-			<rect x="40" y="170" width="400" height="60" fill="var(--color-text-muted)" opacity="0.35" />
-			<g fill="none" stroke="var(--color-text-muted)" stroke-width="1">
-				<path d="M200 180 H280 M200 200 H280 M200 220 H280 M200 180 V220 M240 180 V220 M280 180 V220" />
-			</g>
-			<g fill="currentColor">
-				<circle cx="240" cy="200" r="6" />
-			</g>
-			<g stroke="currentColor" stroke-width="2" fill="none">
-				<path d="M190 120 q10 -15 20 0 t20 0 t20 0 t20 0 t20 0" />
-				<path d="M190 140 q10 -15 20 0 t20 0 t20 0 t20 0 t20 0" />
-			</g>
-			<text x="240" y="100" text-anchor="middle" fill="var(--color-text-muted)">열</text>
+			<path class="s-cu m-shift" style="--dx:12px;--t:1.8s" d="M180 120 q10 -15 20 0 t20 0 t20 0 t20 0 t20 0" />
+			<path class="s-cu m-shift" style="--dx:-12px;--t:1.8s" d="M200 142 q10 -15 20 0 t20 0 t20 0 t20 0 t20 0" />
+			<rect class="g-si" x="40" y="170" width="400" height="60" />
+			<rect class="g-si-lo" x="40" y="222" width="400" height="8" />
+			<path class="s-bg s-thin" d="M200 182 H280 M200 200 H280 M200 218 H280 M200 182 V218 M240 182 V218 M280 182 V218" />
+			<circle class="g-si-hi" cx="200" cy="182" r="4" />
+			<circle class="g-si-hi" cx="240" cy="182" r="4" />
+			<circle class="g-si-hi" cx="280" cy="182" r="4" />
+			<circle class="g-si-hi" cx="200" cy="200" r="4" />
+			<circle class="g-si-hi" cx="280" cy="200" r="4" />
+			<circle class="g-si-hi" cx="200" cy="218" r="4" />
+			<circle class="g-si-hi" cx="240" cy="218" r="4" />
+			<circle class="g-si-hi" cx="280" cy="218" r="4" />
+			<circle class="g-light-hi m-pulse" cx="240" cy="200" r="7" />
+			<text class="t-muted" x="240" y="96" text-anchor="middle">열</text>
 		</svg>
 		<figcaption>
 			<strong>3. 열처리로 활성화</strong>

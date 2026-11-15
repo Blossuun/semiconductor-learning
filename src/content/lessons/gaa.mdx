@@ -20,16 +20,17 @@ GAA(Gate-All-Around)는 전류가 흐르는 길을 게이트가 사방에서 감
 <StepAnimation label="GAA 나노시트 만들기">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="실리콘과 실리콘게르마늄이 번갈아 쌓인 기둥의 단면">
-			<rect x="120" y="220" width="240" height="20" fill="#9aa5b1" />
-			<rect x="170" y="196" width="140" height="24" fill="#5b8def" />
-			<rect x="170" y="172" width="140" height="24" fill="#c7a46b" />
-			<rect x="170" y="148" width="140" height="24" fill="#5b8def" />
-			<rect x="170" y="124" width="140" height="24" fill="#c7a46b" />
-			<rect x="170" y="100" width="140" height="24" fill="#5b8def" />
-			<rect x="170" y="76" width="140" height="24" fill="#c7a46b" />
-			<text x="330" y="112" fill="var(--color-text-muted)" font-size="13">실리콘</text>
-			<text x="330" y="136" fill="var(--color-text-muted)" font-size="13">실리콘게르마늄</text>
-			<text x="240" y="40" text-anchor="middle" fill="var(--color-text-muted)" font-size="14">번갈아 쌓은 기둥</text>
+			<rect class="g-si" x="120" y="220" width="240" height="20" />
+			<rect class="g-si-lo" x="120" y="234" width="240" height="6" />
+			<rect class="g-ox m-fade" style="--t:7s" x="170" y="196" width="140" height="24" />
+			<rect class="g-sand m-fade" style="--t:7s;--d:0.4s" x="170" y="172" width="140" height="24" />
+			<rect class="g-ox m-fade" style="--t:7s;--d:0.8s" x="170" y="148" width="140" height="24" />
+			<rect class="g-sand m-fade" style="--t:7s;--d:1.2s" x="170" y="124" width="140" height="24" />
+			<rect class="g-ox m-fade" style="--t:7s;--d:1.6s" x="170" y="100" width="140" height="24" />
+			<rect class="g-sand m-fade" style="--t:7s;--d:2s" x="170" y="76" width="140" height="24" />
+			<text class="t-muted" x="330" y="116" font-size="13">실리콘</text>
+			<text class="t-muted" x="330" y="140" font-size="13">실리콘게르마늄</text>
+			<text class="t-muted" x="240" y="40" text-anchor="middle" font-size="14">번갈아 쌓은 기둥</text>
 		</svg>
 		<figcaption>
 			<strong>1. 적층</strong>
@@ -39,14 +40,19 @@ GAA(Gate-All-Around)는 전류가 흐르는 길을 게이트가 사방에서 감
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="실리콘게르마늄이 제거되어 얇은 실리콘 판 사이가 비어 있는 모습">
-			<rect x="120" y="220" width="240" height="20" fill="#9aa5b1" />
-			<rect x="170" y="190" width="140" height="14" fill="#5b8def" />
-			<rect x="170" y="150" width="140" height="14" fill="#5b8def" />
-			<rect x="170" y="110" width="140" height="14" fill="#5b8def" />
-			<rect x="130" y="100" width="30" height="120" fill="#c9d1d9" />
-			<rect x="320" y="100" width="30" height="120" fill="#c9d1d9" />
-			<text x="240" y="40" text-anchor="middle" fill="var(--color-text-muted)" font-size="14">나노시트 사이가 빈 상태</text>
-			<text x="240" y="90" text-anchor="middle" fill="var(--color-text-muted)" font-size="13">나노시트</text>
+			<rect class="g-si" x="120" y="220" width="240" height="20" />
+			<rect class="g-si-lo" x="120" y="234" width="240" height="6" />
+			<rect class="g-sand m-fade-out" x="160" y="204" width="160" height="16" />
+			<rect class="g-sand m-fade-out" x="160" y="164" width="160" height="26" />
+			<rect class="g-sand m-fade-out" x="160" y="124" width="160" height="26" />
+			<rect class="g-si-hi" x="130" y="100" width="30" height="120" />
+			<rect class="g-si-hi" x="320" y="100" width="30" height="120" />
+			<rect class="g-ox" x="160" y="190" width="160" height="14" />
+			<rect class="g-ox" x="160" y="150" width="160" height="14" />
+			<rect class="g-ox" x="160" y="110" width="160" height="14" />
+			<path class="g-ox-hi" d="M160 190 h160 v3 h-160z M160 150 h160 v3 h-160z M160 110 h160 v3 h-160z" />
+			<text class="t-muted" x="240" y="40" text-anchor="middle" font-size="14">나노시트 사이가 빈 상태</text>
+			<text class="t-muted" x="240" y="90" text-anchor="middle" font-size="13">나노시트</text>
 		</svg>
 		<figcaption>
 			<strong>2. 나노시트 분리</strong>
@@ -56,13 +62,15 @@ GAA(Gate-All-Around)는 전류가 흐르는 길을 게이트가 사방에서 감
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="나노시트 각각을 게이트가 둘러싼 모습">
-			<rect x="120" y="220" width="240" height="20" fill="#9aa5b1" />
-			<rect x="150" y="90" width="180" height="130" fill="#f0a35e" />
-			<rect x="180" y="186" width="120" height="14" fill="#5b8def" />
-			<rect x="180" y="146" width="120" height="14" fill="#5b8def" />
-			<rect x="180" y="106" width="120" height="14" fill="#5b8def" />
-			<text x="240" y="40" text-anchor="middle" fill="var(--color-text-muted)" font-size="14">게이트가 각 판을 감쌈</text>
-			<text x="345" y="150" fill="var(--color-text-muted)" font-size="13">게이트(주황)</text>
+			<rect class="g-si" x="120" y="220" width="240" height="20" />
+			<rect class="g-si-lo" x="120" y="234" width="240" height="6" />
+			<rect class="g-cu m-grow-up" style="--t:6s" x="150" y="90" width="180" height="130" rx="4" />
+			<rect class="g-ox" x="180" y="186" width="120" height="14" rx="2" />
+			<rect class="g-ox" x="180" y="146" width="120" height="14" rx="2" />
+			<rect class="g-ox" x="180" y="106" width="120" height="14" rx="2" />
+			<path class="g-ox-hi" d="M180 186 h120 v3 h-120z M180 146 h120 v3 h-120z M180 106 h120 v3 h-120z" />
+			<text class="t-muted" x="240" y="40" text-anchor="middle" font-size="14">게이트가 각 판을 감쌈</text>
+			<text class="t-muted" x="345" y="150" font-size="13">게이트(주황)</text>
 		</svg>
 		<figcaption>
 			<strong>3. 게이트 감싸기</strong>

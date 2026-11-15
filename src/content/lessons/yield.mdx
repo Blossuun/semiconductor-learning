@@ -20,19 +20,18 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="수율 관리 도해">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="웨이퍼의 정상 칩과 불량 칩을 세는 그림">
-			<circle cx="240" cy="124" r="104" fill="#d9b877" stroke="currentColor" stroke-width="2" />
-			<g stroke="currentColor" stroke-width="2">
-				<rect x="180" y="64" width="40" height="40" fill="#2447b8" />
-				<rect x="220" y="64" width="40" height="40" fill="#2447b8" />
-				<rect x="260" y="64" width="40" height="40" fill="#2447b8" />
-				<rect x="180" y="104" width="40" height="40" fill="#2447b8" />
-				<rect x="220" y="104" width="40" height="40" fill="#b8477a" />
-				<rect x="260" y="104" width="40" height="40" fill="#2447b8" />
-				<rect x="180" y="144" width="40" height="40" fill="#2447b8" />
-				<rect x="220" y="144" width="40" height="40" fill="#2447b8" />
-				<rect x="260" y="144" width="40" height="40" fill="#b8477a" />
-			</g>
-			<text x="240" y="252" text-anchor="middle" font-size="20" fill="currentColor">정상 7 / 전체 9</text>
+			<circle class="g-si-lo" cx="240" cy="128" r="104" />
+			<circle class="g-si" cx="240" cy="124" r="104" />
+			<rect class="g-ox" x="181" y="65" width="38" height="38" rx="3" />
+			<rect class="g-ox" x="221" y="65" width="38" height="38" rx="3" />
+			<rect class="g-ox" x="261" y="65" width="38" height="38" rx="3" />
+			<rect class="g-ox" x="181" y="105" width="38" height="38" rx="3" />
+			<rect class="g-pr m-twinkle" style="--t:2s" x="221" y="105" width="38" height="38" rx="3" />
+			<rect class="g-ox" x="261" y="105" width="38" height="38" rx="3" />
+			<rect class="g-ox" x="181" y="145" width="38" height="38" rx="3" />
+			<rect class="g-ox" x="221" y="145" width="38" height="38" rx="3" />
+			<rect class="g-pr m-twinkle" style="--t:2s;--d:0.5s" x="261" y="145" width="38" height="38" rx="3" />
+			<text class="t" x="240" y="256" text-anchor="middle" font-size="20">정상 7 / 전체 9</text>
 		</svg>
 		<figcaption>
 			<strong>수율 계산</strong>
@@ -42,17 +41,16 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="웨이퍼 지도에서 불량 칩이 가장자리에 몰린 모습">
-			<circle cx="240" cy="124" r="104" fill="#d9b877" stroke="currentColor" stroke-width="2" />
-			<circle cx="240" cy="124" r="85" fill="none" stroke="currentColor" stroke-dasharray="4 4" />
-			<g fill="#b8477a">
-				<circle cx="160" cy="80" r="9" />
-				<circle cx="150" cy="124" r="9" />
-				<circle cx="162" cy="172" r="9" />
-				<circle cx="320" cy="76" r="9" />
-				<circle cx="330" cy="130" r="9" />
-				<circle cx="318" cy="176" r="9" />
-			</g>
-			<text x="240" y="252" text-anchor="middle" font-size="20" fill="currentColor">불량 위치 지도</text>
+			<circle class="g-si-lo" cx="240" cy="128" r="104" />
+			<circle class="g-si" cx="240" cy="124" r="104" />
+			<circle class="s-bg s-dash m-spin" style="--t:30s" cx="240" cy="124" r="85" />
+			<circle class="g-pr m-pulse" cx="160" cy="80" r="9" />
+			<circle class="g-pr m-pulse" style="--d:0.3s" cx="150" cy="124" r="9" />
+			<circle class="g-pr m-pulse" style="--d:0.6s" cx="162" cy="172" r="9" />
+			<circle class="g-pr m-pulse" style="--d:0.9s" cx="320" cy="76" r="9" />
+			<circle class="g-pr m-pulse" style="--d:1.2s" cx="330" cy="130" r="9" />
+			<circle class="g-pr m-pulse" style="--d:1.5s" cx="318" cy="176" r="9" />
+			<text class="t" x="240" y="256" text-anchor="middle" font-size="20">불량 위치 지도</text>
 		</svg>
 		<figcaption>
 			<strong>불량 분석</strong>
@@ -62,16 +60,14 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="공정 조건을 고쳐 수율이 오르는 그림">
-			<polygon points="70,200 170,170 270,120 400,70 400,226 70,226" fill="#7fa8d9" />
-			<polyline points="70,200 170,170 270,120 400,70" fill="none" stroke="currentColor" stroke-width="3" />
-			<g fill="#2447b8">
-				<circle cx="70" cy="200" r="7" />
-				<circle cx="170" cy="170" r="7" />
-				<circle cx="270" cy="120" r="7" />
-				<circle cx="400" cy="70" r="7" />
-			</g>
-			<line x1="50" y1="226" x2="430" y2="226" stroke="currentColor" stroke-width="2" />
-			<text x="240" y="252" text-anchor="middle" font-size="20" fill="currentColor">로트가 지날수록 수율 상승</text>
+			<polygon class="g-ox g-soft" points="70,200 170,170 270,120 400,70 400,226 70,226" />
+			<polyline class="s-accent m-draw" style="stroke-width:3" pathLength="1" points="70,200 170,170 270,120 400,70" />
+			<circle class="g-accent m-fade" style="--t:4s" cx="70" cy="200" r="7" />
+			<circle class="g-accent m-fade" style="--t:4s;--d:0.5s" cx="170" cy="170" r="7" />
+			<circle class="g-accent m-fade" style="--t:4s;--d:1s" cx="270" cy="120" r="7" />
+			<circle class="g-accent m-fade" style="--t:4s;--d:1.5s" cx="400" cy="70" r="7" />
+			<line class="s-ink" x1="50" y1="226" x2="430" y2="226" />
+			<text class="t" x="240" y="252" text-anchor="middle" font-size="20">로트가 지날수록 수율 상승</text>
 		</svg>
 		<figcaption>
 			<strong>공정 개선</strong>

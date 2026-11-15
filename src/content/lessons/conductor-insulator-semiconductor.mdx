@@ -20,12 +20,19 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="도체·부도체·반도체 비교 도해">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="늘 열린 수도관. 관 안의 물이 한쪽으로 쉽게 흐른다">
-			<rect x="40" y="90" width="400" height="84" rx="8" fill="var(--diagram-silicon)" stroke="var(--diagram-stroke)" stroke-width="2" />
-			<rect x="52" y="102" width="376" height="60" fill="var(--diagram-oxide)" />
-			<path d="M110 132 H330" stroke="var(--diagram-stroke)" stroke-width="4" fill="none" />
-			<path d="M326 120 L352 132 L326 144 Z" fill="var(--diagram-stroke)" />
-			<text x="240" y="60" text-anchor="middle" font-size="18" fill="currentColor">관이 늘 열려 있다</text>
-			<text x="240" y="222" text-anchor="middle" font-size="18" fill="currentColor">물이 쉽게 흐른다</text>
+			<rect class="g-si" x="40" y="90" width="400" height="84" rx="8" />
+			<rect class="g-si-hi" x="44" y="90" width="392" height="6" rx="3" />
+			<rect class="g-si-lo" x="44" y="168" width="392" height="6" rx="3" />
+			<rect class="g-ox" x="52" y="102" width="376" height="60" />
+			<rect class="g-ox-hi" x="52" y="102" width="376" height="6" />
+			<path class="s-white s-thin m-flow" style="--t:0.7s" d="M60 118 H420 M60 146 H420" />
+			<circle class="g-white m-move" style="--dx:300px;--t:2.2s" cx="70" cy="126" r="4" />
+			<circle class="g-white m-move" style="--dx:300px;--t:2.2s;--d:0.7s" cx="80" cy="140" r="3" />
+			<circle class="g-white m-move" style="--dx:300px;--t:2.2s;--d:1.4s" cx="66" cy="132" r="3.5" />
+			<path class="s-ink s-thick" d="M110 132 H330" />
+			<path class="g-ink" d="M326 120 L352 132 L326 144 Z" />
+			<text class="t" x="240" y="60" text-anchor="middle" font-size="18">관이 늘 열려 있다</text>
+			<text class="t" x="240" y="222" text-anchor="middle" font-size="18">물이 쉽게 흐른다</text>
 		</svg>
 		<figcaption>
 			<strong>도체</strong>
@@ -35,13 +42,22 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="막힌 수도관. 벽 앞에서 물이 거의 흐르지 못한다">
-			<rect x="40" y="90" width="400" height="84" rx="8" fill="var(--diagram-silicon)" stroke="var(--diagram-stroke)" stroke-width="2" />
-			<rect x="52" y="102" width="174" height="60" fill="var(--diagram-oxide)" />
-			<rect x="226" y="90" width="28" height="84" fill="var(--diagram-stroke)" />
-			<path d="M100 132 H190" stroke="var(--diagram-stroke)" stroke-width="4" fill="none" />
-			<path d="M186 120 L212 132 L186 144 Z" fill="var(--diagram-stroke)" />
-			<text x="240" y="60" text-anchor="middle" font-size="18" fill="currentColor">관이 막혀 있다</text>
-			<text x="240" y="222" text-anchor="middle" font-size="18" fill="currentColor">물이 거의 흐르지 않는다</text>
+			<rect class="g-si" x="40" y="90" width="400" height="84" rx="8" />
+			<rect class="g-si-hi" x="44" y="90" width="392" height="6" rx="3" />
+			<rect class="g-si-lo" x="44" y="168" width="392" height="6" rx="3" />
+			<rect class="g-ox" x="52" y="102" width="174" height="60" />
+			<rect class="g-ox-hi" x="52" y="102" width="174" height="6" />
+			<rect class="g-bg" x="254" y="102" width="174" height="60" />
+			<rect class="g-ink" x="226" y="90" width="28" height="84" />
+			<circle class="g-white m-shift" style="--dx:26px;--t:1.8s" cx="170" cy="118" r="4" />
+			<circle class="g-white m-shift" style="--dx:22px;--t:1.8s;--d:0.4s" cx="180" cy="148" r="3" />
+			<circle class="g-white m-shift" style="--dx:30px;--t:1.8s;--d:0.8s" cx="80" cy="150" r="3.5" />
+			<g class="m-shift" style="--dx:10px;--t:1.8s">
+				<path class="s-ink s-thick" d="M90 132 H180" />
+				<path class="g-ink" d="M176 120 L202 132 L176 144 Z" />
+			</g>
+			<text class="t" x="240" y="60" text-anchor="middle" font-size="18">관이 막혀 있다</text>
+			<text class="t" x="240" y="222" text-anchor="middle" font-size="18">물이 거의 흐르지 않는다</text>
 		</svg>
 		<figcaption>
 			<strong>부도체</strong>
@@ -51,15 +67,24 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="밸브가 달린 수도관. 밸브가 반쯤 열려 있어 물이 조금 흐른다">
-			<rect x="40" y="90" width="400" height="84" rx="8" fill="var(--diagram-silicon)" stroke="var(--diagram-stroke)" stroke-width="2" />
-			<rect x="52" y="102" width="376" height="60" fill="var(--diagram-oxide)" />
-			<rect x="236" y="64" width="8" height="38" fill="var(--diagram-copper)" />
-			<rect x="230" y="102" width="20" height="30" fill="var(--diagram-copper)" />
-			<rect x="218" y="54" width="44" height="12" rx="4" fill="var(--diagram-copper)" />
-			<path d="M100 147 H340" stroke="var(--diagram-stroke)" stroke-width="4" fill="none" />
-			<path d="M336 139 L358 147 L336 155 Z" fill="var(--diagram-stroke)" />
-			<text x="240" y="40" text-anchor="middle" font-size="18" fill="currentColor">밸브가 달린 관</text>
-			<text x="240" y="222" text-anchor="middle" font-size="18" fill="currentColor">열림 정도로 흐름을 조절한다</text>
+			<rect class="g-si" x="40" y="90" width="400" height="84" rx="8" />
+			<rect class="g-si-hi" x="44" y="90" width="392" height="6" rx="3" />
+			<rect class="g-si-lo" x="44" y="168" width="392" height="6" rx="3" />
+			<rect class="g-ox" x="52" y="102" width="376" height="60" />
+			<rect class="g-ox-hi" x="52" y="102" width="376" height="6" />
+			<g class="m-shift" style="--dy:-14px;--t:4s">
+				<rect class="g-cu" x="236" y="64" width="8" height="38" />
+				<rect class="g-cu" x="230" y="102" width="20" height="30" />
+				<rect class="g-cu" x="218" y="54" width="44" height="12" rx="4" />
+				<rect class="g-cu-hi" x="220" y="54" width="40" height="4" rx="2" />
+			</g>
+			<path class="s-white s-thin m-flow" style="--t:0.9s" d="M60 152 H420" />
+			<circle class="g-white m-move" style="--dx:300px;--t:2.6s" cx="70" cy="146" r="3.5" />
+			<circle class="g-white m-move" style="--dx:300px;--t:2.6s;--d:1.3s" cx="70" cy="154" r="3" />
+			<path class="s-ink s-thick" d="M100 147 H340" />
+			<path class="g-ink" d="M336 139 L358 147 L336 155 Z" />
+			<text class="t" x="240" y="34" text-anchor="middle" font-size="18">밸브가 달린 관</text>
+			<text class="t" x="240" y="222" text-anchor="middle" font-size="18">열림 정도로 흐름을 조절한다</text>
 		</svg>
 		<figcaption>
 			<strong>반도체</strong>

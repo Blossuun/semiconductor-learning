@@ -21,19 +21,25 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="클린룸 관리 3단계">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="작업자가 방진복을 입고 에어샤워를 지나 클린룸으로 들어가는 모습">
-			<rect x="20" y="60" width="130" height="150" rx="6" fill="#7fa8d9" stroke="currentColor" stroke-width="2" />
-			<rect x="175" y="60" width="130" height="150" rx="6" fill="#d68a45" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4" />
-			<rect x="330" y="60" width="130" height="150" rx="6" fill="#2447b8" stroke="currentColor" stroke-width="3" />
-			<text x="85" y="50" text-anchor="middle" fill="currentColor" font-size="20">탈의실</text>
-			<text x="240" y="50" text-anchor="middle" fill="currentColor" font-size="20">에어샤워</text>
-			<text x="395" y="50" text-anchor="middle" fill="currentColor" font-size="20">클린룸</text>
-			<circle cx="85" cy="105" r="14" fill="#17202b" />
-			<rect x="68" y="122" width="34" height="56" rx="8" fill="#17202b" />
-			<circle cx="240" cy="105" r="14" fill="#17202b" />
-			<rect x="223" y="122" width="34" height="56" rx="8" fill="#17202b" />
-			<path d="M190 80 L205 110 M290 80 L275 110 M190 170 L205 150 M290 170 L275 150" stroke="currentColor" stroke-width="3" />
-			<path d="M155 135 L170 135 M310 135 L325 135" stroke="currentColor" stroke-width="3" />
-			<text x="240" y="240" text-anchor="middle" fill="currentColor" font-size="20">방진복을 입고 바람으로 먼지를 턴다</text>
+			<rect class="g-ox g-soft" x="20" y="60" width="130" height="150" rx="6" />
+			<rect class="g-cu g-soft" x="175" y="60" width="130" height="150" rx="6" />
+			<rect class="s-cu s-dash" x="175" y="60" width="130" height="150" rx="6" />
+			<rect class="g-ox g-soft" x="330" y="60" width="130" height="150" rx="6" />
+			<rect class="s-ox" x="330" y="60" width="130" height="150" rx="6" />
+			<text class="t" x="85" y="50" text-anchor="middle" font-size="20">탈의실</text>
+			<text class="t" x="240" y="50" text-anchor="middle" font-size="20">에어샤워</text>
+			<text class="t" x="395" y="50" text-anchor="middle" font-size="20">클린룸</text>
+			<circle class="g-ink" cx="85" cy="105" r="14" />
+			<rect class="g-ink" x="68" y="122" width="34" height="56" rx="8" />
+			<circle class="g-ink" cx="240" cy="105" r="14" />
+			<rect class="g-ink" x="223" y="122" width="34" height="56" rx="8" />
+			<path class="s-ink m-flow" style="stroke-width:3;--t:0.6s" d="M190 80 L208 112 M290 80 L272 112 M190 172 L208 150 M290 172 L272 150" />
+			<circle class="g-sand-lo m-move" style="--dx:-22px;--dy:30px;--t:1.8s" cx="222" cy="130" r="3" />
+			<circle class="g-sand-lo m-move" style="--dx:22px;--dy:30px;--t:1.8s;--d:0.6s" cx="258" cy="130" r="3" />
+			<circle class="g-sand-lo m-move" style="--dx:-18px;--dy:26px;--t:1.8s;--d:1.2s" cx="226" cy="160" r="2.5" />
+			<path class="s-arrow" d="M154 135 h14 m-6 -6 l6 6 l-6 6 M309 135 h14 m-6 -6 l6 6 l-6 6" />
+			<path class="g-ox m-pulse" d="M395 118 l4 12 l12 4 l-12 4 l-4 12 l-4 -12 l-12 -4 l12 -4 Z" />
+			<text class="t" x="240" y="240" text-anchor="middle" font-size="20">방진복을 입고 바람으로 먼지를 턴다</text>
 		</svg>
 		<figcaption>
 			<strong>1단계 방진복 착용과 에어샤워</strong>
@@ -43,19 +49,19 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="천장 필터에서 내려온 공기가 바닥 구멍으로 빠져나가는 모습">
-			<rect x="40" y="24" width="400" height="34" fill="#2447b8" stroke="currentColor" stroke-width="2" />
+			<rect class="g-ox-lo" x="40" y="24" width="400" height="34" rx="4" />
 			<text x="240" y="48" text-anchor="middle" fill="#ffffff" font-size="20">천장 필터</text>
-			<g stroke="currentColor" stroke-width="3" fill="none">
-				<path d="M90 66 V190 M85 180 L90 190 L95 180" />
-				<path d="M170 66 V190 M165 180 L170 190 L175 180" />
-				<path d="M250 66 V190 M245 180 L250 190 L255 180" />
-				<path d="M330 66 V190 M325 180 L330 190 L335 180" />
-				<path d="M410 66 V190 M405 180 L410 190 L415 180" />
-			</g>
-			<rect x="190" y="136" width="100" height="44" rx="4" fill="#5c6778" stroke="currentColor" stroke-width="2" />
-			<text x="240" y="165" text-anchor="middle" fill="#ffffff" font-size="20">장비</text>
-			<rect x="40" y="196" width="400" height="14" fill="#d9b877" stroke="currentColor" stroke-width="2" />
-			<text x="240" y="236" text-anchor="middle" fill="currentColor" font-size="20">구멍 뚫린 바닥으로 공기가 빠진다</text>
+			<path class="s-ox m-flow" style="stroke-width:3;--t:0.8s" d="M90 66 V186 M170 66 V186 M250 66 V130 M330 66 V186 M410 66 V186" />
+			<path class="s-ox" style="stroke-width:3" d="M84 178 L90 190 L96 178 M164 178 L170 190 L176 178 M324 178 L330 190 L336 178 M404 178 L410 190 L416 178" />
+			<circle class="g-ink m-move" style="--dy:112px;--t:2.4s" cx="130" cy="76" r="3" />
+			<circle class="g-ink m-move" style="--dy:112px;--t:2.4s;--d:0.9s" cx="370" cy="76" r="3" />
+			<circle class="g-ink m-move" style="--dy:112px;--t:2.4s;--d:1.6s" cx="60" cy="76" r="2.5" />
+			<rect class="g-si" x="190" y="136" width="100" height="50" rx="4" />
+			<rect class="g-si-hi" x="190" y="136" width="100" height="5" rx="2" />
+			<text class="g-bg" x="240" y="169" text-anchor="middle" font-size="20">장비</text>
+			<rect class="g-sand" x="40" y="196" width="400" height="14" />
+			<path class="s-bg s-butt s-dash" style="stroke-width:6" d="M50 203 H430" />
+			<text class="t" x="240" y="238" text-anchor="middle" font-size="20">구멍 뚫린 바닥으로 공기가 빠진다</text>
 		</svg>
 		<figcaption>
 			<strong>2단계 청정 공기 순환</strong>
@@ -65,16 +71,22 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="천장 레일의 OHT가 FOUP을 장비 사이로 옮기는 모습">
-			<line x1="30" y1="50" x2="450" y2="50" stroke="currentColor" stroke-width="3" />
-			<rect x="115" y="58" width="70" height="34" rx="4" fill="#d9b877" stroke="currentColor" stroke-width="2" />
-			<text x="150" y="82" text-anchor="middle" fill="#17202b" font-size="20">FOUP</text>
-			<path d="M150 50 V58" stroke="currentColor" stroke-width="2" />
-			<path d="M195 75 H260 M250 68 L260 75 L250 82" stroke="currentColor" stroke-width="3" fill="none" />
-			<rect x="50" y="150" width="120" height="60" rx="4" fill="#5c6778" stroke="currentColor" stroke-width="2" />
-			<rect x="310" y="150" width="120" height="60" rx="4" fill="#5c6778" stroke="currentColor" stroke-width="2" />
-			<text x="110" y="186" text-anchor="middle" fill="#ffffff" font-size="20">장비 A</text>
-			<text x="370" y="186" text-anchor="middle" fill="#ffffff" font-size="20">장비 B</text>
-			<text x="240" y="245" text-anchor="middle" fill="currentColor" font-size="20">밀폐 상자가 천장 레일로 이동한다</text>
+			<line class="s-ink s-thick" x1="30" y1="50" x2="450" y2="50" />
+			<g class="m-shift" style="--dx:220px;--t:7s">
+				<rect class="g-si-lo" x="92" y="44" width="36" height="12" rx="3" />
+				<path class="s-ink" d="M110 56 V64" />
+				<rect class="g-sand" x="75" y="64" width="70" height="34" rx="4" />
+				<rect class="g-sand-hi" x="78" y="64" width="64" height="5" rx="2" />
+				<text x="110" y="89" text-anchor="middle" fill="#17202b" font-size="20">FOUP</text>
+			</g>
+			<path class="s-arrow" d="M205 122 h60 m-9 -8 l9 8 l-9 8" />
+			<rect class="g-si" x="50" y="150" width="120" height="60" rx="4" />
+			<rect class="g-si-hi" x="50" y="150" width="120" height="5" rx="2" />
+			<rect class="g-si" x="310" y="150" width="120" height="60" rx="4" />
+			<rect class="g-si-hi" x="310" y="150" width="120" height="5" rx="2" />
+			<text class="g-bg" x="110" y="188" text-anchor="middle" font-size="20">장비 A</text>
+			<text class="g-bg" x="370" y="188" text-anchor="middle" font-size="20">장비 B</text>
+			<text class="t" x="240" y="245" text-anchor="middle" font-size="20">밀폐 상자가 천장 레일로 이동한다</text>
 		</svg>
 		<figcaption>
 			<strong>3단계 밀폐 이송</strong>

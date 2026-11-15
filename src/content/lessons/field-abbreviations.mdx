@@ -21,14 +21,14 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="현장 약어 읽기 3단계">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="약어 TAT를 영어 이름 turnaround time으로 풀어 읽는 그림">
-			<rect x="40" y="40" width="160" height="70" rx="10" fill="#e0a030" />
+			<rect class="g-sand" x="40" y="40" width="160" height="70" rx="10" />
+			<rect class="g-sand-hi" x="46" y="40" width="148" height="6" rx="3" />
 			<text x="120" y="85" text-anchor="middle" font-size="28" fill="#1f2328">TAT</text>
-			<path d="M210 75 H270" stroke="#9aa3ad" stroke-width="3" fill="none" />
-			<path d="M262 67 L272 75 L262 83" stroke="#9aa3ad" stroke-width="3" fill="none" />
-			<rect x="280" y="40" width="170" height="70" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" />
-			<text x="365" y="82" text-anchor="middle" font-size="15" fill="var(--color-text-muted)">turnaround time</text>
-			<text x="240" y="170" text-anchor="middle" font-size="15" fill="var(--color-text-muted)">Turn(T) + Around(A) + Time(T)</text>
-			<text x="240" y="210" text-anchor="middle" font-size="15" fill="var(--color-text-muted)">한 글자씩 영어 이름으로 되돌린다</text>
+			<path class="s-arrow m-shift" style="--dx:6px;--t:1.6s" d="M210 75 h56 m-9 -8 l9 8 l-9 8" />
+			<rect class="s-si s-fill-bg" x="280" y="40" width="170" height="70" rx="10" />
+			<text class="t-muted m-fade" style="--t:4s" x="365" y="82" text-anchor="middle" font-size="15">turnaround time</text>
+			<text class="t-muted" x="240" y="170" text-anchor="middle" font-size="15">Turn(T) + Around(A) + Time(T)</text>
+			<text class="t-muted" x="240" y="210" text-anchor="middle" font-size="15">한 글자씩 영어 이름으로 되돌린다</text>
 		</svg>
 		<figcaption>
 			<strong>풀어 읽기</strong>
@@ -38,20 +38,28 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="약어를 설비, 물류, 관리 세 영역으로 나누는 그림">
-			<rect x="20" y="40" width="130" height="180" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" />
-			<text x="85" y="68" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">설비</text>
-			<text x="85" y="120" text-anchor="middle" font-size="20" fill="#e0a030">PM</text>
-			<text x="85" y="160" text-anchor="middle" font-size="20" fill="#e0a030">BM</text>
-			<rect x="175" y="40" width="130" height="180" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" />
-			<text x="240" y="68" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">물류</text>
-			<text x="240" y="110" text-anchor="middle" font-size="20" fill="#e0a030">FOUP</text>
-			<text x="240" y="150" text-anchor="middle" font-size="20" fill="#e0a030">WIP</text>
-			<text x="240" y="190" text-anchor="middle" font-size="20" fill="#e0a030">TAT</text>
-			<rect x="330" y="40" width="130" height="180" rx="10" fill="none" stroke="#9aa3ad" stroke-width="2" />
-			<text x="395" y="68" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">관리</text>
-			<text x="395" y="110" text-anchor="middle" font-size="20" fill="#e0a030">MES</text>
-			<text x="395" y="150" text-anchor="middle" font-size="20" fill="#e0a030">SPC</text>
-			<text x="395" y="190" text-anchor="middle" font-size="20" fill="#e0a030">FDC</text>
+			<rect class="s-si s-fill-bg" x="20" y="40" width="130" height="180" rx="10" />
+			<text class="t-muted" x="85" y="68" text-anchor="middle" font-size="16">설비</text>
+			<rect class="g-sand m-fade" style="--t:6s" x="45" y="98" width="80" height="30" rx="8" />
+			<rect class="g-sand m-fade" style="--t:6s;--d:0.3s" x="45" y="138" width="80" height="30" rx="8" />
+			<text x="85" y="120" text-anchor="middle" font-size="20" fill="#1f2328">PM</text>
+			<text x="85" y="160" text-anchor="middle" font-size="20" fill="#1f2328">BM</text>
+			<rect class="s-si s-fill-bg" x="175" y="40" width="130" height="180" rx="10" />
+			<text class="t-muted" x="240" y="68" text-anchor="middle" font-size="16">물류</text>
+			<rect class="g-sand m-fade" style="--t:6s;--d:0.6s" x="200" y="88" width="80" height="30" rx="8" />
+			<rect class="g-sand m-fade" style="--t:6s;--d:0.9s" x="200" y="128" width="80" height="30" rx="8" />
+			<rect class="g-sand m-fade" style="--t:6s;--d:1.2s" x="200" y="168" width="80" height="30" rx="8" />
+			<text x="240" y="110" text-anchor="middle" font-size="20" fill="#1f2328">FOUP</text>
+			<text x="240" y="150" text-anchor="middle" font-size="20" fill="#1f2328">WIP</text>
+			<text x="240" y="190" text-anchor="middle" font-size="20" fill="#1f2328">TAT</text>
+			<rect class="s-si s-fill-bg" x="330" y="40" width="130" height="180" rx="10" />
+			<text class="t-muted" x="395" y="68" text-anchor="middle" font-size="16">관리</text>
+			<rect class="g-sand m-fade" style="--t:6s;--d:1.5s" x="355" y="88" width="80" height="30" rx="8" />
+			<rect class="g-sand m-fade" style="--t:6s;--d:1.8s" x="355" y="128" width="80" height="30" rx="8" />
+			<rect class="g-sand m-fade" style="--t:6s;--d:2.1s" x="355" y="168" width="80" height="30" rx="8" />
+			<text x="395" y="110" text-anchor="middle" font-size="20" fill="#1f2328">MES</text>
+			<text x="395" y="150" text-anchor="middle" font-size="20" fill="#1f2328">SPC</text>
+			<text x="395" y="190" text-anchor="middle" font-size="20" fill="#1f2328">FDC</text>
 		</svg>
 		<figcaption>
 			<strong>영역 붙이기</strong>
@@ -61,13 +69,15 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="약어 FOUP이 들어간 문장을 말하는 말풍선 그림">
-			<circle cx="70" cy="110" r="28" fill="#9aa3ad" />
-			<rect x="60" y="150" width="20" height="60" rx="6" fill="#9aa3ad" />
-			<rect x="120" y="50" width="330" height="100" rx="14" fill="none" stroke="#9aa3ad" stroke-width="2" />
-			<path d="M120 100 L100 110 L120 120" fill="none" stroke="#9aa3ad" stroke-width="2" />
-			<text x="285" y="92" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">3번 FOUP을 다음 공정으로</text>
-			<text x="285" y="122" text-anchor="middle" font-size="16" fill="var(--color-text-muted)">옮겨 주세요.</text>
-			<text x="285" y="200" text-anchor="middle" font-size="15" fill="#e0a030">약어는 그대로, 나머지는 각 언어로</text>
+			<circle class="g-si" cx="70" cy="110" r="28" />
+			<path class="g-si" d="M34 214 a36 44 0 0 1 72 0 Z" />
+			<g class="m-float">
+				<rect class="s-si s-fill-bg" x="120" y="50" width="330" height="100" rx="14" />
+				<path class="s-si s-fill-bg" d="M121 90 L100 108 L121 118" />
+				<text class="t" x="285" y="92" text-anchor="middle" font-size="16">3번 <tspan class="t-accent t-bold">FOUP</tspan>을 다음 공정으로</text>
+				<text class="t" x="285" y="122" text-anchor="middle" font-size="16">옮겨 주세요.</text>
+			</g>
+			<text class="t-accent" x="285" y="200" text-anchor="middle" font-size="15">약어는 그대로, 나머지는 각 언어로</text>
 		</svg>
 		<figcaption>
 			<strong>문장에서 쓰기</strong>

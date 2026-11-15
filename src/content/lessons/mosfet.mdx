@@ -20,16 +20,18 @@ MOSFET(모스펫)은 전압 신호 하나로 전류의 길을 열고 닫는 아�
 <StepAnimation label="MOSFET이 켜지는 과정">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="게이트 전압이 0일 때 소스와 드레인 사이에 길이 없는 단면도">
-			<rect x="40" y="150" width="400" height="90" fill="var(--color-surface, #e8ecf2)" stroke="currentColor" />
-			<rect x="70" y="150" width="90" height="45" fill="#6b9bd1" stroke="currentColor" />
-			<rect x="320" y="150" width="90" height="45" fill="#6b9bd1" stroke="currentColor" />
-			<rect x="170" y="130" width="140" height="18" fill="#cfd6df" stroke="currentColor" />
-			<rect x="180" y="100" width="120" height="30" fill="#9aa5b4" stroke="currentColor" />
-			<text x="115" y="178" text-anchor="middle" font-size="14">소스</text>
-			<text x="365" y="178" text-anchor="middle" font-size="14">드레인</text>
-			<text x="240" y="120" text-anchor="middle" font-size="14">게이트 0V</text>
-			<text x="240" y="225" text-anchor="middle" font-size="14">기판(p형)</text>
-			<text x="240" y="60" text-anchor="middle" font-size="16">전류 차단</text>
+			<rect class="g-si g-soft" x="40" y="150" width="400" height="90" />
+			<rect class="g-si" x="40" y="232" width="400" height="8" />
+			<path class="g-ox" d="M70 150 H160 V189 a6 6 0 0 1 -6 6 H76 a6 6 0 0 1 -6 -6 Z" />
+			<path class="g-ox" d="M320 150 H410 V189 a6 6 0 0 1 -6 6 H326 a6 6 0 0 1 -6 -6 Z" />
+			<rect class="g-si-hi" x="170" y="132" width="140" height="18" />
+			<rect class="g-si-lo" x="180" y="100" width="120" height="32" rx="4" />
+			<text x="115" y="178" text-anchor="middle" font-size="14" fill="#17202b">소스</text>
+			<text x="365" y="178" text-anchor="middle" font-size="14" fill="#17202b">드레인</text>
+			<text class="g-bg" x="240" y="121" text-anchor="middle" font-size="14">게이트 0V</text>
+			<text class="t" x="240" y="222" text-anchor="middle" font-size="14">기판(p형)</text>
+			<path class="s-pr s-thick m-twinkle" d="M230 158 l20 16 m0 -16 l-20 16" />
+			<text class="t" x="240" y="60" text-anchor="middle" font-size="16">전류 차단</text>
 		</svg>
 		<figcaption>
 			<strong>게이트에 전압을 겁니다</strong>
@@ -39,17 +41,22 @@ MOSFET(모스펫)은 전압 신호 하나로 전류의 길을 열고 닫는 아�
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="게이트에 양의 전압을 걸어 기판 표면에 전자가 모여 채널이 생긴 단면도">
-			<rect x="40" y="150" width="400" height="90" fill="var(--color-surface, #e8ecf2)" stroke="currentColor" />
-			<rect x="70" y="150" width="90" height="45" fill="#6b9bd1" stroke="currentColor" />
-			<rect x="320" y="150" width="90" height="45" fill="#6b9bd1" stroke="currentColor" />
-			<rect x="170" y="130" width="140" height="18" fill="#cfd6df" stroke="currentColor" />
-			<rect x="180" y="100" width="120" height="30" fill="#e0a43a" stroke="currentColor" />
-			<rect x="160" y="150" width="160" height="10" fill="#6b9bd1" />
-			<text x="115" y="178" text-anchor="middle" font-size="14">소스</text>
-			<text x="365" y="178" text-anchor="middle" font-size="14">드레인</text>
-			<text x="240" y="120" text-anchor="middle" font-size="14">게이트 +V</text>
-			<text x="240" y="190" text-anchor="middle" font-size="14">채널(전자 길)</text>
-			<text x="240" y="60" text-anchor="middle" font-size="16">길이 생김</text>
+			<rect class="g-si g-soft" x="40" y="150" width="400" height="90" />
+			<rect class="g-si" x="40" y="232" width="400" height="8" />
+			<path class="g-ox" d="M70 150 H160 V189 a6 6 0 0 1 -6 6 H76 a6 6 0 0 1 -6 -6 Z" />
+			<path class="g-ox" d="M320 150 H410 V189 a6 6 0 0 1 -6 6 H326 a6 6 0 0 1 -6 -6 Z" />
+			<rect class="g-si-hi" x="170" y="132" width="140" height="18" />
+			<rect class="g-cu m-glow" x="180" y="100" width="120" height="32" rx="4" />
+			<rect class="g-ox m-fade" style="--t:4s" x="160" y="150" width="160" height="10" />
+			<circle class="g-accent m-move" style="--dy:-34px;--t:2s" cx="190" cy="196" r="3.5" />
+			<circle class="g-accent m-move" style="--dy:-34px;--t:2s;--d:0.5s" cx="223" cy="196" r="3.5" />
+			<circle class="g-accent m-move" style="--dy:-34px;--t:2s;--d:1s" cx="257" cy="196" r="3.5" />
+			<circle class="g-accent m-move" style="--dy:-34px;--t:2s;--d:1.5s" cx="290" cy="196" r="3.5" />
+			<text x="115" y="178" text-anchor="middle" font-size="14" fill="#17202b">소스</text>
+			<text x="365" y="178" text-anchor="middle" font-size="14" fill="#17202b">드레인</text>
+			<text x="240" y="121" text-anchor="middle" font-size="14" fill="#17202b">게이트 +V</text>
+			<text class="t" x="240" y="222" text-anchor="middle" font-size="14">채널(전자 길)</text>
+			<text class="t" x="240" y="60" text-anchor="middle" font-size="16">길이 생김</text>
 		</svg>
 		<figcaption>
 			<strong>채널이 만들어집니다</strong>
@@ -59,16 +66,19 @@ MOSFET(모스펫)은 전압 신호 하나로 전류의 길을 열고 닫는 아�
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="소스에서 드레인으로 전자가 채널을 따라 흐르는 단면도">
-			<rect x="40" y="150" width="400" height="90" fill="var(--color-surface, #e8ecf2)" stroke="currentColor" />
-			<rect x="70" y="150" width="90" height="45" fill="#6b9bd1" stroke="currentColor" />
-			<rect x="320" y="150" width="90" height="45" fill="#6b9bd1" stroke="currentColor" />
-			<rect x="170" y="130" width="140" height="18" fill="#cfd6df" stroke="currentColor" />
-			<rect x="180" y="100" width="120" height="30" fill="#e0a43a" stroke="currentColor" />
-			<rect x="160" y="150" width="160" height="10" fill="#6b9bd1" />
-			<path d="M110 172 L370 172" stroke="currentColor" stroke-width="2" fill="none" />
-			<path d="M360 166 L370 172 L360 178" stroke="currentColor" stroke-width="2" fill="none" />
-			<text x="240" y="205" text-anchor="middle" font-size="14">전자가 소스 → 드레인으로 이동</text>
-			<text x="240" y="60" text-anchor="middle" font-size="16">전류 흐름(켜짐)</text>
+			<rect class="g-si g-soft" x="40" y="150" width="400" height="90" />
+			<rect class="g-si" x="40" y="232" width="400" height="8" />
+			<path class="g-ox" d="M70 150 H160 V189 a6 6 0 0 1 -6 6 H76 a6 6 0 0 1 -6 -6 Z" />
+			<path class="g-ox" d="M320 150 H410 V189 a6 6 0 0 1 -6 6 H326 a6 6 0 0 1 -6 -6 Z" />
+			<rect class="g-si-hi" x="170" y="132" width="140" height="18" />
+			<rect class="g-cu m-glow" x="180" y="100" width="120" height="32" rx="4" />
+			<rect class="g-ox" x="160" y="150" width="160" height="10" />
+			<circle class="g-white m-move" style="--dx:230px;--t:1.8s" cx="125" cy="155" r="3.5" />
+			<circle class="g-white m-move" style="--dx:230px;--t:1.8s;--d:0.6s" cx="125" cy="155" r="3.5" />
+			<circle class="g-white m-move" style="--dx:230px;--t:1.8s;--d:1.2s" cx="125" cy="155" r="3.5" />
+			<path class="s-ink" d="M110 176 L370 176 M360 170 L370 176 L360 182" />
+			<text class="t" x="240" y="218" text-anchor="middle" font-size="14">전자가 소스 → 드레인으로 이동</text>
+			<text class="t" x="240" y="60" text-anchor="middle" font-size="16">전류 흐름(켜짐)</text>
 		</svg>
 		<figcaption>
 			<strong>전류가 흐르고, 전압을 끊으면 멈춥니다</strong>

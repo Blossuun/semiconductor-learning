@@ -20,26 +20,36 @@ PN 접합은 P형과 N형 반도체가 맞닿은 경계로, 전류를 한쪽 방
 <StepAnimation label="PN 접합이 만들어지고 작동하는 과정">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="P형과 N형이 떨어져 있는 접합 전 모습">
-			<text x="240" y="60" text-anchor="middle" fill="var(--color-text)" font-size="18">접합 전</text>
-			<rect x="60" y="100" width="150" height="100" fill="#d68a45" stroke="#17202b" stroke-width="2" />
-			<rect x="270" y="100" width="150" height="100" fill="#7fa8d9" stroke="#17202b" stroke-width="2" />
-			<text x="135" y="155" text-anchor="middle" fill="#17202b" font-size="18">P형</text>
-			<text x="345" y="155" text-anchor="middle" fill="#17202b" font-size="18">N형</text>
+			<text class="t" x="240" y="60" text-anchor="middle" font-size="18">접합 전</text>
+			<rect class="g-cu" x="60" y="100" width="150" height="100" rx="6" />
+			<rect class="g-cu-hi" x="64" y="100" width="142" height="5" rx="2" />
+			<rect class="g-ox" x="270" y="100" width="150" height="100" rx="6" />
+			<rect class="g-ox-hi" x="274" y="100" width="142" height="5" rx="2" />
+			<text x="135" y="160" text-anchor="middle" fill="#17202b" font-size="18">P형</text>
+			<text x="345" y="160" text-anchor="middle" fill="#17202b" font-size="18">N형</text>
 			<g fill="#17202b" font-size="20" text-anchor="middle">
-				<text x="90" y="128">+</text>
-				<text x="130" y="128">+</text>
-				<text x="170" y="128">+</text>
-				<text x="110" y="190">+</text>
-				<text x="150" y="190">+</text>
-				<text x="190" y="190">+</text>
-				<text x="300" y="128">−</text>
-				<text x="340" y="128">−</text>
-				<text x="380" y="128">−</text>
-				<text x="320" y="190">−</text>
-				<text x="360" y="190">−</text>
-				<text x="400" y="190">−</text>
+				<g class="m-shift" style="--dx:8px;--dy:3px;--t:2.4s">
+					<text x="90" y="132">+</text>
+					<text x="130" y="132">+</text>
+					<text x="170" y="132">+</text>
+				</g>
+				<g class="m-shift" style="--dx:-8px;--dy:-3px;--t:2.8s">
+					<text x="110" y="190">+</text>
+					<text x="150" y="190">+</text>
+					<text x="190" y="190">+</text>
+				</g>
+				<g class="m-shift" style="--dx:-8px;--dy:3px;--t:2.6s">
+					<text x="300" y="132">−</text>
+					<text x="340" y="132">−</text>
+					<text x="380" y="132">−</text>
+				</g>
+				<g class="m-shift" style="--dx:8px;--dy:-3px;--t:2.2s">
+					<text x="320" y="190">−</text>
+					<text x="360" y="190">−</text>
+					<text x="400" y="190">−</text>
+				</g>
 			</g>
-			<text x="240" y="230" text-anchor="middle" fill="var(--color-text-muted)" font-size="18">사이가 떨어져 있다</text>
+			<text class="t-muted" x="240" y="232" text-anchor="middle" font-size="18">사이가 떨어져 있다</text>
 		</svg>
 		<figcaption>
 			<strong>접합 만들기</strong>
@@ -49,19 +59,21 @@ PN 접합은 P형과 N형 반도체가 맞닿은 경계로, 전류를 한쪽 방
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="경계에 공핍층이 생긴 모습">
-			<text x="240" y="60" text-anchor="middle" fill="var(--color-text)" font-size="18">공핍층 형성</text>
-			<rect x="60" y="100" width="140" height="100" fill="#d68a45" stroke="#17202b" stroke-width="2" />
-			<rect x="200" y="100" width="80" height="100" fill="var(--surface-sunken)" stroke="#17202b" stroke-width="2" stroke-dasharray="6 4" />
-			<rect x="280" y="100" width="140" height="100" fill="#7fa8d9" stroke="#17202b" stroke-width="2" />
-			<text x="120" y="155" text-anchor="middle" fill="#17202b" font-size="18">P형</text>
-			<text x="360" y="155" text-anchor="middle" fill="#17202b" font-size="18">N형</text>
-			<g fill="#17202b" font-size="20" text-anchor="middle">
-				<text x="182" y="130">−</text>
-				<text x="182" y="180">−</text>
-				<text x="298" y="130">+</text>
-				<text x="298" y="180">+</text>
+			<text class="t" x="240" y="60" text-anchor="middle" font-size="18">공핍층 형성</text>
+			<path class="g-cu" d="M66 100 H240 V200 H66 a6 6 0 0 1 -6 -6 V106 a6 6 0 0 1 6 -6 Z" />
+			<path class="g-ox" d="M240 100 H414 a6 6 0 0 1 6 6 V194 a6 6 0 0 1 -6 6 H240 Z" />
+			<g class="m-fade" style="--t:6s">
+				<rect class="s-ink s-dash s-fill-sunken" x="200" y="100" width="80" height="100" />
 			</g>
-			<text x="240" y="230" text-anchor="middle" fill="var(--color-text-muted)" font-size="18">경계 근처 운반자가 빈 층</text>
+			<text x="120" y="160" text-anchor="middle" fill="#17202b" font-size="18">P형</text>
+			<text x="360" y="160" text-anchor="middle" fill="#17202b" font-size="18">N형</text>
+			<g fill="#17202b" font-size="20" text-anchor="middle">
+				<text class="m-twinkle" x="182" y="130">−</text>
+				<text class="m-twinkle" style="--d:0.6s" x="182" y="180">−</text>
+				<text class="m-twinkle" style="--d:0.3s" x="298" y="130">+</text>
+				<text class="m-twinkle" style="--d:0.9s" x="298" y="180">+</text>
+			</g>
+			<text class="t-muted" x="240" y="232" text-anchor="middle" font-size="18">경계 근처 운반자가 빈 층</text>
 		</svg>
 		<figcaption>
 			<strong>공핍층 만들기</strong>
@@ -72,24 +84,31 @@ PN 접합은 P형과 N형 반도체가 맞닿은 경계로, 전류를 한쪽 방
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="전압 방향에 따라 공핍층 폭이 달라지는 모습">
 			<line x1="240" y1="50" x2="240" y2="240" stroke="var(--color-border)" stroke-dasharray="4 4" />
-			<text x="113" y="60" text-anchor="middle" fill="var(--color-text)" font-size="18">순방향</text>
-			<text x="362" y="60" text-anchor="middle" fill="var(--color-text)" font-size="18">역방향</text>
-			<rect x="30" y="100" width="75" height="100" fill="#d68a45" stroke="#17202b" stroke-width="2" />
-			<rect x="105" y="100" width="16" height="100" fill="var(--surface-sunken)" stroke="#17202b" stroke-width="2" stroke-dasharray="4 3" />
-			<rect x="121" y="100" width="75" height="100" fill="#7fa8d9" stroke="#17202b" stroke-width="2" />
-			<text x="67" y="155" text-anchor="middle" fill="#17202b" font-size="18">P</text>
-			<text x="158" y="155" text-anchor="middle" fill="#17202b" font-size="18">N</text>
-			<text x="16" y="160" text-anchor="middle" fill="var(--color-text)" font-size="22">+</text>
-			<text x="212" y="160" text-anchor="middle" fill="var(--color-text)" font-size="22">−</text>
-			<text x="113" y="230" text-anchor="middle" fill="var(--color-text-muted)" font-size="18">전류 흐름</text>
-			<rect x="262" y="100" width="75" height="100" fill="#d68a45" stroke="#17202b" stroke-width="2" />
-			<rect x="337" y="100" width="50" height="100" fill="var(--surface-sunken)" stroke="#17202b" stroke-width="2" stroke-dasharray="4 3" />
-			<rect x="387" y="100" width="75" height="100" fill="#7fa8d9" stroke="#17202b" stroke-width="2" />
-			<text x="299" y="155" text-anchor="middle" fill="#17202b" font-size="18">P</text>
-			<text x="424" y="155" text-anchor="middle" fill="#17202b" font-size="18">N</text>
-			<text x="250" y="160" text-anchor="middle" fill="var(--color-text)" font-size="22">−</text>
-			<text x="474" y="160" text-anchor="middle" fill="var(--color-text)" font-size="22">+</text>
-			<text x="362" y="230" text-anchor="middle" fill="var(--color-text-muted)" font-size="18">전류 막힘</text>
+			<text class="t" x="113" y="60" text-anchor="middle" font-size="18">순방향</text>
+			<text class="t" x="362" y="60" text-anchor="middle" font-size="18">역방향</text>
+			<path class="s-accent s-thick m-flow" style="--t:0.6s" d="M34 88 H180" />
+			<path class="s-accent s-thick" d="M176 80 l12 8 l-12 8" />
+			<rect class="g-cu" x="30" y="100" width="75" height="100" />
+			<rect class="g-cu-hi" x="30" y="100" width="75" height="5" />
+			<rect class="s-ink s-dash s-fill-sunken" x="105" y="100" width="16" height="100" />
+			<rect class="g-ox" x="121" y="100" width="75" height="100" />
+			<rect class="g-ox-hi" x="121" y="100" width="75" height="5" />
+			<text x="67" y="158" text-anchor="middle" fill="#17202b" font-size="18">P</text>
+			<text x="158" y="158" text-anchor="middle" fill="#17202b" font-size="18">N</text>
+			<text class="t" x="16" y="160" text-anchor="middle" font-size="22">+</text>
+			<text class="t" x="212" y="160" text-anchor="middle" font-size="22">−</text>
+			<text class="t-muted" x="113" y="232" text-anchor="middle" font-size="18">전류 흐름</text>
+			<path class="s-pr s-thick" d="M352 78 l20 16 m0 -16 l-20 16" />
+			<rect class="g-cu" x="262" y="100" width="75" height="100" />
+			<rect class="g-cu-hi" x="262" y="100" width="75" height="5" />
+			<rect class="s-ink s-dash s-fill-sunken" x="337" y="100" width="50" height="100" />
+			<rect class="g-ox" x="387" y="100" width="75" height="100" />
+			<rect class="g-ox-hi" x="387" y="100" width="75" height="5" />
+			<text x="299" y="158" text-anchor="middle" fill="#17202b" font-size="18">P</text>
+			<text x="424" y="158" text-anchor="middle" fill="#17202b" font-size="18">N</text>
+			<text class="t" x="250" y="160" text-anchor="middle" font-size="22">−</text>
+			<text class="t" x="474" y="160" text-anchor="middle" font-size="22">+</text>
+			<text class="t-muted" x="362" y="232" text-anchor="middle" font-size="18">전류 막힘</text>
 		</svg>
 		<figcaption>
 			<strong>전압 걸기</strong>

@@ -20,13 +20,15 @@ import Quiz from '../../components/Quiz.astro';
 <StepAnimation label="웨이퍼 이송 도해">
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="웨이퍼 여러 장이 FOUP 안에 꽂힌 모습">
-			<rect x="170" y="50" width="140" height="160" rx="10" fill="none" stroke="var(--color-text-muted)" stroke-width="3" />
-			<rect x="190" y="75" width="100" height="8" rx="4" fill="currentColor" />
-			<rect x="190" y="100" width="100" height="8" rx="4" fill="currentColor" />
-			<rect x="190" y="125" width="100" height="8" rx="4" fill="currentColor" />
-			<rect x="190" y="150" width="100" height="8" rx="4" fill="currentColor" />
-			<rect x="190" y="175" width="100" height="8" rx="4" fill="currentColor" />
-			<text x="240" y="238" text-anchor="middle" fill="var(--color-text-muted)">FOUP</text>
+			<rect class="g-si-lo" x="212" y="38" width="56" height="12" rx="4" />
+			<rect class="s-muted s-fill-bg" style="stroke-width:3" x="170" y="50" width="140" height="160" rx="10" />
+			<path class="s-muted s-thin" d="M182 87 h8 M182 112 h8 M182 137 h8 M182 162 h8 M182 187 h8 M290 87 h8 M290 112 h8 M290 137 h8 M290 162 h8 M290 187 h8" />
+			<rect class="g-si m-fade" style="--t:6s" x="190" y="175" width="100" height="8" rx="4" />
+			<rect class="g-si m-fade" style="--t:6s;--d:0.4s" x="190" y="150" width="100" height="8" rx="4" />
+			<rect class="g-si m-fade" style="--t:6s;--d:0.8s" x="190" y="125" width="100" height="8" rx="4" />
+			<rect class="g-si m-fade" style="--t:6s;--d:1.2s" x="190" y="100" width="100" height="8" rx="4" />
+			<rect class="g-si m-fade" style="--t:6s;--d:1.6s" x="190" y="75" width="100" height="8" rx="4" />
+			<text class="t-muted" x="240" y="238" text-anchor="middle">FOUP</text>
 		</svg>
 		<figcaption>
 			<strong>1. FOUP에 담기</strong>
@@ -36,12 +38,17 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="천장 레일 위의 OHT가 FOUP을 매달아 옮기는 모습">
-			<line x1="20" y1="40" x2="460" y2="40" stroke="var(--color-text-muted)" stroke-width="4" />
-			<rect x="190" y="40" width="100" height="26" rx="4" fill="currentColor" />
-			<line x1="240" y1="66" x2="240" y2="100" stroke="currentColor" stroke-width="3" />
-			<rect x="200" y="100" width="80" height="90" rx="8" fill="none" stroke="currentColor" stroke-width="3" />
-			<path d="M300 150 L350 150 M338 138 L350 150 L338 162" fill="none" stroke="var(--color-text-muted)" stroke-width="3" />
-			<text x="240" y="230" text-anchor="middle" fill="var(--color-text-muted)">OHT 반송</text>
+			<line class="s-muted s-thick" x1="20" y1="40" x2="460" y2="40" />
+			<g class="m-shift" style="--dx:130px;--t:6s">
+				<rect class="g-si-lo" x="125" y="40" width="100" height="26" rx="4" />
+				<rect class="g-si" x="125" y="40" width="100" height="6" rx="3" />
+				<path class="s-ink" d="M158 66 V100 M192 66 V100" />
+				<rect class="g-sand" x="135" y="100" width="80" height="90" rx="8" />
+				<rect class="g-sand-hi" x="139" y="100" width="72" height="5" rx="2" />
+				<path class="s-si" d="M149 122 h52 M149 138 h52 M149 154 h52 M149 170 h52" />
+			</g>
+			<path class="s-arrow" d="M370 150 h44 m-10 -9 l10 9 l-10 9" />
+			<text class="t-muted" x="240" y="230" text-anchor="middle">OHT 반송</text>
 		</svg>
 		<figcaption>
 			<strong>2. OHT로 반송</strong>
@@ -51,14 +58,18 @@ import Quiz from '../../components/Quiz.astro';
 	</figure>
 	<figure>
 		<svg viewBox="0 0 480 268" role="img" aria-label="장비 앞 포트의 FOUP에서 로봇 팔이 웨이퍼를 꺼내 챔버로 넣는 모습">
-			<rect x="40" y="90" width="80" height="90" rx="8" fill="none" stroke="currentColor" stroke-width="3" />
-			<circle cx="230" cy="135" r="22" fill="none" stroke="currentColor" stroke-width="3" />
-			<line x1="252" y1="135" x2="330" y2="135" stroke="currentColor" stroke-width="6" />
-			<rect x="350" y="80" width="100" height="110" rx="8" fill="none" stroke="var(--color-text-muted)" stroke-width="3" />
-			<line x1="120" y1="135" x2="208" y2="135" stroke="var(--color-text-muted)" stroke-width="2" stroke-dasharray="6 4" />
-			<text x="80" y="210" text-anchor="middle" fill="var(--color-text-muted)">FOUP</text>
-			<text x="230" y="190" text-anchor="middle" fill="var(--color-text-muted)">로봇</text>
-			<text x="400" y="210" text-anchor="middle" fill="var(--color-text-muted)">챔버</text>
+			<rect class="g-sand" x="40" y="90" width="80" height="90" rx="8" />
+			<rect class="g-sand-hi" x="44" y="90" width="72" height="5" rx="2" />
+			<path class="s-si" d="M54 112 h52 M54 128 h52 M54 144 h52 M54 160 h52" />
+			<rect class="s-muted s-fill-bg" style="stroke-width:3" x="350" y="80" width="100" height="110" rx="8" />
+			<line class="s-muted s-dash" x1="120" y1="135" x2="208" y2="135" />
+			<rect class="g-si" x="248" y="129" width="84" height="12" rx="6" />
+			<circle class="g-si-lo" cx="230" cy="135" r="22" />
+			<circle class="g-si-hi" cx="230" cy="135" r="8" />
+			<ellipse class="g-ox m-move" style="--dx:270px;--t:4s" cx="130" cy="135" rx="28" ry="6" />
+			<text class="t-muted" x="80" y="210" text-anchor="middle">FOUP</text>
+			<text class="t-muted" x="230" y="190" text-anchor="middle">로봇</text>
+			<text class="t-muted" x="400" y="210" text-anchor="middle">챔버</text>
 		</svg>
 		<figcaption>
 			<strong>3. 장비에 로딩</strong>
