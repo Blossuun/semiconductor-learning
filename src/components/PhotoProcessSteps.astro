@@ -4,6 +4,7 @@ import StepAnimation from './StepAnimation.astro';
 interface Labels {
 	group: string;
 	titles: [string, string, string, string, string];
+	captions: [string, string][];
 	substrate: string;
 	film: string;
 	resist: string;
@@ -21,6 +22,28 @@ interface Props {
 const defaults: Labels = {
 	group: '포토 공정 단면도',
 	titles: ['1. 감광액 도포', '2. 노광', '3. 현상', '4. 식각', '5. 감광액 제거'],
+	captions: [
+		[
+			'웨이퍼를 돌리며 감광액을 떨어뜨려 산화막 위에 얇고 고르게 입힙니다.',
+			'막 두께가 고르지 않으면 빛을 받는 정도가 달라져 무늬가 흔들리기 때문입니다.',
+		],
+		[
+			'마스크의 열린 자리를 지난 빛만 감광액에 닿아 그 부분의 성질을 바꿉니다.',
+			'설계 무늬를 한 번에 감광액으로 옮기기 위해서입니다.',
+		],
+		[
+			'현상액을 뿌려 빛을 받은 감광액만 녹여 내면 아래 산화막이 드러납니다.',
+			'다음에 깎을 자리와 남길 자리를 나누기 위해서입니다.',
+		],
+		[
+			'감광액이 덮지 않은 산화막만 깎아 냅니다.',
+			'감광액의 무늬를 실제 막에 새기기 위해서입니다.',
+		],
+		[
+			'가림막 역할을 마친 감광액을 벗겨 내면 무늬가 새겨진 산화막만 남습니다.',
+			'다음 층을 올리려면 표면이 깨끗해야 하기 때문입니다.',
+		],
+	],
 	substrate: '실리콘 기판',
 	film: '산화막',
 	resist: '감광액',
@@ -61,24 +84,25 @@ const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
 <StepAnimation label={t.group} prevLabel={prevLabel} nextLabel={nextLabel}>
 	{
 		steps.map((step, i) => (
-			<svg class="photo-step" viewBox="0 0 480 268" role="img" aria-label={t.titles[i]}>
+			<figure>
+			<svg class="photo-step" viewBox="0 30 480 232" role="img" aria-label={t.titles[i]}>
 				{step.expose && (
 					<g>
-						<rect class="g-beam m-beam" x={X0} y="22" width={X1 - X0} height="34" />
-						<rect class="g-beam m-beam" x={OPEN0} y="68" width={OPEN1 - OPEN0} height="48" />
+						<rect class="g-beam m-beam" x={X0} y="50" width={X1 - X0} height="26" />
+						<rect class="g-beam m-beam" x={OPEN0} y="88" width={OPEN1 - OPEN0} height="28" />
 						{uvXs.map((x) => {
 							const through = x > OPEN0 && x < OPEN1;
 							return (
 								<g class="uv">
-									<line class="m-flow" x1={x} y1="22" x2={x} y2={through ? 116 : 56} />
+									<line class="m-flow" x1={x} y1="50" x2={x} y2={through ? 116 : 76} />
 								</g>
 							);
 						})}
-						<rect class="g-light m-glow" x={X0} y="12" width={X1 - X0} height="10" rx="5" />
-						<rect class="mask" x={X0} y="56" width={OPEN0 - X0} height="12" rx="2" />
-						<rect class="mask" x={OPEN1} y="56" width={X1 - OPEN1} height="12" rx="2" />
-						<text x={LABEL_X} y="36">{t.uv}</text>
-						<text x={LABEL_X} y="67">{t.mask}</text>
+						<rect class="g-light m-glow" x={X0} y="40" width={X1 - X0} height="10" rx="5" />
+						<rect class="mask" x={X0} y="76" width={OPEN0 - X0} height="12" rx="2" />
+						<rect class="mask" x={OPEN1} y="76" width={X1 - OPEN1} height="12" rx="2" />
+						<text x={LABEL_X} y="58">{t.uv}</text>
+						<text x={LABEL_X} y="88">{t.mask}</text>
 					</g>
 				)}
 
@@ -104,14 +128,19 @@ const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
 				<text x={LABEL_X} y="180">{t.film}</text>
 				<text x={LABEL_X} y="217">{t.substrate}</text>
 
-				<text class="title" x={X0} y="258">{t.titles[i]}</text>
 				{step.expose && (
 					<g>
-						<rect class="exposed" x="236" y="246" width="16" height="14" />
-						<text x="258" y="258">{t.exposed}</text>
+						<rect class="exposed" x={X0} y="242" width="16" height="14" />
+						<text x={X0 + 22} y="254">{t.exposed}</text>
 					</g>
 				)}
 			</svg>
+			<figcaption>
+				<strong>{t.titles[i]}</strong>
+				<p>{t.captions[i][0]}</p>
+				<p>{t.captions[i][1]}</p>
+			</figcaption>
+			</figure>
 		))
 	}
 </StepAnimation>
@@ -126,11 +155,6 @@ const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
 
 	.photo-step text {
 		fill: var(--color-text);
-	}
-
-	.photo-step .title {
-		font-size: 20px;
-		font-weight: 700;
 	}
 
 	.photo-step .substrate {
@@ -167,8 +191,7 @@ const uvXs = [80, 115, 150, 190, 210, 230, 270, 305, 340];
 
 	/* 좁은 화면: 그림이 줄어도 라벨이 14px 이상으로 보이게 */
 	@media (max-width: 600px) {
-		.photo-step,
-		.photo-step .title {
+		.photo-step {
 			font-size: 22px;
 		}
 	}

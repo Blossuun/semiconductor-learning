@@ -256,6 +256,17 @@ const langOptions = [
 
 				syncLangAll();
 
+				var langPicker = document.querySelector('.lang-picker');
+				document.addEventListener('click', function (e) {
+					if (langPicker.open && !langPicker.contains(e.target)) langPicker.open = false;
+				});
+				document.addEventListener('keydown', function (e) {
+					if (e.key === 'Escape' && langPicker.open) {
+						langPicker.open = false;
+						langPicker.querySelector('summary').focus();
+					}
+				});
+
 				themeButton.addEventListener('click', function () {
 					var current =
 						root.dataset.theme ||
