@@ -68,6 +68,9 @@ const { questions, correctLabel = '정답입니다.', wrongLabel = '오답입니
 					result.textContent = correct ? quiz.dataset.correctLabel! : quiz.dataset.wrongLabel!;
 					result.classList.add(correct ? 'is-correct' : 'is-wrong');
 					feedback.hidden = false;
+					if (quiz.querySelectorAll('[data-feedback]:not([hidden])').length === quiz.querySelectorAll('[data-question]').length) {
+						window.dispatchEvent(new Event('quiz-all-answered'));
+					}
 				});
 			});
 		});

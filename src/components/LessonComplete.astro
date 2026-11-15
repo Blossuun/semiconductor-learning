@@ -15,6 +15,7 @@ const { slug } = Astro.props;
 		</svg>
 		<span class="complete-text">완료로 표시</span>
 	</button>
+	<p class="complete-hint" data-complete-hint hidden>퀴즈를 모두 풀었습니다. 완료로 표시해 보세요.</p>
 </div>
 
 <script>
@@ -41,9 +42,17 @@ const { slug } = Astro.props;
 	document.querySelectorAll<HTMLButtonElement>('[data-complete-slug]').forEach((btn) => {
 		const slug = btn.dataset.completeSlug || '';
 		const text = btn.querySelector<HTMLElement>('.complete-text');
+		const hint = btn.parentElement?.querySelector<HTMLElement>('[data-complete-hint]');
+		let quizDone = false;
+
+		window.addEventListener('quiz-all-answered', () => {
+			quizDone = true;
+			render();
+		});
 
 		function render() {
 			const done = readDone().indexOf(slug) !== -1;
+			if (hint) hint.hidden = !(quizDone && !done);
 			btn.setAttribute('aria-pressed', String(done));
 			btn.classList.toggle('is-done', done);
 			if (text) text.textContent = done ? '완료됨' : '완료로 표시';
@@ -66,7 +75,17 @@ const { slug } = Astro.props;
 <style>
 	.lesson-complete {
 		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-3);
 		justify-content: flex-start;
+	}
+
+	.complete-hint {
+		margin: 0;
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
 	}
 
 	.complete-button {

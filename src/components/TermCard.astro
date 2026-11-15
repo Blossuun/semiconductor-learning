@@ -36,9 +36,30 @@ const rows = [
 ];
 const koAudio = audioPath('terms', id, 'ko');
 const koExampleAudio = audioPath('terms', id, 'example_ko');
+// 레슨(glossaryLink=true)에서는 한 줄 목록으로 접어 두고, 누르면 펼친다. 용어집은 바깥 details가 이미 접으므로 그대로 둔다.
+const Wrap = glossaryLink ? 'details' : 'div';
 ---
 
-<article class="term-card" id={`term-${id}`}>
+<Wrap class={glossaryLink ? 'term-fold' : 'term-plain'}>
+	{
+		glossaryLink && (
+			<summary class="fold-row">
+				<span class="fold-ko">
+					{headAbbr ?? term.ko}
+					{headAbbr && <span class="fold-sub">{term.ko}</span>}
+				</span>
+				<span class="fold-foreign">
+					{term.en && <span data-lang="en" lang="en">{term.en}</span>}
+					{term.ja && <span data-lang="ja" lang="ja">{term.ja}</span>}
+					{term.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{term.zh_cn}</span>}
+					{term.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{term.zh_tw}</span>}
+				</span>
+				{!term.verified && <span class="fold-badge unverified">확인 전</span>}
+				{term.module !== undefined && <span class="fold-badge">{term.module}단계</span>}
+			</summary>
+		)
+	}
+	<article class="term-card" id={`term-${id}`}>
 	<header class="head">
 		{
 			headAbbr ? (
@@ -161,6 +182,7 @@ const koExampleAudio = audioPath('terms', id, 'example_ko');
 		</dl>
 	</div>
 </article>
+	</Wrap>
 
 <script>
 	import '../scripts/speak.ts';
@@ -389,6 +411,102 @@ const koExampleAudio = audioPath('terms', id, 'example_ko');
 		font-size: var(--fs-small);
 		line-height: var(--lh-small);
 		font-weight: 600;
+	}
+
+	.term-fold {
+		margin: var(--space-4) 0;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		background: var(--surface);
+	}
+
+	.term-fold[open] {
+		border-color: var(--primary);
+	}
+
+	/* 접힌 행이 표제·단계를 이미 보여 주므로 펼친 카드에서는 같은 정보를 시각적으로 숨긴다 */
+	.term-fold > .term-card {
+		margin: 0;
+		padding: 0 var(--space-4) var(--space-4);
+		border: 0;
+		background: none;
+	}
+
+	.term-fold > .term-card .ko,
+	.term-fold > .term-card .chip.caption {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+
+	.fold-row {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		min-height: 56px;
+		padding: 0 var(--space-4);
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.fold-row::-webkit-details-marker {
+		display: none;
+	}
+
+	.fold-row:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+		border-radius: var(--radius-lg);
+	}
+
+	.fold-ko {
+		flex: none;
+		font-family: var(--font-sans-ko);
+		font-size: var(--fs-body);
+		line-height: var(--lh-body);
+		font-weight: 700;
+	}
+
+	.fold-sub {
+		margin-inline-start: var(--space-2);
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		font-weight: 500;
+	}
+
+	.fold-foreign {
+		flex: 1 1 auto;
+		min-width: 0;
+		overflow: hidden;
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 500;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.fold-foreign > span {
+		margin-inline-end: var(--space-3);
+	}
+
+	.fold-badge {
+		flex: none;
+		padding: 0 var(--space-2);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-sm);
+		color: var(--accent);
+		font-family: var(--font-mono);
+		font-size: var(--fs-caption);
+		line-height: var(--lh-caption);
+		font-weight: 500;
+	}
+
+	.fold-badge.unverified {
+		color: var(--text-muted);
 	}
 
 	@media (prefers-reduced-motion: no-preference) {

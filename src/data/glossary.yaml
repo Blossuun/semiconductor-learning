@@ -1385,7 +1385,6 @@
   zh_tw: 環繞閘極電晶體
   zh_tw_pinyin: huánrào zhájí diànjīngtǐ
   abbr: GAA
-  field_usage: "현장에서는 '가'로 영문 약자 GAA를 그대로 읽음"
   example_ko: 3나노부터는 핀펫 대신 GAA 구조로 넘어간다.
   example_en: From 3 nm on, the structure moves from FinFET to GAA.
   example_ja: 3ナノからはFinFETに代わってGAA構造へ移行する。
@@ -1502,7 +1501,8 @@
   example_en: You must put on a bunny suit before entering the cleanroom.
   definition_ko: 먼지와 입자를 거의 없앤 공기로 채운, 반도체를 만드는 깨끗한 방
   module: 3
-  verified: false
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/无尘室, https://ja.wikipedia.org/wiki/クリーンルーム, https://www.pfeiffervacuum.cn/cn/zh/industries/semiconductor/]
 - id: bunny-suit
   ko: 방진복
   en: bunny suit
@@ -1518,6 +1518,7 @@
   definition_ko: 사람 몸에서 나오는 먼지를 막으려고 머리부터 발끝까지 덮어 입는 옷
   module: 3
   verified: false
+  sources: ["https://news.samsungsemiconductor.com/kr/?p=12033", "https://en.wikipedia.org/wiki/Cleanroom_suit", "https://ja.wikipedia.org/wiki/集積回路", "https://zh.wikipedia.org/wiki/半导体器件制造"]
 - id: air-shower
   ko: 에어샤워
   en: air shower
@@ -1532,6 +1533,7 @@
   definition_ko: 클린룸에 들어가기 전에 센 바람으로 옷의 먼지를 털어내는 작은 방
   module: 3
   verified: false
+  sources: ["https://www.rdworldonline.com/air-showers-and-cleanroom-operation/", "https://ja.wikipedia.org/wiki/クリーンルーム"]
 - id: lot
   ko: 로트
   en: lot
@@ -1546,7 +1548,8 @@
   example_en: This lot of 25 wafers moves together in one FOUP.
   definition_ko: 함께 공정을 거치도록 묶어 관리하는 웨이퍼 한 묶음
   module: 3
-  verified: false
+  verified: true
+  sources: ["https://en.wikipedia.org/wiki/Semiconductor_device_fabrication", "https://news.mynavi.jp/article/20210609-1895431/", "https://news.skhynix.co.kr/year-of-the-tiger-interview/", "https://zh.wikipedia.org/wiki/缺陷_(半导体技术)", "https://zh.wikipedia.org/wiki/探針卡"]
 - id: particle
   ko: 파티클
   en: particle
@@ -1561,7 +1564,8 @@
   example_en: The particle count exceeded the limit after equipment maintenance.
   definition_ko: 웨이퍼에 붙어 불량을 일으키는 아주 작은 먼지 알갱이
   module: 3
-  verified: false
+  verified: true
+  sources: ["https://news.samsungsemiconductor.com/kr/?p=24796", "https://en.wikipedia.org/wiki/Cleanroom", "https://zh.wikipedia.org/wiki/洁净室", "https://zh.wikipedia.org/zh-tw/無塵室", "https://www.semi.org/jp/blogs/technology-trends/particle-droplet-transport-analysis"]
 - id: hepa-filter
   ko: 헤파 필터
   en: HEPA filter
@@ -1569,14 +1573,15 @@
   ja_reading: へぱふぃるたー
   zh_cn: 高效过滤器
   zh_cn_pinyin: gāoxiào guòlǜqì
-  zh_tw: 高效率空氣過濾器
-  zh_tw_pinyin: gāoxiàolǜ kōngqì guòlǜqì
+  zh_tw: 高效率粒子空氣濾器
+  zh_tw_pinyin: gāoxiàolǜ lìzǐ kōngqì lǜqì
   abbr: HEPA
   example_ko: 천장의 헤파 필터가 깨끗한 공기를 아래로 내려보낸다.
   example_en: The HEPA filters in the ceiling blow clean air downward.
   definition_ko: 공기 속의 아주 작은 먼지까지 걸러내는 필터
   module: 3
   verified: false
+  sources: ["https://en.wikipedia.org/wiki/HEPA", "https://terms.naer.edu.tw/search/?query_term=HEPA+filter&query_field=title&query_op=", "https://ja.wikipedia.org/wiki/エアフィルタ", "https://zh.wikipedia.org/wiki/行星保护"]
 - id: fab
   ko: 팹
   en: fab
@@ -1591,27 +1596,29 @@
   example_en: The new fab starts operation next year.
   definition_ko: 웨이퍼에 회로를 만드는 공장
   module: 3
-  verified: false
+  verified: true
+  sources: ["https://en.wikipedia.org/wiki/Semiconductor_fabrication_plant", "https://zh.wikipedia.org/wiki/晶圆厂", "https://www.ctee.com.tw/news/20260118700349-431202", "https://news.samsungsemiconductor.com/kr/?p=1632", "https://www.semi.org/jp/products-services/market-data/fab-forecast"]
 - id: sub-fab
   ko: 서브팹
   en: sub-fab
   ja: サブファブ
   ja_reading: さぶふぁぶ
-  zh_cn: 下层厂房
-  zh_cn_pinyin: xiàcéng chǎngfáng
-  zh_tw: 地下機房
-  zh_tw_pinyin: dìxià jīfáng
+  zh_cn: 次洁净区
+  zh_cn_pinyin: cìjiéjìngqū
+  zh_tw: 次廠務層
+  zh_tw_pinyin: cìchǎngwùcéng
   field_usage: "현장에서는 '서브팹'으로 부름"
   example_ko: 펌프는 클린룸 아래 서브팹에 설치되어 있다.
   example_en: The pumps are installed in the sub-fab below the cleanroom.
   definition_ko: 클린룸 아래층에서 펌프와 배관 같은 지원 설비를 두는 공간
   module: 3
   verified: false
+  sources: ["https://cleanroomtechnology.com/what-is-a-semiconductor-cleanroom-sub-fab"]
 - id: cleanroom-class
   ko: 청정도 등급
   en: cleanroom class
-  ja: クリーン度クラス
-  ja_reading: くりーんどくらす
+  ja: 清浄度クラス
+  ja_reading: せいじょうどくらす
   zh_cn: 洁净度等级
   zh_cn_pinyin: jiéjìngdù děngjí
   zh_tw: 潔淨度等級
@@ -1622,6 +1629,7 @@
   definition_ko: 공기 속 먼지가 얼마나 적은지를 나타내는 깨끗함의 단계
   module: 3
   verified: false
+  sources: ["https://ja.wikipedia.org/wiki/クリーンルーム"]
 - id: esd
   ko: 정전기 방전
   en: electrostatic discharge
@@ -1636,7 +1644,8 @@
   example_en: ESD can damage chips, so we wear wrist straps.
   definition_ko: 쌓인 정전기가 한꺼번에 흘러 칩 회로를 망가뜨리는 현상
   module: 3
-  verified: false
+  verified: true
+  sources: [https://ja.wikipedia.org/wiki/静電気放電, https://zh.wikipedia.org/wiki/静电放电]
 - id: metrology
   ko: 계측
   en: metrology
@@ -1651,7 +1660,8 @@
   example_en: Line width is checked by metrology after etching.
   definition_ko: 두께나 선폭 같은 값을 재서 공정이 잘 됐는지 확인하는 일
   module: 5
-  verified: false
+  verified: true
+  sources: ["https://en.wikipedia.org/wiki/Semiconductor_device_fabrication", "https://www.seaj.or.jp/semi/yogo/", "https://www.ithome.com/0/695/703.htm", "https://www.ithome.com.tw/tech/88325", "https://terms.naer.edu.tw/search/?query_term=metrology&query_field=title&query_op=", "https://news.skhynix.co.kr/ambassador-hypidia-1/"]
 - id: inspection
   ko: 검사
   en: inspection
@@ -1665,7 +1675,8 @@
   example_en: A scratch was found during wafer surface inspection.
   definition_ko: 웨이퍼에 불량이 있는지 찾아내는 일
   module: 5
-  verified: false
+  verified: true
+  sources: ["https://www.screen.co.jp/spe/products/zi-3600", "https://wikidocs.net/350746", "https://en.wikipedia.org/wiki/Semiconductor_device_fabrication", "https://www.ithome.com/0/695/703.htm", "https://terms.naer.edu.tw/search/?query_term=inspection&query_field=title&query_op="]
 - id: defect
   ko: 결함
   en: defect
@@ -1680,7 +1691,8 @@
   example_en: Defects suddenly increased in this area.
   definition_ko: 칩이 제대로 동작하지 못하게 만드는 웨이퍼 위의 흠이나 이상
   module: 5
-  verified: false
+  verified: true
+  sources: ["https://www.screen.co.jp/spe/products/zi-3600", "https://wikidocs.net/350746", "https://en.wikipedia.org/wiki/Semiconductor_device_fabrication", "https://www.ithome.com/0/695/703.htm", "https://terms.naer.edu.tw/search/?query_term=defect&query_field=title&query_op="]
 - id: wafer-map
   ko: 웨이퍼 맵
   en: wafer map
@@ -1695,6 +1707,7 @@
   definition_ko: 웨이퍼 위 칩마다 합격과 불합격을 색으로 그린 그림
   module: 5
   verified: false
+  sources: ["https://ko.wikipedia.org/wiki/웨이퍼", "https://en.wikipedia.org/wiki/Substrate_mapping", "https://zh.wikipedia.org/zh-hans/晶圆映射", "https://zh.wikipedia.org/zh-hant/晶圓映射"]
 - id: sem
   ko: 주사전자현미경
   en: scanning electron microscope
@@ -1709,7 +1722,8 @@
   example_en: We checked the pattern cross-section with an SEM.
   definition_ko: 전자 빔으로 아주 작은 패턴의 모양을 확대해 보는 현미경
   module: 5
-  verified: false
+  verified: true
+  sources: [https://zh.wikipedia.org/wiki/扫描电子显微镜, https://zh.wikipedia.org/zh-tw/掃描式電子顯微鏡]
 - id: ellipsometer
   ko: 엘립소미터
   en: ellipsometer
@@ -1723,7 +1737,8 @@
   example_en: We measured the oxide thickness with an ellipsometer.
   definition_ko: 빛이 반사되는 모습으로 얇은 막의 두께를 재는 장비
   module: 5
-  verified: false
+  verified: true
+  sources: ["https://en.wikipedia.org/wiki/Ellipsometry", "https://zh.wikipedia.org/zh-hans/椭偏仪", "https://www.horiba.com/jpn/scientific/products/detail/action/show/Product/smart-se-1105/", "https://terms.naer.edu.tw/search/?query_term=ellipsometer&query_field=title&query_op=", "https://skb.skku.edu/ccrf/room/equipment/surface_equip_ELL.do"]
 - id: defect-review
   ko: 결함 리뷰
   en: defect review
@@ -1739,13 +1754,14 @@
   definition_ko: 검사에서 찾은 결함을 더 크게 확대해 종류와 원인을 살피는 일
   module: 5
   verified: false
+  sources: ["https://www.seaj.or.jp/semi/yogo/metrology/"]
 - id: bin
   ko: 빈
   en: bin
   ja: ビン
   ja_reading: びん
-  zh_cn: 分级
-  zh_cn_pinyin: fēnjí
+  zh_cn: 分档
+  zh_cn_pinyin: fēndàng
   zh_tw: 分級
   zh_tw_pinyin: fēnjí
   field_usage: "현장에서는 '빈'으로 부르며 테스트 결과 등급을 뜻함"
@@ -1754,20 +1770,22 @@
   definition_ko: 테스트 결과에 따라 칩을 나눈 등급 번호
   module: 5
   verified: false
+  sources: ["https://en.wikipedia.org/wiki/Substrate_mapping", "https://zh.wikipedia.org/zh-hans/晶圆映射", "https://zh.wikipedia.org/wiki/三维集成电路"]
 - id: sampling-inspection
   ko: 샘플링 검사
   en: sampling inspection
   ja: サンプリング検査
   ja_reading: さんぷりんぐけんさ
-  zh_cn: 抽样检测
-  zh_cn_pinyin: chōuyàng jiǎncè
-  zh_tw: 抽樣檢測
-  zh_tw_pinyin: chōuyàng jiǎncè
+  zh_cn: 抽样检验
+  zh_cn_pinyin: chōuyàng jiǎnyàn
+  zh_tw: 抽樣檢驗
+  zh_tw_pinyin: chōuyàng jiǎnyàn
   example_ko: 로트마다 웨이퍼 두 장만 샘플링 검사한다.
   example_en: Only two wafers per lot go through sampling inspection.
   definition_ko: 전부 보지 않고 일부만 뽑아서 검사하는 방법
   module: 5
   verified: false
+  sources: ["https://terms.naer.edu.tw/search/?query_term=sampling+inspection&query_field=title&query_op=", "https://ja.wikipedia.org/wiki/ボーイング787のバッテリー問題"]
 - id: tem
   ko: 투과전자현미경
   en: transmission electron microscope
@@ -1782,7 +1800,8 @@
   example_en: The thin-film interface is viewed down to the atomic level by TEM.
   definition_ko: 아주 얇게 깎은 시료에 전자를 통과시켜 내부를 보는 현미경
   module: 5
-  verified: false
+  verified: true
+  sources: [https://ja.wikipedia.org/wiki/透過型電子顕微鏡, https://zh.wikipedia.org/zh-tw/穿透式電子顯微鏡]
 - id: ingot
   ko: 잉곳
   en: ingot
@@ -1796,23 +1815,25 @@
   example_ko: 잉곳을 얇게 잘라 웨이퍼를 만든다.
   example_en: Wafers are made by slicing the ingot thin.
   definition_ko: 웨이퍼를 자르기 전의 둥근 기둥 모양 실리콘 덩어리
-  module: 0
-  verified: false
+  module: 4
+  verified: true
+  sources: ["https://semiconductor.samsung.com/kr/support/tools-resources/dictionary/semiconductor-glossary-ingot/", "https://zh.wikipedia.org/wiki/晶圆", "https://en.wikipedia.org/wiki/Semiconductor_device_fabrication", "https://ja.wikipedia.org/wiki/シリコンウェハー", "https://zh.wikipedia.org/wiki/台面晶体管"]
 - id: recipe
   ko: 레시피
   en: recipe
   ja: レシピ
   ja_reading: れしぴ
-  zh_cn: 工艺菜单
-  zh_cn_pinyin: gōngyì càidān
+  zh_cn: 工艺配方
+  zh_cn_pinyin: gōngyì pèifāng
   zh_tw: 製程配方
   zh_tw_pinyin: zhìchéng pèifāng
   field_usage: "중국 현장에서는 '配方'도 흔히 씀"
   example_ko: 레시피를 바꾸기 전에 엔지니어 승인을 받아야 한다.
   example_en: You need engineer approval before changing the recipe.
   definition_ko: 장비가 따라야 하는 온도, 시간, 가스량 같은 공정 조건 모음
-  module: 0
-  verified: false
+  module: 8
+  verified: true
+  sources: ["https://wikidocs.net/350746", "https://en.wikipedia.org/wiki/Semiconductor_device_fabrication", "https://www.seaj.or.jp/semi/yogo/lithography/", "https://zh.wikipedia.org/wiki/离子注入", "https://zh.wikipedia.org/wiki/三星電子"]
 - id: interlock
   ko: 인터락
   en: interlock
@@ -1826,8 +1847,9 @@
   example_ko: 도어가 열려 인터락이 걸려서 장비가 멈췄다.
   example_en: The door opened, the interlock tripped, and the tool stopped.
   definition_ko: 위험하거나 이상할 때 장비가 자동으로 멈추게 하는 안전 장치
-  module: 0
-  verified: false
+  module: 8
+  verified: true
+  sources: ["https://news.samsungsemiconductor.com/kr/%EC%9E%84%EC%A7%81%EC%9B%90%EA%B3%BC-%EC%A0%9C%ED%92%88%EC%9D%98-%EB%B3%B4%ED%98%B8%EB%A7%89-%EC%9D%B8%ED%84%B0%EB%9D%BDinterlock/", "https://patents.google.com/patent/JP2929242B2/ja", "https://en.wikipedia.org/wiki/Interlock_(engineering)", "https://terms.naer.edu.tw/search/?query_term=interlock&query_field=title&query_op=", "https://zh.wikipedia.org/wiki/互锁"]
 - id: down
   ko: 다운
   en: down
@@ -1841,8 +1863,9 @@
   example_ko: 3번 장비가 다운되어 로트를 다른 장비로 옮긴다.
   example_en: Tool 3 is down, so the lot moves to another tool.
   definition_ko: 장비가 고장이나 점검으로 멈춰 쓸 수 없는 상태
-  module: 0
+  module: 8
   verified: false
+  sources: ["https://www.seaj.or.jp/semi/yogo/factory/"]
 - id: hot-lot
   ko: 핫랏
   en: hot lot
@@ -1856,8 +1879,9 @@
   example_ko: 핫랏은 대기 없이 먼저 장비에 넣는다.
   example_en: A hot lot is loaded into the tool first, without waiting.
   definition_ko: 급하게 먼저 처리하도록 우선순위를 높인 로트
-  module: 0
+  module: 8
   verified: false
+  sources: ["https://www.inficon.com/ko/소식/new-metric-cycle-time-impact-of-hot-lots"]
 - id: scrap
   ko: 스크랩
   en: scrap
@@ -1871,8 +1895,9 @@
   example_ko: 깨진 웨이퍼는 스크랩 처리한다.
   example_en: A broken wafer is scrapped.
   definition_ko: 고칠 수 없어 버리기로 한 웨이퍼나 제품
-  module: 0
+  module: 8
   verified: false
+  sources: ["https://yieldwerx.com/?p=11674", "https://technews.tw/?p=439844", "https://www.seaj.or.jp/semi/yogo/factory/", "https://terms.naer.edu.tw/search/?query_term=scrap&query_field=title&query_op=", "https://zh.wikipedia.org/wiki/刻蚀"]
 - id: rework
   ko: 재작업
   en: rework
@@ -1886,8 +1911,9 @@
   example_ko: 포토 불량 웨이퍼는 레지스트를 벗기고 리워크한다.
   example_en: Photo-defect wafers have the resist stripped and are reworked.
   definition_ko: 불량이 난 공정을 지우고 다시 하는 일
-  module: 0
-  verified: false
+  module: 8
+  verified: true
+  sources: ["https://patents.google.com/patent/US6248602", "https://www.seaj.or.jp/semi/yogo/factory/", "https://terms.naer.edu.tw/search/?query_term=rework&query_field=title&query_op=", "https://news.skhynix.co.kr/above-the-photo-process/", "https://zh.wikipedia.org/wiki/统计过程控制"]
 - id: hold
   ko: 홀드
   en: hold
@@ -1901,8 +1927,9 @@
   example_ko: 이상이 발견되어 해당 로트에 홀드를 걸었다.
   example_en: An anomaly was found, so the lot was put on hold.
   definition_ko: 원인을 확인할 때까지 로트의 다음 공정 진행을 막아 두는 일
-  module: 0
+  module: 8
   verified: false
+  sources: ["https://yieldwerx.com/?p=11674"]
 - id: split-lot
   ko: 스플릿 랏
   en: split lot
@@ -1916,8 +1943,9 @@
   example_ko: 조건 비교를 위해 로트를 스플릿 랏으로 나눈다.
   example_en: The lot is split into split lots to compare conditions.
   definition_ko: 조건을 다르게 비교하려고 한 로트를 나눠 다르게 처리하는 실험
-  module: 0
+  module: 8
   verified: false
+  sources: ["https://patents.google.com/patent/US8204721"]
 - id: alarm
   ko: 알람
   en: alarm
@@ -1931,5 +1959,6 @@
   example_ko: 챔버 압력 알람이 울려서 공정이 중단되었다.
   example_en: The chamber pressure alarm sounded and the process stopped.
   definition_ko: 장비나 공정에 이상이 생겼을 때 알려 주는 경고
-  module: 0
+  module: 8
   verified: false
+  sources: ["https://help.criticalmanufacturing.com/userguide/automation/reference/tasks/secsgem/task_equipmentalarm/", "https://patents.google.com/patent/CN102568147B/zh", "https://terms.naer.edu.tw/search/?query_term=alarm&query_field=title&query_op=", "https://news.skhynix.co.kr/sk-hynixs-efforts-to-prevent-disasters/"]

@@ -96,6 +96,17 @@ const { label = '단계별 도해', prevLabel = '이전', nextLabel = '다음' }
 		background: var(--surface-sunken);
 	}
 
+	/* 휴대폰: 도해가 최대한 넓게 보이도록 여백을 줄여 그림 속 글자 축소를 막는다 */
+	@media (max-width: 480px) {
+		.step-animation {
+			border-radius: var(--radius-md);
+		}
+
+		.steps {
+			padding: var(--space-1);
+		}
+	}
+
 	.steps > :global(*) {
 		display: block;
 		width: 100%;

@@ -42,3 +42,13 @@ effort: low
 - 확신이 없는 표기만 웹 검색으로 확인한다. 확인한 항목은 `verified: true`와 `sources: [url]`을 적는다.
 - 모든 용어를 검색하지 않는다. 미확인 항목은 `verified: false`로 두고 공개 전 검수에서 처리한다.
 - 현장 표현이 공식 용어와 다르면 현장 표현을 `field_usage`에 적는다.
+
+## 검수 출처 (표기 확인에 실제로 쓸모 있던 곳)
+한 출처가 5개 언어를 다 담지 않는다. 언어별로 따로 찾고, 페이지 본문에서 그 표기를 직접 본 것만 확인으로 친다(검색 결과 요약은 근거가 아니다).
+- 번체: 國家教育研究院 樂詞網. `https://terms.naer.edu.tw/search/?query_term=<영어>&query_field=title&query_op=` 를 브라우저로 연다(fetch는 빈 응답). 영어 표제어 → 대만 공식 번역이 분야별로 나온다. 가장 적중률이 높다.
+- 일본어: SEAJ 半導体製造装置用語集 `https://www.seaj.or.jp/semi/yogo/` (factory, metrology, lithography, assembly, test 편). 장비·공장 운영 용어에 강하다. 그다음 SEMI Japan(`semi.org/jp`), SCREEN·HORIBA·KIOXIA 제품/기술 페이지.
+- 한국어: SK hynix 뉴스룸 검색 `https://news.skhynix.co.kr/?s=<용어>` (결과 발췌에 "재작업(rework)", "로트(Lot)"처럼 영어 병기가 나온다), 삼성전자 반도체 뉴스룸 용어 글(`news.samsungsemiconductor.com/kr/?p=1632`, `?p=3821`).
+- 영어: 영어 위키백과 `Semiconductor_device_fabrication` 한 문서에 inspection, defect, ingot, recipe, scrap이 다 나온다.
+- 간체·번체·일본어 보조: 위키백과 API `list=search&srsearch=insource:"표기" 문맥어&srprop=snippet` (`origin=*`). 원문에 쓰인 글자 그대로 찾으므로 간체/번체를 구분할 수 있다. 중국어 위키백과 화면 표시는 자동 변환이라 근거로 쓰지 않는다. 일반 문서라 근거는 약하다.
+- 쓸모없었던 곳: Google Patents(본문이 읽히지 않음), 术语在线, 百度, PDF 논문, 취업 커뮤니티·블로그.
+- 현장 말(hot lot, hold, split lot, down 등)의 한·일·중 표기는 공개 웹에 거의 없다. 찾지 못하면 `verified: false`로 두고 사람 검수로 넘긴다.

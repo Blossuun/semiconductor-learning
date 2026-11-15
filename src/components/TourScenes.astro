@@ -1,4 +1,5 @@
 ---
+import { getEntry } from 'astro:content';
 import StepAnimation from './StepAnimation.astro';
 
 // 장면 문구: docs/tour-scenes.md
@@ -36,6 +37,32 @@ const scenes = [
 		text: '잘라 낸 칩을 기판에 붙여 바깥과 전기로 잇고 단단한 재료로 감쌉니다. 이제 휴대폰과 컴퓨터에 들어갈 반도체가 완성됐습니다. 칩은 얇고 약해 그대로 쓰면 쉽게 깨지고 바깥 기기와 이을 수 없어서, 이 포장이 꼭 필요합니다.',
 	},
 ];
+
+// 장면별 핵심 용어 id (glossary.yaml). 용어 표기는 여기서 가져온다.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const sceneTermIds = [
+	['silicon'],
+	['ingot', 'wafer'],
+	['oxidation', 'deposition'],
+	['photolithography', 'photoresist'],
+	['etching'],
+	['ion-implantation', 'metallization'],
+	['eds', 'dicing'],
+	['packaging'],
+];
+const sceneTerms = await Promise.all(
+	sceneTermIds.map((ids) =>
+		Promise.all(
+			ids.map(async (id) => {
+				const entry = await getEntry('glossary', id);
+				if (!entry) {
+					throw new Error(`TourScenes: glossary.yaml에 id "${id}" 용어가 없습니다.`);
+				}
+				return { id, ...entry.data };
+			}),
+		),
+	),
+);
 
 // 장면 7: 원 안에 들어가는 칩 격자
 const dies: { x: number; y: number }[] = [];
@@ -112,6 +139,7 @@ const pads = [337, 351, 365, 379];
 		<figcaption>
 			<strong>1. {scenes[0].title}</strong>
 			<p>{scenes[0].text}</p>
+			<ul class="terms">{sceneTerms[0].map((t) => (<li><a href={`${base}/glossary/#term-${t.id}`}><span class="ko" lang="ko">{t.ko}</span>{t.en && <span data-lang="en" lang="en">{t.en}</span>}{t.ja && <span data-lang="ja" lang="ja">{t.ja}</span>}{t.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{t.zh_cn}</span>}{t.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{t.zh_tw}</span>}</a></li>))}</ul>
 		</figcaption>
 	</figure>
 
@@ -163,6 +191,7 @@ const pads = [337, 351, 365, 379];
 		<figcaption>
 			<strong>2. {scenes[1].title}</strong>
 			<p>{scenes[1].text}</p>
+			<ul class="terms">{sceneTerms[1].map((t) => (<li><a href={`${base}/glossary/#term-${t.id}`}><span class="ko" lang="ko">{t.ko}</span>{t.en && <span data-lang="en" lang="en">{t.en}</span>}{t.ja && <span data-lang="ja" lang="ja">{t.ja}</span>}{t.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{t.zh_cn}</span>}{t.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{t.zh_tw}</span>}</a></li>))}</ul>
 		</figcaption>
 	</figure>
 
@@ -192,6 +221,7 @@ const pads = [337, 351, 365, 379];
 		<figcaption>
 			<strong>3. {scenes[2].title}</strong>
 			<p>{scenes[2].text}</p>
+			<ul class="terms">{sceneTerms[2].map((t) => (<li><a href={`${base}/glossary/#term-${t.id}`}><span class="ko" lang="ko">{t.ko}</span>{t.en && <span data-lang="en" lang="en">{t.en}</span>}{t.ja && <span data-lang="ja" lang="ja">{t.ja}</span>}{t.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{t.zh_cn}</span>}{t.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{t.zh_tw}</span>}</a></li>))}</ul>
 		</figcaption>
 	</figure>
 
@@ -226,6 +256,7 @@ const pads = [337, 351, 365, 379];
 		<figcaption>
 			<strong>4. {scenes[3].title}</strong>
 			<p>{scenes[3].text}</p>
+			<ul class="terms">{sceneTerms[3].map((t) => (<li><a href={`${base}/glossary/#term-${t.id}`}><span class="ko" lang="ko">{t.ko}</span>{t.en && <span data-lang="en" lang="en">{t.en}</span>}{t.ja && <span data-lang="ja" lang="ja">{t.ja}</span>}{t.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{t.zh_cn}</span>}{t.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{t.zh_tw}</span>}</a></li>))}</ul>
 		</figcaption>
 	</figure>
 
@@ -262,6 +293,7 @@ const pads = [337, 351, 365, 379];
 		<figcaption>
 			<strong>5. {scenes[4].title}</strong>
 			<p>{scenes[4].text}</p>
+			<ul class="terms">{sceneTerms[4].map((t) => (<li><a href={`${base}/glossary/#term-${t.id}`}><span class="ko" lang="ko">{t.ko}</span>{t.en && <span data-lang="en" lang="en">{t.en}</span>}{t.ja && <span data-lang="ja" lang="ja">{t.ja}</span>}{t.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{t.zh_cn}</span>}{t.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{t.zh_tw}</span>}</a></li>))}</ul>
 		</figcaption>
 	</figure>
 
@@ -305,6 +337,7 @@ const pads = [337, 351, 365, 379];
 		<figcaption>
 			<strong>6. {scenes[5].title}</strong>
 			<p>{scenes[5].text}</p>
+			<ul class="terms">{sceneTerms[5].map((t) => (<li><a href={`${base}/glossary/#term-${t.id}`}><span class="ko" lang="ko">{t.ko}</span>{t.en && <span data-lang="en" lang="en">{t.en}</span>}{t.ja && <span data-lang="ja" lang="ja">{t.ja}</span>}{t.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{t.zh_cn}</span>}{t.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{t.zh_tw}</span>}</a></li>))}</ul>
 		</figcaption>
 	</figure>
 
@@ -351,6 +384,7 @@ const pads = [337, 351, 365, 379];
 		<figcaption>
 			<strong>7. {scenes[6].title}</strong>
 			<p>{scenes[6].text}</p>
+			<ul class="terms">{sceneTerms[6].map((t) => (<li><a href={`${base}/glossary/#term-${t.id}`}><span class="ko" lang="ko">{t.ko}</span>{t.en && <span data-lang="en" lang="en">{t.en}</span>}{t.ja && <span data-lang="ja" lang="ja">{t.ja}</span>}{t.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{t.zh_cn}</span>}{t.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{t.zh_tw}</span>}</a></li>))}</ul>
 		</figcaption>
 	</figure>
 
@@ -392,6 +426,7 @@ const pads = [337, 351, 365, 379];
 		<figcaption>
 			<strong>8. {scenes[7].title}</strong>
 			<p>{scenes[7].text}</p>
+			<ul class="terms">{sceneTerms[7].map((t) => (<li><a href={`${base}/glossary/#term-${t.id}`}><span class="ko" lang="ko">{t.ko}</span>{t.en && <span data-lang="en" lang="en">{t.en}</span>}{t.ja && <span data-lang="ja" lang="ja">{t.ja}</span>}{t.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{t.zh_cn}</span>}{t.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{t.zh_tw}</span>}</a></li>))}</ul>
 		</figcaption>
 	</figure>
 </StepAnimation>
@@ -410,7 +445,7 @@ const pads = [337, 351, 365, 379];
 	.scene svg {
 		display: block;
 		width: 100%;
-		max-width: 36rem;
+		max-width: 21rem;
 		height: auto;
 		margin-inline: auto;
 		font-family: var(--font-sans);
@@ -1032,6 +1067,50 @@ const pads = [337, 351, 365, 379];
 		.scene svg * {
 			animation: none;
 		}
+	}
+
+	.terms {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--space-2);
+		margin: var(--space-2) 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.terms a {
+		display: inline-flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0 var(--space-1);
+		padding: var(--space-1) var(--space-2);
+		border: 1px solid var(--border);
+		border-radius: 4px;
+		background: var(--surface);
+		color: var(--text);
+		font-size: 14px;
+		line-height: 22px;
+		text-decoration: none;
+	}
+
+	.terms a:hover {
+		border-color: var(--primary);
+		color: var(--primary);
+	}
+
+	.terms a:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+
+	.terms .ko {
+		font-weight: 600;
+	}
+
+	.terms [data-lang] {
+		color: var(--text-muted);
+		font-weight: 500;
 	}
 
 	/* 좁은 화면: 그림이 줄어도 라벨이 14px 이상으로 보이게 */

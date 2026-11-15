@@ -25,6 +25,15 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 		.filter(Boolean)
 		.join(' ')
 		.toLowerCase();
+// TermCard와 같은 규칙: 약어로 부르는 용어는 약어를 표제어로 쓴다.
+const headAbbrOf = (t: (typeof terms)[number]['data']) =>
+	(t.abbr
+		? String(t.abbr)
+				.split(',')
+				.map((s) => s.trim())
+				.filter(Boolean)
+		: []
+	).find((a) => /^[A-Z][A-Za-z0-9]{2,}$/.test(a) && (a.match(/[A-Z]/g) ?? []).length >= 2);
 ---
 
 <Base title="용어집">
@@ -74,13 +83,17 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 				<li data-term data-term-module={term.data.module} data-term-search={searchText(term.data)}>
 					<details class="term">
 						<summary class="row">
-							<span class="row-ko">{term.data.ko}</span>
+							<span class="row-ko">
+								{headAbbrOf(term.data) ?? term.data.ko}
+								{headAbbrOf(term.data) && <span class="row-sub">{term.data.ko}</span>}
+							</span>
 							<span class="row-foreign">
 								{term.data.en && <span data-lang="en" lang="en">{term.data.en}</span>}
 								{term.data.ja && <span data-lang="ja" lang="ja">{term.data.ja}</span>}
 								{term.data.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{term.data.zh_cn}</span>}
 								{term.data.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{term.data.zh_tw}</span>}
 							</span>
+							{!term.data.verified && <span class="badge unverified">확인 전</span>}
 							<span class="badge">{term.data.module}단계</span>
 						</summary>
 						<div class="term-body">
@@ -320,6 +333,21 @@ const searchText = (t: (typeof terms)[number]['data']) =>
 		color: var(--text-muted);
 		text-overflow: ellipsis;
 		white-space: nowrap;
+	}
+
+	.row-foreign > span {
+		margin-inline-end: var(--space-3);
+	}
+
+	.row-sub {
+		margin-inline-start: var(--space-2);
+		font-size: var(--fs-small);
+		font-weight: 500;
+		color: var(--text-muted);
+	}
+
+	.badge.unverified {
+		color: var(--text-muted);
 	}
 
 	.badge {
