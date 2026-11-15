@@ -1528,12 +1528,13 @@
   zh_cn_pinyin: fēnglínshì
   zh_tw: 風淋室
   zh_tw_pinyin: fēnglínshì
+  field_usage: "대만에서는 '空氣浴塵室'라고도 부름"
   example_ko: 에어샤워를 10초 이상 맞고 들어간다.
   example_en: Stand in the air shower for at least 10 seconds before going in.
   definition_ko: 클린룸에 들어가기 전에 센 바람으로 옷의 먼지를 털어내는 작은 방
   module: 3
-  verified: false
-  sources: ["https://www.rdworldonline.com/air-showers-and-cleanroom-operation/", "https://ja.wikipedia.org/wiki/クリーンルーム"]
+  verified: true
+  sources: ["https://www.rdworldonline.com/air-showers-and-cleanroom-operation/", "https://ja.wikipedia.org/wiki/クリーンルーム", "https://baike.baidu.com/item/%E9%A3%8E%E6%B7%8B%E5%AE%A4/1151331", "https://www.baisheng-tech.com/products/air-shower-ac-standard/", "https://zh-tw.acdt.com.tw/air-shower"]
 - id: lot
   ko: 로트
   en: lot
@@ -1603,17 +1604,17 @@
   en: sub-fab
   ja: サブファブ
   ja_reading: さぶふぁぶ
-  zh_cn: 次洁净区
-  zh_cn_pinyin: cìjiéjìngqū
-  zh_tw: 次廠務層
-  zh_tw_pinyin: cìchǎngwùcéng
-  field_usage: "현장에서는 '서브팹'으로 부름"
+  zh_cn: Sub-Fab
+  zh_cn_pinyin: Sub-Fab
+  zh_tw: Sub-Fab
+  zh_tw_pinyin: Sub-Fab
+  field_usage: "현장에서는 '서브팹'으로 부름. 중국과 대만에서도 영어 'Sub-Fab'을 그대로 씀"
   example_ko: 펌프는 클린룸 아래 서브팹에 설치되어 있다.
   example_en: The pumps are installed in the sub-fab below the cleanroom.
   definition_ko: 클린룸 아래층에서 펌프와 배관 같은 지원 설비를 두는 공간
   module: 3
-  verified: false
-  sources: ["https://cleanroomtechnology.com/what-is-a-semiconductor-cleanroom-sub-fab"]
+  verified: true
+  sources: ["https://cleanroomtechnology.com/what-is-a-semiconductor-cleanroom-sub-fab", "https://www.goodtechnology.com.tw/subfab.html", "https://www.goodtechnology.com.tw/cn/subfab.html", "https://www.ifm.cn/cn/zh/shared/landingpages/semiconductor/sub-fab-and-facilities"]
 - id: cleanroom-class
   ko: 청정도 등급
   en: cleanroom class
@@ -1744,8 +1745,8 @@
   en: defect review
   ja: 欠陥レビュー
   ja_reading: けっかんれびゅー
-  zh_cn: 缺陷复查
-  zh_cn_pinyin: quēxiàn fùchá
+  zh_cn: 缺陷复检
+  zh_cn_pinyin: quēxiàn fùjiǎn
   zh_tw: 缺陷複檢
   zh_tw_pinyin: quēxiàn fùjiǎn
   field_usage: "현장에서는 '리뷰'로 줄여 부름"
@@ -1753,8 +1754,8 @@
   example_en: Defects found in inspection are magnified again on a review tool.
   definition_ko: 검사에서 찾은 결함을 더 크게 확대해 종류와 원인을 살피는 일
   module: 5
-  verified: false
-  sources: ["https://www.seaj.or.jp/semi/yogo/metrology/"]
+  verified: true
+  sources: ["https://www.seaj.or.jp/semi/yogo/metrology/", "https://patents.google.com/patent/CN115856000B/zh", "https://www.appliedmaterials.com/tw/zh_tw/product-library/semvision-g9-defect-analysis.html"]
 - id: bin
   ko: 빈
   en: bin
@@ -1764,13 +1765,13 @@
   zh_cn_pinyin: fēndàng
   zh_tw: 分級
   zh_tw_pinyin: fēnjí
-  field_usage: "현장에서는 '빈'으로 부르며 테스트 결과 등급을 뜻함"
+  field_usage: "현장에서는 '빈'으로 부르며 테스트 결과 등급을 뜻함. 중국과 대만 현장에서는 'Bin'을 그대로 쓰는 일이 많고, 나누는 일을 '分Bin(分 bin)'이라 함"
   example_ko: 빈 1은 양품, 나머지는 불량 유형별로 나뉜다.
   example_en: Bin 1 is good, and the others are split by failure type.
   definition_ko: 테스트 결과에 따라 칩을 나눈 등급 번호
   module: 5
-  verified: false
-  sources: ["https://en.wikipedia.org/wiki/Substrate_mapping", "https://zh.wikipedia.org/zh-hans/晶圆映射", "https://zh.wikipedia.org/wiki/三维集成电路"]
+  verified: true
+  sources: ["https://en.wikipedia.org/wiki/Substrate_mapping", "https://zh.wikipedia.org/zh-hans/晶圆映射", "https://zh.wikipedia.org/wiki/三维集成电路", "https://www.zhihu.com/question/488238624", "https://semirai.com/tw/glossary/binning", "https://ytliu0001.blogspot.com/search?q=bin"]
 - id: sampling-inspection
   ko: 샘플링 검사
   en: sampling inspection
@@ -1864,24 +1865,24 @@
   example_en: Tool 3 is down, so the lot moves to another tool.
   definition_ko: 장비가 고장이나 점검으로 멈춰 쓸 수 없는 상태
   module: 8
-  verified: false
-  sources: ["https://www.seaj.or.jp/semi/yogo/factory/"]
+  verified: true
+  sources: ["https://www.seaj.or.jp/semi/yogo/factory/", "https://zhuanlan.zhihu.com/p/1933539515584197957", "https://www.ithome.com.tw/news/125098"]
 - id: hot-lot
   ko: 핫랏
   en: hot lot
   ja: ホットロット
   ja_reading: ほっとろっと
-  zh_cn: 急件批次
-  zh_cn_pinyin: jíjiàn pīcì
-  zh_tw: 急件批次
-  zh_tw_pinyin: jíjiàn pīcì
-  field_usage: "현장에서는 '핫랏'으로 부름"
+  zh_cn: 热批次
+  zh_cn_pinyin: rè pīcì
+  zh_tw: 急件
+  zh_tw_pinyin: jíjiàn
+  field_usage: "현장에서는 '핫랏'으로 부름. 중국과 대만 현장에서도 'Hot Lot'을 그대로 쓰는 일이 많음"
   example_ko: 핫랏은 대기 없이 먼저 장비에 넣는다.
   example_en: A hot lot is loaded into the tool first, without waiting.
   definition_ko: 급하게 먼저 처리하도록 우선순위를 높인 로트
   module: 8
-  verified: false
-  sources: ["https://www.inficon.com/ko/소식/new-metric-cycle-time-impact-of-hot-lots"]
+  verified: true
+  sources: ["https://www.inficon.com/ko/소식/new-metric-cycle-time-impact-of-hot-lots", "https://www.icviews.cn/semiCommunity/postDetail/6099", "https://fab24hr.com/blog/what-is-hot-lot/"]
 - id: scrap
   ko: 스크랩
   en: scrap
@@ -1896,8 +1897,8 @@
   example_en: A broken wafer is scrapped.
   definition_ko: 고칠 수 없어 버리기로 한 웨이퍼나 제품
   module: 8
-  verified: false
-  sources: ["https://yieldwerx.com/?p=11674", "https://technews.tw/?p=439844", "https://www.seaj.or.jp/semi/yogo/factory/", "https://terms.naer.edu.tw/search/?query_term=scrap&query_field=title&query_op=", "https://zh.wikipedia.org/wiki/刻蚀"]
+  verified: true
+  sources: ["https://yieldwerx.com/?p=11674", "https://technews.tw/?p=439844", "https://www.seaj.or.jp/semi/yogo/factory/", "https://terms.naer.edu.tw/search/?query_term=scrap&query_field=title&query_op=", "https://zh.wikipedia.org/wiki/刻蚀", "https://terms.naer.edu.tw/search/?query_term=scrap&query_field=title&query_op=&match_type=phrase"]
 - id: rework
   ko: 재작업
   en: rework
@@ -1919,33 +1920,33 @@
   en: hold
   ja: ホールド
   ja_reading: ほーるど
-  zh_cn: 暂停处理
-  zh_cn_pinyin: zàntíng chǔlǐ
-  zh_tw: 暫停處理
-  zh_tw_pinyin: zàntíng chǔlǐ
-  field_usage: "현장에서는 '홀드 걸다'라고 부름"
+  zh_cn: 扣留
+  zh_cn_pinyin: kòuliú
+  zh_tw: 扣留
+  zh_tw_pinyin: kòuliú
+  field_usage: "현장에서는 '홀드 걸다'라고 부름. 중국과 대만 현장에서도 'Hold'를 그대로 쓰는 일이 많음"
   example_ko: 이상이 발견되어 해당 로트에 홀드를 걸었다.
   example_en: An anomaly was found, so the lot was put on hold.
   definition_ko: 원인을 확인할 때까지 로트의 다음 공정 진행을 막아 두는 일
   module: 8
-  verified: false
-  sources: ["https://yieldwerx.com/?p=11674"]
+  verified: true
+  sources: ["https://yieldwerx.com/?p=11674", "https://zhuanlan.zhihu.com/p/1937145196090482853", "https://www.airitilibrary.com/Article/Detail/U0009-0112200611304302"]
 - id: split-lot
   ko: 스플릿 랏
   en: split lot
   ja: スプリットロット
   ja_reading: すぷりっとろっと
-  zh_cn: 分批实验
-  zh_cn_pinyin: fēnpī shíyàn
-  zh_tw: 分批實驗
-  zh_tw_pinyin: fēnpī shíyàn
-  field_usage: "현장에서는 '스플릿'이라고 줄여 부름"
+  zh_cn: 分批
+  zh_cn_pinyin: fēnpī
+  zh_tw: 分批
+  zh_tw_pinyin: fēnpī
+  field_usage: "현장에서는 '스플릿'이라고 줄여 부름. 대만에서는 실험용으로 나눈 로트를 '工程實驗批'라고도 함"
   example_ko: 조건 비교를 위해 로트를 스플릿 랏으로 나눈다.
   example_en: The lot is split into split lots to compare conditions.
   definition_ko: 조건을 다르게 비교하려고 한 로트를 나눠 다르게 처리하는 실험
   module: 8
-  verified: false
-  sources: ["https://patents.google.com/patent/US8204721"]
+  verified: true
+  sources: ["https://patents.google.com/patent/US8204721", "https://wenku.baidu.com/view/18a76cb2e65c3b3567ec102de2bd960591c6d990.html", "https://digihua.com.tw/wip-in-semiconductor/"]
 - id: alarm
   ko: 알람
   en: alarm
@@ -1960,5 +1961,5 @@
   example_en: The chamber pressure alarm sounded and the process stopped.
   definition_ko: 장비나 공정에 이상이 생겼을 때 알려 주는 경고
   module: 8
-  verified: false
-  sources: ["https://help.criticalmanufacturing.com/userguide/automation/reference/tasks/secsgem/task_equipmentalarm/", "https://patents.google.com/patent/CN102568147B/zh", "https://terms.naer.edu.tw/search/?query_term=alarm&query_field=title&query_op=", "https://news.skhynix.co.kr/sk-hynixs-efforts-to-prevent-disasters/"]
+  verified: true
+  sources: ["https://help.criticalmanufacturing.com/userguide/automation/reference/tasks/secsgem/task_equipmentalarm/", "https://patents.google.com/patent/CN102568147B/zh", "https://terms.naer.edu.tw/search/?query_term=alarm&query_field=title&query_op=", "https://news.skhynix.co.kr/sk-hynixs-efforts-to-prevent-disasters/", "https://www.cnblogs.com/mesinvestigator/articles/22982398"]
