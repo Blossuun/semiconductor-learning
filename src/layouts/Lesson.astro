@@ -44,6 +44,15 @@ const pageSteps = STEPS.map((s) => {
 	const target = stepTarget(s.n);
 	return { n: s.n, title: s.title, href: target ? target.slice(base.length) : '' };
 });
+
+const bodyHtml = await Astro.slots.render('default');
+const bodyText = bodyHtml
+	.replace(/<(script|style|template|svg)[\s\S]*?<\/\1>/gi, '')
+	.replace(/<[^>]*>/g, '')
+	.replace(/\s+/g, '');
+const readMinutes = Math.max(1, Math.round(bodyText.length / 500));
+const termCount = (bodyHtml.match(/<article[^>]*class="term-card[ "]/g) || []).length;
+const quizCount = (bodyHtml.match(/<fieldset(?![^>]*data-auto)[^>]*data-question/g) || []).length;
 ---
 
 <Base title={lesson.title} steps={pageSteps} currentStep={lesson.module}>
@@ -100,9 +109,11 @@ const pageSteps = STEPS.map((s) => {
 		<h1>{lesson.title}</h1>
 		{lesson.summary && <p class="lead">{lesson.summary}</p>}
 
-		<div class="lesson-body">
-			<slot />
-		</div>
+		<p class="lesson-stats" data-lesson-stats>
+			읽는 데 약 {readMinutes}분 · 용어 {termCount}개 · 문제 {quizCount}개
+		</p>
+
+		<div class="lesson-body" set:html={bodyHtml} />
 
 		<nav class="pager" aria-label="레슨 이동">
 			{
@@ -128,6 +139,262 @@ const pageSteps = STEPS.map((s) => {
 		</nav>
 	</article>
 </Base>
+
+<script>
+	// 레슨 본문에 나온 용어 표제어(한국어)의 첫 등장에 밑줄을 긋고, 누르면 그 용어의 언어 표기·읽기·발음을 펼친다.
+	const EXCLUDE =
+		'.term-card, .term-fold, h1, h2, h3, h4, h5, h6, pre, code, kbd, samp, a, button, summary, figcaption, svg, script, style, .quiz, [data-no-term]';
+
+	const wrapOf = (el: Element | null) => el?.closest('.term-wrap') as HTMLElement | null;
+
+	function place(pop: HTMLElement) {
+		pop.style.transform = '';
+		const r = pop.getBoundingClientRect();
+		const vw = document.documentElement.clientWidth;
+		const margin = 8;
+		let dx = 0;
+		if (r.right > vw - margin) dx = vw - margin - r.right;
+		if (r.left + dx < margin) dx = margin - r.left;
+		pop.style.transform = dx ? `translateX(${dx}px)` : '';
+	}
+
+	function fill(pop: HTMLElement) {
+		if (pop.dataset.ready) return;
+		const card = document.getElementById(pop.dataset.cardId ?? '');
+		const langs = card?.querySelector('.langs');
+		if (!langs) return;
+		pop.dataset.ready = '1';
+		const head = document.createElement('span');
+		head.className = 'term-pop-head';
+		const name = document.createElement('strong');
+		name.className = 'term-pop-ko';
+		name.lang = 'ko';
+		name.textContent = pop.dataset.ko ?? '';
+		const x = document.createElement('button');
+		x.type = 'button';
+		x.className = 'term-pop-close';
+		x.setAttribute('aria-label', '닫기');
+		x.textContent = '×';
+		head.append(name, x);
+		pop.append(head, langs.cloneNode(true));
+	}
+
+	function close(wrap: HTMLElement, focus = false) {
+		const btn = wrap.querySelector<HTMLButtonElement>('.term-u');
+		const pop = wrap.querySelector<HTMLElement>('.term-pop');
+		if (pop) pop.hidden = true;
+		if (btn) btn.setAttribute('aria-expanded', 'false');
+		delete wrap.dataset.open;
+		if (focus) btn?.focus();
+	}
+
+	function open(wrap: HTMLElement) {
+		document.querySelectorAll<HTMLElement>('.term-wrap[data-open]').forEach((w) => {
+			if (w !== wrap) close(w);
+		});
+		const btn = wrap.querySelector<HTMLButtonElement>('.term-u');
+		const pop = wrap.querySelector<HTMLElement>('.term-pop');
+		if (!btn || !pop) return;
+		fill(pop);
+		pop.hidden = false;
+		wrap.dataset.open = '';
+		btn.setAttribute('aria-expanded', 'true');
+		place(pop);
+	}
+
+	function makeTerm(ko: string, cardId: string, n: number) {
+		const wrap = document.createElement('span');
+		wrap.className = 'term-wrap';
+		const btn = document.createElement('button');
+		btn.type = 'button';
+		btn.className = 'term-u';
+		btn.textContent = ko;
+		const popId = `term-pop-${n}`;
+		btn.setAttribute('aria-expanded', 'false');
+		btn.setAttribute('aria-controls', popId);
+		const pop = document.createElement('span');
+		pop.className = 'term-pop';
+		pop.id = popId;
+		pop.hidden = true;
+		pop.setAttribute('role', 'group');
+		pop.setAttribute('aria-label', `${ko} 용어`);
+		pop.dataset.cardId = cardId;
+		pop.dataset.ko = ko;
+		wrap.append(btn, pop);
+		return wrap;
+	}
+
+	function setupTerms() {
+		const body = document.querySelector<HTMLElement>('.lesson-body');
+		if (!body) return;
+		const cards = Array.from(body.querySelectorAll<HTMLElement>('.term-card[id][data-term-ko]'));
+		const cardByKo = new Map<string, string>();
+		cards.forEach((card) => {
+			const ko = card.dataset.termKo ?? '';
+			if (ko && !cardByKo.has(ko)) cardByKo.set(ko, card.id);
+		});
+		if (cardByKo.size === 0) return;
+
+		const kos = [...cardByKo.keys()].sort((a, b) => b.length - a.length);
+		const pattern = new RegExp(kos.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
+
+		const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, {
+			acceptNode: (node) =>
+				node.parentElement?.closest(EXCLUDE) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT,
+		});
+		const textNodes: Text[] = [];
+		while (walker.nextNode()) textNodes.push(walker.currentNode as Text);
+
+		const used = new Set<string>();
+		let serial = 0;
+		for (const node of textNodes) {
+			if (used.size === cardByKo.size) break;
+			const text = node.nodeValue ?? '';
+			pattern.lastIndex = 0;
+			const parts: Node[] = [];
+			let last = 0;
+			let m: RegExpExecArray | null;
+			while ((m = pattern.exec(text))) {
+				const ko = m[0];
+				if (used.has(ko)) continue;
+				used.add(ko);
+				parts.push(document.createTextNode(text.slice(last, m.index)));
+				parts.push(makeTerm(ko, cardByKo.get(ko) ?? '', ++serial));
+				last = m.index + ko.length;
+			}
+			if (parts.length === 0) continue;
+			parts.push(document.createTextNode(text.slice(last)));
+			node.replaceWith(...parts);
+		}
+
+		document.addEventListener('click', (event) => {
+			const target = event.target as Element | null;
+			const btn = target?.closest<HTMLButtonElement>('.term-u');
+			if (btn) {
+				const wrap = wrapOf(btn);
+				if (!wrap) return;
+				if (wrap.dataset.open !== undefined) close(wrap);
+				else open(wrap);
+				return;
+			}
+			const x = target?.closest<HTMLButtonElement>('.term-pop-close');
+			if (x) {
+				const wrap = wrapOf(x);
+				if (wrap) close(wrap, true);
+				return;
+			}
+			if (!wrapOf(target)) {
+				document.querySelectorAll<HTMLElement>('.term-wrap[data-open]').forEach((w) => close(w));
+			}
+		});
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key !== 'Escape') return;
+			const openWrap = document.querySelector<HTMLElement>('.term-wrap[data-open]');
+			if (openWrap) close(openWrap, true);
+		});
+	}
+
+	setupTerms();
+</script>
+
+<style is:global>
+	.term-wrap {
+		position: relative;
+		display: inline;
+	}
+
+	.term-u {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: none;
+		color: inherit;
+		font: inherit;
+		text-align: inherit;
+		cursor: pointer;
+		text-decoration: underline;
+		text-decoration-color: var(--primary);
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 4px;
+	}
+
+	.term-u:hover,
+	.term-u[aria-expanded='true'] {
+		color: var(--primary);
+	}
+
+	.term-u:focus-visible,
+	.term-pop-close:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+
+	.term-pop[hidden] {
+		display: none;
+	}
+
+	.term-pop {
+		position: absolute;
+		top: calc(100% + var(--space-2));
+		left: 0;
+		z-index: 20;
+		display: block;
+		box-sizing: border-box;
+		width: min(320px, calc(100vw - 2 * var(--space-4)));
+		padding: var(--space-3) var(--space-4);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		background: var(--surface);
+		color: var(--text);
+		box-shadow: var(--shadow-overlay);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 400;
+		font-style: normal;
+		text-align: start;
+		white-space: normal;
+	}
+
+	.term-pop-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-2);
+	}
+
+	.term-pop-ko {
+		font-family: var(--font-sans-ko);
+		font-size: var(--fs-h3);
+		line-height: var(--lh-h3);
+		font-weight: 700;
+	}
+
+	.term-pop-close {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--touch-min);
+		height: var(--touch-min);
+		margin: 0 calc(var(--space-2) * -1) 0 0;
+		padding: 0;
+		border: 0;
+		border-radius: var(--radius-full);
+		background: none;
+		color: var(--text-muted);
+		font-size: var(--fs-h3);
+		line-height: 1;
+		cursor: pointer;
+	}
+
+	.term-pop-close:hover {
+		background: var(--primary-soft);
+	}
+
+	.term-pop .langs {
+		margin-top: var(--space-2);
+	}
+</style>
 
 <style>
 	.toc-title {
@@ -234,6 +501,14 @@ const pageSteps = STEPS.map((s) => {
 		font-size: var(--fs-lead);
 		line-height: var(--lh-lead);
 		color: var(--text-muted);
+	}
+
+	.lesson-stats {
+		margin: 0;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		color: var(--text-muted);
+		overflow-wrap: anywhere;
 	}
 
 	.lesson-body {

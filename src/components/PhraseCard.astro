@@ -25,15 +25,27 @@ const rows = [
 <article class="phrase-card" id={`phrase-${id}`}>
 	<header class="head">
 		<span class="situation">{p.situation}</span>
+		<button class="save-btn" type="button" aria-pressed="false" data-save-phrase={id}>저장</button>
 	</header>
+	<div class="phrase-hide-bar" role="group" aria-label="가리기 연습" hidden>
+		<button class="hide-btn" type="button" data-hide-mode="foreign" aria-pressed="false">외국어 가리기</button>
+		<button class="hide-btn" type="button" data-hide-mode="ko" aria-pressed="false">한국어 가리기</button>
+	</div>
 	<div class="rows">
 		{
 			rows.map((row) => (
 				<div class="row" data-lang={row.lang === 'ko' ? undefined : row.lang} lang={row.lang}>
 					<span class="label">{row.label}</span>
 					<span class="text">
+						<button class="reveal" type="button" aria-label={`${row.label} 문장 보기`}>눌러서 보기</button>
 						<span class="word">{row.text}</span>
-						{row.reading && <span class="reading">{row.reading}</span>}
+						{row.reading && row.lang === 'ja' && (
+								<>
+									<button class="reading-toggle" type="button" aria-expanded="false" aria-label="日本語 읽기 보기">읽기 보기</button>
+									<span class="reading" hidden>{row.reading}</span>
+								</>
+							)}
+							{row.reading && row.lang !== 'ja' && <span class="reading">{row.reading}</span>}
 					</span>
 					<button
 						class="speak"
@@ -56,6 +68,83 @@ const rows = [
 
 <script>
 	import '../scripts/speak.ts';
+
+	// 저장한 문장 id 목록(JSON 배열).
+	const SAVED_PHRASES_KEY = 'sc-saved-phrases';
+
+	const readSavedPhrases = (): string[] => {
+		try {
+			const v: unknown = JSON.parse(localStorage.getItem(SAVED_PHRASES_KEY) ?? '[]');
+			return Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : [];
+		} catch {
+			return [];
+		}
+	};
+
+	const syncPhraseSaveButtons = () => {
+		const saved = new Set(readSavedPhrases());
+		document.querySelectorAll<HTMLButtonElement>('[data-save-phrase]').forEach((b) => {
+			b.setAttribute('aria-pressed', String(saved.has(b.dataset.savePhrase ?? '')));
+		});
+	};
+
+	syncPhraseSaveButtons();
+
+	const root = document.documentElement;
+	const bars = document.querySelectorAll<HTMLElement>('.phrase-hide-bar');
+	// 페이지에 카드가 여러 개여도 첫 카드의 전환 버튼만 보인다.
+	if (bars[0]) bars[0].hidden = false;
+
+	function setMode(mode: string) {
+		if (mode === 'none') root.removeAttribute('data-phrase-hide');
+		else root.setAttribute('data-phrase-hide', mode);
+		document.querySelectorAll('.phrase-card .row[data-revealed]').forEach((r) => r.removeAttribute('data-revealed'));
+		document.querySelectorAll<HTMLElement>('.hide-btn').forEach((b) => {
+			b.setAttribute('aria-pressed', String(b.dataset.hideMode === mode));
+		});
+	}
+
+	document.addEventListener('click', (e) => {
+		const target = e.target as HTMLElement;
+		const save = target.closest<HTMLButtonElement>('[data-save-phrase]');
+		if (save) {
+			const id = save.dataset.savePhrase ?? '';
+			const list = readSavedPhrases();
+			const i = list.indexOf(id);
+			if (i >= 0) list.splice(i, 1);
+			else list.push(id);
+			try {
+				localStorage.setItem(SAVED_PHRASES_KEY, JSON.stringify(list));
+			} catch {
+				// 저장 공간을 쓸 수 없으면 버튼 상태만 그대로 둔다.
+			}
+			syncPhraseSaveButtons();
+			return;
+		}
+		const btn = target.closest<HTMLElement>('.hide-btn');
+		if (btn) {
+			const mode = btn.dataset.hideMode ?? 'none';
+			setMode(root.getAttribute('data-phrase-hide') === mode ? 'none' : mode);
+			return;
+		}
+		const rt = target.closest<HTMLButtonElement>('.reading-toggle');
+		if (rt) {
+			const reading = rt.parentElement?.querySelector<HTMLElement>('.reading');
+			if (reading) {
+				const open = reading.hidden;
+				reading.hidden = !open;
+				rt.setAttribute('aria-expanded', String(open));
+				rt.textContent = open ? '읽기 접기' : '읽기 보기';
+			}
+			return;
+		}
+		const reveal = target.closest<HTMLElement>('.phrase-card .reveal');
+		if (reveal) {
+			const row = reveal.closest<HTMLElement>('.row');
+			row?.setAttribute('data-revealed', '');
+			row?.querySelector<HTMLElement>('.speak')?.focus();
+		}
+	});
 </script>
 
 <style>
@@ -68,7 +157,33 @@ const rows = [
 		color: var(--text, #1f2328);
 	}
 	.head {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
 		margin-bottom: 8px;
+	}
+	.save-btn {
+		min-height: var(--touch-min, 44px);
+		margin-left: auto;
+		padding: 0 12px;
+		border: 1px solid var(--border-strong, #7a8797);
+		border-radius: var(--radius-md, 8px);
+		background: var(--surface, #ffffff);
+		color: var(--text, #17202b);
+		font: inherit;
+		font-size: 0.875rem;
+		font-weight: 600;
+		cursor: pointer;
+	}
+	.save-btn[aria-pressed='true'] {
+		border-color: var(--primary, #2447b8);
+		background: var(--primary-soft, #e3eafb);
+		color: var(--primary, #2447b8);
+	}
+	.save-btn:focus-visible {
+		outline: 2px solid var(--focus, #2447b8);
+		outline-offset: 2px;
 	}
 	.situation {
 		display: inline-block;
@@ -77,6 +192,55 @@ const rows = [
 		background: var(--accent-soft, #e6f0ff);
 		font-size: 0.875rem;
 		font-weight: 600;
+	}
+	.phrase-hide-bar {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: 8px;
+	}
+	.phrase-hide-bar[hidden] {
+		display: none;
+	}
+	.hide-btn,
+	.reveal {
+		min-height: var(--touch-min, 44px);
+		padding: 0 12px;
+		border: 1px solid var(--border-strong, #7a8797);
+		border-radius: var(--radius-md, 8px);
+		background: var(--surface, #ffffff);
+		color: var(--text, #17202b);
+		font: inherit;
+		font-size: 0.875rem;
+		font-weight: 600;
+		cursor: pointer;
+	}
+	.hide-btn[aria-pressed='true'] {
+		background: var(--primary-soft, #e3eafb);
+		border-color: var(--primary, #2447b8);
+		color: var(--primary, #2447b8);
+	}
+	.hide-btn:focus-visible,
+	.reveal:focus-visible {
+		outline: 2px solid var(--focus, #2447b8);
+		outline-offset: 2px;
+	}
+	.reveal {
+		display: none;
+		width: 100%;
+		border-style: dashed;
+		background: var(--surface-sunken, #eceff3);
+		color: var(--text-muted, #556170);
+		text-align: left;
+	}
+	:global(html[data-phrase-hide='foreign']) .row:not([lang='ko']):not([data-revealed]) .reveal,
+	:global(html[data-phrase-hide='ko']) .row[lang='ko']:not([data-revealed]) .reveal {
+		display: block;
+	}
+	:global(html[data-phrase-hide='foreign']) .row:not([lang='ko']):not([data-revealed]) .word,
+	:global(html[data-phrase-hide='foreign']) .row:not([lang='ko']):not([data-revealed]) .reading,
+	:global(html[data-phrase-hide='ko']) .row[lang='ko']:not([data-revealed]) .word {
+		display: none;
 	}
 	.rows {
 		display: flex;
@@ -128,5 +292,29 @@ const rows = [
 	.reading {
 		font-size: 0.8125rem;
 		color: var(--muted, #57606a);
+		overflow-wrap: anywhere;
+	}
+	.reading[hidden] {
+		display: none;
+	}
+	.reading-toggle {
+		align-self: flex-start;
+		min-height: var(--touch-min, 44px);
+		padding: 0 8px;
+		border: 0;
+		background: none;
+		color: var(--primary, #2447b8);
+		font: inherit;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+	.reading-toggle:focus-visible {
+		outline: 2px solid var(--focus, #2447b8);
+		outline-offset: 2px;
+	}
+	:global(html[data-phrase-hide='foreign']) .row:not([lang='ko']):not([data-revealed]) .reading-toggle {
+		display: none;
 	}
 </style>

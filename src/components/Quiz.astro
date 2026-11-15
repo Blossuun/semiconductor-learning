@@ -40,11 +40,88 @@ const { questions, correctLabel = '정답입니다.', wrongLabel = '오답입니
 			</fieldset>
 		))
 	}
+	<div class="auto" data-auto hidden>
+		<p class="auto-title">이 용어를 고른 언어로 하면?</p>
+	</div>
+	<div class="summary">
+		<p class="score" aria-live="polite" data-score hidden></p>
+		<button class="retry" type="button" data-retry hidden>문제 다시 풀기</button>
+	</div>
+	<template data-auto-tpl>
+		<fieldset class="question" data-question data-auto data-answer="0">
+			<legend>
+				<span class="number" data-auto-number></span> <span data-auto-text></span>
+			</legend>
+			<div class="choices" data-auto-choices>
+				<button class="choice" type="button" data-choice="0">
+					<span class="mark" aria-hidden="true">
+						<svg class="icon icon-correct" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+						<svg class="icon icon-wrong" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+					</span>
+					<span class="text"></span>
+				</button>
+			</div>
+			<div class="feedback" aria-live="polite" hidden data-feedback>
+				<p class="result" data-result />
+			</div>
+		</fieldset>
+	</template>
 </div>
 
 <script>
-	document.querySelectorAll<HTMLElement>('[data-quiz]').forEach((quiz) => {
-		quiz.querySelectorAll<HTMLElement>('[data-question]').forEach((question) => {
+	const LANG_ORDER = ['en', 'ja', 'zh-Hans', 'zh-Hant'];
+	const LANG_NAME: Record<string, string> = {
+		en: '영어',
+		ja: '일본어',
+		'zh-Hans': '중국어 간체',
+		'zh-Hant': '중국어 번체',
+	};
+
+	function firstLang(): string | null {
+		const on = (document.documentElement.dataset.learnLang ?? '').split(' ');
+		return LANG_ORDER.find((c) => on.indexOf(c) !== -1) ?? null;
+	}
+
+	function shuffle<T>(arr: T[]): T[] {
+		const a = arr.slice();
+		for (let i = a.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[a[i], a[j]] = [a[j], a[i]];
+		}
+		return a;
+	}
+
+	const quizzes = Array.from(document.querySelectorAll<HTMLElement>('[data-quiz]'));
+	// 자동 출제 문제는 레슨 맨 끝의 확인 문제 묶음에만 붙인다
+	const autoHost = quizzes[quizzes.length - 1];
+
+	quizzes.forEach((quiz) => {
+		const scoreEl = quiz.querySelector<HTMLElement>('[data-score]')!;
+		const retryEl = quiz.querySelector<HTMLButtonElement>('[data-retry]')!;
+		const autoEl = quiz.querySelector<HTMLElement>('[data-auto]')!;
+		const tpl = quiz.querySelector<HTMLTemplateElement>('[data-auto-tpl]')!;
+		const allQuestions = () => quiz.querySelectorAll<HTMLElement>('[data-question]');
+
+		retryEl.addEventListener('click', () => {
+			allQuestions().forEach((question) => {
+				question.querySelectorAll<HTMLElement>('[data-choice]').forEach((button) => {
+					button.removeAttribute('aria-disabled');
+					button.removeAttribute('aria-pressed');
+					button.classList.remove('is-correct', 'is-wrong');
+				});
+				const result = question.querySelector<HTMLElement>('[data-result]')!;
+				result.textContent = '';
+				result.classList.remove('is-correct', 'is-wrong');
+				question.querySelector<HTMLElement>('[data-feedback]')!.hidden = true;
+			});
+			scoreEl.hidden = true;
+			retryEl.hidden = true;
+			const first = allQuestions()[0];
+			first?.scrollIntoView({ block: 'center' });
+			first?.querySelector<HTMLElement>('[data-choice]')?.focus();
+		});
+
+		function wire(question: HTMLElement) {
 			const answer = Number(question.dataset.answer);
 			const choices = question.querySelectorAll<HTMLButtonElement>('[data-choice]');
 			const feedback = question.querySelector<HTMLElement>('[data-feedback]')!;
@@ -68,12 +145,69 @@ const { questions, correctLabel = '정답입니다.', wrongLabel = '오답입니
 					result.textContent = correct ? quiz.dataset.correctLabel! : quiz.dataset.wrongLabel!;
 					result.classList.add(correct ? 'is-correct' : 'is-wrong');
 					feedback.hidden = false;
-					if (quiz.querySelectorAll('[data-feedback]:not([hidden])').length === quiz.querySelectorAll('[data-question]').length) {
+					const total = allQuestions().length;
+					if (quiz.querySelectorAll('[data-feedback]:not([hidden])').length === total) {
+						const right = quiz.querySelectorAll('.result.is-correct').length;
+						scoreEl.textContent = `${total}문항 중 ${right}문항을 맞혔습니다.`;
+						scoreEl.hidden = false;
+						retryEl.hidden = false;
 						window.dispatchEvent(new Event('quiz-all-answered'));
 					}
 				});
 			});
-		});
+		}
+
+		allQuestions().forEach(wire);
+
+		function buildAuto() {
+			quiz.querySelectorAll('[data-auto].question').forEach((el) => el.remove());
+			autoEl.hidden = true;
+			scoreEl.hidden = true;
+			retryEl.hidden = true;
+			const lang = firstLang();
+			if (!lang) return;
+
+			const terms: { ko: string; word: string }[] = [];
+			document.querySelectorAll<HTMLElement>('.term-card[data-term-ko]').forEach((card) => {
+				const ko = card.dataset.termKo ?? '';
+				const word = card.querySelector(`.row[data-lang="${lang}"] .word`)?.textContent?.trim() ?? '';
+				if (ko && word && !terms.some((t) => t.ko === ko || t.word === word)) terms.push({ ko, word });
+			});
+			if (terms.length < 2) return;
+
+			let number = allQuestions().length;
+			shuffle(terms)
+				.slice(0, 3)
+				.forEach((target) => {
+					const others = shuffle(terms.filter((t) => t !== target)).slice(0, 3);
+					const options = shuffle([target, ...others]);
+					const node = (tpl.content.firstElementChild as HTMLElement).cloneNode(true) as HTMLElement;
+					node.dataset.answer = String(options.indexOf(target));
+					node.dataset.autoLang = lang;
+					node.dataset.autoKo = target.ko;
+					number += 1;
+					node.querySelector('[data-auto-number]')!.textContent = `${number}.`;
+					node.querySelector('[data-auto-text]')!.textContent = `“${target.ko}”의 ${LANG_NAME[lang]} 표기는?`;
+					const box = node.querySelector<HTMLElement>('[data-auto-choices]')!;
+					const protoBtn = box.querySelector<HTMLElement>('[data-choice]')!;
+					options.forEach((opt, i) => {
+						const btn = i === 0 ? protoBtn : (protoBtn.cloneNode(true) as HTMLElement);
+						btn.dataset.choice = String(i);
+						const text = btn.querySelector<HTMLElement>('.text')!;
+						text.textContent = opt.word;
+						text.lang = lang;
+						if (i !== 0) box.append(btn);
+					});
+					autoEl.append(node);
+					wire(node);
+				});
+			autoEl.hidden = false;
+		}
+
+		if (quiz === autoHost) {
+			buildAuto();
+			window.addEventListener('learn-lang-change', buildAuto);
+		}
 	});
 </script>
 
@@ -82,6 +216,71 @@ const { questions, correctLabel = '정답입니다.', wrongLabel = '오답입니
 		display: grid;
 		gap: var(--space-4);
 		margin: var(--space-4) 0;
+	}
+
+	.auto {
+		display: grid;
+		gap: var(--space-4);
+	}
+
+	.auto[hidden] {
+		display: none;
+	}
+
+	.auto-title {
+		margin: 0;
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+	}
+
+	.text {
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.summary {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-3);
+	}
+
+	.summary [hidden] {
+		display: none;
+	}
+
+	.score {
+		margin: 0;
+		color: var(--text);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+	}
+
+	.retry {
+		min-height: var(--touch-min);
+		padding: var(--space-2) var(--space-4);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		color: var(--text);
+		font: inherit;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.retry:hover {
+		border-color: var(--primary);
+		color: var(--primary);
+	}
+
+	.retry:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
 	}
 
 	.question {
@@ -93,8 +292,12 @@ const { questions, correctLabel = '정답입니다.', wrongLabel = '오답입니
 		background: var(--surface);
 	}
 
+	/* 두 줄이 되어도 테두리가 글자를 가로지르지 않도록 legend를 카드 안쪽 첫 줄로 둔다 */
 	legend {
-		padding: 0 var(--space-2);
+		float: left;
+		width: 100%;
+		margin: 0 0 var(--space-2);
+		padding: 0;
 		color: var(--text);
 		font-size: var(--fs-body);
 		line-height: var(--lh-body);
@@ -108,6 +311,7 @@ const { questions, correctLabel = '정답입니다.', wrongLabel = '오답입니
 	}
 
 	.choices {
+		clear: both;
 		display: grid;
 		gap: var(--space-2);
 		margin-top: var(--space-2);

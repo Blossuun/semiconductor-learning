@@ -1,11 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
+import { audioPath } from '../scripts/audio-path';
 
 interface Props {
 	modules: string[];
 }
 
 const { modules } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const entries = (await getCollection('glossary'))
 	.filter((t) => Boolean(t.data.definition_ko))
@@ -22,9 +24,18 @@ const entries = (await getCollection('glossary'))
 		zhHansRead: t.data.zh_cn_pinyin ?? '',
 		zhHant: t.data.zh_tw ?? '',
 		zhHantRead: t.data.zh_tw_pinyin ?? '',
+		audio: {
+			en: audioPath('terms', t.id, 'en') ?? '',
+			ja: audioPath('terms', t.id, 'ja') ?? '',
+			zh_cn: audioPath('terms', t.id, 'zh_cn') ?? '',
+			zh_tw: audioPath('terms', t.id, 'zh_tw') ?? '',
+		},
 	}));
 
 const poolJson = JSON.stringify({ modules, entries }).replace(/</g, '\\u003c');
+
+// 용어가 0개인 단계는 단계 버튼을 그리지 않는다.
+const stageCounts = modules.map((_, i) => entries.filter((e) => e.module === i).length);
 
 const langs = [
 	{ key: 'en', label: 'English', lang: 'en' },
@@ -36,7 +47,7 @@ const langs = [
 
 <section class="tq" data-tq-root aria-labelledby="tq-title">
 	<h2 id="tq-title">용어 맞히기</h2>
-	<p class="tq-lead">뜻풀이를 읽고 알맞은 용어를 고르세요. 보기는 고른 언어로 나옵니다.</p>
+	<p class="tq-lead">문제를 읽고 알맞은 보기를 고르세요. 보기는 고른 언어로 나옵니다.</p>
 
 	<div class="tq-controls">
 		<div class="tq-group" role="group" aria-labelledby="tq-stage-label">
@@ -44,7 +55,7 @@ const langs = [
 			<div class="tq-pills">
 				<button type="button" class="tq-pill" data-tq-stage="" aria-pressed="true">전체</button>
 				{
-					modules.map((name, i) => (
+					modules.map((name, i) => stageCounts[i] > 0 && (
 						<button type="button" class="tq-pill" data-tq-stage={String(i)} aria-pressed="false" aria-label={`${i}단계 ${name}`}>
 							{i}단계
 						</button>
@@ -52,7 +63,20 @@ const langs = [
 				}
 			</div>
 		</div>
-		<div class="tq-group" role="group" aria-labelledby="tq-lang-label">
+		<div class="tq-group" role="group" aria-labelledby="tq-dir-label">
+			<span id="tq-dir-label" class="tq-label">출제 방향</span>
+			<div class="tq-pills">
+				<button type="button" class="tq-pill" data-tq-dir="def" aria-pressed="true">뜻풀이 → 고른 언어 표기</button>
+				<button type="button" class="tq-pill" data-tq-dir="ko" aria-pressed="false">한국어 용어 → 고른 언어 표기</button>
+			</div>
+		</div>
+		<div class="tq-group" role="group" aria-labelledby="tq-scope-label">
+				<span id="tq-scope-label" class="tq-label">출제 범위</span>
+				<div class="tq-pills">
+					<button type="button" class="tq-pill" data-tq-saved aria-pressed="false">저장한 용어만</button>
+				</div>
+			</div>
+			<div class="tq-group" role="group" aria-labelledby="tq-lang-label">
 			<span id="tq-lang-label" class="tq-label">보기 언어</span>
 			<div class="tq-pills">
 				{
@@ -69,12 +93,21 @@ const langs = [
 	<p class="tq-meta" aria-live="polite" data-tq-meta></p>
 
 	<div class="tq-card" data-tq-card>
-		<p class="tq-q-label"><span class="tq-number">Q</span> 이 뜻풀이에 맞는 용어는?</p>
+		<p class="tq-q-label"><span class="tq-number">Q</span> <span data-tq-qtext>이 뜻풀이에 맞는 용어는?</span></p>
 		<p class="tq-def" data-tq-def></p>
 		<div class="tq-choices" data-tq-choices></div>
 		<div class="tq-feedback" data-tq-feedback hidden>
 			<p class="tq-result" data-tq-result aria-live="polite"></p>
 			<p class="tq-answer" data-tq-answer></p>
+			<div class="tq-actions">
+				<button type="button" class="tq-speak" data-tq-speak aria-label="정답 발음 듣기" data-speak="" data-speak-lang="" data-audio="">
+					<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+						<path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+						<path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+					</svg>
+				</button>
+				<a class="tq-term-link" data-tq-term-link href={`${base}/glossary/`}>용어 카드 보기</a>
+			</div>
 			<button type="button" class="tq-next" data-tq-next>다음 문제</button>
 		</div>
 	</div>
@@ -98,9 +131,11 @@ const langs = [
 		zhHansRead: string;
 		zhHant: string;
 		zhHantRead: string;
+		audio: Record<string, string>;
 	};
 
 	type Lang = 'en' | 'ja' | 'zh-Hans' | 'zh-Hant';
+	type Dir = 'def' | 'ko';
 
 	const FIELDS: Record<Lang, { text: (e: Entry) => string; read: (e: Entry) => string }> = {
 		en: { text: (e) => e.en, read: () => '' },
@@ -108,6 +143,38 @@ const langs = [
 		'zh-Hans': { text: (e) => e.zhHans, read: (e) => e.zhHansRead },
 		'zh-Hant': { text: (e) => e.zhHant, read: (e) => e.zhHantRead },
 	};
+
+	// 저장한 용어 id 목록(TermCard의 저장 버튼이 쓰는 키와 같다).
+	const SAVED_TERMS_KEY = 'sc-saved-terms';
+	function readSaved(): Set<string> {
+		try {
+			const v: unknown = JSON.parse(localStorage.getItem(SAVED_TERMS_KEY) ?? '[]');
+			return new Set(Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []);
+		} catch {
+			return new Set<string>();
+		}
+	}
+
+	const SPEAK: Record<Lang, { speak: string; audio: string }> = {
+		en: { speak: 'en-US', audio: 'en' },
+		ja: { speak: 'ja-JP', audio: 'ja' },
+		'zh-Hans': { speak: 'zh-CN', audio: 'zh_cn' },
+		'zh-Hant': { speak: 'zh-TW', audio: 'zh_tw' },
+	};
+
+	// 헤더에서 고른 언어(learn-lang) 중 첫 번째. 없으면 null.
+	function headerLang(): Lang | null {
+		try {
+			const raw = localStorage.getItem('learn-lang') ?? '';
+			for (const k of raw.split(',')) {
+				const key = k.trim();
+				if (key === 'en' || key === 'ja' || key === 'zh-Hans' || key === 'zh-Hant') return key;
+			}
+		} catch {
+			// 무시
+		}
+		return null;
+	}
 
 	function shuffle<T>(arr: T[]): T[] {
 		const a = arr.slice();
@@ -126,9 +193,11 @@ const langs = [
 		const pool = data.entries;
 
 		const stageButtons = root.querySelectorAll<HTMLButtonElement>('[data-tq-stage]');
+		const dirButtons = root.querySelectorAll<HTMLButtonElement>('[data-tq-dir]');
 		const langButtons = root.querySelectorAll<HTMLButtonElement>('[data-tq-lang]');
 		const meta = root.querySelector<HTMLElement>('[data-tq-meta]')!;
 		const card = root.querySelector<HTMLElement>('[data-tq-card]')!;
+		const qTextEl = root.querySelector<HTMLElement>('[data-tq-qtext]')!;
 		const defEl = root.querySelector<HTMLElement>('[data-tq-def]')!;
 		const choicesEl = root.querySelector<HTMLElement>('[data-tq-choices]')!;
 		const feedback = root.querySelector<HTMLElement>('[data-tq-feedback]')!;
@@ -136,15 +205,31 @@ const langs = [
 		const answerEl = root.querySelector<HTMLElement>('[data-tq-answer]')!;
 		const nextBtn = root.querySelector<HTMLButtonElement>('[data-tq-next]')!;
 		const empty = root.querySelector<HTMLElement>('[data-tq-empty]')!;
+		const savedBtn = root.querySelector<HTMLButtonElement>('[data-tq-saved]')!;
 
 		let stage = '';
-		let lang: Lang = 'en';
+		// 저장한 용어만 출제: 문제는 저장한 용어에서 내고, 보기는 단계 안의 모든 용어에서 뽑는다.
+		let savedOnly = false;
+		let saved = new Set<string>();
+		let stagePool: Entry[] = [];
+		let dir: Dir = 'def';
+		let lang: Lang = headerLang() ?? 'en';
+		const speakBtn = root.querySelector<HTMLButtonElement>('[data-tq-speak]')!;
+		const termLink = root.querySelector<HTMLAnchorElement>('[data-tq-term-link]')!;
+		const baseHref = termLink.getAttribute('href') ?? '';
+		langButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tqLang === lang)));
 		let score = 0;
 		let total = 0;
 		let lastId: string | null = null;
 		let answered = false;
+		// 회차: 출제 조건(단계·방향·언어)이 바뀌면 새로 시작한다.
+		// 회차의 문제 줄이 비면 회차가 끝난 것이고, 틀린 문제는 줄 뒤쪽에 다시 들어가 있다.
+		let roundSet: Entry[] = [];
+		let queue: Entry[] = [];
+		let cleared = new Set<string>();
 
 		const textOf = (e: Entry) => FIELDS[lang].text(e).trim();
+		const readOf = (e: Entry) => FIELDS[lang].read(e).trim();
 
 		const candidates = () =>
 			pool.filter((e) => (stage === '' || e.module === Number(stage)) && textOf(e) !== '');
@@ -159,8 +244,16 @@ const langs = [
 			});
 		};
 
-		const updateMeta = (pickCount: number) => {
-			meta.textContent = `${pickCount}개 용어에서 출제 · 맞힌 수 ${score} / ${total}`;
+		const startRound = () => {
+			stagePool = uniqueByText(candidates());
+				saved = readSaved();
+				roundSet = savedOnly ? stagePool.filter((e) => saved.has(e.id)) : stagePool;
+			queue = shuffle(roundSet);
+			cleared = new Set();
+		};
+
+		const updateMeta = () => {
+			meta.textContent = `${roundSet.length}개 용어 · 회차 ${cleared.size} / ${roundSet.length} · 맞힌 수 ${score} / ${total}`;
 		};
 
 		const next = () => {
@@ -168,29 +261,45 @@ const langs = [
 			feedback.hidden = true;
 			choicesEl.replaceChildren();
 
-			const set = uniqueByText(candidates());
-			if (set.length < 4) {
+			if (queue.length === 0) startRound();
+			if (roundSet.length === 0 || stagePool.length < 4) {
 				card.hidden = true;
 				empty.hidden = false;
+				empty.textContent =
+					stagePool.length < 4
+						? '이 조건에서는 보기 4개를 만들 수 없습니다. 다른 단계나 언어를 고르세요.'
+						: '저장한 용어가 없습니다. 용어 카드의 저장 버튼을 누른 뒤 다시 고르세요.';
 				meta.textContent = '';
 				return;
 			}
 			card.hidden = false;
 			empty.hidden = true;
 
-			const pickable = set.filter((e) => e.id !== lastId);
-			const question = shuffle(pickable.length > 0 ? pickable : set)[0];
+			// 방금 낸 문제가 바로 다시 나오지 않게 한다(남은 문제가 하나뿐이면 그대로 낸다).
+			if (queue.length > 1 && queue[0].id === lastId) queue.push(queue.shift()!);
+			const question = queue.shift()!;
 			lastId = question.id;
 
 			const answerText = textOf(question);
-			const distractors = shuffle(set.filter((e) => e.id !== question.id)).slice(0, 3);
+
+			// 오답 보기는 정답과 같은 단계에서 먼저 뽑고, 모자라면 다른 단계에서 채운다.
+			// 같은 단계가 먼저, 저장한 만큼만 출제할 때는 저장하지 않은 용어가 뒤로 간다(모자라는 보기는 저장하지 않은 용어로 채운다).
+				const rank = (e: Entry) => (e.module === question.module ? 0 : 2) + (savedOnly && !saved.has(e.id) ? 1 : 0);
+			const others = shuffle(stagePool.filter((e) => e.id !== question.id));
+			const distractors = others.sort((a, b) => rank(a) - rank(b)).slice(0, 3);
 			const options = shuffle([question, ...distractors]);
 			const answerIndex = options.indexOf(question);
 
-			defEl.textContent = question.def;
-			updateMeta(set.length);
-
-			const readOf = (e: Entry) => FIELDS[lang].read(e).trim();
+			if (dir === 'ko') {
+				qTextEl.textContent = '이 한국어 용어를 고른 언어로 쓰면?';
+				defEl.textContent = question.abbr ? `${question.ko} (${question.abbr})` : question.ko;
+				defEl.classList.add('is-term');
+			} else {
+				qTextEl.textContent = '이 뜻풀이에 맞는 용어는?';
+				defEl.textContent = question.def;
+				defEl.classList.remove('is-term');
+			}
+			updateMeta();
 
 			options.forEach((opt, index) => {
 				const button = document.createElement('button');
@@ -217,7 +326,13 @@ const langs = [
 					answered = true;
 					total++;
 					const correct = index === answerIndex;
-					if (correct) score++;
+					if (correct) {
+						score++;
+						cleared.add(question.id);
+					} else {
+						// 틀린 문제는 이번 회차 뒤쪽에 다시 넣는다.
+						queue.push(question);
+					}
 
 					choicesEl.querySelectorAll<HTMLButtonElement>('[data-tq-index]').forEach((b) => {
 						const i = Number(b.dataset.tqIndex);
@@ -227,16 +342,45 @@ const langs = [
 						else if (i === index) b.classList.add('is-wrong');
 					});
 
+					// 보기 4개 모두에 한국어 뜻을 보여 준다.
+					choicesEl.querySelectorAll<HTMLButtonElement>('[data-tq-index]').forEach((b) => {
+						const o = options[Number(b.dataset.tqIndex)];
+						const ko = document.createElement('span');
+						ko.className = 'tq-ko';
+						ko.lang = 'ko';
+						ko.textContent = o.abbr ? `${o.ko} (${o.abbr})` : o.ko;
+						b.appendChild(ko);
+					});
+
+					speakBtn.setAttribute('data-speak', answerText);
+					speakBtn.setAttribute('data-speak-lang', SPEAK[lang].speak);
+					const audioSrc = question.audio[SPEAK[lang].audio];
+					if (audioSrc) speakBtn.setAttribute('data-audio', audioSrc);
+					else speakBtn.removeAttribute('data-audio');
+					// 처음 그릴 때 붙은 "음성 없음" 안내는 mp3가 생기면 지운다.
+					const note = speakBtn.nextElementSibling;
+					if (audioSrc && note?.classList.contains('speak-unavailable')) note.remove();
+					speakBtn.lang = lang;
+					termLink.href = `${baseHref}#term-${question.id}`;
+
 					resultEl.textContent = correct ? '정답입니다.' : '오답입니다.';
 					resultEl.className = `tq-result ${correct ? 'is-correct' : 'is-wrong'}`;
 					answerEl.textContent = `정답: ${question.ko}${question.abbr ? ` (${question.abbr})` : ''} · ${answerText}`;
 					feedback.hidden = false;
-					updateMeta(set.length);
+					updateMeta();
 					nextBtn.focus();
 				});
 
 				choicesEl.appendChild(button);
 			});
+		};
+
+		const restart = () => {
+			score = 0;
+			total = 0;
+			lastId = null;
+			startRound();
+			next();
 		};
 
 		const setPressed = (buttons: NodeListOf<HTMLButtonElement>, active: HTMLButtonElement) => {
@@ -247,9 +391,15 @@ const langs = [
 			button.addEventListener('click', () => {
 				stage = button.dataset.tqStage ?? '';
 				setPressed(stageButtons, button);
-				score = 0;
-				total = 0;
-				next();
+				restart();
+			});
+		});
+
+		dirButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				dir = (button.dataset.tqDir ?? 'def') as Dir;
+				setPressed(dirButtons, button);
+				restart();
 			});
 		});
 
@@ -257,15 +407,19 @@ const langs = [
 			button.addEventListener('click', () => {
 				lang = (button.dataset.tqLang ?? 'en') as Lang;
 				setPressed(langButtons, button);
-				score = 0;
-				total = 0;
-				next();
+				restart();
 			});
+		});
+
+		savedBtn.addEventListener('click', () => {
+			savedOnly = !savedOnly;
+			savedBtn.setAttribute('aria-pressed', String(savedOnly));
+			restart();
 		});
 
 		nextBtn.addEventListener('click', next);
 
-		next();
+		restart();
 	}
 
 	document.querySelectorAll<HTMLElement>('[data-tq-root]').forEach(init);
@@ -318,6 +472,7 @@ const langs = [
 	}
 
 	.tq-pill {
+		max-width: 100%;
 		min-height: var(--touch-min);
 		padding: 0 var(--space-3);
 		border: 1px solid var(--border-strong);
@@ -328,6 +483,7 @@ const langs = [
 		font-size: var(--fs-small);
 		line-height: var(--lh-small);
 		font-weight: 600;
+		text-align: left;
 		cursor: pointer;
 	}
 
@@ -386,6 +542,13 @@ const langs = [
 		font-size: var(--fs-body);
 		line-height: var(--lh-body);
 		font-weight: 600;
+		overflow-wrap: anywhere;
+	}
+
+	.tq-def.is-term {
+		font-size: var(--fs-h2, 24px);
+		line-height: var(--lh-h2, 32px);
+		font-weight: 700;
 	}
 
 	.tq-choices {
@@ -411,6 +574,7 @@ const langs = [
 		line-height: var(--lh-body);
 		font-weight: 600;
 		text-align: left;
+		overflow-wrap: anywhere;
 		cursor: pointer;
 	}
 
@@ -474,6 +638,56 @@ const langs = [
 		color: var(--text-muted);
 		font-size: var(--fs-small);
 		line-height: var(--lh-small);
+	}
+
+	.tq-choices :global(.tq-ko) {
+		flex-basis: 100%;
+		color: var(--text-muted);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 500;
+	}
+
+	.tq-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-3);
+		margin-top: var(--space-3);
+	}
+
+	.tq-speak {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--touch-min);
+		height: var(--touch-min);
+		padding: 0;
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-full);
+		background: var(--surface);
+		color: var(--primary);
+		cursor: pointer;
+	}
+
+	.tq-speak:hover {
+		background: var(--primary-soft);
+	}
+
+	.tq-term-link {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--touch-min);
+		color: var(--primary);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+	}
+
+	.tq-speak:focus-visible,
+	.tq-term-link:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
 	}
 
 	.tq-next {

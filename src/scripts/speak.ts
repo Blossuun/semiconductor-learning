@@ -23,7 +23,29 @@ function applyVoices() {
 		const available = Boolean(button.dataset.audio) || hasVoice(voices, button.dataset.speakLang ?? '');
 		button.hidden = !available;
 		button.closest<HTMLElement>('.row')?.toggleAttribute('data-no-voice', !available);
+		showNote(button, !available);
 	});
+}
+
+const LANG_NAMES: Record<string, string> = { en: '영어', ja: '일본어', zh: '중국어', ko: '한국어' };
+
+// 재생할 수 없는 버튼 옆에 안내(.speak-unavailable)를 둔다. 재생 가능해지면 지운다.
+function showNote(button: HTMLButtonElement, show: boolean) {
+	const next = button.nextElementSibling;
+	const existing = next?.classList.contains('speak-unavailable') ? next : null;
+	if (!show) {
+		existing?.remove();
+		return;
+	}
+	if (existing) return;
+	const base = normalize(button.dataset.speakLang ?? '').split('-')[0];
+	const note = document.createElement('span');
+	note.className = 'speak-unavailable';
+	note.setAttribute('role', 'note');
+	note.textContent = `이 기기에 ${LANG_NAMES[base] ?? '해당 언어'} 음성이 없어 들을 수 없습니다`;
+	note.style.cssText =
+		'font-size:12px;line-height:18px;font-weight:500;color:var(--text-muted);margin-inline-start:auto;text-align:end;';
+	button.after(note);
 }
 
 function speakWithDevice(button: HTMLElement) {

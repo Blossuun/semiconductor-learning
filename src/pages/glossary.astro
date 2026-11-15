@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import TermCard from '../components/TermCard.astro';
 import TermQuiz from '../components/TermQuiz.astro';
+import { audioPath } from '../scripts/audio-path';
 
 const modules = [
 	'칩 하나 만들어 보기',
@@ -34,6 +35,17 @@ const headAbbrOf = (t: (typeof terms)[number]['data']) =>
 				.filter(Boolean)
 		: []
 	).find((a) => /^[A-Z][A-Za-z0-9]{2,}$/.test(a) && (a.match(/[A-Z]/g) ?? []).length >= 2);
+
+// 접힌 줄 발음 버튼: 언어마다 하나씩 그리고, 고른 언어(첫 번째)의 것만 CSS로 보인다.
+const foldSpeak = (id: string, t: (typeof terms)[number]['data']) =>
+	[
+		{ lang: 'en', name: 'English', speak: 'en-US', key: 'en', text: t.en },
+		{ lang: 'ja', name: '日本語', speak: 'ja-JP', key: 'ja', text: t.ja },
+		{ lang: 'zh-Hans', name: '简体中文', speak: 'zh-CN', key: 'zh_cn', text: t.zh_cn },
+		{ lang: 'zh-Hant', name: '繁體中文', speak: 'zh-TW', key: 'zh_tw', text: t.zh_tw },
+	]
+		.filter((r) => r.text)
+		.map((r) => ({ ...r, audio: audioPath('terms', id, r.key) }));
 ---
 
 <Base title="용어집">
@@ -47,7 +59,7 @@ const headAbbrOf = (t: (typeof terms)[number]['data']) =>
 				</button>
 			</li>
 			{
-				modules.map((name, i) => (
+				modules.map((name, i) => counts[i] > 0 && (
 					<li>
 						<button type="button" data-stage={i} aria-pressed="false">
 							<span class="stage-num">{i}</span>
@@ -75,12 +87,24 @@ const headAbbrOf = (t: (typeof terms)[number]['data']) =>
 		</label>
 	</form>
 
-	<p class="count" aria-live="polite"><span data-count>{terms.length}</span>개 용어 · 가나다순</p>
+	<div class="saved-tools">
+			<label class="stage-select">
+					<span>단계</span>
+					<select data-stage-select>
+						<option value="">전체 ({terms.length})</option>
+						{modules.map((name, i) => counts[i] > 0 && <option value={String(i)}>{i}. {name} ({counts[i]})</option>)}
+					</select>
+				</label>
+				<button type="button" class="saved-toggle" aria-pressed="false" data-saved-toggle>저장한 용어</button>
+				<button type="button" class="saved-toggle" aria-pressed="false" data-sort-toggle>단계순</button>
+		</div>
+
+		<p class="count" aria-live="polite"><span data-count>{terms.length}</span>개 용어 · <span data-sort-label>가나다순</span></p>
 
 	<ul class="terms">
 		{
 			terms.map((term) => (
-				<li data-term data-term-module={term.data.module} data-term-search={searchText(term.data)}>
+				<li data-term data-term-id={term.id} data-term-module={term.data.module} data-term-search={searchText(term.data)}>
 					<details class="term">
 						<summary class="row">
 							<span class="row-ko">
@@ -93,6 +117,23 @@ const headAbbrOf = (t: (typeof terms)[number]['data']) =>
 								{term.data.zh_cn && <span data-lang="zh-Hans" lang="zh-Hans">{term.data.zh_cn}</span>}
 								{term.data.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{term.data.zh_tw}</span>}
 							</span>
+							{foldSpeak(term.id, term.data).map((r) => (
+								<span class="fold-speak" data-fold-lang={r.lang}>
+									<button
+										class="speak"
+										type="button"
+										aria-label={`${r.name} 발음 듣기`}
+										data-speak={r.text}
+										data-speak-lang={r.speak}
+										data-audio={r.audio}
+									>
+										<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+											<path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+											<path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+										</svg>
+									</button>
+								</span>
+							))}
 							{!term.data.verified && <span class="badge unverified">확인 전</span>}
 							<span class="badge">{term.data.module}단계</span>
 						</summary>
@@ -133,7 +174,42 @@ const headAbbrOf = (t: (typeof terms)[number]['data']) =>
 	const count = document.querySelector<HTMLElement>('[data-count]')!;
 	const empty = document.querySelector<HTMLElement>('[data-empty]')!;
 
-	let stage = '';
+	const savedToggle = document.querySelector<HTMLButtonElement>('[data-saved-toggle]')!;
+		const SAVED_TERMS_KEY = 'sc-saved-terms';
+		const readSaved = () => {
+			try {
+				const v: unknown = JSON.parse(localStorage.getItem(SAVED_TERMS_KEY) ?? '[]');
+				return new Set(Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []);
+			} catch {
+				return new Set<string>();
+			}
+		};
+
+		let stage = '';
+
+	const stageSelect = document.querySelector<HTMLSelectElement>('[data-stage-select]')!;
+	const sortToggle = document.querySelector<HTMLButtonElement>('[data-sort-toggle]')!;
+	const sortLabel = document.querySelector<HTMLElement>('[data-sort-label]')!;
+	const list = document.querySelector<HTMLElement>('ul.terms')!;
+	// 가나다순은 처음 그려진 순서다. 단계순은 단계 번호, 같은 단계 안에서는 가나다순.
+	const original = Array.from(items);
+	const sortItems = () => {
+		const byStage = sortToggle.getAttribute('aria-pressed') === 'true';
+		const ordered = byStage
+			? [...original].sort(
+					(a, b) =>
+						Number(a.dataset.termModule) - Number(b.dataset.termModule) || original.indexOf(a) - original.indexOf(b),
+				)
+			: original;
+		ordered.forEach((li) => list.appendChild(li));
+		sortLabel.textContent = byStage ? '단계순' : '가나다순';
+	};
+	const setStage = (value: string) => {
+		stage = value;
+		stageButtons.forEach((b) => b.setAttribute('aria-pressed', String((b.dataset.stage ?? '') === value)));
+		stageSelect.value = value;
+		apply();
+	};
 
 	const apply = () => {
 		const words = search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -142,7 +218,9 @@ const headAbbrOf = (t: (typeof terms)[number]['data']) =>
 		items.forEach((item) => {
 			const text = item.dataset.termSearch!;
 			const match =
-				(stage === '' || item.dataset.termModule === stage) && words.every((word) => text.includes(word));
+				(stage === '' || item.dataset.termModule === stage) &&
+					(savedToggle.getAttribute('aria-pressed') !== 'true' || readSaved().has(item.dataset.termId ?? '')) &&
+					words.every((word) => text.includes(word));
 			item.hidden = !match;
 			if (match) shown++;
 		});
@@ -154,12 +232,18 @@ const headAbbrOf = (t: (typeof terms)[number]['data']) =>
 	form.addEventListener('submit', (event) => event.preventDefault());
 	search.addEventListener('input', apply);
 
-	stageButtons.forEach((button) => {
-		button.addEventListener('click', () => {
-			stage = button.dataset.stage ?? '';
-			stageButtons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+		savedToggle.addEventListener('click', () => {
+			savedToggle.setAttribute('aria-pressed', String(savedToggle.getAttribute('aria-pressed') !== 'true'));
 			apply();
 		});
+
+	stageButtons.forEach((button) => {
+		button.addEventListener('click', () => setStage(button.dataset.stage ?? ''));
+	});
+	stageSelect.addEventListener('change', () => setStage(stageSelect.value));
+	sortToggle.addEventListener('click', () => {
+		sortToggle.setAttribute('aria-pressed', String(sortToggle.getAttribute('aria-pressed') !== 'true'));
+		sortItems();
 	});
 
 	// #term-{id} 해시로 들어오면 필터를 풀고, 그 항목을 펼쳐서 보여 준다.
@@ -185,8 +269,8 @@ const headAbbrOf = (t: (typeof terms)[number]['data']) =>
 		if (item.hidden) {
 			stage = '';
 			search.value = '';
-			stageButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.stage === '')));
-			apply();
+				savedToggle.setAttribute('aria-pressed', 'false');
+			setStage('');
 		}
 		const details = item.querySelector<HTMLDetailsElement>('details.term');
 		if (details) details.open = true;
@@ -246,6 +330,105 @@ const headAbbrOf = (t: (typeof terms)[number]['data']) =>
 		font-size: var(--fs-small);
 		line-height: var(--lh-small);
 		color: var(--text-muted);
+	}
+
+	.saved-tools {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-2);
+		margin-top: var(--space-3);
+	}
+
+	/* 휴대폰·태블릿에서는 단계 목록이 서랍 안에 있으므로 목록 위에서도 단계를 고르게 한다 */
+	.stage-select {
+		display: none;
+		flex: 1 1 100%;
+		min-width: 0;
+		gap: var(--space-1);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		color: var(--text-muted);
+	}
+
+	.stage-select select {
+		width: 100%;
+		min-height: var(--touch-min);
+		padding: 0 var(--space-3);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		color: var(--text);
+		font: inherit;
+		font-size: 16px;
+	}
+
+	.stage-select select:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+
+	@media (max-width: 959px) {
+		.stage-select {
+			display: grid;
+		}
+	}
+
+	.fold-speak {
+		display: none;
+		flex: none;
+	}
+
+	.fold-speak :global(.speak) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--touch-min);
+		height: var(--touch-min);
+		padding: 0;
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-full);
+		background: var(--surface);
+		color: var(--primary);
+		cursor: pointer;
+	}
+
+	.fold-speak :global(.speak[hidden]),
+	.fold-speak :global(.speak-unavailable) {
+		display: none;
+	}
+
+	:global(html[data-first-lang='en']) .fold-speak[data-fold-lang='en'],
+	:global(html[data-first-lang='ja']) .fold-speak[data-fold-lang='ja'],
+	:global(html[data-first-lang='zh-Hans']) .fold-speak[data-fold-lang='zh-Hans'],
+	:global(html[data-first-lang='zh-Hant']) .fold-speak[data-fold-lang='zh-Hant'] {
+		display: block;
+	}
+
+	.saved-toggle {
+		min-height: var(--touch-min);
+		max-width: 100%;
+		padding: 0 var(--space-3);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		color: var(--text);
+		font: inherit;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.saved-toggle[aria-pressed='true'] {
+		border-color: var(--primary);
+		background: var(--primary-soft);
+		color: var(--primary);
+	}
+
+	.saved-toggle:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
 	}
 
 	.count {

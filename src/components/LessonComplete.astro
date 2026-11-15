@@ -15,7 +15,7 @@ const { slug } = Astro.props;
 		</svg>
 		<span class="complete-text">완료로 표시</span>
 	</button>
-	<p class="complete-hint" data-complete-hint hidden>퀴즈를 모두 풀었습니다. 완료로 표시해 보세요.</p>
+	<p class="complete-hint" data-complete-hint hidden>퀴즈를 모두 풀어 완료로 표시했습니다.</p>
 </div>
 
 <script>
@@ -43,26 +43,39 @@ const { slug } = Astro.props;
 		const slug = btn.dataset.completeSlug || '';
 		const text = btn.querySelector<HTMLElement>('.complete-text');
 		const hint = btn.parentElement?.querySelector<HTMLElement>('[data-complete-hint]');
-		let quizDone = false;
+		let autoDone = false;
+		let cancelled = false;
 
 		window.addEventListener('quiz-all-answered', () => {
-			quizDone = true;
+			if (cancelled) return;
+			const list = readDone();
+			if (list.indexOf(slug) === -1) {
+				list.push(slug);
+				writeDone(list);
+				autoDone = true;
+				window.dispatchEvent(new Event(EVENT));
+			}
 			render();
 		});
 
 		function render() {
 			const done = readDone().indexOf(slug) !== -1;
-			if (hint) hint.hidden = !(quizDone && !done);
+			if (hint) hint.hidden = !(autoDone && done);
 			btn.setAttribute('aria-pressed', String(done));
 			btn.classList.toggle('is-done', done);
-			if (text) text.textContent = done ? '완료됨' : '완료로 표시';
+			if (text) text.textContent = done ? '완료 취소' : '완료로 표시';
 		}
 
 		btn.addEventListener('click', () => {
 			const list = readDone();
 			const i = list.indexOf(slug);
-			if (i === -1) list.push(slug);
-			else list.splice(i, 1);
+			if (i === -1) {
+				list.push(slug);
+			} else {
+				list.splice(i, 1);
+				cancelled = true;
+				autoDone = false;
+			}
 			writeDone(list);
 			render();
 			window.dispatchEvent(new Event(EVENT));

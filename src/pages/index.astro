@@ -4,6 +4,14 @@ import Base from '../layouts/Base.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+// 첫 화면에서 고르는 배울 언어. 값과 저장 방식은 Base 헤더 메뉴와 같다.
+const pickOptions = [
+	{ value: 'en', label: 'English', lang: 'en' },
+	{ value: 'ja', label: '日本語', lang: 'ja' },
+	{ value: 'zh-Hans', label: '简体中文', lang: 'zh-Hans' },
+	{ value: 'zh-Hant', label: '繁體中文', lang: 'zh-Hant' },
+];
+
 // 단계(module)별 레슨 slug. 학습 경로 행의 진도 표시에 쓴다.
 const lessonModules = import.meta.glob('../content/lessons/*.mdx', { eager: true }) as Record<string, any>;
 const stepLessons: Record<number, string[]> = {};
@@ -17,6 +25,13 @@ for (const [path, mod] of Object.entries(lessonModules)) {
 	stepItems[m].push({ slug, title: String(mod.frontmatter?.title ?? slug), order: Number(mod.frontmatter?.order ?? 0) });
 }
 for (const m of Object.keys(stepItems)) stepItems[Number(m)].sort((a, b) => a.order - b.order);
+
+// 학습 순서(단계 → 레슨 순서)로 나열한 전체 레슨. "이어서 학습"과 전체 진도에 쓴다.
+const orderedLessons = Object.keys(stepItems)
+	.map(Number)
+	.sort((a, b) => a - b)
+	.flatMap((m) => stepItems[m]);
+const totalLessons = orderedLessons.length;
 
 // href가 있는 단계만 링크. 나머지는 "준비 중".
 const steps = [
@@ -47,10 +62,43 @@ const langs = [
 			<p class="lead">
 				칩이 만들어지는 순서를 그림으로 따라가며 용어를 익힙니다. 외국어 표기는 헤더에서 함께 볼 언어를 여러 개 고를 수 있습니다.
 			</p>
-			<div class="actions">
+			<div class="lang-pick" role="group" aria-labelledby="lang-pick-title">
+					<p id="lang-pick-title" class="lang-pick-title">배울 언어 고르기</p>
+					<div class="lang-pick-grid">
+						{
+							pickOptions.map((o) => (
+								<button type="button" class="lang-btn" aria-pressed="true" data-lang-pick={o.value} lang={o.lang}>
+									{o.label}
+								</button>
+							))
+						}
+					</div>
+				</div>
+				<div class="actions">
 				<a class="btn btn-primary" href={`${base}/tour/`}>칩 하나 만들어 보기</a>
 				<a class="btn btn-secondary" href={`${base}/glossary/`}>용어집 보기</a>
 			</div>
+			<a class="shortcut" href={`${base}/glossary/#quiz`}>
+					<span class="shortcut-text">
+						<span class="shortcut-title">현장 표현부터 보기</span>
+						<span class="shortcut-sub"><span class="mono">8</span>단계 · 용어 맞히기</span>
+					</span>
+					<svg class="shortcut-arrow" viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M9 6l6 6-6 6" />
+					</svg>
+				</a>
+				{totalLessons > 0 && (
+				<div class="resume" data-resume data-order={JSON.stringify(orderedLessons.map((l) => ({ slug: l.slug, title: l.title })))} data-base={base}>
+					<div class="resume-head">
+						<span class="resume-label">전체 진도</span>
+						<span class="resume-count" data-resume-count>0/{totalLessons}</span>
+					</div>
+					<div class="resume-bar" aria-hidden="true"><span data-resume-fill></span></div>
+					<a class="btn btn-primary resume-btn" data-resume-link href={`${base}/lessons/${orderedLessons[0].slug}/`}>
+						<span data-resume-text>학습 시작: {orderedLessons[0].title}</span>
+					</a>
+				</div>
+			)}
 		</section>
 
 		<section class="block" aria-labelledby="path-title">
@@ -81,7 +129,7 @@ const langs = [
 									<ol class="lesson-list">
 										{stepItems[s.n].map((l) => (
 											<li>
-												<a class="lesson-link" href={`${base}/lessons/${l.slug}/`}>{l.title}</a>
+												<a class="lesson-link" data-slug={l.slug} href={`${base}/lessons/${l.slug}/`}>{l.title}</a>
 											</li>
 										))}
 									</ol>
@@ -156,8 +204,41 @@ const langs = [
 		}
 	}
 
+	function renderResume(done: string[]) {
+		const box = document.querySelector<HTMLElement>('[data-resume]');
+		if (!box) return;
+		let order: { slug: string; title: string }[] = [];
+		try {
+			order = JSON.parse(box.dataset.order || '[]');
+		} catch {
+			order = [];
+		}
+		if (order.length === 0) return;
+		const base = box.dataset.base || '';
+		const count = order.filter((l) => done.indexOf(l.slug) !== -1).length;
+		const next = order.find((l) => done.indexOf(l.slug) === -1);
+		const countEl = box.querySelector<HTMLElement>('[data-resume-count]');
+		if (countEl) countEl.textContent = `${count}/${order.length}`;
+		const fill = box.querySelector<HTMLElement>('[data-resume-fill]');
+		if (fill) fill.style.width = `${(count / order.length) * 100}%`;
+		const link = box.querySelector<HTMLAnchorElement>('[data-resume-link]');
+		const text = box.querySelector<HTMLElement>('[data-resume-text]');
+		if (!link || !text) return;
+		if (next) {
+			link.href = `${base}/lessons/${next.slug}/`;
+			text.textContent = count === 0 ? `학습 시작: ${next.title}` : `이어서 학습: ${next.title}`;
+		} else {
+			link.href = `${base}/glossary/`;
+			text.textContent = '모든 레슨 완료 · 용어집 보기';
+		}
+	}
+
 	function renderPath() {
 		const done = readDone();
+		renderResume(done);
+		document.querySelectorAll<HTMLElement>('.lesson-link[data-slug]').forEach((a) => {
+			a.classList.toggle('is-done', done.indexOf(a.dataset.slug || '') !== -1);
+		});
 		document.querySelectorAll<HTMLElement>('[data-lessons]').forEach((row) => {
 			const slugs = (row.dataset.lessons || '').split(',').filter(Boolean);
 			const el = row.querySelector<HTMLElement>('[data-progress]');
@@ -170,6 +251,33 @@ const langs = [
 
 	window.addEventListener('learn-progress-change', renderPath);
 	renderPath();
+</script>
+
+<script>
+	const root = document.documentElement;
+	const codes = ['en', 'ja', 'zh-Hans', 'zh-Hant'];
+	const picks = Array.prototype.slice.call(document.querySelectorAll('[data-lang-pick]')) as HTMLButtonElement[];
+
+	function activeLangs(): string[] {
+		return (root.dataset.learnLang || '').split(' ').filter((c) => codes.indexOf(c) !== -1);
+	}
+
+	function paintPicks() {
+		const on = activeLangs();
+		picks.forEach((b) => b.setAttribute('aria-pressed', String(on.indexOf(b.dataset.langPick || '') !== -1)));
+	}
+
+	picks.forEach((b) => {
+		b.addEventListener('click', () => {
+			const code = b.dataset.langPick || '';
+			const on = activeLangs();
+			const next = on.indexOf(code) !== -1 ? on.filter((c) => c !== code) : on.concat(code);
+			window.dispatchEvent(new CustomEvent('learn-lang-set', { detail: codes.filter((c) => next.indexOf(c) !== -1) }));
+		});
+	});
+
+	window.addEventListener('learn-lang-change', paintPicks);
+	paintPicks();
 </script>
 
 <style>
@@ -209,6 +317,112 @@ const langs = [
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--space-3);
+	}
+
+	.lang-pick {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+
+	.lang-pick-title {
+		margin: 0;
+		font-family: var(--font-sans-ko);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		color: var(--text-muted);
+	}
+
+	.lang-pick-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+		gap: var(--space-3);
+	}
+
+	.lang-btn {
+		min-width: 0;
+		min-height: var(--touch-min);
+		padding: 0 var(--space-4);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		color: var(--text);
+		font-family: var(--font-sans-ko);
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		cursor: pointer;
+		overflow-wrap: anywhere;
+	}
+
+	.lang-btn[aria-pressed='false']:hover {
+		background: var(--surface-sunken);
+	}
+
+	.lang-btn[aria-pressed='true'] {
+		background: var(--primary-soft);
+		border-color: var(--primary);
+		color: var(--primary);
+	}
+
+	.lang-btn:focus-visible,
+	.shortcut:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+
+	.shortcut {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 24px;
+		align-items: center;
+		gap: var(--space-3);
+		min-height: 56px;
+		padding: var(--space-3) var(--space-5);
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		color: var(--text);
+		text-decoration: none;
+	}
+
+	.shortcut:hover {
+		background: var(--primary-soft);
+	}
+
+	.shortcut-text {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+	}
+
+	.shortcut-title {
+		font-size: var(--fs-h3);
+		line-height: var(--lh-h3);
+		font-weight: 600;
+	}
+
+	.shortcut-sub {
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		color: var(--text-muted);
+	}
+
+	.shortcut-sub .mono {
+		font-family: var(--font-mono);
+		font-weight: 500;
+		color: var(--accent);
+	}
+
+	.shortcut-arrow {
+		width: 24px;
+		height: 24px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		color: var(--primary);
 	}
 
 	.btn {
@@ -313,6 +527,64 @@ const langs = [
 		padding: var(--space-2) var(--space-5) var(--space-2) calc(var(--space-5) + 32px + var(--space-3));
 		color: var(--text);
 		text-decoration: none;
+	}
+
+	.lesson-link:global(.is-done)::after {
+		content: '완료';
+		margin-left: var(--space-2);
+		font-size: var(--fs-caption);
+		font-weight: 500;
+		color: var(--primary);
+	}
+
+	.resume {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		padding: var(--space-5);
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+	}
+
+	.resume-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--space-3);
+	}
+
+	.resume-label {
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		color: var(--text-muted);
+	}
+
+	.resume-count {
+		font-family: var(--font-mono);
+		font-size: var(--fs-mono);
+		line-height: var(--lh-mono);
+		font-weight: 500;
+		color: var(--primary);
+	}
+
+	.resume-bar {
+		height: 8px;
+		border-radius: var(--radius-full);
+		background: var(--surface-sunken);
+		overflow: hidden;
+	}
+
+	.resume-bar span {
+		display: block;
+		height: 100%;
+		width: 0;
+		background: var(--primary);
+	}
+
+	.resume-btn {
+		justify-content: flex-start;
+		text-align: left;
 	}
 
 	.lesson-link:hover {

@@ -431,6 +431,42 @@ const pads = [337, 351, 365, 379];
 	</figure>
 </StepAnimation>
 
+<script>
+	// 현재 장면 번호를 주소 해시(#scene-N)에 기록하고, 용어집에 다녀온 뒤 그 장면을 복원한다.
+	// 장면을 넘길 때마다 replaceState만 써서 뒤로 가기 기록이 쌓이지 않는다.
+	const root = document.querySelector<HTMLElement>('[data-step-animation]');
+	if (root) {
+		const counter = root.querySelector<HTMLElement>('[data-counter]');
+		const next = root.querySelector<HTMLButtonElement>('[data-next]');
+		const total = root.querySelector('[data-steps]')?.children.length ?? 0;
+
+		const current = () => Number(counter?.textContent?.match(/^\s*(\d+)\s*\//)?.[1] ?? 0);
+
+		const start = () => {
+			if (!counter || !next) return;
+			const wanted = Number(location.hash.match(/^#scene-(\d+)$/)?.[1] ?? 1);
+			const target = Math.max(1, Math.min(total, wanted));
+			for (let i = 0; i < 20 && current() > 0 && current() < target; i++) next.click();
+			new MutationObserver(() => {
+				const n = current();
+				if (n > 0) history.replaceState(history.state, '', `#scene-${n}`);
+			}).observe(counter, { childList: true, characterData: true, subtree: true });
+		};
+
+		if (root.hasAttribute('data-ready')) {
+			start();
+		} else {
+			const wait = new MutationObserver(() => {
+				if (root.hasAttribute('data-ready')) {
+					wait.disconnect();
+					start();
+				}
+			});
+			wait.observe(root, { attributes: true, attributeFilter: ['data-ready'] });
+		}
+	}
+</script>
+
 <style>
 	.scene {
 		--si: var(--diagram-silicon);

@@ -310,3 +310,203 @@
   zh_cn_pinyin: zhè piàn jīngyuán pò le, yǐjīng bàofèi chǔlǐ le.
   zh_tw: 這片晶圓破了，已經報廢處理了。
   zh_tw_pinyin: zhè piàn jīngyuán pò le, yǐjīng bàofèi chǔlǐ le.
+- id: cp-delivery-date
+  situation: 납기를 알릴 때
+  ko: 주문하신 부품의 납기는 다음 달 10일입니다.
+  en: The delivery date for the parts you ordered is the 10th of next month.
+  ja: ご注文の部品の納期は来月10日です。
+  ja_reading: ごちゅうもんのぶひんののうきはらいげつとおかです。
+  zh_cn: 您订购的零件交货期是下个月10号。
+  zh_cn_pinyin: nín dìnggòu de língjiàn jiāohuò qī shì xià ge yuè shí hào.
+  zh_tw: 您訂購的零件交貨期是下個月10號。
+  zh_tw_pinyin: nín dìnggòu de língjiàn jiāohuò qī shì xià ge yuè shí hào.
+- id: cp-delay-notice
+  situation: 납기 지연을 알릴 때
+  ko: 자재 수급 문제로 납기가 일주일 늦어질 것 같습니다.
+  en: Due to a material supply issue, the delivery may be delayed by a week.
+  ja: 資材の調達問題で、納期が1週間遅れそうです。
+  ja_reading: しざいのちょうたつもんだいで、のうきがいっしゅうかんおくれそうです。
+  zh_cn: 由于材料供应问题，交货可能会推迟一周。
+  zh_cn_pinyin: yóuyú cáiliào gōngyìng wèntí, jiāohuò kěnéng huì tuīchí yì zhōu.
+  zh_tw: 由於材料供應問題，交貨可能會延後一週。
+  zh_tw_pinyin: yóuyú cáiliào gōngyìng wèntí, jiāohuò kěnéng huì yánhòu yì zhōu.
+- id: cp-arrival-check
+  situation: 입고 예정일을 확인할 때
+  ko: 입고 예정일을 다시 확인해 주실 수 있나요?
+  en: Could you please confirm the expected arrival date again?
+  ja: 入荷予定日をもう一度確認していただけますか。
+  ja_reading: にゅうかよていびをもういちどかくにんしていただけますか。
+  zh_cn: 能请您再确认一下预计到货日期吗？
+  zh_cn_pinyin: néng qǐng nín zài quèrèn yíxià yùjì dàohuò rìqī ma?
+  zh_tw: 能請您再確認一下預計到貨日期嗎？
+  zh_tw_pinyin: néng qǐng nín zài quèrèn yíxià yùjì dàohuò rìqī ma?
+- id: cp-goods-received
+  situation: 입고를 확인할 때
+  ko: 부품이 오늘 오전에 입고되었습니다. 수량이 맞는지 확인하겠습니다.
+  en: The parts arrived this morning. We will check that the quantity is correct.
+  ja: 部品が今朝入荷しました。数量が合っているか確認します。
+  ja_reading: ぶひんがけさにゅうかしました。すうりょうがあっているかかくにんします。
+  zh_cn: 零件今天上午到货了，我们会核对数量是否正确。
+  zh_cn_pinyin: língjiàn jīntiān shàngwǔ dàohuò le, wǒmen huì héduì shùliàng shìfǒu zhèngquè.
+  zh_tw: 零件今天上午到貨了，我們會核對數量是否正確。
+  zh_tw_pinyin: língjiàn jīntiān shàngwǔ dàohuò le, wǒmen huì héduì shùliàng shìfǒu zhèngquè.
+- id: cp-install-schedule
+  situation: 설치 일정을 알릴 때
+  ko: 장비 설치는 다음 주 월요일부터 시작할 예정입니다.
+  en: Equipment installation is scheduled to start next Monday.
+  ja: 装置の設置は来週の月曜日から始まる予定です。
+  ja_reading: そうちのせっちはらいしゅうのげつようびからはじまるよていです。
+  zh_cn: 设备安装计划从下周一开始。
+  zh_cn_pinyin: shèbèi ānzhuāng jìhuà cóng xià zhōu yī kāishǐ.
+  zh_tw: 設備安裝計畫從下週一開始。
+  zh_tw_pinyin: shèbèi ānzhuāng jìhuà cóng xià zhōu yī kāishǐ.
+- id: cp-install-space
+  situation: 설치 전 준비를 요청할 때
+  ko: 설치 전에 클린룸 바닥 공간을 비워 주세요.
+  en: Please clear the cleanroom floor space before installation.
+  ja: 設置前に、クリーンルームの床のスペースを空けてください。
+  ja_reading: せっちまえに、くりーんるーむのゆかのすぺーすをあけてください。
+  zh_cn: 安装前请把洁净室的地面空间腾出来。
+  zh_cn_pinyin: ānzhuāng qián qǐng bǎ jiéjìngshì de dìmiàn kōngjiān téng chūlái.
+  zh_tw: 安裝前請把無塵室的地面空間騰出來。
+  zh_tw_pinyin: ānzhuāng qián qǐng bǎ wúchénshì de dìmiàn kōngjiān téng chūlái.
+- id: cp-install-utility
+  situation: 설비 연결 기한을 요청할 때
+  ko: 전기와 가스 배관 연결은 설치 하루 전까지 끝내 주세요.
+  en: Please finish the power and gas line connections one day before installation.
+  ja: 電気とガス配管の接続は、設置の前日までに終えてください。
+  ja_reading: でんきとがすはいかんのせつぞくは、せっちのぜんじつまでにおえてください。
+  zh_cn: 请在安装前一天完成电源和气体管路的连接。
+  zh_cn_pinyin: qǐng zài ānzhuāng qián yì tiān wánchéng diànyuán hé qìtǐ guǎnlù de liánjiē.
+  zh_tw: 請在安裝前一天完成電源和氣體管路的連接。
+  zh_tw_pinyin: qǐng zài ānzhuāng qián yì tiān wánchéng diànyuán hé qìtǐ guǎnlù de liánjiē.
+- id: cp-install-move-up
+  situation: 일정 변경을 문의할 때
+  ko: 일정을 이틀 앞당길 수 있을까요?
+  en: Could we move the schedule up by two days?
+  ja: 日程を2日早めることはできますか。
+  ja_reading: にっていをふつかはやめることはできますか。
+  zh_cn: 日程可以提前两天吗？
+  zh_cn_pinyin: rìchéng kěyǐ tíqián liǎng tiān ma?
+  zh_tw: 日程可以提前兩天嗎？
+  zh_tw_pinyin: rìchéng kěyǐ tíqián liǎng tiān ma?
+- id: cp-fault-report
+  situation: 장애를 접수했을 때
+  ko: 장비가 멈췄다는 장애 접수를 받았습니다.
+  en: We have received a fault report that the equipment has stopped.
+  ja: 装置が停止したという障害の連絡を受けました。
+  ja_reading: そうちがていししたというしょうがいのれんらくをうけました。
+  zh_cn: 我们收到了设备停机的故障报告。
+  zh_cn_pinyin: wǒmen shōudào le shèbèi tíngjī de gùzhàng bàogào.
+  zh_tw: 我們收到了設備停機的故障通報。
+  zh_tw_pinyin: wǒmen shōudào le shèbèi tíngjī de gùzhàng tōngbào.
+- id: cp-fault-detail
+  situation: 장애 내용을 물을 때
+  ko: 어떤 경보가 언제부터 나오는지 알려 주세요.
+  en: Please tell us which alarm appears and since when.
+  ja: どのアラームがいつから出ているか教えてください。
+  ja_reading: どのあらーむがいつからでているかおしえてください。
+  zh_cn: 请告诉我们出现了什么警报，从什么时候开始的。
+  zh_cn_pinyin: qǐng gàosù wǒmen chūxiàn le shénme jǐngbào, cóng shénme shíhou kāishǐ de.
+  zh_tw: 請告訴我們出現了什麼警報，從什麼時候開始的。
+  zh_tw_pinyin: qǐng gàosù wǒmen chūxiàn le shénme jǐngbào, cóng shénme shíhou kāishǐ de.
+- id: cp-visit-time
+  situation: 방문 시간을 알릴 때
+  ko: 오늘 오후 3시까지 엔지니어가 방문하겠습니다.
+  en: An engineer will visit by 3 p.m. today.
+  ja: 本日午後3時までにエンジニアが伺います。
+  ja_reading: ほんじつごごさんじまでにえんじにあがうかがいます。
+  zh_cn: 工程师今天下午3点前会到访。
+  zh_cn_pinyin: gōngchéngshī jīntiān xiàwǔ sān diǎn qián huì dàofǎng.
+  zh_tw: 工程師今天下午3點前會到訪。
+  zh_tw_pinyin: gōngchéngshī jīntiān xiàwǔ sān diǎn qián huì dàofǎng.
+- id: cp-visit-access
+  situation: 방문 출입을 요청할 때
+  ko: 방문하는 엔지니어의 출입 등록을 부탁드립니다.
+  en: Please register the visiting engineer for site access.
+  ja: 訪問するエンジニアの入場登録をお願いします。
+  ja_reading: ほうもんするえんじにあのにゅうじょうとうろくをおねがいします。
+  zh_cn: 请为来访的工程师办理出入登记。
+  zh_cn_pinyin: qǐng wèi láifǎng de gōngchéngshī bànlǐ chūrù dēngjì.
+  zh_tw: 請為來訪的工程師辦理出入登記。
+  zh_tw_pinyin: qǐng wèi láifǎng de gōngchéngshī bànlǐ chūrù dēngjì.
+- id: cp-fault-fixed
+  situation: 장애 조치를 알릴 때
+  ko: 부품을 교체해서 장비가 다시 정상 작동합니다.
+  en: We replaced the part, and the equipment is working normally again.
+  ja: 部品を交換して、装置は再び正常に動いています。
+  ja_reading: ぶひんをこうかんして、そうちはふたたびせいじょうにうごいています。
+  zh_cn: 更换零件后，设备又恢复正常运行了。
+  zh_cn_pinyin: gēnghuàn língjiàn hòu, shèbèi yòu huīfù zhèngcháng yùnxíng le.
+  zh_tw: 更換零件後，設備又恢復正常運轉了。
+  zh_tw_pinyin: gēnghuàn língjiàn hòu, shèbèi yòu huīfù zhèngcháng yùnzhuǎn le.
+- id: cp-req-spec
+  situation: 사양서를 요청할 때
+  ko: 장비 사양서를 보내 주실 수 있나요?
+  en: Could you send us the equipment specification sheet?
+  ja: 装置の仕様書を送っていただけますか。
+  ja_reading: そうちのしようしょをおくっていただけますか。
+  zh_cn: 能请您发一下设备规格书吗？
+  zh_cn_pinyin: néng qǐng nín fā yíxià shèbèi guīgé shū ma?
+  zh_tw: 能請您寄一下設備規格書嗎？
+  zh_tw_pinyin: néng qǐng nín jì yíxià shèbèi guīgé shū ma?
+- id: cp-req-report
+  situation: 성적서를 요청할 때
+  ko: 검사 성적서를 이번 주 금요일까지 부탁드립니다.
+  en: We would like the inspection report by this Friday.
+  ja: 検査成績書を今週の金曜日までにお願いします。
+  ja_reading: けんさせいせきしょをこんしゅうのきんようびまでにおねがいします。
+  zh_cn: 麻烦您在本周五前提供检验报告。
+  zh_cn_pinyin: máfan nín zài běn zhōu wǔ qián tígōng jiǎnyàn bàogào.
+  zh_tw: 麻煩您在本週五前提供檢驗報告。
+  zh_tw_pinyin: máfan nín zài běn zhōu wǔ qián tígōng jiǎnyàn bàogào.
+- id: cp-req-log
+  situation: 로그 데이터를 요청할 때
+  ko: 고장 전후의 로그 데이터를 공유해 주세요.
+  en: Please share the log data from before and after the failure.
+  ja: 故障前後のログデータを共有してください。
+  ja_reading: こしょうぜんごのろぐでーたをきょうゆうしてください。
+  zh_cn: 请共享故障前后的日志数据。
+  zh_cn_pinyin: qǐng gòngxiǎng gùzhàng qiánhòu de rìzhì shùjù.
+  zh_tw: 請分享故障前後的日誌資料。
+  zh_tw_pinyin: qǐng fēnxiǎng gùzhàng qiánhòu de rìzhì zīliào.
+- id: cp-req-resend
+  situation: 첨부 파일을 다시 요청할 때
+  ko: 첨부 파일이 열리지 않습니다. 다시 보내 주시겠어요?
+  en: The attachment will not open. Could you send it again?
+  ja: 添付ファイルが開けません。もう一度送っていただけますか。
+  ja_reading: てんぷふぁいるがひらけません。もういちどおくっていただけますか。
+  zh_cn: 附件打不开，能请您重新发一下吗？
+  zh_cn_pinyin: fùjiàn dǎ bù kāi, néng qǐng nín chóngxīn fā yíxià ma?
+  zh_tw: 附件打不開，能請您重新寄一下嗎？
+  zh_tw_pinyin: fùjiàn dǎ bù kāi, néng qǐng nín chóngxīn jì yíxià ma?
+- id: cp-mail-thanks
+  situation: 메일에서 감사를 전할 때
+  ko: 항상 도움 주셔서 감사합니다.
+  en: Thank you always for your help.
+  ja: いつもご協力いただきありがとうございます。
+  ja_reading: いつもごきょうりょくいただきありがとうございます。
+  zh_cn: 感谢您一直以来的协助。
+  zh_cn_pinyin: gǎnxiè nín yìzhí yǐlái de xiézhù.
+  zh_tw: 感謝您一直以來的協助。
+  zh_tw_pinyin: gǎnxiè nín yìzhí yǐlái de xiézhù.
+- id: cp-mail-reply
+  situation: 메일에서 회신을 요청할 때
+  ko: 확인하시고 회신 부탁드립니다.
+  en: Please review this and reply to us.
+  ja: ご確認のうえ、ご返信をお願いします。
+  ja_reading: ごかくにんのうえ、ごへんしんをおねがいします。
+  zh_cn: 请您确认后回复。
+  zh_cn_pinyin: qǐng nín quèrèn hòu huífù.
+  zh_tw: 請您確認後回覆。
+  zh_tw_pinyin: qǐng nín quèrèn hòu huífù.
+- id: cp-mail-regards
+  situation: 메일을 맺을 때
+  ko: 잘 부탁드립니다. 좋은 하루 보내세요.
+  en: Best regards. Have a good day.
+  ja: よろしくお願いします。良い一日をお過ごしください。
+  ja_reading: よろしくおねがいします。よいいちにちをおすごしください。
+  zh_cn: 拜托您了，祝您今天愉快。
+  zh_cn_pinyin: bàituō nín le, zhù nín jīntiān yúkuài.
+  zh_tw: 拜託您了，祝您今天愉快。
+  zh_tw_pinyin: bàituō nín le, zhù nín jīntiān yúkuài.

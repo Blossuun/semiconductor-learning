@@ -109,6 +109,13 @@ const langOptions = [
 				root.dataset.learnLang = learn;
 			})();
 		</script>
+		<script is:inline define:vars={{ swUrl: `${base}/sw.js`, swScope: `${base}/` }}>
+			if ('serviceWorker' in navigator && location.protocol === 'https:') {
+				window.addEventListener('load', function () {
+					navigator.serviceWorker.register(swUrl, { scope: swScope }).catch(function () {});
+				});
+			}
+		</script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -139,12 +146,12 @@ const langOptions = [
 			<div class="header-actions">
 				<slot name="header" />
 				<details class="lang-picker">
-					<summary class="lang-summary">함께 볼 언어</summary>
+					<summary class="lang-summary" data-lang-summary><span data-lang-label>함께 볼 언어</span></summary>
 					<div class="lang-menu" role="group" aria-label="함께 볼 언어">
 						<label class="lang-check"><input type="checkbox" data-lang-all /><span>전체</span></label>
 						{
 							langOptions.map((o) => (
-								<label class="lang-check"><input type="checkbox" value={o.value} data-lang-check /><span lang={o.lang}>
+								<label class="lang-check"><input type="checkbox" value={o.value} data-name={o.label} data-lang-check /><span lang={o.lang}>
 									{o.label}
 								</span></label>
 							))
@@ -167,6 +174,8 @@ const langOptions = [
 				</button>
 			</div>
 		</header>
+
+		{sidebar && <div class="sidebar-scrim" data-sidebar-scrim aria-hidden="true"></div>}
 
 		<div class:list={['layout', !sidebar && 'is-full']}>
 			{
@@ -237,9 +246,31 @@ const langOptions = [
 				});
 				syncLangAll();
 
-				function applyLangs() {
+				// 헤더 언어 버튼 글자: 0개 "한국어만", 1개 언어 이름, 여러 개 "언어 n개"
+					function paintLangLabel() {
+						var on = langBoxes.filter(function (b) { return b.checked; });
+						var text = on.length === 0 ? '한국어만' : on.length === 1 ? on[0].getAttribute('data-name') : '언어 ' + on.length + '개';
+						var label = document.querySelector('[data-lang-label]');
+						var summary = document.querySelector('[data-lang-summary]');
+						if (label) label.textContent = text;
+						if (summary) summary.setAttribute('aria-label', '함께 볼 언어: ' + text);
+					}
+					paintLangLabel();
+
+					// 첫 화면의 언어 버튼이 보낸 목록으로 헤더 메뉴와 같은 상태를 만든다
+					window.addEventListener('learn-lang-set', function (e) {
+						var want = e.detail || [];
+						langBoxes.forEach(function (b) {
+							b.checked = want.indexOf(b.value) !== -1;
+						});
+						applyLangs();
+					});
+
+					function applyLangs() {
 					var on = currentLangs();
 					root.dataset.learnLang = on.length ? on.join(' ') : 'none';
+						paintLangLabel();
+						window.dispatchEvent(new CustomEvent('learn-lang-change'));
 					syncLangAll();
 					try {
 						localStorage.setItem('learn-lang', on.length ? on.join(',') : 'none');
@@ -307,6 +338,35 @@ const langOptions = [
 				document.addEventListener('keydown', function (e) {
 					if (e.key === 'Escape') setMenu(false);
 				});
+
+				// 목차 뒤 어두운 막: 누르면 닫힘
+				var scrim = document.querySelector('[data-sidebar-scrim]');
+				if (scrim) scrim.addEventListener('click', function () { setMenu(false); });
+
+				// 아래로 스크롤하면 헤더 둘째 줄(메뉴)을 숨기고, 위로 스크롤하면 다시 보인다
+				var siteHeader = document.querySelector('.site-header');
+				if (siteHeader) {
+					var lastY = window.scrollY;
+					var ticking = false;
+					window.addEventListener('scroll', function () {
+						if (ticking) return;
+						ticking = true;
+						window.requestAnimationFrame(function () {
+							var y = window.scrollY;
+							var dy = y - lastY;
+							if (y <= 8 || dy < -4) {
+								siteHeader.classList.remove('is-nav-hidden');
+							} else if (dy > 4 && y > siteHeader.offsetHeight) {
+								siteHeader.classList.add('is-nav-hidden');
+							}
+							if (Math.abs(dy) > 4) lastY = y;
+							ticking = false;
+						});
+					}, { passive: true });
+					siteHeader.addEventListener('focusin', function () {
+						siteHeader.classList.remove('is-nav-hidden');
+					});
+				}
 			})();
 		</script>
 
@@ -332,6 +392,16 @@ const langOptions = [
 						el.classList.toggle('is-done', list.length > 0 && count === list.length);
 					});
 				}
+				function markLessons() {
+					var done = readDone();
+					document.querySelectorAll('.sidebar a[href*="/lessons/"]').forEach(function (a) {
+						var parts = (a.getAttribute('href') || '').split('/').filter(Boolean);
+						var slug = parts[parts.length - 1];
+						a.classList.toggle('is-lesson-done', !a.querySelector('[data-step-progress]') && done.indexOf(slug) !== -1);
+					});
+				}
+				window.addEventListener('learn-progress-change', markLessons);
+				markLessons();
 				window.addEventListener('learn-progress-change', renderToc);
 				renderToc();
 			})();
@@ -872,6 +942,15 @@ const langOptions = [
 		color: var(--primary);
 	}
 
+	.sidebar a.is-lesson-done::after {
+		content: '완료';
+		margin-left: auto;
+		padding-left: var(--space-2);
+		font-size: var(--fs-caption);
+		font-weight: 500;
+		color: var(--primary);
+	}
+
 	.toc-title {
 		margin: 0 0 var(--space-2);
 		padding: 0 var(--space-2);
@@ -964,6 +1043,23 @@ const langOptions = [
 			visibility: visible;
 		}
 
+		.sidebar-scrim {
+			position: fixed;
+			inset: var(--header-h) 0 0 0;
+			z-index: 14;
+			background: rgb(0 0 0 / 0.5);
+			opacity: 0;
+			visibility: hidden;
+			transition:
+				opacity 200ms ease,
+				visibility 200ms;
+		}
+
+		.sidebar-open .sidebar-scrim {
+			opacity: 1;
+			visibility: visible;
+		}
+
 		.content {
 			padding: var(--space-4) var(--space-4) var(--space-7);
 		}
@@ -979,10 +1075,43 @@ const langOptions = [
 
 		.site-title {
 			flex: 1 1 0;
+			overflow: visible;
+			font-size: 15px;
+			line-height: 20px;
+			overflow-wrap: anywhere;
+			text-overflow: clip;
+			white-space: normal;
 		}
 
 		.header-actions {
 			flex: none;
+			gap: var(--space-1);
+		}
+
+		.lang-summary {
+			padding: 0 var(--space-2);
+		}
+
+		/* 아래로 스크롤하면 둘째 줄(메뉴 44px)을 잘라 내 숨긴다 (첫 줄 56px만 남김) */
+		.site-header {
+			clip-path: none;
+		}
+
+		.site-header.is-nav-hidden {
+			clip-path: inset(0 0 44px 0);
+		}
+
+		.site-header.is-nav-hidden::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 55px;
+			border-bottom: 1px solid var(--border);
+		}
+
+		.sidebar-open .site-header.is-nav-hidden {
+			clip-path: none;
 		}
 
 		.main-nav {

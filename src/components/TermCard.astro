@@ -55,11 +55,27 @@ const Wrap = glossaryLink ? 'details' : 'div';
 					{term.zh_tw && <span data-lang="zh-Hant" lang="zh-Hant">{term.zh_tw}</span>}
 				</span>
 				{!term.verified && <span class="fold-badge unverified">확인 전</span>}
-				{term.module !== undefined && <span class="fold-badge">{term.module}단계</span>}
+				{rows.filter((r) => r.text).map((r) => (
+					<span class="fold-speak" data-fold-lang={r.lang}>
+						<button
+							class="speak"
+							type="button"
+							aria-label={`${r.name} 발음 듣기`}
+							data-speak={r.text}
+							data-speak-lang={r.speak}
+							data-audio={r.audio}
+						>
+							<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+								<path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+								<path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+							</svg>
+						</button>
+					</span>
+				))}
 			</summary>
 		)
 	}
-	<article class="term-card" id={`term-${id}`}>
+	<article class="term-card" id={`term-${id}`} data-term-ko={term.ko}>
 	<header class="head">
 		{
 			headAbbr ? (
@@ -92,6 +108,7 @@ const Wrap = glossaryLink ? 'details' : 'div';
 		</button>
 		{chipAbbrs.map((abbr) => <span class="chip mono">{abbr}</span>)}
 		{term.module !== undefined && <span class="chip caption">{term.module}단계</span>}
+		<button class="save-btn" type="button" aria-pressed="false" data-save-term={id}>저장</button>
 			{glossaryLink && (
 				<a class="glossary-link" href={`${base}/glossary/#term-${id}`}>용어집에서 보기</a>
 			)}
@@ -138,7 +155,7 @@ const Wrap = glossaryLink ? 'details' : 'div';
 						<dd>
 							<span class="text">
 								<span class="word">{row.text}</span>
-								{row.reading && <span class="reading">{row.reading}</span>}
+								{row.reading && !(row.lang === 'ja' && !/[一-龯々ぁ-ん]/.test(row.text ?? '')) && <span class="reading">{row.reading}</span>}
 							</span>
 							<button
 								class="speak"
@@ -186,7 +203,59 @@ const Wrap = glossaryLink ? 'details' : 'div';
 
 <script>
 	import '../scripts/speak.ts';
+
+	// 저장한 용어 id 목록(JSON 배열). 용어집의 "저장한 용어" 보기와 용어 맞히기가 같은 키를 읽는다.
+	const SAVED_TERMS_KEY = 'sc-saved-terms';
+
+	const readSavedTerms = (): string[] => {
+		try {
+			const v: unknown = JSON.parse(localStorage.getItem(SAVED_TERMS_KEY) ?? '[]');
+			return Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : [];
+		} catch {
+			return [];
+		}
+	};
+
+	const syncSaveButtons = () => {
+		const saved = new Set(readSavedTerms());
+		document.querySelectorAll<HTMLButtonElement>('[data-save-term]').forEach((b) => {
+			b.setAttribute('aria-pressed', String(saved.has(b.dataset.saveTerm ?? '')));
+		});
+	};
+
+	document.addEventListener('click', (e) => {
+		const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-save-term]');
+		if (!btn) return;
+		const id = btn.dataset.saveTerm ?? '';
+		const list = readSavedTerms();
+		const i = list.indexOf(id);
+		if (i >= 0) list.splice(i, 1);
+		else list.push(id);
+		try {
+			localStorage.setItem(SAVED_TERMS_KEY, JSON.stringify(list));
+		} catch {
+			// 저장 공간을 쓸 수 없으면 버튼 상태만 그대로 둔다.
+		}
+		syncSaveButtons();
+	});
+
+	syncSaveButtons();
+
+	// 접힌 줄에서 고른 언어(여러 개면 첫 번째)의 발음 버튼만 보이도록 html에 표시한다.
+	const syncFirstLang = () => {
+		const first = (document.documentElement.dataset.learnLang ?? '').split(' ')[0];
+		if (first && first !== 'none') document.documentElement.dataset.firstLang = first;
+		else delete document.documentElement.dataset.firstLang;
+	};
+	syncFirstLang();
+	window.addEventListener('learn-lang-change', syncFirstLang);
+
+	// 접힌 줄(summary) 안의 발음 버튼을 눌러도 카드가 펼쳐지지 않게 한다.
+	document.addEventListener('click', (e) => {
+		if ((e.target as HTMLElement).closest('.fold-speak')) e.preventDefault();
+	});
 </script>
+
 
 <style>
 	.term-card {
@@ -240,6 +309,32 @@ const Wrap = glossaryLink ? 'details' : 'div';
 		font-size: var(--fs-caption);
 		line-height: var(--lh-caption);
 		font-weight: 500;
+	}
+
+	.save-btn {
+		min-height: var(--touch-min);
+		margin-left: auto;
+		padding: 0 var(--space-3);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		color: var(--text);
+		font: inherit;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.save-btn[aria-pressed='true'] {
+		border-color: var(--primary);
+		background: var(--primary-soft);
+		color: var(--primary);
+	}
+
+	.save-btn:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
 	}
 
 	.glossary-link {
@@ -503,6 +598,23 @@ const Wrap = glossaryLink ? 'details' : 'div';
 		font-size: var(--fs-caption);
 		line-height: var(--lh-caption);
 		font-weight: 500;
+	}
+
+	.fold-speak {
+		display: none;
+		flex: none;
+	}
+
+	.fold-speak .speak[hidden],
+	.fold-speak :global(.speak-unavailable) {
+		display: none;
+	}
+
+	:global(html[data-first-lang='en']) .fold-speak[data-fold-lang='en'],
+	:global(html[data-first-lang='ja']) .fold-speak[data-fold-lang='ja'],
+	:global(html[data-first-lang='zh-Hans']) .fold-speak[data-fold-lang='zh-Hans'],
+	:global(html[data-first-lang='zh-Hant']) .fold-speak[data-fold-lang='zh-Hant'] {
+		display: block;
 	}
 
 	.fold-badge.unverified {
