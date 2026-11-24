@@ -5,6 +5,8 @@
 반도체 입문자가 기초부터 공정 전체까지 한국어·영어·일본어·중국어(간체/번체)로 익히는 무료 공개 학습 사이트입니다.
 Astro 정적 사이트(MDX)이며 GitHub Pages로 배포합니다. 서버와 DB는 없습니다.
 
+**사이트 바로 가기: https://blossuun.github.io/semiconductor-learning/**
+
 ## 개발
 
 ```sh
