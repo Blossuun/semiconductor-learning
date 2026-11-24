@@ -113,6 +113,95 @@ DRAM 셀은 트랜지스터 1개와 캐패시터 1개로 이뤄집니다. 읽을
 
 </details>
 
+## 실무 심화
+
+현장 엔지니어가 실제로 따지는 식, 수치, 설계 선택, 불량을 정리했습니다. 처음 배울 때는 건너뛰어도 됩니다.
+
+<details>
+<summary>핵심 식과 수치 (리프레시 부담, 셀당 비트 수, 셀 구조)</summary>
+
+**DRAM 리프레시**: DDR4 기준으로 모든 셀은 64ms 안에 한 번씩 다시 채워야 합니다. 행이 8,192(2<sup>13</sup>)개면 행 하나를 7.8µs마다 순서대로 채우면 됩니다.
+
+- 행 간격: tREFI ≈ 64ms ÷ 8,192 ≈ 7.8µs
+- 리프레시가 칩을 점유하는 비율: tRFC ÷ tREFI
+
+tRFC는 리프레시 한 번이 걸리는 시간입니다. 칩 용량이 커질수록 리프레시 부담이 커집니다.
+
+**계산 예**: tRFC를 가상의 값 400ns라 하면 400ns ÷ 7,800ns ≈ 0.051, 즉 약 5.1%입니다. 이 시간에는 읽기·쓰기 요청이 기다려야 합니다.
+
+**NAND 셀당 비트 수**: 셀이 n비트를 저장하려면 문턱 전압을 2<sup>n</sup>개 상태로 나눠 구분해야 합니다. 같은 전압 범위를 쓰면 상태 사이 간격은 2<sup>n</sup> − 1개입니다.
+
+| 종류 | 셀당 비트 | 구분할 상태 수 | 상태 사이 간격 수 | 용량(SLC = 1) | 정격 P/E 사이클(대략) |
+| --- | --- | --- | --- | --- | --- |
+| SLC | 1 | 2 | 1 | 1배 | 약 100,000 |
+| MLC | 2 | 4 | 3 | 2배 | 자료마다 달라 생략 |
+| TLC | 3 | 8 | 7 | 3배 | 자료마다 달라 생략 |
+| QLC | 4 | 16 | 15 | 4배 | 약 1,000 |
+
+**계산 예**: 문턱 전압 범위가 같다면 QLC는 SLC보다 상태를 16 ÷ 2 = 8배 더 구분해야 하고, 간격 하나는 SLC의 1 ÷ 15 ≈ 0.067배(약 6.7%)로 좁아집니다. P/E 사이클은 한 번 쓰고 한 번 지우는 횟수이며, 값은 제품 등급과 자료에 따라 크게 다릅니다. 순서(SLC가 가장 오래가고 QLC가 가장 짧다)만 기억해 두면 됩니다.
+
+**셀 구조 비교**: DRAM은 비트당 트랜지스터 1개와 캐패시터 1개(1T1C)입니다. SRAM은 비트당 MOSFET 6개(6T)입니다. 4개가 서로 맞물린 래치를 이뤄 0과 1을 붙들고, 2개는 비트 라인과 이어 주는 접근 트랜지스터입니다. SRAM은 리프레시가 필요 없지만 비트당 소자가 많습니다.
+
+</details>
+
+<details>
+<summary>설계 선택과 맞교환 (셀당 비트 수, 리프레시 주기, SRAM 크기)</summary>
+
+메모리는 공정 변수보다 셀을 어떻게 설계하느냐에 따라 성격이 갈립니다. 아래 표는 대표 선택지입니다.
+
+| 설계 선택 | 올리면 좋아지는 것 | 올리면 나빠지는 것 |
+| --- | --- | --- |
+| NAND 셀당 비트 수 | 같은 셀 수로 얻는 용량, 비트당 비용 | 내구성, 전압 변동 허용치(상태 간격이 좁아짐) |
+| DRAM 리프레시 주기 길게 | 리프레시에 쓰는 시간과 전력 | 약한 셀이 값을 잃을 위험 |
+| SRAM 풀다운 트랜지스터 키움 | 읽을 때 값이 뒤집히지 않는 안정성 | 면적 |
+
+**SRAM 읽기와 쓰기의 맞교환**: 6T 셀에서 읽을 때는 비트 라인이 접근 트랜지스터를 거쳐 저장 노드를 흔듭니다. 풀다운 NMOS가 접근 트랜지스터보다 충분히 강해야(셀 비율 = 풀다운 폭 ÷ 접근 폭이 커야) 값이 뒤집히지 않습니다. 쓸 때는 반대로 접근 트랜지스터가 풀업 PMOS를 이겨야 새 값이 들어갑니다(풀업 비율 = 풀업 폭 ÷ 접근 폭이 작아야 함). 접근 트랜지스터 크기에 두 조건이 서로 반대로 걸려 있어, 설계자는 두 여유를 함께 맞춥니다.
+
+**NAND 비트 수와 수명**: 소거할 때마다 셀의 산화막이 조금씩 닳습니다. 상태 사이 간격이 좁은 QLC는 같은 정도로 닳아도 상태를 잘못 읽기 쉬워서, SLC보다 수명이 짧습니다. 속도도 일반적으로 비트 수가 늘수록 느려집니다. 더 가는 전압 차이를 만들고 읽어야 하기 때문입니다. 그래서 속도와 수명이 중요한 곳(서버 캐시 등)에는 SLC나 TLC, 용량과 가격이 중요한 곳에는 QLC를 씁니다.
+
+**DRAM 리프레시와 용량**: 칩 용량이 커질수록 리프레시가 성능과 에너지에 주는 부담이 커집니다.
+
+</details>
+
+<details>
+<summary>대표 불량과 원인, 잡아내는 계측</summary>
+
+| 불량 | 주요 원인 | 잡아내는 계측 |
+| --- | --- | --- |
+| DRAM 유지 시간 불량(약한 셀) | 전하 누설, 시간에 따라 유지 시간이 바뀌는 셀(VRT) | 리프레시 주기를 늘려 가며 값이 유지되는지 보는 유지 시간 시험 |
+| SRAM 읽기 교란 | 접근 트랜지스터가 풀다운보다 강해 저장 노드 전압이 올라가 값이 뒤집힘 | 회로 시뮬레이션(SPICE)으로 셀 비율 검증 |
+| NAND 마모 | 소거 때마다 산화막 열화, 전압 상태 사이 간격 침범 | P/E 사이클을 반복한 뒤 읽기 비트 오류 수 확인 |
+| 쓰기 증폭 | 가비지 컬렉션으로 NAND에 호스트가 요청한 양보다 많이 씀 | 쓰기 증폭 계수(WAF) 계산 |
+
+**유지 시간과 VRT**: 유지 시간 불량은 캐패시터에 남은 전하량뿐 아니라, 센스 앰프가 0과 1을 구분하는 능력에도 좌우됩니다. 같은 셀이 어떤 때는 오래 버티고 어떤 때는 못 버티는 VRT 현상도 있어서, 한 번의 시험으로 최악의 경우를 다 잡아내기 어렵습니다.
+
+**읽기 파괴**: DRAM은 읽으려고 행을 활성화하면 캐패시터의 전하가 비트 라인과 섞여 흐트러집니다. 감지 증폭기가 비트 라인을 끝까지 밀어 올리거나 내려 셀을 다시 채웁니다. 리프레시도 같은 방식으로 행을 활성화해 이뤄집니다.
+
+**마모와 ECC**: 산화막이 닳아 생기는 오류는 컨트롤러의 오류 정정 부호(ECC)가 어느 정도 고칩니다. 그러나 오류가 ECC 능력을 넘으면 읽기 불량이나 쓰기 블록 불량이 납니다.
+
+**쓰기 증폭 계수**: WAF = NAND에 실제로 쓴 데이터 ÷ 호스트가 쓴 데이터입니다. 이상적인 값은 1이고, 클수록 같은 작업에 P/E 사이클을 더 많이 씁니다.
+
+</details>
+
+<details>
+<summary>출처</summary>
+
+수치는 2026년 11월에 아래 자료로 확인했습니다.
+
+- Wikipedia, Dynamic random-access memory(64ms, 행 8,192개, 7.8µs, 1T1C, 읽기 파괴): https://en.wikipedia.org/wiki/Dynamic_random-access_memory
+- Mukundan 외, ISCA 2013, DDR4 리프레시(tREFI 7.8µs, 유지 시간 64ms, VRT): https://www.csl.cornell.edu/~martinez/doc/isca13-mukundan.pdf
+- Liu 외(CMU·Intel), ISCA 2013, DRAM 유지 시간 실험(1T1C 구조, 행 활성화와 재충전, 센스 앰프, VRT, 8,192 × 7.8µs ≈ 64ms): https://www.pdl.cmu.edu/ftp/NVM/dram-retention_isca13.pdf
+- arXiv 2508.09419(2025), 6T SRAM 셀 비율·풀업 비율 정의: https://arxiv.org/html/2508.09419v1
+- Wikipedia, Static random-access memory(6T 구성, 접근 트랜지스터): https://en.wikipedia.org/wiki/Static_random-access_memory
+- Purdue ECE 559 (2009), 6T SRAM 셀 비율·풀업 비율과 읽기 실패 조건: https://engineering.purdue.edu/~vlsi/ECE559_Fall09/HW/HW6_Solution.pdf
+- KIOXIA, How Does Endurance Work in SSDs? (2021년 3월, 셀당 비트와 상태 수, 마모, WAF): https://americas.kioxia.com/content/dam/kioxia/en-us/business/memory/asset/KIOXIA-SSD-NAND-Endurance-Tech-Brief.pdf
+- Wikipedia, Flash memory(멀티 레벨 셀의 상태 간격, 산화막 열화): https://en.wikipedia.org/wiki/Flash_memory
+- Wikipedia, Write amplification(WAF 정의): https://en.wikipedia.org/wiki/Write_amplification
+- TechTarget, SLC vs. MLC vs. TLC(2023년 7월, SLC 약 100,000·QLC 약 1,000 P/E 사이클): https://www.techtarget.com/it-infrastructure/tip/Explore-benefits-tradeoffs-with-SLC-vs-MLC-vs-TLC-and-more
+- Everpure(구 Pure Storage), What is QLC flash?(상태 수, SLC·QLC P/E 사이클): https://www.everpuredata.com/knowledge/what-is-qlc-flash.html
+
+</details>
+
 ## 용어
 
 <TermCard id="memory-semiconductor" />
@@ -157,6 +246,18 @@ DRAM 셀은 트랜지스터 1개와 캐패시터 1개로 이뤄집니다. 읽을
 			choices: ['저장통의 전하가 조금씩 새기 때문', '전자를 절연막 안에 가두기 때문', '로직 칩이 계산 결과를 덮어쓰기 때문', 'HBM을 쌓아 TSV로 이었기 때문'],
 			answer: 0,
 			explanation: '캐패시터의 전하가 시간이 지나면 빠져나가 값이 흐려집니다.',
+			},
+			{
+				question: '같은 문턱 전압 범위를 쓸 때, QLC(셀당 4비트)가 구분해야 하는 상태 수는 SLC(셀당 1비트)의 몇 배인가?',
+				choices: ['2배', '4배', '8배', '16배'],
+				answer: 2,
+				explanation: '상태 수는 2의 n제곱입니다. SLC는 2개, QLC는 2의 4제곱인 16개이므로 16 ÷ 2 = 8배입니다.',
+			},
+			{
+				question: '리프레시 한 번이 400ns(가정값) 걸리고 7.8µs마다 한 번씩 리프레시 명령이 나간다면, 리프레시가 칩을 점유하는 비율은 약 얼마인가?',
+				choices: ['약 0.5%', '약 5.1%', '약 51%', '약 0.05%'],
+				answer: 1,
+				explanation: '비율 = tRFC ÷ tREFI = 400ns ÷ 7,800ns ≈ 0.051이므로 약 5.1%입니다.',
 		},
 	]}
 />

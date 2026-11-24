@@ -123,6 +123,94 @@ import Quiz from '../../components/Quiz.astro';
 
 </details>
 
+## 실무 심화
+
+현장 엔지니어가 실제로 따지는 식, 수치, 변수, 불량을 정리했습니다. 처음 배울 때는 건너뛰어도 됩니다.
+
+<details>
+<summary>핵심 식과 수치 (ISO 14644-1 청정도 등급)</summary>
+
+ISO 14644-1(2015)은 공기 1m<sup>3</sup> 안에 들어 있는, 어떤 크기 D 이상인 입자 수의 상한을 등급(N)별로 정합니다.
+
+- 상한: C<sub>n</sub> = 10<sup>N</sup> × (0.1 ÷ D)<sup>2.08</sup>
+
+C<sub>n</sub>은 입자 수의 상한(개/m<sup>3</sup>), N은 ISO 등급 번호(9 이하), D는 입자 크기(µm)입니다. 결과는 유효숫자 3자리까지 적습니다. 등급이 1 오를 때마다 상한은 10배가 됩니다.
+
+| ISO 등급 | ≥0.1µm | ≥0.5µm | ≥1µm |
+| --- | --- | --- | --- |
+| ISO 3 | 1,000 | 35 | 해당 없음 |
+| ISO 4 | 10,000 | 352 | 83 |
+| ISO 5 | 100,000 | 3,520 | 832 |
+| ISO 6 | 1,000,000 | 35,200 | 8,320 |
+| ISO 7 | 해당 없음 | 352,000 | 83,200 |
+| ISO 8 | 해당 없음 | 3,520,000 | 832,000 |
+
+값은 모두 해당 크기 이상 입자를 누적해서 센 개수이고, 2015년판 표 기준입니다. 표의 「해당 없음」은 그 크기로는 등급을 판정하지 않는다는 뜻입니다.
+
+**계산 예**: ISO 5에서 0.5µm 이상 입자의 상한은 10<sup>5</sup> × (0.1 ÷ 0.5)<sup>2.08</sup> = 10<sup>5</sup> × 0.0352 ≈ 3,517입니다. 유효숫자 3자리로 적으면 3,520개/m<sup>3</sup>입니다. 같은 식에 D = 1µm를 넣으면 10<sup>5</sup> × 0.1<sup>2.08</sup> ≈ 832개/m<sup>3</sup>입니다.
+
+**진동 기준**: 진동에 민감한 장비의 바닥은 VC(vibration criteria) 곡선으로 관리합니다. VC-D는 1/3 옥타브 대역의 속도가 250µin/s(약 6.25µm/s) 이하, VC-E는 125µin/s(약 3.12µm/s) 이하입니다. VC 곡선은 설계 참고용이고, 실제 기준은 장비사의 설치 사양을 따릅니다.
+
+</details>
+
+<details>
+<summary>공정 변수와 맞교환 (청정도, 온습도, 진동, AMC)</summary>
+
+| 변수 | 올리거나 엄격히 하면 좋아지는 것 | 나빠지는 것 |
+| --- | --- | --- |
+| 청정도 등급(ISO 번호를 낮춤) | 입자 불량 감소 | 필터·공기 순환 설비와 전력 비용 |
+| 습도 | 높이면 정전기 방전(ESD)이 줄어듦 | 구리 같은 금속이 부식되기 쉬움 |
+| 온도 안정도 | 열팽창으로 인한 무늬 어긋남 감소 | 공조 설비 비용 |
+| 진동 기준(VC 등급) | 장비의 해상도와 정렬 유지 | 건물 구조와 바닥 설계 비용 |
+| AMC 화학 필터 | 염기·산성 가스 감소 | 필터 교체 비용, 압력 손실 |
+
+**입자와 AMC는 다릅니다**: 입자는 ISO 14644-1로, 공기 중 분자 오염(AMC, airborne molecular contamination)은 ISO 14644-8로 따로 관리합니다. AMC는 공기 중 화학 물질의 농도로 분류합니다. 입자 필터는 기체 분자를 거의 걸러 내지 못하므로, AMC는 활성탄 같은 화학 필터와 실시간 모니터링으로 다룹니다.
+
+**습도의 양면**: 습도가 낮으면 정전기가 쌓여 방전이 일어나기 쉽습니다. 습도가 높으면 구리처럼 보호막을 만들지 못하는 금속이 부식되기 쉽습니다. 그래서 습도는 한쪽으로 몰지 않고 좁은 범위에 맞춥니다. 구체적인 목표 값은 공정과 팹마다 다릅니다.
+
+**진동과 온도**: 포토와 계측 구역은 열팽창과 진동에 가장 민감합니다. 온도가 조금만 변해도 웨이퍼와 장비가 늘어나 무늬가 어긋나므로, 이 구역은 온도와 습도를 더 좁게 맞춥니다.
+
+</details>
+
+<details>
+<summary>대표 불량과 원인, 잡아내는 계측</summary>
+
+| 불량 | 주요 원인 | 잡아내는 계측 |
+| --- | --- | --- |
+| 단선·합선 | 회로 위에 내려앉은 입자 | 입자 계수기(공기), 웨이퍼 표면 결함 검사 |
+| T자 윗머리(T-topping) | 염기성 AMC(암모니아, 아민)가 감광막 표면의 산을 중화 | 단면 SEM, 암모니아 모니터링 |
+| 렌즈·레티클 헤이즈 | 산성 가스, 암모니아, 실록산 같은 AMC가 광학면에 쌓임 | 광학면 검사, AMC 포집 분석 |
+| 구리 부식 | 높은 습도 | 습도 모니터링, 결함 검사 |
+| 정전기 방전 손상 | 낮은 습도에서 쌓인 전하 | 습도·정전기 모니터링 |
+| 무늬 어긋남·초점 흔들림 | 진동, 온도 변화 | 오버레이 계측, 바닥 진동 측정 |
+
+**입자 계측**: 광학 입자 계수기가 일정 부피의 공기를 빨아들여 크기별 입자 수를 셉니다. ISO 등급은 이 개수가 상한 이하인지로 판정합니다. 클린룸을 새로 지은 뒤와 정기 점검 때 측정합니다.
+
+**T-topping**: 화학 증폭형 감광액은 노광 때 생긴 산으로 반응합니다. 공기 중 염기가 감광막 표면에 내려앉으면 표면의 산이 중화되어 그 부분이 현상되지 않고 남습니다. 단면이 T자 모양이 되어 CD가 어긋납니다. 이 때문에 포토 구역에는 염기를 거르는 화학 필터를 둡니다. 허용 농도는 감광액 종류에 따라 문헌마다 다르므로 여기에는 적지 않았습니다.
+
+**헤이즈**: 암모니아와 황이 든 산성 가스가 광학면에서 만나 결정이 쌓일 수 있습니다. 이렇게 낀 뿌연 막이 빛을 흩어 노광 품질을 해칩니다. 렌즈를 닦거나 바꾸는 동안 장비가 멈추므로 손실이 큽니다.
+
+</details>
+
+<details>
+<summary>출처</summary>
+
+수치는 2026년 11월에 아래 자료로 확인했습니다. 진동 기준(VC-D·VC-E)은 두 업체 페이지의 검색 결과 요약으로 확인했고, 페이지 본문을 직접 열지는 못했습니다.
+
+- Connect 2 Cleanrooms, Cleanroom classifications (ISO 14644-1:2015 표): https://connect2cleanrooms.com/resources/knowledge-base/cleanroom-classifications/
+- Beckman Coulter, ISO 14644-1 classification: https://beckman.com/resources/industry-standards/iso-14644-1/classification
+- Engineering ToolBox, Clean Rooms ISO 14644 (식): https://engineeringtoolbox.com/clean-rooms-iso-d_933.html
+- CASRAI, Cleanroom classifications (식, 표): https://casrai.org/guides/cleanroom-classifications
+- ISO 14644-8, AMC 분류 표준 소개: https://www.iso.org/standard/37728.html
+- Newport (MKS), Environmental Vibration Criteria: https://www.newport.com/t/environmental-vibration-criteria
+- Daeil Systems, Generic Vibration Criteria: https://www.daeilsys.com/support/technical-notes/generic-criteria
+- SPIE, Generic vibration criteria for vibration-sensitive equipment (Proc. SPIE 3786): https://spiedigitallibrary.org/conference-proceedings-of-spie/3786/1/Generic-vibration-criteria-for-vibration-sensitive-equipment/10.1117/12.363802.short
+- Semiconductor Digest, The impact of airborne molecular bases on DUV photoresists: https://sst.semiconductor-digest.com/issue/?id=17770
+- Semiconductor Digest, Why control humidity in a cleanroom?: https://sst.semiconductor-digest.com/?p=42752
+- HORIBA, Monitoring of ammonia AMC in semiconductor fabrication: https://www.Horiba.com/int/process-and-environmental/solutions/monitoring-of-ammonia-airborne-molecular-contamination-in-semiconductor-fabrication/
+
+</details>
+
 ## 용어
 
 <TermCard id="wafer" />
@@ -166,6 +254,18 @@ import Quiz from '../../components/Quiz.astro';
 			choices: ['웨이퍼 표면의 입자를 씻어낸다', '천장에서 공기를 거른다', '웨이퍼를 천장 레일로 끌고 간다', '웨이퍼를 밀폐해 담아 옮긴다'],
 			answer: 3,
 			explanation: 'FOUP은 웨이퍼를 담는 밀폐 상자로, OHT가 천장 레일로 옮깁니다.',
+			},
+			{
+				question: 'ISO 5 클린룸에서 0.5µm 이상 입자의 상한이 3,520개/m³입니다. ISO 7의 상한은?',
+				choices: ['35,200개/m³', '7,040개/m³', '352,000개/m³', '3,520,000개/m³'],
+				answer: 2,
+				explanation: '등급이 1 오를 때마다 상한이 10배가 되므로 ISO 7은 ISO 5의 100배인 352,000개/m³입니다.',
+			},
+			{
+				question: '포토 구역에서 감광막 단면이 T자 모양이 되고 CD가 어긋났습니다. 먼저 의심할 원인은?',
+				choices: ['공기 중 암모니아·아민 같은 염기성 AMC', '5µm 이상의 큰 입자 증가', '건물 바닥 진동', '낮은 습도로 쌓인 정전기'],
+				answer: 0,
+				explanation: '염기가 감광막 표면의 산을 중화하면 그 부분이 현상되지 않고 남아 T자 모양이 됩니다. 입자 필터로는 걸러지지 않아 화학 필터가 필요합니다.',
 		},
 	]}
 />

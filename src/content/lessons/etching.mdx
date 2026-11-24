@@ -115,6 +115,91 @@ import Quiz from '../../components/Quiz.astro';
 
 </details>
 
+## 실무 심화
+
+현장 엔지니어가 실제로 따지는 식, 수치, 변수, 불량을 정리했습니다. 처음 배울 때는 건너뛰어도 됩니다.
+
+<details>
+<summary>핵심 식과 수치 (식각률·선택비·이방성)</summary>
+
+식각 결과는 세 가지 값으로 어림합니다.
+
+- 식각률: R = 깎인 두께 ÷ 식각 시간 (단위 nm/min)
+- 선택비: S = R<sub>대상막</sub> ÷ R<sub>마스크 또는 아래막</sub>
+- 이방성 정도: A = 1 − R<sub>옆</sub> ÷ R<sub>아래</sub> (0 ≤ A ≤ 1)
+
+A = 1이면 옆으로는 전혀 깎이지 않고, A = 0이면 옆과 아래로 같은 속도로 깎입니다(등방성). 자료에 따라 A를 아래 속도 ÷ 옆 속도로 정의하기도 하므로 값을 비교할 때 정의부터 확인합니다.
+
+**계산 예**: 산화막 300nm를 R = 100nm/min으로 깎으면 300 ÷ 100 = 3분입니다. 식각 편차를 감안해 10% 더 깎는 과잉 식각(overetch)을 하면 3 × 1.1 = 3.3분입니다. 이때 감광막 대비 선택비가 10이면 감광막은 330 ÷ 10 = 33nm 줄어듭니다. 이 수치는 계산 연습을 위한 가정값이며 실제 공정값이 아닙니다.
+
+**등방성 식각의 파고듦**: 감광막 아래로 파고드는 폭(언더컷)은 A = 0일 때 깊이와 거의 같습니다. 깊이 300nm를 등방성으로 깎으면 한쪽 옆으로도 약 300nm 파고듭니다. A = 0.9이면 옆 속도가 아래 속도의 0.1배이므로 약 30nm입니다.
+
+**건식과 습식 비교**
+
+| 항목 | 습식(약액) | 건식(플라스마) |
+| --- | --- | --- |
+| 방향성 | 대체로 등방성 | 조건에 따라 이방성까지 조절 |
+| 미세 선폭 | 옆으로 파고들어 불리 | 유리 |
+| 선택비 | 약액 선택으로 높게 얻기 쉬운 편 | 가스·조건 조절이 필요, 이온 충돌이 클수록 낮아짐 |
+| 부산물 | 약액 폐기물이 많음 | 배기 가스 처리 필요 |
+
+현대 미세 공정은 주로 플라스마 식각을 쓰고, 습식은 막을 통째로 벗기는 세정·제거 단계에 남아 있습니다.
+
+</details>
+
+<details>
+<summary>공정 변수와 맞교환 (선택비, 이방성, 로딩)</summary>
+
+| 변수 | 올리면 좋아지는 것 | 올리면 나빠지는 것 |
+| --- | --- | --- |
+| 이온 에너지(바이어스) | 이방성, 식각률 | 선택비, 아래막 손상 |
+| 압력 | 반응 입자 공급, 식각률 | 이온이 흩어져 이방성 저하 |
+| 옆벽 보호막(폴리머) 생성 | 이방성(옆으로 덜 깎임) | 좁은 바닥이 막혀 식각 정지, 찌꺼기 |
+| 과잉 식각 | 막이 남지 않게 지움 | 아래막 손실, 선폭 변화 |
+
+핵심은 "빠르고 곧게 깎으면 선택비가 떨어지기 쉽다"는 맞교환입니다. 이온 충돌(물리 작용)이 강할수록 마스크와 아래막도 같이 깎입니다. 반응 입자(화학 작용)가 강할수록 선택비는 좋아지지만 옆으로도 깎입니다.
+
+**로딩 효과**: 플라스마 식각에서 깎이는(열린) 면적이 넓을수록 반응 입자를 더 많이 쓰므로 식각률이 줄어듭니다. 용어를 다르게 쓰는 자료도 있습니다. 압력을 낮추거나, 마스크 밀도 차이를 줄이는 더미 패턴을 넣어 완화합니다(시료는 실리콘 깊은 식각 기준).
+
+**ARDE(종횡비 의존 식각, RIE lag)**: 깎는 깊이에 따라 식각률이 달라지는 현상입니다. 좁은 패턴은 바닥까지 반응 입자(라디칼)가 덜 닿아 식각률이 낮습니다. 그래서 폭이 다른 구멍을 한 번에 깎으면 깊이가 서로 달라집니다. 구멍은 도랑보다 영향을 더 크게 받습니다.
+
+</details>
+
+<details>
+<summary>대표 불량과 원인, 잡아내는 계측</summary>
+
+| 불량 | 주요 원인 | 잡아내는 계측 |
+| --- | --- | --- |
+| 선폭(CD) 규격 이탈 | 선택비 부족으로 마스크 손실, 옆벽 보호 부족 | CD-SEM, 광학 CD 계측(OCD) |
+| 언더컷·옆벽 경사 | 등방성 성분, 옆벽 보호막 부족 | 단면 SEM |
+| 깊이 불균일 | 로딩 효과, ARDE | 단면 SEM, 두께 계측 |
+| 식각 정지·찌꺼기 | 폴리머가 바닥을 막음, 식각 부족 | 결함 검사, 단면 SEM |
+| 아래막 손실 | 과잉 식각 과다, 낮은 선택비 | 막 두께 계측 |
+
+**종말점 검출(endpoint)**: 막이 다 깎인 순간을 실시간으로 찾아 식각을 멈추거나 과잉 식각 시간을 정합니다. 대표 방법은 두 가지입니다.
+
+- 발광 분석(OES): 플라스마 빛을 파장별로 봅니다. 파장마다 특정 입자에 대응하므로, 대상막이 다 깎여 부산물이 줄거나 달라지면 해당 파장의 세기가 변합니다. 이 변화 시점이 종말점입니다.
+- 레이저 간섭계: 웨이퍼에 레이저를 비추고 반사 세기를 봅니다. 막이 얇아지면서 간섭 때문에 세기가 진동하므로 진동 주기가 빠를수록 식각률이 빠릅니다.
+
+OES는 식각 속도가 빠르거나 깎이는 열린 면적이 넓어야 부산물 신호가 충분히 강해집니다. 그래서 열린 면적이 작은 식각에서는 종말점을 찾기 어렵습니다. 레이저 간섭계는 레이저를 웨이퍼의 열린 곳에 맞춰야 해서, 시험용 넓은 영역이 따로 있어야 양산에서 쓰기 쉽습니다.
+
+</details>
+
+<details>
+<summary>출처</summary>
+
+식과 정의는 2026년 11월에 아래 자료로 확인했습니다. 구체적인 공정 수치(식각률, 선택비 값)는 출처 간 일치를 확인하지 못해 넣지 않았고, 계산 예의 숫자는 가정값입니다.
+
+- UC Berkeley EE143, Lecture 04 Etching (이방성 정도 정의): https://inst.eecs.berkeley.edu/~ee143/fa16/lectures/Lecture04-Etching.pdf
+- Georgia Tech ECE6450, Etching especially Plasma Etching: https://alan.ece.gatech.edu/ECE6450/Lectures/ECE6450L11-Etching%20especially%20Plasma%20Etching.pdf
+- Samco, 로딩·마이크로 로딩·ARDE 설명: https://www.samcointl.com/news-events/tutorials/loading-and-microloading-effect-si-drie/
+- EPFL CMI, Etch definitions (선택비, 로딩, ARDE, 종말점 정의): https://www.epfl.ch/research/facilities/cmi/process/etching/etch-definitions
+- Wikipedia, Etching (microfabrication) (습식·건식, 등방성·이방성): https://en.wikipedia.org/wiki/Etching_(microfabrication)
+- EPFL CMI, Etch end-point detection capabilities (OES, 레이저 간섭계): https://www.epfl.ch/research/facilities/cmi/process/etching/end-pointing-capabilities/
+- Oxford Instruments, Automatic endpoint detection: https://plasma.oxinst.com/blog/2020/automatic-endpoint-detection
+
+</details>
+
 ## 용어
 
 <TermCard id="etching" />
@@ -159,6 +244,18 @@ import Quiz from '../../components/Quiz.astro';
 			choices: ['포토 공정', '증착', '이온 주입', '감광막 제거'],
 			answer: 0,
 			explanation: '포토 공정이 만든 감광막 무늬가 식각의 가림막이 됩니다.',
+			},
+			{
+				question: '산화막 400nm를 깎는 동안 감광막 대비 선택비가 20이라면, 감광막은 대략 얼마나 줄어드는가? (과잉 식각 없음)',
+				choices: ['약 8nm', '약 20nm', '약 80nm', '약 8000nm'],
+				answer: 1,
+				explanation: '선택비 = 막 식각량 ÷ 감광막 식각량이므로 감광막 식각량 = 400 ÷ 20 = 20nm입니다.',
+			},
+			{
+				question: '아래로 50nm/min, 옆으로 10nm/min 깎이는 식각의 이방성 정도 A = 1 − (옆 ÷ 아래)는?',
+				choices: ['0.2', '0.5', '0.8', '5'],
+				answer: 2,
+				explanation: 'A = 1 − 10 ÷ 50 = 0.8입니다. 1에 가까울수록 곧게 깎입니다.',
 		},
 	]}
 />
