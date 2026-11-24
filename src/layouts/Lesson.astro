@@ -299,6 +299,31 @@ const quizCount = (bodyHtml.match(/<fieldset(?![^>]*data-auto)[^>]*data-question
 </script>
 
 <style is:global>
+	.lesson-body table {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		overflow-x: auto;
+		margin: var(--space-3) 0;
+		border-collapse: collapse;
+		font-size: var(--fs-small);
+		line-height: var(--lh-small);
+	}
+
+	.lesson-body th,
+	.lesson-body td {
+		padding: var(--space-2) var(--space-3);
+		border: 1px solid var(--border);
+		text-align: left;
+		vertical-align: top;
+	}
+
+	.lesson-body th {
+		background: var(--surface-sunken);
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
 	.term-wrap {
 		position: relative;
 		display: inline;

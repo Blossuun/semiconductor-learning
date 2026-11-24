@@ -169,6 +169,108 @@ import Quiz from '../../components/Quiz.astro';
 
 </details>
 
+## 실무 심화
+
+현장 엔지니어가 실제로 따지는 식, 수치, 재료 선택, 흔한 오해를 정리했습니다. 처음 배울 때는 건너뛰어도 됩니다.
+
+<details>
+<summary>핵심 식과 수치 (띠틈·비저항·진성 캐리어 농도·온도)</summary>
+
+상온(약 300K)에서 대표 물질의 띠틈(E<sub>g</sub>)은 아래와 같습니다. 단위 eV(전자볼트)는 전자 하나가 가진 에너지의 단위입니다.
+
+| 물질 | 띠틈 E<sub>g</sub> | 성격 |
+| --- | --- | --- |
+| 실리콘(Si) | 약 1.12eV | 반도체 |
+| 갈륨비소(GaAs) | 약 1.42~1.43eV | 반도체 |
+| 이산화규소(SiO<sub>2</sub>) | 약 9eV | 부도체 |
+
+SiO<sub>2</sub>의 띠틈은 실리콘의 약 8배입니다(9 ÷ 1.12 ≈ 8.0). 그래서 같은 실리콘 칩 위에서 SiO<sub>2</sub>가 절연체 역할을 합니다.
+
+비저항(ρ)은 물질마다 자릿수가 크게 다릅니다. 아래 값은 상온 부근 대략의 값이며, 순도와 온도에 따라 달라집니다.
+
+| 물질 | 비저항 ρ (Ω·cm) |
+| --- | --- |
+| 구리 | 약 1.7 × 10<sup>-6</sup> |
+| 진성 실리콘 | 10<sup>5</sup>대 (약 2~4 × 10<sup>5</sup>) |
+| 석영(SiO<sub>2</sub>) | 약 7 × 10<sup>19</sup> |
+
+구리와 석영은 20자릿수가 넘게 차이 납니다. 반도체는 그 사이에 있고, 도핑으로 같은 실리콘의 비저항을 크게 바꿀 수 있습니다. 석영 값은 덩어리 재료의 값이며, 칩 위의 얇은 산화막 값과는 다를 수 있습니다.
+
+**진성 캐리어 농도**: 불순물이 없는 실리콘(진성 반도체)에서 열로 생긴 전자(와 같은 수의 정공) 농도를 n<sub>i</sub>라 합니다. 300K에서 n<sub>i</sub>는 약 10<sup>10</sup>cm<sup>-3</sup>입니다. 자료마다 9.65 × 10<sup>9</sup>~1.5 × 10<sup>10</sup>cm<sup>-3</sup>로 조금씩 다릅니다. 식은 다음과 같습니다.
+
+- n<sub>i</sub> = √(N<sub>c</sub>N<sub>v</sub>) × exp(−E<sub>g</sub> ÷ 2kT)
+
+N<sub>c</sub>·N<sub>v</sub>는 전도띠·가전자띠의 유효 상태 밀도, k는 볼츠만 상수, T는 절대온도입니다. E<sub>g</sub>가 클수록 n<sub>i</sub>는 지수적으로 작아집니다.
+
+**계산 예 (진성 실리콘의 비저항)**: ρ = 1 ÷ [q × n<sub>i</sub> × (μ<sub>n</sub> + μ<sub>p</sub>)]에서 n<sub>i</sub> = 1.5 × 10<sup>10</sup>cm<sup>-3</sup>, 전자·정공 이동도 합 μ<sub>n</sub> + μ<sub>p</sub> = 1350 + 480 = 1830cm<sup>2</sup>/V·s(교재 값), 전하량 q = 1.602 × 10<sup>-19</sup>C를 넣으면 ρ ≈ 2.3 × 10<sup>5</sup>Ω·cm입니다. n<sub>i</sub> = 9.65 × 10<sup>9</sup>cm<sup>-3</sup>을 쓰면 약 3.5 × 10<sup>5</sup>Ω·cm입니다.
+
+**온도에 따른 전도도 (금속과 반도체의 차이)**
+
+금속은 온도가 오르면 원자 진동이 커져 전자가 더 자주 부딪히므로 저항이 늘어납니다. 반대로 진성 반도체는 온도가 오르면 저항이 줄어듭니다. 열로 띠틈을 건너는 전자가 지수적으로 늘기 때문입니다.
+
+**계산 예**: E<sub>g</sub> = 1.12eV를 상수로 둔 식 n<sub>i</sub> ∝ T<sup>3/2</sup> × exp(−E<sub>g</sub> ÷ 2kT)에서 300K가 310K로 10K 오르면 n<sub>i</sub>는 (310 ÷ 300)<sup>3/2</sup> × exp[(E<sub>g</sub> ÷ 2k) × (1/300 − 1/310)] ≈ 1.050 × 2.011 ≈ 2.1배가 됩니다. 상온 부근에서 약 10K마다 대략 2배라고 보면 됩니다.
+
+**도핑한 반도체**: 불순물을 넣은 실리콘은 온도에 따라 세 구간을 지납니다.
+
+| 구간 | 캐리어 수 | 저항 |
+| --- | --- | --- |
+| 저온(동결) | 불순물 원자가 다 이온화되지 않아 도핑 농도보다 적다 | 온도가 오르면 줄어듦 |
+| 중간(외인성) | 도핑 농도와 거의 같고 거의 일정 | 이동도 변화가 주로 좌우 |
+| 고온(진성) | 열로 생긴 캐리어가 도핑 농도보다 많아짐 | 진성 반도체처럼 온도가 오르면 줄어듦 |
+
+소자는 대개 중간 구간에서 동작하도록 설계합니다. 고온에서 진성 구간에 들어서면 도핑으로 정한 성질을 잃습니다. 구간이 바뀌는 온도는 도핑 농도와 띠틈에 따라 달라집니다.
+
+</details>
+
+<details>
+<summary>재료 선택과 맞교환 (띠틈, 온도, 도핑)</summary>
+
+이 레슨은 공정이 아니라 재료의 성질을 다루므로, 공정 변수 대신 설계 선택의 맞교환을 정리합니다.
+
+| 선택 | 올리면 좋아지는 것 | 올리면 나빠지는 것 |
+| --- | --- | --- |
+| 띠틈 E<sub>g</sub> | n<sub>i</sub>가 지수적으로 작아져 열로 생기는 캐리어가 적다 | 열·빛으로 전자를 전도띠에 올리기 어렵다 |
+| 동작 온도 | 열로 생기는 캐리어가 늘어난다 | 고온에서 진성 구간에 들어서면 도핑으로 정한 성질을 잃는다 |
+
+**도핑 농도의 예**: 도핑 농도가 10<sup>16</sup>cm<sup>-3</sup>이라고 가정하면, 상온 n<sub>i</sub>(약 10<sup>10</sup>cm<sup>-3</sup>)보다 약 10<sup>6</sup>배 많습니다. 그래서 상온에서는 도핑한 캐리어가 전기 성질을 정합니다. 이 비율이 도핑으로 반도체를 조절할 수 있는 이유입니다.
+
+**띠틈이 큰 재료**: E<sub>g</sub>가 큰 재료는 같은 온도에서 n<sub>i</sub>가 훨씬 작으므로 고온에서도 진성 구간에 늦게 들어섭니다. 반대로 SiO<sub>2</sub>처럼 E<sub>g</sub>가 아주 크면 전류가 거의 흐르지 않아 절연체로 씁니다.
+
+</details>
+
+<details>
+<summary>흔한 오해와 확인 방법</summary>
+
+| 오해 | 실제 | 확인 방법 |
+| --- | --- | --- |
+| 반도체의 비저항은 정해진 한 값이다 | 도핑과 온도에 따라 크게 달라진다. 진성 실리콘 값은 불순물이 없을 때의 기준값이다 | 도핑 농도와 온도를 함께 확인한다 |
+| 온도가 오르면 모든 물질의 저항이 늘어난다 | 금속은 늘고, 반도체는 줄어든다 | 저항-온도 곡선의 방향을 본다 |
+| n<sub>i</sub> 값은 하나로 정해져 있다 | 자료마다 9.65 × 10<sup>9</sup>~1.5 × 10<sup>10</sup>cm<sup>-3</sup>로 다르다 | 값을 쓸 때 출처와 온도를 함께 적는다 |
+| 띠틈이 크면 무조건 좋은 재료다 | 절연에는 좋지만 전류를 흘려야 하는 소자에는 불리하다 | 용도에 맞춰 E<sub>g</sub>를 본다 |
+| 부도체는 전류가 전혀 흐르지 않는다 | 비저항이 매우 클 뿐 0은 아니다 | 비저항 값을 확인한다 |
+
+</details>
+
+<details>
+<summary>출처</summary>
+
+수치는 2026년 11월에 아래 자료로 확인했습니다. 일부(도핑한 반도체의 온도 구간)는 강의 자료의 검색 요약으로 확인했고 원문 전체를 대조하지는 않았습니다.
+
+- UC Berkeley EE232, 반도체 물리 강의(E<sub>g</sub> Ge·Si·GaAs): https://mingwuclass.berkeley.edu/wp-content/uploads/2020/01/EE232-3-Semiconductor-Physics-Optical-Process.pdf
+- URI ELE 533, Ge·Si·GaAs·SiO2 물성표(E<sub>g</sub>, n<sub>i</sub>): https://www.ele.uri.edu/Courses/ele533/05/midterm/Physicaldata.html
+- Najah Univ. 강의 자료(SiO2 9eV): https://staff-old.najah.edu/sites/default/files/Lec2.pdf
+- PVEducation, 진성 캐리어 농도(Altermatt 2003): https://www.pveducation.org/pvcdrom/pn-junctions/intrinsic-carrier-concentration
+- UNSW, Sproul·Green 재해석 초록: https://unsworks.unsw.edu.au/entities/publication/2c330f15-ece8-4dfd-b035-ec5d867c1d8d
+- TU Wien, 진성 캐리어 밀도 식: https://www.iue.tuwien.ac.at/phd/ayalew/node62.html
+- Wikipedia, 전기 비저항과 전도도(구리·실리콘·석영, 온도 의존): https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity
+- HyperPhysics(CRC 인용), 20°C 비저항: https://hyperphysics.gsu.edu/hbase/Tables/rstiv.html
+- NPTEL, 온도에 따른 반도체 캐리어: https://archive.nptel.ac.in/content/storage2/courses/115102025/module2/2.html
+- MIT OCW 3.225, 강의 8: https://mitocw.ups.edu.ec/courses/materials-science-and-engineering/3-225-electronic-and-mechanical-properties-of-materials-fall-2007/lecture-notes/lecture_8.pdf
+- Prince, Phys. Rev. 93, 1204 (1954), 실리콘 이동도 1350·480cm<sup>2</sup>/V·s: https://link.aps.org/doi/10.1103/PhysRev.93.1204
+- MOSFET Modeling for VLSI Simulation 부록, 300K 실리콘 물성: https://www.globalspec.com/reference/50109/203279/appendix
+
+</details>
+
 ## 용어
 
 <TermCard id="conductor" />
@@ -213,6 +315,24 @@ import Quiz from '../../components/Quiz.astro';
 			choices: ['항상 전류를 막아서', '항상 전류를 통과시켜서', '전류를 켜고 끄는 조절이 가능해서', '비저항이 도체보다 작아서'],
 			answer: 2,
 			explanation: '조건에 따라 전류를 조절할 수 있어 켜고 끄는 소자를 만들 수 있습니다.',
+		},
+		{
+			question: '상온(약 300K)에서 실리콘의 띠틈에 가장 가까운 값은?',
+			choices: ['약 9eV', '약 5eV', '약 1.1eV', '약 0.1eV'],
+			answer: 2,
+			explanation: '실리콘의 띠틈은 상온에서 약 1.12eV입니다. 약 9eV는 SiO₂의 값입니다.',
+		},
+		{
+			question: '불순물이 없는 실리콘의 온도를 올리면 진성 캐리어 농도는 어떻게 변하는가?',
+			choices: ['변하지 않는다', '줄어든다', '온도에 비례해 조금 늘어난다', '지수적으로 크게 늘어난다'],
+			answer: 3,
+			explanation: 'n_i는 exp(−E_g ÷ 2kT)에 비례하므로 온도가 오르면 지수적으로 늘어납니다. 상온 부근에서 10K 오르면 약 2배가 됩니다.',
+		},
+		{
+			question: 'SiO₂의 띠틈(약 9eV)은 실리콘(약 1.12eV)의 약 몇 배인가?',
+			choices: ['약 8배', '약 2배', '약 80배', '약 800배'],
+			answer: 0,
+			explanation: '9 ÷ 1.12 ≈ 8.0이므로 약 8배입니다.',
 		},
 	]}
 />
