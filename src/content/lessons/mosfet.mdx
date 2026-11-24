@@ -119,6 +119,93 @@ p형 기판에는 정공(양전하처럼 움직이는 빈자리)이 많습니다
 
 </details>
 
+## 실무 심화
+
+현장 엔지니어가 실제로 따지는 식, 수치, 변수, 불량을 정리했습니다. 처음 배울 때는 건너뛰어도 됩니다.
+
+<details>
+<summary>핵심 식과 수치 (문턱 전압, 전류 식, 문턱 이하 기울기)</summary>
+
+n채널 소자를 기준으로, 전압은 모두 소스를 0V로 잡은 값입니다.
+
+**문턱 전압**: V<sub>T</sub> = V<sub>FB</sub> + 2φ<sub>F</sub> + Q<sub>dep</sub> ÷ C<sub>ox</sub>
+
+- V<sub>FB</sub>: 평탄 대역 전압(게이트와 기판의 일함수 차이 등을 보정하는 값)
+- φ<sub>F</sub>: 기판의 페르미 준위가 진성 준위에서 떨어진 정도. 표면이 2φ<sub>F</sub>만큼 휘면 반전이 시작됩니다.
+- Q<sub>dep</sub>: 표면 아래 공핍층의 전하량(크기만 적음), C<sub>ox</sub>: 단위 면적당 게이트 산화막 용량
+- 교재마다 부호 규약이 달라 식의 모양이 조금씩 다릅니다.
+
+**전류 식(긴 채널, 제곱 법칙)**: K = μ·C<sub>ox</sub>·(W ÷ L)이라 두면
+
+| 영역 | 조건 | 드레인 전류 I<sub>D</sub> |
+| --- | --- | --- |
+| 꺼짐(문턱 이하) | V<sub>GS</sub> &lt; V<sub>T</sub> | 0은 아니고 지수로 작아짐(아래 SS) |
+| 선형(삼극관) | V<sub>GS</sub> &gt; V<sub>T</sub>, V<sub>DS</sub> &lt; V<sub>GS</sub> − V<sub>T</sub> | K × [(V<sub>GS</sub> − V<sub>T</sub>)·V<sub>DS</sub> − V<sub>DS</sub><sup>2</sup> ÷ 2] |
+| 포화 | V<sub>GS</sub> &gt; V<sub>T</sub>, V<sub>DS</sub> ≥ V<sub>GS</sub> − V<sub>T</sub> | (K ÷ 2) × (V<sub>GS</sub> − V<sub>T</sub>)<sup>2</sup> |
+
+μ는 채널 안 전자의 이동도, W는 채널 폭, L은 채널 길이입니다. V<sub>DS</sub>가 작으면 선형 식은 K·(V<sub>GS</sub> − V<sub>T</sub>)·V<sub>DS</sub>로 줄어, 전압에 비례하는 저항처럼 움직입니다. 포화에서는 V<sub>DS</sub>를 더 올려도 채널이 드레인 쪽에서 얇아져 전류가 거의 늘지 않습니다.
+
+**문턱 이하 기울기(SS)**: 문턱 이하에서 I<sub>D</sub>를 10배(1디케이드) 올리는 데 필요한 V<sub>GS</sub> 변화량입니다.
+
+- SS = n × (kT ÷ q) × ln 10, n = 1 + C<sub>d</sub> ÷ C<sub>ox</sub> (C<sub>d</sub>는 공핍층 용량)
+- 상온(약 300K)에서 kT ÷ q ≈ 26mV이므로 n = 1이어도 SS ≈ 60mV/dec입니다. 이 값이 상온의 이론 하한이고, 실제 소자는 n &gt; 1이라 더 큽니다.
+
+**계산 예**: n = 1.4이면 SS ≈ 1.4 × 60 ≈ 84mV/dec입니다. SS가 80mV/dec인 소자에서 V<sub>GS</sub>를 0.24V 낮추면 0.24 ÷ 0.08 = 3디케이드, 곧 문턱 이하 전류가 약 1000분의 1로 줄어듭니다.
+
+</details>
+
+<details>
+<summary>공정 변수와 맞교환 (산화막 두께, 문턱 전압 조정, 채널 길이)</summary>
+
+| 변수 | 올리면 좋아지는 것 | 올리면 나빠지는 것 |
+| --- | --- | --- |
+| 문턱 전압 V<sub>T</sub> | 꺼짐 상태 누설 감소 | 같은 V<sub>GS</sub>에서 (V<sub>GS</sub> − V<sub>T</sub>)가 줄어 구동 전류 감소 |
+| 게이트 산화막 두께 | 게이트로 새는 터널링 누설 감소 | C<sub>ox</sub> 감소로 구동 전류 감소, C<sub>d</sub> ÷ C<sub>ox</sub> 증가로 SS 악화 |
+| 채널 길이 L | 단채널 효과(V<sub>T</sub> 감소, DIBL, 펀치스루) 완화 | 식 상 전류가 L에 반비례해 줄고, 집적도 저하 |
+| 기판 도핑 | V<sub>T</sub> 조정, 공핍층이 얇아짐 | C<sub>d</sub>가 커져 SS 악화 |
+
+**맞교환의 핵심**: 제곱 법칙에서 전류를 키우려면 W ÷ L, C<sub>ox</sub>, 전압 여유(V<sub>GS</sub> − V<sub>T</sub>)를 키워야 하는데, 각각 누설이나 단채널 효과를 부릅니다. 소자를 줄일 때 L, 산화막 두께, 도핑을 함께 맞춰 조정하는 이유입니다.
+
+**V<sub>T</sub>와 누설의 관계**: SS가 60~100mV/dec 수준이면 V<sub>T</sub>를 100mV 낮출 때 꺼짐 전류가 1~2자릿수 늘어납니다. 그래서 V<sub>T</sub>를 낮춰 속도를 얻는 만큼 대기 전력을 내줍니다.
+
+</details>
+
+<details>
+<summary>대표 불량과 원인, 잡아내는 계측</summary>
+
+| 불량 | 주요 원인 | 잡아내는 계측 |
+| --- | --- | --- |
+| V<sub>T</sub> 규격 이탈 | 채널 도핑량 편차, 산화막 두께 편차 | I<sub>D</sub>-V<sub>GS</sub> 곡선 측정 |
+| V<sub>T</sub> 롤오프 | 채널이 짧아져 공핍 전하 분담이 달라짐 | 길이가 다른 소자의 V<sub>T</sub> 비교 |
+| DIBL | 드레인 전압이 소스 쪽 장벽을 낮춤 | V<sub>DS</sub>를 바꿔 측정한 V<sub>T</sub>·누설 비교 |
+| 펀치스루 | 드레인 공핍층이 소스까지 닿음 | 꺼짐 상태 전류, 항복 측정 |
+| 꺼짐 누설 과다 | 문턱 이하 전류, 접합 누설, GIDL, 게이트 터널링 | 게이트·드레인·기판 전류를 따로 측정 |
+
+**단채널 효과**: 채널이 짧아지면 소스·드레인의 공핍층이 채널 아래로 파고들어, 게이트가 받치는 공핍 전하가 줄고 V<sub>T</sub>가 낮아집니다(롤오프). 드레인 전압이 높아지면 이 효과가 더해져 V<sub>T</sub>가 더 낮아지는데, 이것이 DIBL(드레인 유도 장벽 낮춤)입니다. 심하면 드레인 공핍층이 소스에 닿는 펀치스루가 일어나 게이트와 무관한 전류가 흐릅니다. 또 전자가 속도 한계에 닿아 전류가 제곱 법칙보다 일찍 포화되는 속도 포화도 단채널의 특징입니다.
+
+**꺼짐 누설의 네 갈래**: 문턱 이하 전류, 역방향 접합 누설, GIDL(게이트 유도 드레인 누설, 게이트와 드레인이 겹친 곳의 밴드 간 터널링), 얇은 산화막을 직접 통과하는 게이트 터널링입니다. 어느 것이 지배적인지는 소자 구조와 전압, 온도에 따라 달라집니다.
+
+**계측 방법**: V<sub>GS</sub>를 훑으며 I<sub>D</sub>를 측정한 I<sub>D</sub>-V<sub>GS</sub> 곡선을 세로축 로그로 그리면, 문턱 이하 구간의 기울기에서 SS를, 켜지는 지점에서 V<sub>T</sub>를 읽습니다.
+
+</details>
+
+<details>
+<summary>출처</summary>
+
+수식과 수치는 2026년 11월에 아래 자료로 확인했습니다. 상온 SS 하한 약 60mV/dec는 MIT와 UC Berkeley 강의 자료에서, 전류 식은 켄터키 대학과 펜실베이니아 대학 강의 자료에서 맞춰 보았습니다. 이 레슨의 숫자 계산 예는 위 식에 직접 값을 넣은 것입니다.
+
+- MIT 6.720J, 문턱 이하 기울기(lecture 29): https://ocw.mit.edu/courses/6-720j-integrated-microelectronic-devices-spring-2007/25a7af5d5af20dc54c3416d31a78bcf7_lecture29.pdf
+- UC Berkeley EE40, lecture 13: https://inst.eecs.berkeley.edu/~ee40/su05/lectures/lecture13.pdf
+- 켄터키 대학 EE461, lecture 9: https://web.engr.uky.edu/~dllau/page0/ee461/lectures/Lecture09.pdf
+- 펜실베이니아 대학 ESE3700, lecture 5: https://www.seas.upenn.edu/~ese3700/spring2023/handouts/lec5_6up.pdf
+- UCSB ECE 122A, lecture 6(문턱 전압): https://www.ece.ucsb.edu/courses/ECE122/122_F23Banerjee/Slides/Lecture_6.pdf
+- UNM ECE520, lecture 2(문턱 전압): https://www.unm.edu/%7Epzarkesh/ECE520/lectures/lecture2.pdf
+- UNM ECE520, lecture 4(단채널 효과): https://www.unm.edu/%7Epzarkesh/ECE520/lectures/lecture4.pdf
+- Purdue EE695KR, MOS 강의(DIBL, 누설): https://engineering.purdue.edu/~vlsi/courses/ee695kr/f2005/ee695kr_notes/Lect_02_MOS.pdf
+- IEICE, CMOS 누설 전류 총설(누설 네 갈래): https://coldflux.usc.edu/~massoud/Papers/IEICE-leakage-review-journal.pdf
+
+</details>
+
 ## 용어
 
 <TermCard id="mosfet" />
@@ -163,6 +250,18 @@ p형 기판에는 정공(양전하처럼 움직이는 빈자리)이 많습니다
 			choices: ['채널이 사라져 전류가 멈춘다', '채널이 넓어져 전류가 늘어난다', '게이트로 전류가 흘러 들어간다', '기판이 영구히 n형으로 바뀐다'],
 			answer: 0,
 			explanation: '전기장이 사라지면 채널이 없어져 스위치가 꺼집니다.',
+		},
+		{
+			question: '[실무 심화] SS가 80mV/dec인 소자에서 문턱 이하일 때 게이트 전압을 0.24V 낮추면 드레인 전류는 대략 어떻게 되는가?',
+			choices: ['약 10분의 1로 줄어든다', '약 100분의 1로 줄어든다', '약 1000분의 1로 줄어든다', '약 3분의 1로 줄어든다'],
+			answer: 2,
+			explanation: '0.24V ÷ 0.08V/dec = 3디케이드이므로 전류는 10의 3제곱, 곧 약 1000분의 1이 됩니다.',
+		},
+		{
+			question: '[실무 심화] K = μC_ox(W/L) = 2mA/V², V_T = 0.4V인 n채널 소자에 V_GS = 0.8V, V_DS = 0.8V를 걸면 포화 전류는? (제곱 법칙 사용)',
+			choices: ['80µA', '160µA', '320µA', '640µA'],
+			answer: 1,
+			explanation: 'V_DS(0.8V)가 V_GS − V_T(0.4V) 이상이라 포화입니다. I_D = (K ÷ 2) × (0.4V)² = 1mA/V² × 0.16V² = 0.16mA = 160µA입니다.',
 		},
 	]}
 />

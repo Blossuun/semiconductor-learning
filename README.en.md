@@ -5,6 +5,8 @@ English | [한국어](README.md)
 A free, public learning site where semiconductor beginners study everything from the basics to the full process flow in Korean, English, Japanese, and Chinese (Simplified/Traditional).
 It is a static Astro site (MDX) deployed to GitHub Pages. There is no server or database.
 
+**Visit the site: https://blossuun.github.io/semiconductor-learning/**
+
 ## Development
 
 ```sh
